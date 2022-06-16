@@ -1,0 +1,33 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "airbnb",
+        "plugin:@next/next/recommended",
+        "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
+        "plugin:prettier/recommand"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "react-hooks",
+        "prettier", 
+        "import"
+    ],
+    "rules": { 
+        "arrow-body-style": "error", 
+        "prefer-arrow-callback": "off", 
+        "no-var": "error", 
+        "no-dupe-keys": "error", 
+        "react/prop-types": "off" 
+      }
+}
