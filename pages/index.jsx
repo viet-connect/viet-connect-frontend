@@ -1,13 +1,12 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from 'next/head';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Row, Col } from 'antd';
 
 export default function Home(home) {
-  console.log("1");
-  console.log9('1');
   return (
-    <div>
-      <h1>Homepage</h1>
-    </div>
-  )
+    <Row>
+      <Col>바보</Col>
+    </Row>
+  );
 }
