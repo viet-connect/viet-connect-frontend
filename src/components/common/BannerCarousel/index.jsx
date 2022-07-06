@@ -20,7 +20,7 @@ export default function BannerCarousel({}) {
   const router = useRouter();
   return (
     <Wrapper>
-      <Carousel>
+      <Carousel autoplay={true}>
         <div>
           <h3 style={contentStyle}>배너1</h3>
         </div>

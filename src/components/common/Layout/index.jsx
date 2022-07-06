@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Row, Col, Button, Menu } from 'antd';
+import { Row, Col, Button, Menu, Divider, Typography } from 'antd';
 import { useRouter } from 'next/router';
 import {
   MailOutlined,
@@ -9,13 +9,14 @@ import {
   SettingOutlined,
 } from '@ant-design/icons';
 import styled from 'styled-components';
+const { Text } = Typography;
 const Wrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
 `;
 const Container = styled.div`
-  min-width: 400px;
+  min-width: 350px;
   max-width: 1024px;
   width: 100%;
 `;
@@ -29,6 +30,7 @@ const Nav = styled.div`
 `;
 const Main = styled.div`
   width: 100%;
+  min-height: calc(100vh - 210px);
   height: max-content;
 `;
 const Footer = styled.div`
@@ -79,7 +81,47 @@ export default function Layout({ children }) {
           </Row>
         </Nav>
         <Main>{children}</Main>
-        <Footer></Footer>
+        <Footer>
+          <Row
+            style={{
+              padding: '16px',
+            }}
+          >
+            <Col>
+              <Text>상호 : 글루</Text>
+              <Divider type="vertical" />
+              <Text>대표 : 강경욱</Text>
+              <Divider type="vertical" />
+              <Text strong>개인정보책임자 : 강경욱 </Text>
+              <Divider type="vertical" />
+              <br />
+              <Text>사업자등록번호 : 145-45-00814 </Text>
+              <Divider type="vertical" />
+              <br />
+              <Text>
+                주소 : 서울특별시 광진구 천호대로 143길 34, 지하층 1호(광장동)
+              </Text>
+              <Divider type="vertical" />
+              <br />
+              <Text>대표이메일 : rkdrud34@gmail.com</Text>
+              <Divider type="vertical" />
+              <br />
+              <Text>대표전화 : 010-2978-3479</Text>
+              <Divider type="vertical" />
+              {/* </Space> */}
+            </Col>
+          </Row>
+          <Row justify="center">
+            <Col
+              style={{
+                fontSize: '10px',
+                color: '#c7c7c7',
+              }}
+            >
+              COPYRIGHT © 모아이 inc. All RIGHTS RESERVED.
+            </Col>
+          </Row>
+        </Footer>
       </Container>
     </Wrapper>
   );
