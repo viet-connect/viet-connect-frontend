@@ -9,6 +9,6 @@ const Wrapper = styled.div`
   justify-content: center;
 `;
 
-export default function Home({ children }) {
-  return <Layout></Layout>;
+export default function Home(home) {
+  return <Layout>사장님페이지</Layout>;
 }
