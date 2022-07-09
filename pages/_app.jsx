@@ -3,7 +3,6 @@ require('../src/styles/antd-custom.less');
 
 import { ConfigProvider } from 'antd';
 import koKR from 'antd/lib/locale/ko_KR';
-import { AuthService } from '../src/service/authService';
 import { AuthContextProvider } from '../context/AuthContext';
 
 function MyApp({ Component, pageProps }) {

@@ -6,7 +6,7 @@ import {
   facebookAuthProvider,
   signOut,
   signInWithPopup,
-} from '../src/service/firebase';
+} from 'src/service/firebase';
 
 const AuthContext = createContext({});
 
