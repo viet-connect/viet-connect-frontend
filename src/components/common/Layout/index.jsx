@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,6 +10,9 @@ import {
   SettingOutlined,
 } from '@ant-design/icons';
 import styled from 'styled-components';
+import LoginModal from "src/components/common/Modal/LoginModal";
+import { useAuth } from '../../../../context/AuthContext';
+
 const { Text } = Typography;
 const Wrapper = styled.div`
   width: 100%;
@@ -46,6 +50,17 @@ const items = [
 
 export default function Layout({ children }) {
   const router = useRouter();
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const { user, logout } = useAuth();
+
+  const handleClickLogout = async () => {
+    try {
+      await logout();
+    } catch(err) {
+      console.log(err);
+    }
+  }
+
   return (
     <Wrapper>
       <Container>
@@ -57,13 +72,24 @@ export default function Layout({ children }) {
                 style={{ width: '120px' }}
               />
             </Col>
-            <Col>
-              <Button
+            <Col>     
+              {user ? (
+                <Button
                 type="primary"
                 style={{ borderRadius: '5px', fontWeight: 'bold' }}
+                onClick={handleClickLogout}
               >
-                로그인
-              </Button>
+                로그아웃
+                </Button>
+              ) : (
+                <Button
+                  type="primary"
+                  style={{ borderRadius: '5px', fontWeight: 'bold' }}
+                  onClick={() => setIsModalVisible(true)}
+                >
+                  로그인
+                </Button>
+              )}
             </Col>
           </Row>
         </Header>
@@ -123,6 +149,7 @@ export default function Layout({ children }) {
           </Row>
         </Footer>
       </Container>
+      <LoginModal setIsModalVisible={() => setIsModalVisible()} isModalVisible={isModalVisible} onOk={() => setIsModalVisible(false)} onCancel={() => setIsModalVisible(false)}/>
     </Wrapper>
   );
 }
