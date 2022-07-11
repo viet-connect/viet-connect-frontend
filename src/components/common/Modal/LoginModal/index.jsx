@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Modal } from 'antd';
 import styled from 'styled-components';
 import { useAuth } from '../../../../../context/AuthContext';
@@ -7,29 +7,30 @@ const ButtonWrapper = styled.div`
 	height: 80%;
 	width: 80%;
 `
-
 export default function LoginModal (props) {
 	const { isModalVisible, onOk, onCancel, setIsModalVisible } = props;
-	const { user, login, logout } = useAuth();
+	const { user, login } = useAuth();
 	const [hasGoogleLoginError , setHasGoogleLoginError] = useState(false);
 
 	const handleClickLogin = async (provider) => {
 		try {
 			await login(provider);
-
-			if (user) {
-				if (hasGoogleLoginError) {
-					setHasGoogleLoginError(false);
-				}
-
-				setIsModalVisible(false);
-			} else {
-				setHasGoogleLoginError(true);
-			}
 		} catch (err) {
 			console.log(err);
+
+			setHasGoogleLoginError(true);
 		}
 	}
+
+	useEffect(() => {
+		if (user) {
+			if (hasGoogleLoginError) {
+				setHasGoogleLoginError(false);
+			}
+
+			setIsModalVisible(false);
+		}
+	}, [user])
 
   return (
 		<Modal

@@ -15,7 +15,6 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  console.log(user);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -39,14 +38,24 @@ export const AuthContextProvider = ({ children }) => {
     try {
       const authProvider = getProvider(providerName);
       const authResult = await signInWithPopup(auth, authProvider);
+      const {
+        user: { uid, email, displayName },
+      } = authResult;
+
+      setUser({
+        uid,
+        email,
+        displayName,
+      });
     } catch (err) {
       console.log(err);
     }
   };
 
   const logout = async () => {
-    setUser(null);
     await signOut(auth);
+
+    setUser(null);
   };
 
   const getProvider = (name) => {
