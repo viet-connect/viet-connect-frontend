@@ -21,4 +21,4 @@ export const firebaseApp = initializeApp(firebaseConfig);
 export const googleAuthProvider = new GoogleAuthProvider();
 export const facebookAuthProvider = new FacebookAuthProvider();
 export const auth = getAuth();
-export { signInWithPopup };
+export { signInWithPopup, signOut };
