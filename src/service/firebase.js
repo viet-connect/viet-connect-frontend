@@ -18,7 +18,28 @@ const firebaseConfig = {
 
 export const firebaseApp = initializeApp(firebaseConfig);
 /* Auth modules */
-export const googleAuthProvider = new GoogleAuthProvider();
-export const facebookAuthProvider = new FacebookAuthProvider();
+const googleAuthProvider = new GoogleAuthProvider();
+const facebookAuthProvider = new FacebookAuthProvider();
+facebookAuthProvider.addScope('public_profile');
+facebookAuthProvider.addScope('email');
+facebookAuthProvider.setCustomParameters({
+  display: 'popup',
+});
+
 export const auth = getAuth();
-export { signInWithPopup, signOut };
+export { signInWithPopup, signOut, googleAuthProvider, facebookAuthProvider };
+
+/* [ Currently not on use ] 
+  export const uiConfig = {
+    signInFlow: 'popup',
+    signInOptions: [
+      googleAuthProvider.providerId,
+      facebookAuthProvider.providerId,
+    ],
+    callbacks: {
+      signInSuccessWithAuthResult: () => false,
+    },
+  };
+
+  export default StyledFirebaseUI;
+*/
