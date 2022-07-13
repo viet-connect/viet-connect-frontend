@@ -2,15 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { Button, Modal } from 'antd';
 import styled from 'styled-components';
 import { useAuth } from '../../../../../context/AuthContext';
+import GoogleButton from 'react-google-button'
+import FaceBookLogin from '../../Button/FacebookLoginButton';
 
-const ButtonWrapper = styled.div`
+const ButtonContainer = styled.div`
 	height: 80%;
-	width: 80%;
-`
+	width: 55%;
+`;
+
+const ButtonWrapper = styled.div``;
+
 export default function LoginModal (props) {
 	const { isModalVisible, onOk, onCancel, setIsModalVisible } = props;
 	const { user, login } = useAuth();
-	const [hasGoogleLoginError , setHasGoogleLoginError] = useState(false);
+	const [hasGoogleLoginError , setHasGoogleLoginError] = useState(false);	
 
 	const handleClickLogin = async (provider) => {
 		try {
@@ -23,6 +28,7 @@ export default function LoginModal (props) {
 	}
 
 	useEffect(() => {
+		console.log(user);
 		if (user) {
 			if (hasGoogleLoginError) {
 				setHasGoogleLoginError(false);
@@ -42,11 +48,16 @@ export default function LoginModal (props) {
 			onOk={onOk} 
 			onCancel={onCancel}
 		>
-			<ButtonWrapper style={{ display: 'flex', flexDirection: "column", justifyContent: 'center' }}>
-				<Button style={{ margin: 5 }} type="primary" onClick={() => handleClickLogin("google")}>구글 계정 로그인</Button>
-				{hasGoogleLoginError && <div>구글 계정 로그인에 실패하였습니다. 다시 시도해주세요.</div>}
-				<Button style={{ margin: 5 }} type="primary">페이스북 계정 로그인</Button>
-			</ButtonWrapper>
+			<ButtonContainer style={{ display: 'flex', flexDirection: "column", justifyContent: 'center' }}>
+				<ButtonWrapper>
+					<GoogleButton type="light" onClick={() => handleClickLogin("google")} />
+					{hasGoogleLoginError && <div>구글 계정 로그인에 실패하였습니다. 다시 시도해주세요.</div>}
+				</ButtonWrapper>
+				<ButtonWrapper>					
+					<FaceBookLogin onClick={() => handleClickLogin("facebook")} />
+				</ButtonWrapper>
+				{/* <StyledFirebaseUI uiConfig={uiConfig} firebaseAuth={auth} /> */}
+			</ButtonContainer>
 		</Modal>
   );
 };
