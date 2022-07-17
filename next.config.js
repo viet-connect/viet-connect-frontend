@@ -5,8 +5,6 @@
 
 // module.exports = nextConfig
 
-
-
 const withAntdLess = require('next-plugin-antd-less');
 
 module.exports = withAntdLess({
@@ -14,16 +12,12 @@ module.exports = withAntdLess({
   lessVarsFilePathAppendToEndOfContent: false,
   cssLoaderOptions: {},
   compilerOptions: {
-    baseUrl: ".",
-    rootDir: ".",
+    baseUrl: '.',
+    rootDir: '.',
     paths: {
-      "src/*": [
-        "src/*"
-      ],
-      "public/*": [
-        "public/*"
-      ],
-    }
+      'src/*': ['src/*'],
+      'public/*': ['public/*'],
+    },
   },
   webpack(config) {
     config.resolve.modules.push(__dirname); // 추가
@@ -35,4 +29,5 @@ module.exports = withAntdLess({
   //   KAKAO_REDIRECT_URI: process.env.KAKAO_REDIRECT_URI,
   // },
   reactStrictMode: false,
+  exclude: ['node_modules', '**/node_modules', 'dist'],
 });

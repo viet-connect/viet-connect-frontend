@@ -12,24 +12,24 @@ const Wrapper = styled.div`
   }
 `;
 const columns = [
-  {
-    title: '공고',
-    dataIndex: 'is_premium',
-    key: 'is_premium',
-    width: 100,
-    render: (text) => {
-      return text === 1 ? (
-        <span style={{ color: '#FF0000', fontWeight: 'bold' }}>PREMIUM</span>
-      ) : (
-        <span></span>
-      );
-    },
-  },
+  // {
+  //   title: '공고',
+  //   dataIndex: 'is_premium',
+  //   key: 'is_premium',
+  //   width: 100,
+  //   render: (text) => {
+  //     return text === 1 ? (
+  //       <span style={{ color: '#FF0000', fontWeight: 'bold' }}>PREMIUM</span>
+  //     ) : (
+  //       <span></span>
+  //     );
+  //   },
+  // },
   {
     title: '지역',
     dataIndex: 'region',
     key: 'region',
-    width: 100,
+    width: 50,
     ellipsis: true,
   },
   {
@@ -46,7 +46,7 @@ const columns = [
       ) : (
         <span>{item.title}</span>
       ),
-    // width: 300,
+    width: 100,
     ellipsis: true,
   },
   {
@@ -84,7 +84,7 @@ const columns = [
         );
       }
     },
-    width: 160,
+    width: 100,
     // ellipsis: true,
   },
   {
@@ -106,8 +106,7 @@ const data = [
     is_premium: 1,
     region: '서울시 중구',
     title: {
-      title:
-        '미스사이공 주방직원 급구asdasdas미스사이공 주방직원 급구asdasdas미스사이공 주방직원 급구asdasdas미스사이공 주방직원 급구asdasdas미스사이공 주방직원 급구asdasdas',
+      title: '미스사이공 주방직원 급구asdasdas미스사이공 주방직원',
       is_premium: 1,
     },
     salary: { wage: '2,000,000원', way: 'monthly' },
@@ -194,13 +193,30 @@ export default function Home({}) {
               ))}
             </Select>
           </Col>
+        </Row>
+        <Row justify="center" style={{ marginTop: '20px' }}>
           <Col>
-            <Button type="primary" icon={<SearchOutlined />}>
+            <Button
+              type="primary"
+              icon={<SearchOutlined />}
+              style={{ width: '330px', borderRadius: '10px' }}
+            >
               검색
             </Button>
           </Col>
         </Row>
-
+        <Row style={{ marginTop: '20px' }}>
+          <Col span={24}>
+            <Table
+              columns={columns}
+              dataSource={data}
+              // title={() => <Title level={3}>채용공고</Title>}
+              pagination={{ position: ['bottomCenter'] }}
+              scroll={{ x: '1024px' }}
+              // column={{ fixed: true }}
+            />
+          </Col>
+        </Row>
         <Row style={{ marginTop: '20px' }}>
           <Col span={24}>
             <Table
