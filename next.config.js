@@ -29,4 +29,5 @@ module.exports = withAntdLess({
   //   KAKAO_REDIRECT_URI: process.env.KAKAO_REDIRECT_URI,
   // },
   reactStrictMode: false,
+  exclude: ['node_modules', '**/node_modules', 'dist'],
 });
