@@ -6,6 +6,7 @@ import { SearchOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import Layout from 'src/components/common/Layout';
 import BannerCarousel from 'src/components/common/BannerCarousel';
+
 const Wrapper = styled.div`
   .ant-card-body {
     padding: 5px 20px;
