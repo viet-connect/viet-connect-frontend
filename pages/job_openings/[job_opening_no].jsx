@@ -3,7 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { Row, Col, Button, Typography, Divider } from 'antd';
-const { Title, Text } = Typography;
+import { AuditOutlined, PhoneOutlined } from '@ant-design/icons';
+const { Title, Text, Paragraph } = Typography;
 import SalarySystemTag from '../../src/components/common/Tag/SalarySystemTag';
 import styled from 'styled-components';
 import Layout from 'src/components/common/Layout';
@@ -22,7 +23,7 @@ export default function JobOpeningDetail({ job_opening_no }) {
     id: 'id',
     category_id: 0,
     title: '동대문 한국외국어대학교 미스사이공 주방 알바 급구',
-    shop: '미스사이공',
+    shop: '미스사이공 한국외대점',
     tel: '032-326-5979',
     gender: 'male',
     korean_ability: '1',
@@ -75,18 +76,19 @@ export default function JobOpeningDetail({ job_opening_no }) {
   useEffect(() => {
     const script = document.createElement('script');
     script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_JS_KEY}`;
-    console.log(process.env.NEXT_PUBLIC_KAKAO_JS_KEY);
-    console.log(process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID);
     script.addEventListener('load', () => setMapLoaded(true));
     document.head.appendChild(script);
   }, []);
   useEffect(() => {
     if (!mapLoaded) return;
-
+    console.log(jobOpeningContents.region_address.x);
     kakao.maps.load(() => {
       var container = document.getElementById('map');
       var options = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667),
+        center: new kakao.maps.LatLng(
+          jobOpeningContents.region_address.y,
+          jobOpeningContents.region_address.x,
+        ),
         level: 3,
       };
 
@@ -98,17 +100,21 @@ export default function JobOpeningDetail({ job_opening_no }) {
       <Layout>
         <Row style={{ padding: '20px 10px' }}>
           <Col span={24}>
-            <Row justify="space-between">
+            <Row
+              justify="space-between"
+              align="middle"
+              style={{ marginBottom: '5px' }}
+            >
               <Col
                 style={{
-                  fontSize: '14px',
-                  fontWeight: 500,
-                  marginLeft: '5px',
+                  fontSize: '15px',
+                  // fontWeight: 500,
+                  // marginLeft: '5px',
                 }}
               >
-                {jobOpeningContents.shop}
+                <Text keyboard>{jobOpeningContents.shop}</Text>
               </Col>
-              <Col style={{ color: '#6f6e6f' }}>
+              <Col style={{ color: '#6f6e6f', fontSize: '13px' }}>
                 {jobOpeningContents.created_datetime}
               </Col>
             </Row>
@@ -122,16 +128,17 @@ export default function JobOpeningDetail({ job_opening_no }) {
                       fontWeight: 'bold',
                     }}
                   >
-                    <Text ellipsis={true}>{jobOpeningContents.title}</Text>
+                    <Text>{jobOpeningContents.title}</Text>
                   </Col>
                 </Row>
               </Col>
             </Row>
-            <Row justify="space-between">
+            {/* <Row justify="space-between">
               <Col>
                 <Text>
                   <SalarySystemTag
                     salarySystem={jobOpeningContents.salary_system}
+                    style={{ marginRight: '0px' }}
                   />
                 </Text>
                 <Text style={{ fontSize: '14px', fontWeight: 500 }}>
@@ -143,10 +150,10 @@ export default function JobOpeningDetail({ job_opening_no }) {
                   style={{ fontSize: '14px', fontWeight: 500 }}
                 >{`${jobOpeningContents.region_address.address_name} ${jobOpeningContents.detail_region_address}`}</Text>
               </Col>
-            </Row>
+            </Row> */}
             {/* <Divider style={{ margin: '10px 0 ' }} /> */}
             {/* 모집 조건 블록 */}
-            <Row style={{ marginTop: '40px' }}>
+            <Row style={{ marginTop: '30px' }}>
               <Col span={24}>
                 <Row>
                   <Col>
@@ -288,7 +295,7 @@ export default function JobOpeningDetail({ job_opening_no }) {
                     </Title>
                   </Col>
                 </Row>
-                <Row>
+                <Row style={{ paddingLeft: '20px' }}>
                   <Col>
                     <Row>
                       <Col>
@@ -297,12 +304,12 @@ export default function JobOpeningDetail({ job_opening_no }) {
                         </Text>
                       </Col>
                     </Row>
-                    <Divider style={{ margin: '15px 0' }} />
+                    {/* <Divider style={{ margin: '15px 0' }} />
                     <Row>
                       <Col>
                         <Button>Translation</Button>
                       </Col>
-                    </Row>
+                    </Row> */}
                   </Col>
                 </Row>
               </Col>
@@ -317,11 +324,26 @@ export default function JobOpeningDetail({ job_opening_no }) {
                     </Title>
                   </Col>
                 </Row>
-                <Row>
+                {/* <Row>
                   <Col>
                     <Text style={{ color: '#6f6e6f', fontSize: '13px' }}>
                       주소 (주소명 우측에 복사버튼)
                     </Text>
+                  </Col>
+                </Row> */}
+                <Row>
+                  <Col span={24}>
+                    <Paragraph
+                      style={{
+                        display: 'inline',
+                        fontSize: '14px',
+                      }}
+                      ellipsis={true}
+                      copyable
+                    >
+                      {' '}
+                      {`${jobOpeningContents.region_address.address_name} ${jobOpeningContents.detail_region_address}`}
+                    </Paragraph>
                   </Col>
                 </Row>
                 <Row>
@@ -367,13 +389,41 @@ export default function JobOpeningDetail({ job_opening_no }) {
                     <Title level={5}>{jobOpeningContents.tel}</Title>
                   </Col>
                 </Row>
-                <Divider />
-                <Row>
-                  <Col>
-                    *구직이 아닌 광고등의 목적으로 연락처를 이용할 경우 법적
-                    처벌을 받을 수 있습니다.
-                  </Col>
-                </Row>
+              </Col>
+            </Row>
+            <Row>
+              <Col span={24}>
+                <Divider style={{ margin: '10px 0' }} />
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Text
+                  style={{
+                    color: '#99005e',
+                    fontSize: '13px',
+                    fontWeight: 'bold',
+                    textAlign: 'center',
+                  }}
+                >
+                  🚨 구직이 아닌 광고등의 목적으로 연락처를 이용할 경우 법적
+                  처벌을 받을 수 있습니다.
+                </Text>
+              </Col>
+            </Row>
+            {/* 버튼 블록 */}
+            <Row justify="center" style={{ marginTop: '20px' }}>
+              <Col style={{ marginRight: '10px' }}>
+                <Button type="primary" size="large">
+                  <AuditOutlined />
+                  지원하기
+                </Button>
+              </Col>
+              <Col>
+                <Button type="primary" size="large">
+                  <PhoneOutlined />
+                  통역서비스신청
+                </Button>
               </Col>
             </Row>
           </Col>
