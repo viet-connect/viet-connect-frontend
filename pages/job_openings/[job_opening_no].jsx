@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Row, Col, Button, Typography, Divider } from 'antd';
 const { Title, Text } = Typography;
 import SalarySystemTag from '../../src/components/common/Tag/SalarySystemTag';
@@ -17,6 +17,7 @@ const Wrapper = styled.div`
 `;
 
 export default function JobOpeningDetail({ job_opening_no }) {
+  const [mapLoaded, setMapLoaded] = useState(false);
   const [jobOpeningContents, setJobOpeningContents] = useState({
     id: 'id',
     category_id: 0,
@@ -71,6 +72,27 @@ export default function JobOpeningDetail({ job_opening_no }) {
     created_datetime: '2022년 3월 22일',
     enabled: '삭제여부(0:삭제, 1:살아있음)',
   });
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_JS_KEY}`;
+    console.log(process.env.NEXT_PUBLIC_KAKAO_JS_KEY);
+    console.log(process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID);
+    script.addEventListener('load', () => setMapLoaded(true));
+    document.head.appendChild(script);
+  }, []);
+  useEffect(() => {
+    if (!mapLoaded) return;
+
+    kakao.maps.load(() => {
+      var container = document.getElementById('map');
+      var options = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667),
+        level: 3,
+      };
+
+      var map = new kakao.maps.Map(container, options);
+    });
+  }, [mapLoaded]);
   return (
     <Wrapper>
       <Layout>
@@ -122,9 +144,9 @@ export default function JobOpeningDetail({ job_opening_no }) {
                 >{`${jobOpeningContents.region_address.address_name} ${jobOpeningContents.detail_region_address}`}</Text>
               </Col>
             </Row>
-            <Divider />
+            {/* <Divider style={{ margin: '10px 0 ' }} /> */}
             {/* 모집 조건 블록 */}
-            <Row>
+            <Row style={{ marginTop: '40px' }}>
               <Col span={24}>
                 <Row>
                   <Col>
@@ -287,7 +309,7 @@ export default function JobOpeningDetail({ job_opening_no }) {
             </Row>
             {/* 근무지역 블록 */}
             <Row style={{ marginTop: '20px' }}>
-              <Col>
+              <Col span={24}>
                 <Row>
                   <Col>
                     <Title level={4} style={{ fontWeight: 'bold' }}>
@@ -303,7 +325,15 @@ export default function JobOpeningDetail({ job_opening_no }) {
                   </Col>
                 </Row>
                 <Row>
-                  <Col>지도</Col>
+                  <Col span={24}>
+                    <div
+                      id="map"
+                      style={{
+                        width: '100%',
+                        height: '200px',
+                      }}
+                    ></div>
+                  </Col>
                 </Row>
               </Col>
             </Row>
