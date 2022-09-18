@@ -4,8 +4,6 @@ import styled from 'styled-components';
 import { useAuth } from '../../../../../context/AuthContext';
 import GoogleButton from 'react-google-button';
 import FaceBookLogin from '../../Button/FacebookLoginButton';
-import { useSession, signIn, signOut } from 'next-auth/react';
-import axios from 'axios';
 
 const ButtonContainer = styled.div`
   height: 80%;
@@ -18,26 +16,16 @@ export default function LoginModal(props) {
   const { isModalVisible, onOk, onCancel, setIsModalVisible } = props;
   const { user, login } = useAuth();
   const [hasGoogleLoginError, setHasGoogleLoginError] = useState(false);
-  const { data: session, status } = useSession();
 
-  // 서버로 부터 "서버 accessToken 발급"
-  const getJWTToken = async (session) => {
-    const result = await axios({
-      method: 'post',
-      baseURL: 'http://localhost:3000',
-      url: '/auth/facebook/login',
-      data: {
-        accessToken: session.accessToken,
-      },
-    });
-    console.log('서버통신', result.data);
-  };
+  const handleClickLogin = async (provider) => {
+    try {
+      await login(provider);
+    } catch (err) {
+      console.log(err);
 
-  useEffect(() => {
-    if (session) {
-      getJWTToken(session);
+      setHasGoogleLoginError(true);
     }
-  }, [session]);
+  };
 
   useEffect(() => {
     console.log(user);
@@ -70,21 +58,14 @@ export default function LoginModal(props) {
         <ButtonWrapper>
           <GoogleButton
             type="light"
-            // onClick={() => handleClickLogin('google')}
-            onClick={() => signIn()}
+            onClick={() => handleClickLogin('google')}
           />
           {hasGoogleLoginError && (
             <div>구글 계정 로그인에 실패하였습니다. 다시 시도해주세요.</div>
           )}
         </ButtonWrapper>
         <ButtonWrapper>
-          <FaceBookLogin
-            onClick={() =>
-              signIn('facebook', {
-                callbackUrl: 'http://localhost:3001',
-              })
-            }
-          />
+          <FaceBookLogin onClick={() => handleClickLogin('facebook')} />
         </ButtonWrapper>
         {/* <StyledFirebaseUI uiConfig={uiConfig} firebaseAuth={auth} /> */}
       </ButtonContainer>
