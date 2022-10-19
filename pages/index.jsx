@@ -218,18 +218,6 @@ export default function Home({}) {
             />
           </Col>
         </Row>
-        <Row style={{ marginTop: '20px' }}>
-          <Col span={24}>
-            <Table
-              columns={columns}
-              dataSource={data}
-              // title={() => <Title level={3}>채용공고</Title>}
-              pagination={{ position: ['bottomCenter'] }}
-              scroll={{ x: '1024px' }}
-              // column={{ fixed: true }}
-            />
-          </Col>
-        </Row>
       </Wrapper>
     </Layout>
   );

@@ -29,5 +29,6 @@ module.exports = withAntdLess({
   //   KAKAO_REDIRECT_URI: process.env.KAKAO_REDIRECT_URI,
   // },
   reactStrictMode: false,
+  include: ['next-env.d.ts', '**/*.ts', '**/*.tsx'],
   exclude: ['node_modules', '**/node_modules', 'dist'],
 });
