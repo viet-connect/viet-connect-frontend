@@ -1,6 +1,6 @@
 export default [
     {
-        name: "군포점",
+        name: "벤탄빌라 부천점",
         
     },
     {
