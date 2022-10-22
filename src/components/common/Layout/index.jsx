@@ -3,10 +3,11 @@ import { Row, Col, Menu, Divider, Typography } from 'antd';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import LoginModal from "src/components/common/Modal/LoginModal";
-import Logo from "../../../components/main_page/header_top/logo/Logo.tsx"
-import LoginButton from '../../main_page/header_top/loginButton/LoginButton.tsx';
-import FooterTop from '../../main_page/footer/footer_top/FooterTop.tsx';
-import FooterBottom from "../../main_page/footer/footer_bottom/FooterBottom.tsx"
+import Logo from "../../main/header_top/logo/Logo.tsx"
+import LoginButton from '../../main/header_top/loginButton/LoginButton.tsx';
+import FooterTop from '../../main/footer/footer_top/FooterTop.tsx';
+import FooterBottom from "../../main/footer/footer_bottom/FooterBottom.tsx"
+import HeaderMenu from "../../main/header_menu/HeaderMenu.tsx"
 
 import Head from 'next/head';
 import Image from 'next/image';
@@ -17,13 +18,7 @@ import {
   SettingOutlined,
 } from '@ant-design/icons';
 import { useAuth } from '../../../../context/AuthContext';
-
 const { Text } = Typography;
-const items = [
-  { label: '채용공고', key: '/' },
-  { label: '인재등록', key: '/customer/resume', disabled: 'true' },
-  { label: '채용공고등록', key: '/owner/jobopening', disabled: 'true' },
-];
 
 export default function Layout({ children }) {
   const router = useRouter();
@@ -39,17 +34,7 @@ export default function Layout({ children }) {
           </Row>
         </Header>
         <Nav>
-          <Row>
-            <Col span={24}>
-              <Menu
-                items={items}
-                mode="horizontal"
-                selectedKeys={router.pathname}
-                onClick={(e) => router.push(e.key)}
-                style={{ fontWeight: 'bold' }}
-              />
-            </Col>
-          </Row>
+          <HeaderMenu />
         </Nav>
         <Main>{children}</Main>
         <Footer>

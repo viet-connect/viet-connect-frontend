@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Row, Col, Button, Menu, Divider, Typography } from 'antd';
-import LoginModal from '../../../../components/common/Modal/LoginModal/index';
+import LoginModal from '../../../common/Modal/LoginModal/index';
 import { useAuth } from '../../../../../context/AuthContext';
 
 export default function LoginButton({ isModalVisible, setIsModalVisible }) {
