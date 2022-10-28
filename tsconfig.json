@@ -23,7 +23,7 @@
       "next-env.d.ts",
       "**/*.ts",
       "**/*.tsx"
-, "pages/index.jsx", "pages/index.jsx"    ],
+, "pages/index.jsx", "pages/index.jsx", "pages/_error.jsx", "pages/_error.jsx", "src/components/main/banner/Banner.jsx", "src/components/main/banner/Banner.jsx"    ],
     "exclude": [
       "node_modules"
     ]

@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { Row, Col, Select, Button, Space, Table, Tag, Typography } from 'antd';
+import { Row, Col, Select, Button, Table, Tag, Typography } from 'antd';
 const { Option } = Select;
 const { Title } = Typography;
 import { SearchOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import Layout from 'src/components/common/Layout';
 import BannerCarousel from 'src/components/common/BannerCarousel';
+import JOB_DB from "src/constant/constant"
 
 const Wrapper = styled.div`
   .ant-card-body {
@@ -138,11 +139,13 @@ const data = [
     category: '요식업',
   },
 ];
+
 export default function Home({}) {
   const [region, setRegion] = useState([
     { region_no: 1, region_name: '부천시 원미구' },
     { region_no: 2, region_name: '부천시 소사구' },
   ]);
+  
   return (
     <Layout>
       <Wrapper>
