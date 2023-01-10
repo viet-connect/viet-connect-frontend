@@ -4,9 +4,9 @@ const { Option } = Select;
 const { Title } = Typography;
 import { SearchOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
-import Layout from 'src/components/common/Layout';
-import BannerCarousel from 'src/components/common/BannerCarousel';
-import JOB_DB from "src/constant/constant"
+// import BannerCarousel from 'src/components/common/BannerCarousel';
+// import JOB_DB from "src/constant/constant"
+import Layout from '../src/components/common/Layout';
 
 const Wrapper = styled.div`
   .ant-card-body {
@@ -149,12 +149,7 @@ export default function Home({}) {
   return (
     <Layout>
       <Wrapper>
-        <Row>
-          <Col span={24} style={{ padding: '20px 25px' }}>
-            <BannerCarousel />
-          </Col>
-        </Row>
-        <Row justify="center" gutter={12}>
+        <Row justify="space-between" gutter={12}>
           <Col>
             <Select
               showSearch
@@ -197,8 +192,6 @@ export default function Home({}) {
               ))}
             </Select>
           </Col>
-        </Row>
-        <Row justify="center" style={{ marginTop: '20px' }}>
           <Col>
             <Button
               type="primary"

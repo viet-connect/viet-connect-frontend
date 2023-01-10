@@ -2,12 +2,11 @@ import { useState } from 'react';
 import { Row, Col, Menu, Divider, Typography } from 'antd';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import LoginModal from "src/components/common/Modal/LoginModal";
-import Logo from "../../main/header_top/logo/Logo.tsx"
-import LoginButton from '../../main/header_top/loginButton/LoginButton.tsx';
-import FooterTop from '../../main/footer/footer_top/FooterTop.tsx';
-import FooterBottom from "../../main/footer/footer_bottom/FooterBottom.tsx"
-import HeaderMenu from "../../main/header_menu/HeaderMenu.tsx"
+
+import Logo from '../../main/header_top/logo/Logo';
+import FooterTop from '../../main/footer/footer_top/FooterTop';
+import FooterBottom from '../../main/footer/footer_bottom/FooterBottom';
+import HeaderMenu from '../../main/header_menu/HeaderMenu';
 
 import Head from 'next/head';
 import Image from 'next/image';
@@ -21,16 +20,12 @@ import { useAuth } from '../../../../context/AuthContext';
 const { Text } = Typography;
 
 export default function Layout({ children }) {
-  const router = useRouter();
-  const [isModalVisible, setIsModalVisible] = useState(false);
-
   return (
     <Wrapper>
       <Container>
         <Header>
           <Row justify="space-between" style={{ margin: '10px' }}>
             <Logo />
-            <LoginButton isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible}/>
           </Row>
         </Header>
         <Nav>
@@ -42,7 +37,6 @@ export default function Layout({ children }) {
           <FooterBottom />
         </Footer>
       </Container>
-      <LoginModal setIsModalVisible={() => setIsModalVisible()} isModalVisible={isModalVisible} onOk={() => setIsModalVisible(false)} onCancel={() => setIsModalVisible(false)}/>
     </Wrapper>
   );
 }

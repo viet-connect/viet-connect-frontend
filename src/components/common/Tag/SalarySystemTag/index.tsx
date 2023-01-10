@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Tag } from 'antd';
 import styled from 'styled-components';
-import Layout from 'src/components/common/Layout';
+import Layout from '../../Layout';
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
