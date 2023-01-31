@@ -4,17 +4,19 @@ import 'antd/dist/reset.css';
 import { SessionProvider } from 'next-auth/react';
 import { ConfigProvider } from 'antd';
 import koKR from 'antd/locale/ko_KR';
-import { Head } from 'next/document';
+import type { AppProps } from 'next/app';
+import Layout from '../src/components/common/Layout';
 
-
-function MyApp({ Component, pageProps: { session, ...pageProps } }) {
-  return (
-    <ConfigProvider locale={koKR}>
-      <SessionProvider session={session}>
-        <Component {...pageProps} />
-      </SessionProvider>
-    </ConfigProvider>
-  );
+function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
+	return (
+		<ConfigProvider locale={koKR}>
+			<SessionProvider session={session}>
+				<Layout>
+					<Component {...pageProps} />
+				</Layout>
+			</SessionProvider>
+		</ConfigProvider>
+	);
 }
 
 export default MyApp;

@@ -1,7 +1,5 @@
-import React from 'react'
+import React from 'react';
 
 export default function JobOpeningPost() {
-  return (
-    <div>job_opening/post.jsx</div>
-  )
+	return <div>job_opening/post.jsx</div>;
 }

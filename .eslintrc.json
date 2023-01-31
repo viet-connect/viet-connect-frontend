@@ -1,33 +1,12 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
-    "extends": [
-        "airbnb",
-        "plugin:@next/next/recommended",
-        "plugin:react/recommended",
-        "plugin:react-hooks/recommended",
-        "plugin:prettier/recommand"
-    ],
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react",
-        "react-hooks",
-        "prettier", 
-        "import"
-    ],
-    "rules": { 
-        "arrow-body-style": "error", 
-        "prefer-arrow-callback": "off", 
-        "no-var": "error", 
-        "no-dupe-keys": "error", 
-        "react/prop-types": "off" 
-      }
+	"extends": ["next/core-web-vitals", "airbnb-base"],
+	"rules": {
+		"no-use-before-define": "off",
+		"import/extensions": "off",
+		"no-tabs": "off",
+		"indent": ["error", "tab"],
+		"implicit-arrow-linebreak": "off",
+		"object-curly-newline": "off",
+		"no-unused-vars": "off"
+	}
 }

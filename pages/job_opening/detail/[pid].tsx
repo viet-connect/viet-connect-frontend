@@ -1,7 +1,5 @@
-import React from 'react'
+import React from 'react';
 
 export default function JobOpeningDetail() {
-  return (
-    <div>[pid]</div>
-  )
+	return <div>[pid]</div>;
 }
