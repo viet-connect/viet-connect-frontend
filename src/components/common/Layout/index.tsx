@@ -14,9 +14,9 @@ type IMainProps = {
 
 export default function Layout({ children }: IMainProps) {
 	return (
-		<Wrapper id="layout-wrapper">
+		<Wrapper>
 			<Meta />
-			<Container id="layout-container">
+			<Container>
 				<Header>
 					<Row justify="space-between" style={{ margin: '10px' }}>
 						<Logo />

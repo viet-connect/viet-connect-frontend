@@ -3,6 +3,12 @@ import { useRouter } from 'next/router';
 import { DefaultSeo } from 'next-seo';
 import AppConfig from '../../../../utils/appConfig';
 
+interface IMetaProps {
+	title: string;
+	description: string;
+	canonical?: string;
+}
+
 export default function Meta() {
 	const router = useRouter();
 

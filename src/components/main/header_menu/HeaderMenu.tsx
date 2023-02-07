@@ -6,7 +6,6 @@ export default function HeaderMenu() {
 	const router = useRouter();
 	const items = [
 		{ label: '채용공고', key: '/' },
-		{ label: '인재등록', key: '/customer/resume', disabled: true },
 		{ label: '채용공고등록', key: '/owner/jobopening', disabled: true },
 	];
 
