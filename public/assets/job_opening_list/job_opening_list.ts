@@ -1,9 +1,9 @@
-import constant from '../../../src/constant/constant';
+import { layoutConstant } from '../../../src/constant/constant';
 
 export default [
 	{
 		id: 1,
-		category: constant.RESTAURANT,
+		category: layoutConstant.RESTAURANT,
 		title:
 			'서울시 강동구 천호역 / TUYỂN NHÂN VIÊN CHẠY BÀN VÀ PHỤ BẾP Ở QUÁN ĂN (gần ga 천호, 5P ĐI BỘ, 군자 대한 곱창)',
 		tel: '010-2242-8129',
@@ -25,13 +25,13 @@ export default [
 		// "created_datetime": "생성시간",
 		// "enabled": "삭제여부(0:삭제, 1:살아있음)",
 		region_address: {
-			region_1depth_name: constant.SEOUL,
-			region_2depth_name: constant.GANGDONGGU,
+			region_1depth_name: layoutConstant.SEOUL,
+			region_2depth_name: layoutConstant.GANGDONGGU,
 		},
 	},
 	{
 		id: 2,
-		category: constant.RESTAURANT,
+		category: layoutConstant.RESTAURANT,
 		title:
 			'경기도 부천시 심곡동 gần ga 부천, 춘의 / TUYỂN NHÂN VIÊN PHỤ BẾP Ở QUÁN ĂN (목포명품등갈비 부천점)',
 		tel: '010-3246-5534',
@@ -53,8 +53,8 @@ export default [
 		// "created_datetime": "생성시간",
 		// "enabled": "삭제여부(0:삭제, 1:살아있음)",
 		region_address: {
-			region_1depth_name: constant.GYEONGGI,
-			region_2depth_name: constant.BUCHEON,
+			region_1depth_name: layoutConstant.GYEONGGI,
+			region_2depth_name: layoutConstant.BUCHEON,
 		},
 	},
 ];

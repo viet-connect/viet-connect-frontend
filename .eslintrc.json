@@ -8,6 +8,7 @@
 		"implicit-arrow-linebreak": "off",
 		"object-curly-newline": "off",
 		"no-unused-vars": "off",
-		"no-confusing-arrow": "off"
+		"no-confusing-arrow": "off",
+		"operator-linebreak": "off"
 	}
 }

@@ -21,20 +21,24 @@ export default function ContentHeader() {
 const Container = styled.div`
 	margin-bottom: 30px;
 `;
+
 const InfoFirstLine = styled.div`
 	font-weight: bold;
 	font-size: 25px;
 	margin-bottom: 5px;
 `;
+
 const InfoSecondLine = styled.div`
 	display: flex;
 	align-items: center;
 	margin-bottom: 5px;
 `;
+
 const InfoThirdLine = styled.div``;
 const TimeWrapper = styled.div`
 	margin-right: 10px;
 `;
+
 const WageWrapper = styled.div`
 	margin-right: 10px;
 `;

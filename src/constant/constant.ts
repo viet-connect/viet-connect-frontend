@@ -1,4 +1,4 @@
-export default Object.freeze({
+const layoutConstant = Object.freeze({
 	ENTERPRISE: '비엣커넥트',
 	EXECUTIVE: '정의성, 서현욱',
 	PERSONAL_INFO_PERSON_IN_CHARGE: '강경욱',
@@ -44,3 +44,24 @@ export default Object.freeze({
 
 	/* 3차 지역분류(행정) */
 });
+
+const postingConstant = Object.freeze({
+	PostingFirstPartInfo: [
+		['공고제목', '공고제목을 입력해주세요'],
+		['업체명', '업체명을 입력해주세요'],
+		['연락처', '구직자가 연락가능한 번호를 입력해주세요'],
+	],
+	PostingSecondPartInfo: [
+		['공장', '식당'],
+		['건설', '번역'],
+		['사무', '농장'],
+		['기타 서비스업', '직접 입력'],
+	],
+	PostingThirdPartInfo: {
+		gender: ['성별 무관', '남자', '여자', '모집성별'],
+		proficiency: ['잘함', '보통', '기초', '미숙', '한국어 구사력'],
+		day: ['월', '화', '수', '목', '금', '토', '일', '선호 근무요일'],
+	},
+});
+
+export { layoutConstant, postingConstant };
