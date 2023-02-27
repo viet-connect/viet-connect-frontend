@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { postingConstant } from '../../../../constant/constant';
+import Checkbox from '../../../common/CheckBox';
+import TimePicker from '../../../common/TimePicker';
 import {
 	SubTitleWrapper,
 	ItemTitle,
 	PlaceHolder,
 	PlaceHolderWrapper,
 } from '../first_part';
-import { RowContainer } from '../second_part';
 
 export default function JobOpeningPostingThirdPart() {
 	const { PostingThirdPartInfo } = postingConstant;
+	const [isNegotiable, setIsNegotiable] = useState(false);
+
 	return (
 		<Container>
 			<InputContainer>
@@ -62,13 +65,13 @@ export default function JobOpeningPostingThirdPart() {
 					</SubTitleWrapper>
 				);
 			})}
-			<div>
-				<div>
-					<input type="checkbox" id="scales" name="scales" checked />
-					<label htmlFor="scales"></label>
-				</div>
-				<div>근무요일 협의가능</div>
-			</div>
+			<Checkbox checked={isNegotiable} onChange={setIsNegotiable}>
+				<div style={{ paddingLeft: 10 }}>근무요일 협의가능</div>
+			</Checkbox>
+			<InputContainer>
+				<ItemTitle>근무시간</ItemTitle>
+				<TimePicker />
+			</InputContainer>
 		</Container>
 	);
 }
