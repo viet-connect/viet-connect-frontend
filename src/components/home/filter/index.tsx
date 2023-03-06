@@ -165,11 +165,11 @@ export default function HomeFilter() {
 					showSearch
 					placeholder="상세 선택"
 					optionFilterProp="children"
-					filterOption={(input, option) => {
-						const { children } = option;
-						console.log(children);
-						return children.toLowerCase().includes(input.toLowerCase());
-					}}
+					// filterOption={(input, option) => {
+					// 	const { children } = option;
+					// 	console.log(children);
+					// 	return children.toLowerCase().includes(input.toLowerCase());
+					// }}
 				>
 					{region.map((item) => (
 						<Option key={item.region_name} value={item.region_no}>
@@ -183,9 +183,9 @@ export default function HomeFilter() {
 					showSearch
 					placeholder="직무 선택"
 					optionFilterProp="children"
-					filterOption={(input, option) =>
-						option.children.toLowerCase().includes(input.toLowerCase())
-					}
+					// filterOption={(input, option) =>
+					// 	option.children.toLowerCase().includes(input.toLowerCase())
+					// }
 				>
 					{region.map((item) => (
 						<Option key={item.region_no} value={item.region_no}>
