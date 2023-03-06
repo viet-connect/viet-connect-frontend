@@ -68,14 +68,13 @@ const columns = [
 					</div>
 				);
 			}
-			if (item.way === 'hourly') {
-				return (
-					<div>
-						<Tag color="purple">시급</Tag>
-						<span>{item.wage}</span>
-					</div>
-				);
-			}
+
+			return (
+				<div>
+					<Tag color="purple">시급</Tag>
+					<span>{item.wage}</span>
+				</div>
+			);
 		},
 		width: 100,
 		// ellipsis: true,
