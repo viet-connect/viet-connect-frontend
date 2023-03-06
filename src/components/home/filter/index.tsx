@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Row, Col, Select, Button, Table, Tag } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
-// import  from './select_box';
 
 const columns = [
 	// {

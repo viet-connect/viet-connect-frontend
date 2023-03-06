@@ -16,10 +16,10 @@ export default function SelectBox(selectBoxProps: Array<ISelectBox>) {
 				showSearch
 				placeholder="시/도 선택"
 				optionFilterProp="children"
-				filterOption={(input, option) => {
-					console.log(option.children);
-					return option.children.toLowerCase().includes(input.toLowerCase());
-				}}
+				// filterOption={(input, option) => {
+				// 	console.log(option.children);
+				// 	return option.children.toLowerCase().includes(input.toLowerCase());
+				// }}
 			>
 				{/* {region.map((item) => (
 					<Option key={item.region_name} value={item.region_no}>
