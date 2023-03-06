@@ -40,6 +40,7 @@ const ButtonWrapper = styled.div<IButtonWrapperProps>`
 	height: ${(props) => props.height}px;
 	border-radius: 10px;
 	background: ${(props) => props.color};
+	cursor: pointer;
 `;
 
 const ButtonText = styled.div`

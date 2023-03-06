@@ -30,17 +30,10 @@ export default function JobOpeningPostingThirdPart() {
 						<option value="weekly">주급</option>
 					</WageSelector>
 					<PlaceHolderWrapper>
-						<PlaceHolder style={{ marginLeft: 5 }} />
+						<PlaceHolder style={{ marginLeft: 5 }} type="text" />
 						<UnitWrapper>원</UnitWrapper>
 					</PlaceHolderWrapper>
 				</WageInputWrapper>
-			</InputContainer>
-			<InputContainer>
-				<ItemTitle>모집인원</ItemTitle>
-				<PlaceHolderWrapper>
-					<PlaceHolder />
-					<UnitWrapper>원</UnitWrapper>
-				</PlaceHolderWrapper>
 			</InputContainer>
 			{Object.keys(PostingThirdPartInfo).map((el) => {
 				const valArray = PostingThirdPartInfo[el];
@@ -78,7 +71,6 @@ export default function JobOpeningPostingThirdPart() {
 
 const Container = styled.div`
 	margin-bottom: 20px;
-	width: 50%;
 `;
 
 const InputContainer = styled.div`
@@ -87,6 +79,8 @@ const InputContainer = styled.div`
 
 const TitleWrapper = styled.div`
 	display: flex;
+	font-size: 18px;
+	font-weight: bold;
 	align-items: center;
 `;
 
@@ -101,7 +95,10 @@ const WageInputWrapper = styled.div`
 	align-items: flex-end;
 `;
 
-const WageSelector = styled.select``;
+const WageSelector = styled.select`
+	width: 120px;
+	margin-right: 10px;
+`;
 
 const UnitWrapper = styled.div`
 	margin-left: 5px;

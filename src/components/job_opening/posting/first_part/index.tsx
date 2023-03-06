@@ -10,7 +10,7 @@ export default function JobOpeningPostingFirstPart() {
 				<SubTitleWrapper key={el[0]}>
 					<ItemTitle>{el[0]}</ItemTitle>
 					<PlaceHolderWrapper>
-						<PlaceHolder placeholder={el[1]} />
+						<PlaceHolder type="text" placeholder={el[1]} />
 					</PlaceHolderWrapper>
 				</SubTitleWrapper>
 			))}
@@ -33,9 +33,7 @@ export const ItemTitle = styled.div`
 `;
 
 export const PlaceHolderWrapper = styled.div`
-	width: 50%;
 	display: flex;
-	align-items: flex-end;
 `;
 
 interface IPlaceHolderProps {

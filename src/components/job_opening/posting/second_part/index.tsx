@@ -37,7 +37,6 @@ interface FieldBoxWrapperProps {
 
 export const RowContainer = styled.div`
 	display: flex;
-	width: 50%;
 `;
 
 const FieldBoxWrapper = styled.div<FieldBoxWrapperProps>`
@@ -75,9 +74,7 @@ const FieldBoxWrapper = styled.div<FieldBoxWrapperProps>`
 	}}
 `;
 
-const Container = styled.div`
-	width: 50%;
-`;
+const Container = styled.div``;
 
 const FieldWrapper = styled.div`
 	margin-bottom: 30px;
@@ -87,6 +84,7 @@ const WageInputWrapper = styled.div``;
 
 const WageInput = styled.input.attrs({
 	placeholder: '직접 입력하실 경우 여기에 작성해주세요',
+	type: 'text',
 })`
 	width: 100%;
 `;

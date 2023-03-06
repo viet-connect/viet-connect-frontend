@@ -4,6 +4,7 @@ import Layout from '../../../src/components/common/Layout';
 import JobOpeningPostingFirstPart from '../../../src/components/job_opening/posting/first_part';
 import JobOpeningPostingSecondPart from '../../../src/components/job_opening/posting/second_part';
 import JobOpeningPostingThirdPart from '../../../src/components/job_opening/posting/third_part';
+import JobOpeningPostingFourthPart from '../../../src/components/job_opening/posting/fourth_part';
 
 export default function JobOpeningPosting() {
 	return (
@@ -13,6 +14,7 @@ export default function JobOpeningPosting() {
 				<JobOpeningPostingFirstPart />
 				<JobOpeningPostingSecondPart />
 				<JobOpeningPostingThirdPart />
+				<JobOpeningPostingFourthPart />
 			</Container>
 		</Layout>
 	);
