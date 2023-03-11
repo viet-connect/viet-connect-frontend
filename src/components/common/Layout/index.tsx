@@ -1,4 +1,3 @@
-import { Row } from 'antd';
 import styled from 'styled-components';
 import type { ReactNode } from 'react';
 
@@ -18,7 +17,7 @@ export default function Layout({ children }: IMainProps) {
 			<Meta />
 			<Container>
 				<Header>
-					<Row justify="space-between" style={{ margin: '10px' }}>
+					<Row>
 						<Logo />
 					</Row>
 				</Header>
@@ -67,4 +66,11 @@ const Main = styled.div`
 const Footer = styled.div`
 	width: 100%;
 	height: max-content;
+`;
+
+const Row = styled.div`
+	width: 100%;
+	margin: 10px;
+	display: flex;
+	justify-content: space-between;
 `;
