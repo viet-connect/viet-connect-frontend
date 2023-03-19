@@ -64,4 +64,36 @@ const postingConstant = Object.freeze({
 	},
 });
 
-export { layoutConstant, postingConstant };
+const homeFilterConstant = Object.freeze({
+	announcement: {
+		renderingTitle: '공고',
+		width: 100,
+		key: 'is_premium',
+	},
+	region: {
+		renderingTitle: '지역',
+		width: 50,
+		key: 'region',
+		ellipsis: true,
+	},
+	title: {
+		renderingTitle: '제목',
+		key: 'title',
+		width: 100,
+		ellipsis: true,
+	},
+	wage: {
+		renderingTitle: '급여',
+		key: 'salary',
+		width: 100,
+		ellipsis: true,
+	},
+	category: {
+		title: '직무',
+		key: 'category',
+		width: 100,
+		ellipsis: true,
+	},
+});
+
+export { layoutConstant, postingConstant, homeFilterConstant };

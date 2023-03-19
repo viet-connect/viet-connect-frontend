@@ -5,17 +5,13 @@ import JobTable from '../src/components/home/job_table';
 
 export default function Home() {
 	return (
-		<Layout>
-			<Wrapper>
+		<Layout pageIndex={0}>
+			<Container>
 				<HomeFilter />
 				<JobTable />
-			</Wrapper>
+			</Container>
 		</Layout>
 	);
 }
 
-const Wrapper = styled.div`
-	.ant-card-body {
-		padding: 5px 20px;
-	}
-`;
+const Container = styled.div``;

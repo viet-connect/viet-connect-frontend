@@ -1,19 +1,21 @@
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import items from '../../../../constant/path';
 
-export default function Menu({ items }: MenuProps) {
+export default function Menu({ pageIndex }: HeaderMenuProps) {
 	const router = useRouter();
-	const [isClicked, setIsClicked] = useState(0);
+	const [isClicked, setIsClicked] = useState(pageIndex);
+	const onClick = (index: number, key: string) => {
+		setIsClicked(index);
+
+		router.push(key);
+	};
 
 	return (
 		<Container>
 			{items.map((item: MenuItemProps, index: number) => (
-				<MenuItem
-					key={item.key}
-					id={`${index}`}
-					onClick={() => setIsClicked(index)}
-				>
+				<MenuItem key={item.key} onClick={() => onClick(index, item.key)}>
 					<MenuItemContent index={index} clickedItem={isClicked}>
 						{item.label}
 					</MenuItemContent>
@@ -21,6 +23,10 @@ export default function Menu({ items }: MenuProps) {
 			))}
 		</Container>
 	);
+}
+
+interface HeaderMenuProps {
+	pageIndex: number;
 }
 
 interface MenuItemProps {

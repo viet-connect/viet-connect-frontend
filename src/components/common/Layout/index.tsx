@@ -7,11 +7,12 @@ import FooterBottom from '../../main/footer/footer_bottom/FooterBottom';
 import HeaderMenu from '../../main/header_menu/HeaderMenu';
 import Meta from './meta';
 
-type IMainProps = {
+interface IMainProps {
 	children: ReactNode;
-};
+	pageIndex: number;
+}
 
-export default function Layout({ children }: IMainProps) {
+export default function Layout({ children, pageIndex }: IMainProps) {
 	return (
 		<Wrapper>
 			<Meta />
@@ -22,7 +23,7 @@ export default function Layout({ children }: IMainProps) {
 					</Row>
 				</Header>
 				<Nav>
-					<HeaderMenu />
+					<HeaderMenu pageIndex={pageIndex} />
 				</Nav>
 				<Main>{children}</Main>
 				<Footer>

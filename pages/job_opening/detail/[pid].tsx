@@ -15,7 +15,7 @@ export default function JobOpeningDetail() {
 	const router = useRouter();
 
 	return (
-		<Layout>
+		<Layout pageIndex={0}>
 			<Container>
 				<ButtonWrapper>
 					<CommonButton

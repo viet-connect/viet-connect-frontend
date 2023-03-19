@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Row, Col, Select, Button, Table, Tag } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
+import styled from 'styled-components';
+import { homeFilterConstant } from '../../../constant/constant';
 
 const columns = [
 	// {
@@ -138,70 +140,81 @@ export default function HomeFilter() {
 	]);
 
 	return (
-		<Row justify="start" gutter={20}>
-			{/* <SelectBox selectBoxProps={} /> */}
-			<Col>
-				<Select
-					showSearch
-					placeholder="시/도 선택"
-					optionFilterProp="children"
-					// filterOption={(inputValue, option) => {
-					// 	console.log(inputValue, option);
-					// 	return option.children
-					// 		.toLowerCase()
-					// 		.includes(inputValue.toLowerCase());
-					// }}
-				>
-					{region.map((item) => (
-						<Option key={item.region_name} value={item.region_no}>
-							{item.region_name}
-						</Option>
-					))}
-				</Select>
-			</Col>
-			<Col>
-				<Select
-					showSearch
-					placeholder="상세 선택"
-					optionFilterProp="children"
-					// filterOption={(input, option) => {
-					// 	const { children } = option;
-					// 	console.log(children);
-					// 	return children.toLowerCase().includes(input.toLowerCase());
-					// }}
-				>
-					{region.map((item) => (
-						<Option key={item.region_name} value={item.region_no}>
-							{item.region_name}
-						</Option>
-					))}
-				</Select>
-			</Col>
-			<Col>
-				<Select
-					showSearch
-					placeholder="직무 선택"
-					optionFilterProp="children"
-					// filterOption={(input, option) =>
-					// 	option.children.toLowerCase().includes(input.toLowerCase())
-					// }
-				>
-					{region.map((item) => (
-						<Option key={item.region_no} value={item.region_no}>
-							{item.region_name}
-						</Option>
-					))}
-				</Select>
-			</Col>
-			<Col>
-				<Button
-					type="primary"
-					icon={<SearchOutlined />}
-					style={{ width: '330px', borderRadius: '10px' }}
-				>
-					검색
-				</Button>
-			</Col>
-		</Row>
+		<>
+			<Row justify="start" gutter={20} id="homefilter">
+				{/* <SelectBox selectBoxProps={} /> */}
+				<Col>
+					<Select
+						showSearch
+						placeholder="시/도 선택"
+						optionFilterProp="children"
+						// filterOption={(inputValue, option) => {
+						// 	console.log(inputValue, option);
+						// 	return option.children
+						// 		.toLowerCase()
+						// 		.includes(inputValue.toLowerCase());
+						// }}
+					>
+						{region.map((item) => (
+							<Option key={item.region_name} value={item.region_no}>
+								{item.region_name}
+							</Option>
+						))}
+					</Select>
+				</Col>
+				<Col>
+					<Select
+						showSearch
+						placeholder="상세 선택"
+						optionFilterProp="children"
+						// filterOption={(input, option) => {
+						// 	const { children } = option;
+						// 	console.log(children);
+						// 	return children.toLowerCase().includes(input.toLowerCase());
+						// }}
+					>
+						{region.map((item) => (
+							<Option key={item.region_name} value={item.region_no}>
+								{item.region_name}
+							</Option>
+						))}
+					</Select>
+				</Col>
+				<Col>
+					<Select
+						showSearch
+						placeholder="직무 선택"
+						optionFilterProp="children"
+						// filterOption={(input, option) =>
+						// 	option.children.toLowerCase().includes(input.toLowerCase())
+						// }
+					>
+						{region.map((item) => (
+							<Option key={item.region_no} value={item.region_no}>
+								{item.region_name}
+							</Option>
+						))}
+					</Select>
+				</Col>
+				<Col>
+					<Button
+						type="primary"
+						icon={<SearchOutlined />}
+						style={{ width: '330px', borderRadius: '10px' }}
+					>
+						검색
+					</Button>
+				</Col>
+			</Row>
+			<Container></Container>
+		</>
 	);
 }
+
+const Container = styled.div`
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+`;
+
+const FilterBox = styled.div``;

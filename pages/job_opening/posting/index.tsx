@@ -8,7 +8,7 @@ import JobOpeningPostingFourthPart from '../../../src/components/job_opening/pos
 
 export default function JobOpeningPosting() {
 	return (
-		<Layout>
+		<Layout pageIndex={1}>
 			<Container>
 				<Title>채용공고 등록</Title>
 				<JobOpeningPostingFirstPart />
