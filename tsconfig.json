@@ -23,8 +23,6 @@
 		"pages/index.tsx",
 		"pages/_error.tsx",
 		"pages/_error.tsx",
-		"src/components/layout/banner/Banner.tsx",
-		"src/components/layout/banner/Banner.tsx",
 		"pages/_document.jsx"
 	],
 	"exclude": ["node_modules"]

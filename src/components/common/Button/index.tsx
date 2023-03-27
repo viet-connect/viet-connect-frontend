@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export default function CommonButton({
 	wrapperStyle,
 	extraWrapperStyle,
-	value,
+	children,
 }: ICommonButtonProps) {
 	const { width, height, color } = wrapperStyle;
 
@@ -15,7 +15,7 @@ export default function CommonButton({
 			color={color}
 			style={{ ...extraWrapperStyle }}
 		>
-			<ButtonText>{value}</ButtonText>
+			<ButtonText>{children}</ButtonText>
 		</ButtonWrapper>
 	);
 }
@@ -29,7 +29,7 @@ interface IButtonWrapperProps {
 interface ICommonButtonProps {
 	wrapperStyle: IButtonWrapperProps;
 	extraWrapperStyle?: object;
-	value: string;
+	children: React.ReactNode;
 }
 
 const ButtonWrapper = styled.div<IButtonWrapperProps>`

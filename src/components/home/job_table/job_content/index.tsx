@@ -1,6 +1,7 @@
-import styled, { css } from 'styled-components';
-import { jobTableConstant } from '../../../constant/constant';
-import JobContent from './job_content';
+import Router, { useRouter } from 'next/router';
+import React from 'react';
+import styled from 'styled-components';
+import WageBox from '../../../common/WageBox';
 
 const data = [
 	{
@@ -285,80 +286,77 @@ const data = [
 	},
 ];
 
-export default function JobTable() {
-	const ThElement = Object.values(jobTableConstant);
+export default function JobContent({ content }) {
+	const router = useRouter();
+	const onClickRedirectDetail = (rowIndex) => {
+		router.push(`job_opening/detail/${rowIndex}`);
+	};
 
 	return (
-		<Container>
-			<TableWrapper>
-				<colgroup>
-					{ThElement.map((el) => (
-						<col key={el.renderingTitle} width={el.width} />
-					))}
-				</colgroup>
-				<Thead>
-					<Tr>
-						{ThElement.map((el, index) =>
-							index < 3 ? (
-								<Th key={el.renderingTitle}>{el.renderingTitle}</Th>
-							) : (
-								<Th key={el.renderingTitle} DivideNotExist>
-									{el.renderingTitle}
-								</Th>
-							),
-						)}
+		<Tbody>
+			{content.map((el, index: number) => {
+				const {
+					category,
+					job_opening_no,
+					region,
+					salary: { wage, way },
+					title: { title, is_preimium },
+				} = el;
+
+				return (
+					<Tr key={job_opening_no} onClick={() => onClickRedirectDetail(index)}>
+						<Td>{region}</Td>
+						<Td>
+							<span>{title}</span>
+						</Td>
+						<Td>
+							<WageWrapper>
+								<WageBox termIndex={0} />
+								<WageValue>{wage}</WageValue>
+							</WageWrapper>
+						</Td>
+						<Td>{category}</Td>
 					</Tr>
-				</Thead>
-				<JobContent content={data} />
-			</TableWrapper>
-		</Container>
+				);
+			})}
+		</Tbody>
 	);
 }
 
-const Container = styled.div`
-	margin-top: 20px;
-`;
-
-const TableWrapper = styled.table`
-	table-layout: fixed;
-	width: 1024px;
-	min-width: 100%;
-`;
-
-const Thead = styled.thead`
+const Tbody = styled.tbody`
 	box-sizing: border-box;
-	background-color: #f7f7f7;
+	vertical-align: middle;
+	font-size: 14px;
 `;
 
-const Tr = styled.tr``;
+const Tr = styled.tr`
+	border-top: 1px solid #f0f0f0;
+	box-sizing: border-box;
+	line-height: 22px;
+	transition: 0.3s;
 
-interface IThProps {
-	DivideNotExist?: boolean;
-}
+	:hover {
+		background-color: #e5e5e5f6;
+		cursor: pointer;
+	}
+`;
 
-const Th = styled.th<IThProps>`
+const Td = styled.td`
+	position: relative;
 	box-sizing: border-box;
 	padding: 16px;
-	text-align: start;
-	position: relative;
-	color: rgba(0, 0, 0, 0.88);
-	border-bottom: 1px solid #f0f0f0;
-	font-size: 14px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+`;
 
-	${(props) =>
-		!props.DivideNotExist &&
-		css`
-			&:before {
-				content: '';
-				background-color: #ffba10;
-				position: absolute;
-				top: 50%;
-				inset-inline-end: 0;
-				width: 1px;
-				height: 1.6em;
-				background-color: #e9d7d75c;
-				transform: translateY(-50%);
-				transition: background-color 0.2s;
-			}
-		`}
+const WageWrapper = styled.div`
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+`;
+
+const WageValue = styled.div`
+	margin-left: 8px;
+	font-size: 16px;
 `;

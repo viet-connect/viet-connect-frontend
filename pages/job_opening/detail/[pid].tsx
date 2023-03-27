@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import Image from 'next/image';
 
 import React from 'react';
@@ -12,8 +11,6 @@ import JobDetailMap from '../../../src/components/job_opening/detail/map';
 import JobDetailContactInfo from '../../../src/components/job_opening/detail/contact_info';
 
 export default function JobOpeningDetail() {
-	const router = useRouter();
-
 	return (
 		<Layout pageIndex={0}>
 			<Container>
@@ -27,8 +24,9 @@ export default function JobOpeningDetail() {
 						extraWrapperStyle={{
 							marginRight: 10,
 						}}
-						value="수정"
-					/>
+					>
+						수정
+					</CommonButton>
 					<CommonButton
 						wrapperStyle={{
 							width: 65,
@@ -38,8 +36,9 @@ export default function JobOpeningDetail() {
 						extraWrapperStyle={{
 							marginRight: 10,
 						}}
-						value="삭제"
-					/>
+					>
+						삭제
+					</CommonButton>
 				</ButtonWrapper>
 				<ImageWrapper style={{ background: 'lightgrey' }}>
 					<Image src={mockImage} alt="mock-picture" placeholder="blur" />

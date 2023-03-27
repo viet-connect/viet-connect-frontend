@@ -9,6 +9,8 @@
 		"object-curly-newline": "off",
 		"no-unused-vars": "off",
 		"no-confusing-arrow": "off",
-		"operator-linebreak": "off"
+		"operator-linebreak": "off",
+		"function-paren-newline": "off",
+		"camelcase": "off"
 	}
 }

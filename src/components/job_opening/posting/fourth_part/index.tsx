@@ -29,16 +29,16 @@ export default function JobOpeningPostingFourthPart() {
 					<PlaceHolder />
 				</DetailedAddressWrapper>
 			</SubTitleWrapper>
-			<div></div>
 			<CommonButton
-				value="등록하기"
 				wrapperStyle={{
 					width: 65,
 					height: 30,
 					color: '#EA7B14',
 				}}
 				extraWrapperStyle={{ marginTop: 40 }}
-			/>
+			>
+				등록하기
+			</CommonButton>
 		</Container>
 	);
 }

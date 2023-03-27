@@ -64,12 +64,12 @@ const postingConstant = Object.freeze({
 	},
 });
 
-const homeFilterConstant = Object.freeze({
-	announcement: {
-		renderingTitle: '공고',
-		width: 100,
-		key: 'is_premium',
-	},
+const jobTableConstant = Object.freeze({
+	// announcement: {
+	// 	renderingTitle: '공고',
+	// 	width: 100,
+	// 	key: 'is_premium',
+	// },
 	region: {
 		renderingTitle: '지역',
 		width: 50,
@@ -89,11 +89,11 @@ const homeFilterConstant = Object.freeze({
 		ellipsis: true,
 	},
 	category: {
-		title: '직무',
+		renderingTitle: '직무',
 		key: 'category',
 		width: 100,
 		ellipsis: true,
 	},
 });
 
-export { layoutConstant, postingConstant, homeFilterConstant };
+export { layoutConstant, postingConstant, jobTableConstant };

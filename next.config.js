@@ -5,6 +5,17 @@ const nextConfig = {
 	compiler: {
 		styledComponents: true,
 	},
+	webpack: (
+		config,
+		{ buildId, dev, isServer, defaultLoaders, nextRuntime, webpack },
+	) => {
+		config.module.rules.push({
+			test: /\.svg$/i,
+			use: ['@svgr/webpack'],
+		});
+
+		return config;
+	},
 };
 
 module.exports = nextConfig;

@@ -59,8 +59,9 @@ const MenuItem = styled.li`
 `;
 
 const MenuItemContent = styled.div<MenuItemContentProps>`
-	color: #1677ff;
+	color: ${({ clickedItem, index }) =>
+		clickedItem === index ? '#DB1A1A;' : '#BEBEBE'};
 	font-weight: bold;
 	border-bottom: ${({ clickedItem, index }) =>
-		clickedItem === index ? ' 2px solid #1677ff;' : 0};
+		clickedItem === index ? ' 2px solid #DB1A1A;' : 0};
 `;
