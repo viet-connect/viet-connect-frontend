@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import type { ReactNode } from 'react';
 
-import Logo from '../../main/header_top/logo/Logo';
+import Logo from '../../main/header_top/logo';
 import FooterTop from '../../main/footer/footer_top/FooterTop';
 import FooterBottom from '../../main/footer/footer_bottom/FooterBottom';
 import HeaderMenu from '../../main/header_menu/HeaderMenu';
 import Meta from './meta';
+import Flag from '../../main/header_top/flag';
 
 interface IMainProps {
 	children: ReactNode;
@@ -20,6 +21,7 @@ export default function Layout({ children, pageIndex }: IMainProps) {
 				<Header>
 					<Row>
 						<Logo />
+						<Flag />
 					</Row>
 				</Header>
 				<Nav>
@@ -71,7 +73,7 @@ const Footer = styled.div`
 
 const Row = styled.div`
 	width: 100%;
-	margin: 10px;
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 `;

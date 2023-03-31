@@ -1,12 +1,14 @@
+import { useRecoilValue } from 'recoil';
 import styled, { css } from 'styled-components';
 import { jobTableConstant } from '../../../constant/constant';
+import { selectedRegionState } from '../../../recoil/atom/region';
 import JobContent from './job_content';
 
 const data = [
 	{
 		job_opening_no: 1,
 		is_premium: 1,
-		region: '서울시 중구',
+		region: '서울특별시 중구',
 		title: {
 			title: '미스사이공 주방직원 급구asdasdas미스사이공 주방직원',
 			is_premium: 1,
@@ -15,33 +17,33 @@ const data = [
 		category: '요식업',
 	},
 	{
-		job_opening_no: 1,
+		job_opening_no: 2,
 		is_premium: 1,
-		region: '서울시 중구',
+		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 1 },
 		salary: { wage: '100,000원', way: 'daily' },
 		category: '요식업',
 	},
 	{
-		job_opening_no: 1,
+		job_opening_no: 3,
 		is_premium: 0,
-		region: '서울시 중구',
+		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 1 },
 		salary: { wage: '500,000원', way: 'weekly' },
 		category: '요식업',
 	},
 	{
-		job_opening_no: 1,
+		job_opening_no: 4,
 		is_premium: 0,
-		region: '서울시 중구',
+		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 0 },
 		salary: { wage: '8,000원', way: 'hourly' },
 		category: '요식업',
 	},
 	{
-		job_opening_no: 1,
+		job_opening_no: 5,
 		is_premium: 1,
-		region: '서울시 중구',
+		region: '서울특별시 중구',
 		title: {
 			title: '미스사이공 주방직원 급구asdasdas미스사이공 주방직원',
 			is_premium: 1,
@@ -50,33 +52,33 @@ const data = [
 		category: '요식업',
 	},
 	{
-		job_opening_no: 1,
+		job_opening_no: 6,
 		is_premium: 1,
-		region: '서울시 중구',
+		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 1 },
 		salary: { wage: '100,000원', way: 'daily' },
 		category: '요식업',
 	},
 	{
-		job_opening_no: 1,
+		job_opening_no: 7,
 		is_premium: 0,
-		region: '서울시 중구',
+		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 1 },
 		salary: { wage: '500,000원', way: 'weekly' },
 		category: '요식업',
 	},
 	{
-		job_opening_no: 1,
+		job_opening_no: 8,
 		is_premium: 0,
-		region: '서울시 중구',
+		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 0 },
 		salary: { wage: '8,000원', way: 'hourly' },
 		category: '요식업',
 	},
 	{
-		job_opening_no: 1,
+		job_opening_no: 9,
 		is_premium: 1,
-		region: '서울시 중구',
+		region: '서울특별시 중구',
 		title: {
 			title: '미스사이공 주방직원 급구asdasdas미스사이공 주방직원',
 			is_premium: 1,
@@ -85,33 +87,33 @@ const data = [
 		category: '요식업',
 	},
 	{
-		job_opening_no: 1,
+		job_opening_no: 10,
 		is_premium: 1,
-		region: '서울시 중구',
+		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 1 },
 		salary: { wage: '100,000원', way: 'daily' },
 		category: '요식업',
 	},
 	{
-		job_opening_no: 1,
+		job_opening_no: 11,
 		is_premium: 0,
-		region: '서울시 중구',
+		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 1 },
 		salary: { wage: '500,000원', way: 'weekly' },
 		category: '요식업',
 	},
 	{
-		job_opening_no: 1,
+		job_opening_no: 12,
 		is_premium: 0,
-		region: '서울시 중구',
+		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 0 },
 		salary: { wage: '8,000원', way: 'hourly' },
 		category: '요식업',
 	},
 	{
-		job_opening_no: 1,
+		job_opening_no: 13,
 		is_premium: 1,
-		region: '서울시 중구',
+		region: '서울특별시 중구',
 		title: {
 			title: '미스사이공 주방직원 급구asdasdas미스사이공 주방직원',
 			is_premium: 1,
@@ -120,33 +122,33 @@ const data = [
 		category: '요식업',
 	},
 	{
-		job_opening_no: 1,
+		job_opening_no: 14,
 		is_premium: 1,
-		region: '서울시 중구',
+		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 1 },
 		salary: { wage: '100,000원', way: 'daily' },
 		category: '요식업',
 	},
 	{
-		job_opening_no: 1,
+		job_opening_no: 15,
 		is_premium: 0,
-		region: '서울시 중구',
+		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 1 },
 		salary: { wage: '500,000원', way: 'weekly' },
 		category: '요식업',
 	},
 	{
-		job_opening_no: 1,
+		job_opening_no: 16,
 		is_premium: 0,
-		region: '서울시 중구',
+		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 0 },
 		salary: { wage: '8,000원', way: 'hourly' },
 		category: '요식업',
 	},
 	{
-		job_opening_no: 1,
+		job_opening_no: 17,
 		is_premium: 1,
-		region: '서울시 중구',
+		region: '서울특별시 중구',
 		title: {
 			title: '미스사이공 주방직원 급구asdasdas미스사이공 주방직원',
 			is_premium: 1,
@@ -155,33 +157,33 @@ const data = [
 		category: '요식업',
 	},
 	{
-		job_opening_no: 1,
+		job_opening_no: 18,
 		is_premium: 1,
-		region: '서울시 중구',
+		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 1 },
 		salary: { wage: '100,000원', way: 'daily' },
 		category: '요식업',
 	},
 	{
-		job_opening_no: 1,
+		job_opening_no: 19,
 		is_premium: 0,
-		region: '서울시 중구',
+		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 1 },
 		salary: { wage: '500,000원', way: 'weekly' },
 		category: '요식업',
 	},
 	{
-		job_opening_no: 1,
+		job_opening_no: 20,
 		is_premium: 0,
-		region: '서울시 중구',
+		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 0 },
 		salary: { wage: '8,000원', way: 'hourly' },
 		category: '요식업',
 	},
 	{
-		job_opening_no: 1,
+		job_opening_no: 21,
 		is_premium: 1,
-		region: '서울시 중구',
+		region: '서울특별시 중구',
 		title: {
 			title: '미스사이공 주방직원 급구asdasdas미스사이공 주방직원',
 			is_premium: 1,
@@ -190,33 +192,33 @@ const data = [
 		category: '요식업',
 	},
 	{
-		job_opening_no: 1,
+		job_opening_no: 22,
 		is_premium: 1,
-		region: '서울시 중구',
+		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 1 },
 		salary: { wage: '100,000원', way: 'daily' },
 		category: '요식업',
 	},
 	{
-		job_opening_no: 1,
+		job_opening_no: 23,
 		is_premium: 0,
-		region: '서울시 중구',
+		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 1 },
 		salary: { wage: '500,000원', way: 'weekly' },
 		category: '요식업',
 	},
 	{
-		job_opening_no: 1,
+		job_opening_no: 24,
 		is_premium: 0,
-		region: '서울시 중구',
+		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 0 },
 		salary: { wage: '8,000원', way: 'hourly' },
 		category: '요식업',
 	},
 	{
-		job_opening_no: 1,
+		job_opening_no: 25,
 		is_premium: 1,
-		region: '서울시 중구',
+		region: '서울특별시 중구',
 		title: {
 			title: '미스사이공 주방직원 급구asdasdas미스사이공 주방직원',
 			is_premium: 1,
@@ -225,33 +227,33 @@ const data = [
 		category: '요식업',
 	},
 	{
-		job_opening_no: 1,
+		job_opening_no: 26,
 		is_premium: 1,
-		region: '서울시 중구',
+		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 1 },
 		salary: { wage: '100,000원', way: 'daily' },
 		category: '요식업',
 	},
 	{
-		job_opening_no: 1,
+		job_opening_no: 27,
 		is_premium: 0,
-		region: '서울시 중구',
+		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 1 },
 		salary: { wage: '500,000원', way: 'weekly' },
 		category: '요식업',
 	},
 	{
-		job_opening_no: 1,
+		job_opening_no: 28,
 		is_premium: 0,
-		region: '서울시 중구',
+		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 0 },
 		salary: { wage: '8,000원', way: 'hourly' },
 		category: '요식업',
 	},
 	{
-		job_opening_no: 1,
+		job_opening_no: 29,
 		is_premium: 1,
-		region: '서울시 중구',
+		region: '서울특별시 중구',
 		title: {
 			title: '미스사이공 주방직원 급구asdasdas미스사이공 주방직원',
 			is_premium: 1,
@@ -260,25 +262,25 @@ const data = [
 		category: '요식업',
 	},
 	{
-		job_opening_no: 1,
+		job_opening_no: 30,
 		is_premium: 1,
-		region: '서울시 중구',
+		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 1 },
 		salary: { wage: '100,000원', way: 'daily' },
 		category: '요식업',
 	},
 	{
-		job_opening_no: 1,
+		job_opening_no: 31,
 		is_premium: 0,
-		region: '서울시 중구',
+		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 1 },
 		salary: { wage: '500,000원', way: 'weekly' },
 		category: '요식업',
 	},
 	{
-		job_opening_no: 1,
+		job_opening_no: 32,
 		is_premium: 0,
-		region: '서울시 중구',
+		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 0 },
 		salary: { wage: '8,000원', way: 'hourly' },
 		category: '요식업',
@@ -287,6 +289,17 @@ const data = [
 
 export default function JobTable() {
 	const ThElement = Object.values(jobTableConstant);
+	const selectedRegionArray = useRecoilValue(selectedRegionState);
+	const selectedRegion = selectedRegionArray[0].concat(
+		` ${selectedRegionArray[1]}`,
+	);
+
+	const comparableData = [];
+	for (let i = 0; i < data.length; i += 1) {
+		if (data[i].region === selectedRegion) {
+			comparableData.push(data[i]);
+		}
+	}
 
 	return (
 		<Container>
@@ -309,7 +322,7 @@ export default function JobTable() {
 						)}
 					</Tr>
 				</Thead>
-				<JobContent content={data} />
+				<JobContent content={comparableData} />
 			</TableWrapper>
 		</Container>
 	);

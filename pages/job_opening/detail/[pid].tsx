@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 import React from 'react';
 import styled from 'styled-components';
-import mockImage from '../../../public/assets/apple.jpeg';
+import mockImage from '../../../src/public/assets/apple.jpeg';
 import CommonButton from '../../../src/components/common/Button';
 import Layout from '../../../src/components/common/Layout';
 import ContentHeader from '../../../src/components/job_opening/detail/content_header';

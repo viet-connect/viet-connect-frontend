@@ -1,4 +1,4 @@
-import { layoutConstant } from '../../../src/constant/constant';
+import { layoutConstant } from '../../../constant/constant';
 
 export default [
 	{

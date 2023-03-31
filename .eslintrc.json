@@ -11,6 +11,8 @@
 		"no-confusing-arrow": "off",
 		"operator-linebreak": "off",
 		"function-paren-newline": "off",
-		"camelcase": "off"
+		"camelcase": "off",
+		"import/prefer-default-export": "off",
+		"no-undef": "off"
 	}
 }
