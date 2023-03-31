@@ -17,7 +17,7 @@ export default function Layout({ children, pageIndex }: IMainProps) {
 	return (
 		<Wrapper>
 			<Meta />
-			<Container>
+			<Container id="layout-container">
 				<Header>
 					<Row>
 						<Logo />
@@ -40,13 +40,14 @@ export default function Layout({ children, pageIndex }: IMainProps) {
 const Wrapper = styled.div`
 	width: 100%;
 	display: flex;
-	justify-content: center;
 `;
 
 const Container = styled.div`
-	min-width: 350px;
-	max-width: 1024px;
-	width: 100%;
+	/* min-width: 350px;
+	max-width: 1024px; */
+	width: 600px;
+	padding: 20px;
+	margin: auto;
 `;
 
 const Header = styled.div`

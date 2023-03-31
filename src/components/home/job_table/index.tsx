@@ -14,7 +14,7 @@ const data = [
 			is_premium: 1,
 		},
 		salary: { wage: '2,000,000원', way: 'monthly' },
-		category: '요식업',
+		date: '04-01',
 	},
 	{
 		job_opening_no: 2,
@@ -22,7 +22,7 @@ const data = [
 		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 1 },
 		salary: { wage: '100,000원', way: 'daily' },
-		category: '요식업',
+		date: '04-01',
 	},
 	{
 		job_opening_no: 3,
@@ -30,7 +30,7 @@ const data = [
 		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 1 },
 		salary: { wage: '500,000원', way: 'weekly' },
-		category: '요식업',
+		date: '04-01',
 	},
 	{
 		job_opening_no: 4,
@@ -38,7 +38,7 @@ const data = [
 		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 0 },
 		salary: { wage: '8,000원', way: 'hourly' },
-		category: '요식업',
+		date: '04-01',
 	},
 	{
 		job_opening_no: 5,
@@ -49,7 +49,7 @@ const data = [
 			is_premium: 1,
 		},
 		salary: { wage: '2,000,000원', way: 'monthly' },
-		category: '요식업',
+		date: '04-01',
 	},
 	{
 		job_opening_no: 6,
@@ -57,7 +57,7 @@ const data = [
 		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 1 },
 		salary: { wage: '100,000원', way: 'daily' },
-		category: '요식업',
+		date: '04-01',
 	},
 	{
 		job_opening_no: 7,
@@ -65,7 +65,7 @@ const data = [
 		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 1 },
 		salary: { wage: '500,000원', way: 'weekly' },
-		category: '요식업',
+		date: '04-01',
 	},
 	{
 		job_opening_no: 8,
@@ -73,7 +73,7 @@ const data = [
 		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 0 },
 		salary: { wage: '8,000원', way: 'hourly' },
-		category: '요식업',
+		date: '04-01',
 	},
 	{
 		job_opening_no: 9,
@@ -84,7 +84,7 @@ const data = [
 			is_premium: 1,
 		},
 		salary: { wage: '2,000,000원', way: 'monthly' },
-		category: '요식업',
+		date: '04-01',
 	},
 	{
 		job_opening_no: 10,
@@ -92,7 +92,7 @@ const data = [
 		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 1 },
 		salary: { wage: '100,000원', way: 'daily' },
-		category: '요식업',
+		date: '04-01',
 	},
 	{
 		job_opening_no: 11,
@@ -100,7 +100,7 @@ const data = [
 		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 1 },
 		salary: { wage: '500,000원', way: 'weekly' },
-		category: '요식업',
+		date: '04-01',
 	},
 	{
 		job_opening_no: 12,
@@ -108,7 +108,7 @@ const data = [
 		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 0 },
 		salary: { wage: '8,000원', way: 'hourly' },
-		category: '요식업',
+		date: '04-01',
 	},
 	{
 		job_opening_no: 13,
@@ -119,7 +119,7 @@ const data = [
 			is_premium: 1,
 		},
 		salary: { wage: '2,000,000원', way: 'monthly' },
-		category: '요식업',
+		date: '04-01',
 	},
 	{
 		job_opening_no: 14,
@@ -127,7 +127,7 @@ const data = [
 		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 1 },
 		salary: { wage: '100,000원', way: 'daily' },
-		category: '요식업',
+		date: '04-01',
 	},
 	{
 		job_opening_no: 15,
@@ -135,7 +135,7 @@ const data = [
 		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 1 },
 		salary: { wage: '500,000원', way: 'weekly' },
-		category: '요식업',
+		date: '04-01',
 	},
 	{
 		job_opening_no: 16,
@@ -143,7 +143,7 @@ const data = [
 		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 0 },
 		salary: { wage: '8,000원', way: 'hourly' },
-		category: '요식업',
+		date: '04-01',
 	},
 	{
 		job_opening_no: 17,
@@ -154,7 +154,7 @@ const data = [
 			is_premium: 1,
 		},
 		salary: { wage: '2,000,000원', way: 'monthly' },
-		category: '요식업',
+		date: '04-01',
 	},
 	{
 		job_opening_no: 18,
@@ -162,7 +162,7 @@ const data = [
 		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 1 },
 		salary: { wage: '100,000원', way: 'daily' },
-		category: '요식업',
+		date: '04-01',
 	},
 	{
 		job_opening_no: 19,
@@ -170,7 +170,7 @@ const data = [
 		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 1 },
 		salary: { wage: '500,000원', way: 'weekly' },
-		category: '요식업',
+		date: '04-01',
 	},
 	{
 		job_opening_no: 20,
@@ -178,7 +178,7 @@ const data = [
 		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 0 },
 		salary: { wage: '8,000원', way: 'hourly' },
-		category: '요식업',
+		date: '04-01',
 	},
 	{
 		job_opening_no: 21,
@@ -189,7 +189,7 @@ const data = [
 			is_premium: 1,
 		},
 		salary: { wage: '2,000,000원', way: 'monthly' },
-		category: '요식업',
+		date: '04-01',
 	},
 	{
 		job_opening_no: 22,
@@ -197,7 +197,7 @@ const data = [
 		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 1 },
 		salary: { wage: '100,000원', way: 'daily' },
-		category: '요식업',
+		date: '04-01',
 	},
 	{
 		job_opening_no: 23,
@@ -205,7 +205,7 @@ const data = [
 		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 1 },
 		salary: { wage: '500,000원', way: 'weekly' },
-		category: '요식업',
+		date: '04-01',
 	},
 	{
 		job_opening_no: 24,
@@ -213,7 +213,7 @@ const data = [
 		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 0 },
 		salary: { wage: '8,000원', way: 'hourly' },
-		category: '요식업',
+		date: '04-01',
 	},
 	{
 		job_opening_no: 25,
@@ -224,7 +224,7 @@ const data = [
 			is_premium: 1,
 		},
 		salary: { wage: '2,000,000원', way: 'monthly' },
-		category: '요식업',
+		date: '04-01',
 	},
 	{
 		job_opening_no: 26,
@@ -232,7 +232,7 @@ const data = [
 		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 1 },
 		salary: { wage: '100,000원', way: 'daily' },
-		category: '요식업',
+		date: '04-01',
 	},
 	{
 		job_opening_no: 27,
@@ -240,7 +240,7 @@ const data = [
 		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 1 },
 		salary: { wage: '500,000원', way: 'weekly' },
-		category: '요식업',
+		date: '04-01',
 	},
 	{
 		job_opening_no: 28,
@@ -248,7 +248,7 @@ const data = [
 		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 0 },
 		salary: { wage: '8,000원', way: 'hourly' },
-		category: '요식업',
+		date: '04-01',
 	},
 	{
 		job_opening_no: 29,
@@ -259,7 +259,7 @@ const data = [
 			is_premium: 1,
 		},
 		salary: { wage: '2,000,000원', way: 'monthly' },
-		category: '요식업',
+		date: '04-01',
 	},
 	{
 		job_opening_no: 30,
@@ -267,7 +267,7 @@ const data = [
 		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 1 },
 		salary: { wage: '100,000원', way: 'daily' },
-		category: '요식업',
+		date: '04-01',
 	},
 	{
 		job_opening_no: 31,
@@ -275,7 +275,7 @@ const data = [
 		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 1 },
 		salary: { wage: '500,000원', way: 'weekly' },
-		category: '요식업',
+		date: '04-01',
 	},
 	{
 		job_opening_no: 32,
@@ -283,7 +283,7 @@ const data = [
 		region: '서울특별시 중구',
 		title: { title: '미스사이공 주방직원 급구', is_premium: 0 },
 		salary: { wage: '8,000원', way: 'hourly' },
-		category: '요식업',
+		date: '04-01',
 	},
 ];
 
@@ -305,14 +305,20 @@ export default function JobTable() {
 		<Container>
 			<TableWrapper>
 				<colgroup>
-					{ThElement.map((el) => (
+					{ThElement.map((el, index) => (
+						// if (index === 0) {
+						// }
+						// if (index === 1) {
+						// } else {
+						// }
+
 						<col key={el.renderingTitle} width={el.width} />
 					))}
 				</colgroup>
 				<Thead>
 					<Tr>
 						{ThElement.map((el, index) =>
-							index < 3 ? (
+							index < 2 ? (
 								<Th key={el.renderingTitle}>{el.renderingTitle}</Th>
 							) : (
 								<Th key={el.renderingTitle} DivideNotExist>
@@ -328,19 +334,17 @@ export default function JobTable() {
 	);
 }
 
-const Container = styled.div`
-	margin-top: 20px;
-`;
+const Container = styled.div``;
 
 const TableWrapper = styled.table`
 	table-layout: fixed;
-	width: 1024px;
-	min-width: 100%;
+	width: 100%;
 `;
 
 const Thead = styled.thead`
 	box-sizing: border-box;
 	background-color: #f7f7f7;
+	display: flex;
 `;
 
 const Tr = styled.tr``;

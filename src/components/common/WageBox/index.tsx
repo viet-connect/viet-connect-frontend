@@ -31,7 +31,7 @@ const Container = styled.div<IContrainerProps>`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 40px;
+	width: 30px;
 	height: 25px;
 	background: ${(props) => props.boxColor};
 	border: 1px solid ${(props) => props.borderColor};

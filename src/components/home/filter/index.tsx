@@ -19,10 +19,12 @@ export default function HomeFilter() {
 		control: (styles, state) => ({
 			...styles,
 			cursor: 'pointer',
+			width: 175,
 		}),
 		option: (styles, state) => ({
 			...styles,
 			cursor: 'pointer',
+			width: 175,
 		}),
 	};
 
@@ -91,29 +93,31 @@ export default function HomeFilter() {
 					defaultValue={{ value: 'category', label: '-- 직무 선택 --' }}
 				/>
 			</SelectWrapper> */}
-			<CommonButton
-				wrapperStyle={{
-					width: 250,
-					height: 37,
-					color: '#1890ff',
-				}}
-				onClick={
-					selectedProvince.length > 0 && selectedDistrict.length > 0
-						? handleClickSetRegionArray
-						: undefined
-				}
-			>
-				<ButtonChildrenWrapper>
-					<ButtonTextWrapper>검색</ButtonTextWrapper>
-					<IconWrapper>
-						<BsSearch
-							style={{ verticalAlign: 'top' }}
-							fontSize={13}
-							color="white"
-						/>
-					</IconWrapper>
-				</ButtonChildrenWrapper>
-			</CommonButton>
+			<SelectWrapper>
+				<CommonButton
+					wrapperStyle={{
+						width: 355,
+						height: 40,
+						color: '#1890ff',
+					}}
+					onClick={
+						selectedProvince.length > 0 && selectedDistrict.length > 0
+							? handleClickSetRegionArray
+							: undefined
+					}
+				>
+					<ButtonChildrenWrapper>
+						<ButtonTextWrapper>검색</ButtonTextWrapper>
+						<IconWrapper>
+							<BsSearch
+								style={{ verticalAlign: 'top' }}
+								fontSize={13}
+								color="white"
+							/>
+						</IconWrapper>
+					</ButtonChildrenWrapper>
+				</CommonButton>
+			</SelectWrapper>
 		</Container>
 	);
 }
@@ -122,10 +126,11 @@ const Container = styled.div`
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
+	flex-wrap: wrap;
 `;
 
 const SelectWrapper = styled.div`
-	margin-right: 5px;
+	margin: 0px 5px 20px 0;
 `;
 const ButtonChildrenWrapper = styled.div`
 	display: flex;

@@ -22,12 +22,12 @@ const postingConstant = Object.freeze({
 		['업체명', '업체명을 입력해주세요'],
 		['연락처', '구직자가 연락가능한 번호를 입력해주세요'],
 	],
-	PostingSecondPartInfo: [
-		['공장', '식당'],
-		['건설', '번역'],
-		['사무', '농장'],
-		['기타 서비스업', '직접 입력'],
-	],
+	// PostingSecondPartInfo: [
+	// 	['공장', '식당'],
+	// 	['건설', '번역'],
+	// 	['사무', '농장'],
+	// 	['기타 서비스업', '직접 입력'],
+	// ],
 	PostingThirdPartInfo: {
 		gender: ['성별 무관', '남자', '여자', '모집성별'],
 		proficiency: ['잘함', '보통', '기초', '미숙', '한국어 구사력'],
@@ -42,9 +42,9 @@ const jobTableConstant = Object.freeze({
 	// 	key: 'is_premium',
 	// },
 	region: {
-		renderingTitle: '지역',
+		renderingTitle: '날짜',
 		width: 50,
-		key: 'region',
+		key: 'date',
 		ellipsis: true,
 	},
 	title: {
@@ -59,12 +59,12 @@ const jobTableConstant = Object.freeze({
 		width: 100,
 		ellipsis: true,
 	},
-	category: {
-		renderingTitle: '직무',
-		key: 'category',
-		width: 100,
-		ellipsis: true,
-	},
+	// category: {
+	// 	renderingTitle: '직무',
+	// 	key: 'category',
+	// 	width: 100,
+	// 	ellipsis: true,
+	// },
 });
 
 export { layoutConstant, postingConstant, jobTableConstant, category };
