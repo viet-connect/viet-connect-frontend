@@ -1,7 +1,7 @@
 const layoutConstant = Object.freeze({
 	ENTERPRISE: '비엣커넥트',
-	EXECUTIVE: '정의성, 서현욱',
-	PERSONAL_INFO_PERSON_IN_CHARGE: '강경욱',
+	EXECUTIVE: '서현욱',
+	PERSONAL_INFO_PERSON_IN_CHARGE: '서현욱',
 	ENTERPRISE_NUMBER: '사업자등록번호',
 	ADDRESS: '서울 영등포구 의사당대로 83 오투타워',
 	COMPANY_EMAIL: 'gluesociety@naver.com',
