@@ -6,8 +6,6 @@ const layoutConstant = Object.freeze({
 	ADDRESS: '서울 영등포구 의사당대로 83 오투타워',
 	COMPANY_EMAIL: 'gluesociety@naver.com',
 	COMPANY_PHONE_NUMBER: '010-2242-8129',
-
-	/* 카테고리 분류 */
 });
 
 const category = Object.freeze({
