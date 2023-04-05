@@ -47,15 +47,15 @@ const jobTableConstant = Object.freeze({
 		key: 'date',
 		ellipsis: true,
 	},
-	title: {
-		renderingTitle: '제목',
-		key: 'title',
-		width: 100,
-		ellipsis: true,
-	},
 	wage: {
 		renderingTitle: '급여',
 		key: 'salary',
+		width: 100,
+		ellipsis: true,
+	},
+	title: {
+		renderingTitle: '제목',
+		key: 'title',
 		width: 100,
 		ellipsis: true,
 	},

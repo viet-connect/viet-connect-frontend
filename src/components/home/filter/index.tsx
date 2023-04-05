@@ -42,11 +42,6 @@ export default function HomeFilter() {
 			if (Array.isArray(target)) {
 				setSelectedDistrictArray(target);
 			}
-
-			// if (selectedDistrict.length > 0) {
-			// 	console.log(selectedProvince, selectedDistrict);
-			// 	setSelectedRegionState([selectedProvince, selectedDistrict]);
-			// }
 		}
 	}, [selectedProvince]);
 
@@ -93,13 +88,17 @@ export default function HomeFilter() {
 					defaultValue={{ value: 'category', label: '-- 직무 선택 --' }}
 				/>
 			</SelectWrapper> */}
-			<SelectWrapper>
+			<InputWrapper>
+				<SearchInput className="search-input"></SearchInput>
+			</InputWrapper>
+			<ButtonOutterWrapper className="home-button-wrapper">
 				<CommonButton
 					wrapperStyle={{
-						width: 355,
+						// width: 355,
 						height: 40,
 						color: '#1890ff',
 					}}
+					className="home-button"
 					onClick={
 						selectedProvince.length > 0 && selectedDistrict.length > 0
 							? handleClickSetRegionArray
@@ -117,7 +116,7 @@ export default function HomeFilter() {
 						</IconWrapper>
 					</ButtonChildrenWrapper>
 				</CommonButton>
-			</SelectWrapper>
+			</ButtonOutterWrapper>
 		</Container>
 	);
 }
@@ -132,6 +131,11 @@ const Container = styled.div`
 const SelectWrapper = styled.div`
 	margin: 0px 5px 20px 0;
 `;
+
+const ButtonOutterWrapper = styled.div`
+	margin: 0px 0px 20px 0;
+`;
+
 const ButtonChildrenWrapper = styled.div`
 	display: flex;
 	align-items: center;
@@ -148,4 +152,12 @@ const ButtonTextWrapper = styled.div`
 	font-size: 15px;
 	color: white;
 	font-weight: 400;
+`;
+
+const InputWrapper = styled.div`
+	margin-bottom: 20px;
+`;
+
+const SearchInput = styled.input`
+	height: 38px;
 `;

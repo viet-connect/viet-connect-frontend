@@ -91,15 +91,15 @@ export default Object.freeze({
 		ULSAN: ['중구', '남구', '동구', '북구', '울주군'],
 	},
 	SEJONG: {
-		province: ['세종광역시', 'SEJONG'],
+		province: ['세종시', 'SEJONG'],
 		SEJONG: ['세종시'],
 	},
 	JEJU: {
-		province: ['제주광역시', 'JEJU'],
+		province: ['제주도', 'JEJU'],
 		JEJU: ['제주시', '서귀포시'],
 	},
 	GYEONGGI: {
-		province: ['경기광역시', 'GYEONGGI'],
+		province: ['경기도', 'GYEONGGI'],
 		GYEONGGI: [
 			'수원시 장안구',
 			'수원시 권선구',
@@ -117,7 +117,7 @@ export default Object.freeze({
 			'동두천시',
 			'안산시 상록구',
 			'안산시 단원구',
-			'고양시 덕양구',
+			'덕양구',
 			'고양시 일산동구',
 			'고양시 일산서구',
 			'과천시',
@@ -146,7 +146,7 @@ export default Object.freeze({
 		],
 	},
 	GANGWON: {
-		province: ['강원광역시', 'GANGWON'],
+		province: ['강원도', 'GANGWON'],
 		GANGWON: [
 			'춘천시',
 			'원주시',

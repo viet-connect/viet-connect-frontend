@@ -19,3 +19,27 @@ input[type='time'],
 select:focus {
 	outline-width: 0;
 }
+
+@media (max-width: 1000px) {
+	.search-input {
+		width: 358px;
+	}
+
+	.home-button-wrapper {
+		width: 358px;
+	}
+}
+
+@media (min-width: 1000px) {
+	.search-input {
+		width: 200px;
+	}
+
+	.home-button-wrapper {
+		width: 100%;
+	}
+}
+
+.home-content-header {
+	flex-basis: 100%;
+}

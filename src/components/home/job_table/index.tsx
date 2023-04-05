@@ -306,12 +306,6 @@ export default function JobTable() {
 			<TableWrapper>
 				<colgroup>
 					{ThElement.map((el, index) => (
-						// if (index === 0) {
-						// }
-						// if (index === 1) {
-						// } else {
-						// }
-
 						<col key={el.renderingTitle} width={el.width} />
 					))}
 				</colgroup>
@@ -319,9 +313,15 @@ export default function JobTable() {
 					<Tr>
 						{ThElement.map((el, index) =>
 							index < 2 ? (
-								<Th key={el.renderingTitle}>{el.renderingTitle}</Th>
+								<Th className="home-content-header" key={el.renderingTitle}>
+									{el.renderingTitle}
+								</Th>
 							) : (
-								<Th key={el.renderingTitle} DivideNotExist>
+								<Th
+									className="home-content-header"
+									key={el.renderingTitle}
+									DivideNotExist
+								>
 									{el.renderingTitle}
 								</Th>
 							),
@@ -337,14 +337,12 @@ export default function JobTable() {
 const Container = styled.div``;
 
 const TableWrapper = styled.table`
-	table-layout: fixed;
 	width: 100%;
 `;
 
 const Thead = styled.thead`
 	box-sizing: border-box;
 	background-color: #f7f7f7;
-	display: flex;
 `;
 
 const Tr = styled.tr``;
