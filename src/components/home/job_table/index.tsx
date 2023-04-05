@@ -365,7 +365,6 @@ const Th = styled.th<IThProps>`
 		css`
 			&:before {
 				content: '';
-				background-color: #ffba10;
 				position: absolute;
 				top: 50%;
 				inset-inline-end: 0;

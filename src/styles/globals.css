@@ -26,20 +26,16 @@ select:focus {
 	}
 
 	.home-button-wrapper {
-		width: 358px;
+		width: 366px;
 	}
 }
 
 @media (min-width: 1000px) {
 	.search-input {
-		width: 200px;
+		width: 230px;
 	}
 
 	.home-button-wrapper {
 		width: 100%;
 	}
-}
-
-.home-content-header {
-	flex-basis: 100%;
 }

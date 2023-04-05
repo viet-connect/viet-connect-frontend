@@ -2,9 +2,9 @@ const layoutConstant = Object.freeze({
 	ENTERPRISE: '비엣커넥트',
 	EXECUTIVE: '서현욱',
 	PERSONAL_INFO_PERSON_IN_CHARGE: '서현욱',
-	ENTERPRISE_NUMBER: '사업자등록번호',
-	ADDRESS: '서울 영등포구 의사당대로 83 오투타워',
-	COMPANY_EMAIL: 'gluesociety@naver.com',
+	ENTERPRISE_NUMBER: '101-1451-2572-10',
+	ADDRESS: '서울특별시 동대문구 이문로 107',
+	COMPANY_EMAIL: 'hyunwook0521@naver.com',
 	COMPANY_PHONE_NUMBER: '010-2242-8129',
 });
 

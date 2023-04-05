@@ -1,38 +1,52 @@
 import React from 'react';
-import { Row, Col, Menu, Divider, Typography } from 'antd';
+import styled, { css } from 'styled-components';
 import { layoutConstant } from '../../../../constant/constant';
-
-const { Text } = Typography;
 
 export default function FooterTop() {
 	return (
-		<Row
-			style={{
-				padding: '16px',
-			}}
-		>
-			<Col>
-				<Text>상호 : {layoutConstant.ENTERPRISE}</Text>
-				<Divider type="vertical" />
-				<Text>대표 : {layoutConstant.EXECUTIVE}</Text>
-				<Divider type="vertical" />
-				<Text strong>
-					개인정보책임자 : {layoutConstant.PERSONAL_INFO_PERSON_IN_CHARGE}{' '}
-				</Text>
-				<Divider type="vertical" />
-				<br />
-				<Text>사업자등록번호 : {layoutConstant.ENTERPRISE_NUMBER} </Text>
-				<Divider type="vertical" />
-				<br />
-				<Text>주소 : {layoutConstant.ADDRESS}</Text>
-				<Divider type="vertical" />
-				<br />
-				<Text>대표이메일 : {layoutConstant.COMPANY_EMAIL}</Text>
-				<Divider type="vertical" />
-				<br />
-				<Text>대표전화 : {layoutConstant.COMPANY_PHONE_NUMBER}</Text>
-				<Divider type="vertical" />
-			</Col>
-		</Row>
+		<Container>
+			<FooterTopText>상호 : {layoutConstant.ENTERPRISE}</FooterTopText>
+			<Divider />
+			<FooterTopText>대표 : {layoutConstant.EXECUTIVE}</FooterTopText>
+			<Divider />
+			<FooterTopText>
+				개인정보책임자 : {layoutConstant.PERSONAL_INFO_PERSON_IN_CHARGE}
+			</FooterTopText>
+			<Divider />
+			<br />
+			<FooterTopText>
+				사업자등록번호 : {layoutConstant.ENTERPRISE_NUMBER}
+			</FooterTopText>
+			<Divider />
+			<br />
+			<FooterTopText>주소 : {layoutConstant.ADDRESS}</FooterTopText>
+			<Divider />
+			<br />
+			<FooterTopText>대표이메일 : {layoutConstant.COMPANY_EMAIL}</FooterTopText>
+			<Divider />
+			<br />
+			<FooterTopText>
+				대표전화 : {layoutConstant.COMPANY_PHONE_NUMBER}
+			</FooterTopText>
+			<Divider />
+		</Container>
 	);
 }
+
+const Container = styled.div`
+	padding: 10px;
+`;
+
+const FooterTopText = styled.span`
+	font-size: 14px;
+	vertical-align: middle;
+`;
+
+const Divider = styled.span`
+	display: inline-block;
+	width: 1px;
+	height: 0.7em;
+	background-color: #e9d7d75c;
+	margin: 0 10px;
+	vertical-align: baseline;
+`;
