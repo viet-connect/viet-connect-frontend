@@ -19,12 +19,12 @@ export default function HomeFilter() {
 		control: (styles, state) => ({
 			...styles,
 			cursor: 'pointer',
-			width: 175,
+			width: 260,
 		}),
 		option: (styles, state) => ({
 			...styles,
 			cursor: 'pointer',
-			width: 175,
+			width: 260,
 		}),
 	};
 

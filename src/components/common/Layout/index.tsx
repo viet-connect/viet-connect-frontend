@@ -45,7 +45,7 @@ const Wrapper = styled.div`
 const Container = styled.div`
 	/* min-width: 350px;
 	max-width: 1024px; */
-	width: 600px;
+	width: 532px;
 	padding: 20px;
 	margin: auto;
 `;

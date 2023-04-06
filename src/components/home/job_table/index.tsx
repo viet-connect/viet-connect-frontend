@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import { useRecoilValue } from 'recoil';
 import styled, { css } from 'styled-components';
 import { jobTableConstant } from '../../../constant/constant';
@@ -313,13 +314,18 @@ export default function JobTable() {
 					<Tr>
 						{ThElement.map((el, index) =>
 							index < 2 ? (
-								<Th className="home-content-header" key={el.renderingTitle}>
+								<Th
+									className="home-content-header"
+									index={index}
+									key={el.renderingTitle}
+								>
 									{el.renderingTitle}
 								</Th>
 							) : (
 								<Th
 									className="home-content-header"
 									key={el.renderingTitle}
+									index={index}
 									DivideNotExist
 								>
 									{el.renderingTitle}
@@ -349,7 +355,19 @@ const Tr = styled.tr``;
 
 interface IThProps {
 	DivideNotExist?: boolean;
+	index: number;
 }
+
+const handleWidth = (index) => {
+	switch (index) {
+		case 0:
+			return '57px';
+		case 1:
+			return '140px';
+		default:
+			return '330px';
+	}
+};
 
 const Th = styled.th<IThProps>`
 	box-sizing: border-box;
@@ -359,6 +377,7 @@ const Th = styled.th<IThProps>`
 	color: rgba(0, 0, 0, 0.88);
 	border-bottom: 1px solid #f0f0f0;
 	font-size: 14px;
+	width: ${(props) => handleWidth(props.index)};
 
 	${(props) =>
 		!props.DivideNotExist &&
@@ -374,5 +393,5 @@ const Th = styled.th<IThProps>`
 				transform: translateY(-50%);
 				transition: background-color 0.2s;
 			}
-		`}
+		`};
 `;

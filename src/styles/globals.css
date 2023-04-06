@@ -22,17 +22,17 @@ select:focus {
 
 @media (max-width: 1000px) {
 	.search-input {
-		width: 358px;
+		width: 525px;
 	}
 
 	.home-button-wrapper {
-		width: 366px;
+		width: 600px;
 	}
 }
 
 @media (min-width: 1000px) {
 	.search-input {
-		width: 230px;
+		width: 590px;
 	}
 
 	.home-button-wrapper {

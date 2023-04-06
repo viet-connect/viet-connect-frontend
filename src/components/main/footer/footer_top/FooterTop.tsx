@@ -38,8 +38,9 @@ const Container = styled.div`
 `;
 
 const FooterTopText = styled.span`
-	font-size: 14px;
+	font-size: 12px;
 	vertical-align: middle;
+	color: #1b1b1b;
 `;
 
 const Divider = styled.span`

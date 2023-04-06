@@ -18,7 +18,7 @@ export default function Meta() {
 				<meta charSet="UTF-8" key="charset" />
 				<meta
 					name="viewport"
-					content="width=device-width,initial-scale=1"
+					content="width=device-width,initial-scale=0.7"
 					key="viewport"
 				/>
 				<link
