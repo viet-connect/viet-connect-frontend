@@ -376,7 +376,7 @@ const Th = styled.th<IThProps>`
 	position: relative;
 	color: rgba(0, 0, 0, 0.88);
 	border-bottom: 1px solid #f0f0f0;
-	font-size: 14px;
+	font-size: 12px;
 	width: ${(props) => handleWidth(props.index)};
 
 	${(props) =>
