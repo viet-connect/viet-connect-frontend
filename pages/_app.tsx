@@ -1,4 +1,5 @@
 import type { AppProps } from 'next/app';
+import '../src/config/recoil';
 
 import '../src/styles/globals.css';
 import '../src/styles/vars.css';

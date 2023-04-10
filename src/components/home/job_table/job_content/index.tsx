@@ -13,12 +13,10 @@ export default function JobContent({ content }) {
 		<Tbody>
 			{content.map((el, index: number) => {
 				const {
-					category,
 					job_opening_no,
-					region,
 					date,
 					salary: { wage, way },
-					title: { title, is_preimium },
+					title,
 				} = el;
 
 				return (
@@ -26,7 +24,7 @@ export default function JobContent({ content }) {
 						<Td>{date}</Td>
 						<Td>
 							<WageWrapper>
-								<WageBox termIndex={0} />
+								<WageBox termIndex={way} />
 								<WageValue>{wage}</WageValue>
 							</WageWrapper>
 						</Td>

@@ -6,13 +6,16 @@ import JobOpeningPostingSecondPart from '../../../src/components/job_opening/pos
 import JobOpeningPostingThirdPart from '../../../src/components/job_opening/posting/third_part';
 import JobOpeningPostingFourthPart from '../../../src/components/job_opening/posting/fourth_part';
 
+/*
+ First: 공고제목, 업체명, 연락처
+*/
 export default function JobOpeningPosting() {
 	return (
 		<Layout pageIndex={1}>
 			<Container>
 				<Title>채용공고 등록</Title>
 				<JobOpeningPostingFirstPart />
-				<JobOpeningPostingSecondPart />
+				{/* <JobOpeningPostingSecondPart /> */}
 				<JobOpeningPostingThirdPart />
 				<JobOpeningPostingFourthPart />
 			</Container>

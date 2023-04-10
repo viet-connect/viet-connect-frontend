@@ -9,7 +9,7 @@ export default function JobOpeningPostingSecondPart() {
 	return (
 		<Container>
 			<FieldWrapper>
-				<ItemTitle>모집분야</ItemTitle>
+				{/* <ItemTitle>모집분야</ItemTitle> */}
 				{/* <FieldWrapper>
 					{PostingSecondPartInfo.map((el: Array<string>, idx: number) => (
 						<RowContainer key={el[0]}>

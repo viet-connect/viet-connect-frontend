@@ -50,7 +50,7 @@ const Container = styled.div`
 const AddressLabel = styled.div`
 	display: flex;
 	align-items: center;
-	font-size: 18px;
+	font-size: 14px;
 	font-weight: bold;
 	width: 80px;
 `;
