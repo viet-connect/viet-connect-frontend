@@ -8,6 +8,8 @@ import JobOpeningPostingFourthPart from '../../../src/components/job_opening/pos
 
 /*
  First: 공고제목, 업체명, 연락처
+ Third: 급여, 성별, 한국어능숙도, 날짜, 시간
+ Fourth: 상세정보, 근무장소
 */
 export default function JobOpeningPosting() {
 	return (
