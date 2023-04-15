@@ -18,9 +18,9 @@ const category = Object.freeze({
 
 const postingConstant = Object.freeze({
 	PostingFirstPartInfo: [
-		['공고제목', '공고제목을 입력해주세요'],
-		['업체명', '업체명을 입력해주세요'],
-		['연락처', '구직자가 연락가능한 번호를 입력해주세요'],
+		['공고제목', '공고제목을 입력해주세요', 'title'],
+		['업체명', '업체명을 입력해주세요', 'contact_name'],
+		['연락처', '구직자가 연락가능한 번호를 입력해주세요', 'contact_number'],
 	],
 	// PostingSecondPartInfo: [
 	// 	['공장', '식당'],
@@ -31,7 +31,7 @@ const postingConstant = Object.freeze({
 	PostingThirdPartInfo: {
 		gender: ['성별 무관', '남자', '여자', '모집성별'],
 		proficiency: ['잘함', '보통', '기초', '미숙', '한국어 구사력'],
-		day: ['월', '화', '수', '목', '금', '토', '일', '선호 근무요일'],
+		working_day: ['월', '화', '수', '목', '금', '토', '일', '선호 근무요일'],
 	},
 });
 

@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
 import styled, { css } from 'styled-components';
 import { postingConstant } from '../../../../constant/constant';
+import { inputPostingState } from '../../../../recoil/atom/posting';
+import CommonUtils from '../../../../utils/commonUtils';
 import Checkbox from '../../../common/CheckBox';
 import TimePicker from '../../../common/TimePicker';
 import {
@@ -10,9 +13,62 @@ import {
 	PlaceHolderWrapper,
 } from '../first_part';
 
+/*
+	wage_type: 0,
+	wage_amount: 0,
+	gender: 0,
+	proficiency: 0,
+	working_day: [0],
+	is_day_negotiable: true,
+	starting_time: 0,
+	ending_time: 0,
+	is_time_negotiable: 0,
+*/
+
 export default function JobOpeningPostingThirdPart() {
 	const { PostingThirdPartInfo } = postingConstant;
 	const [isNegotiable, setIsNegotiable] = useState(false);
+	const [newJobPosting, setNewJobPosting] = useRecoilState(inputPostingState);
+
+	const handleInputChange = (e) => {
+		const inputValue =
+			e.target.name === 'wage_amount'
+				? CommonUtils.addCommaToNumber(
+						CommonUtils.decodeCommaInNumber(e.target.value),
+				  )
+				: e.target.value;
+
+		const temp = { ...newJobPosting, [e.target.name]: inputValue };
+		console.log(temp);
+		setNewJobPosting(temp);
+	};
+
+	const handleClickUnitBox = (
+		item: string,
+		index: number,
+		outerIndex: number,
+	) => {
+		let temp = null;
+		if (outerIndex === 2) {
+			const workingDayArray = [...newJobPosting.working_day];
+			const indexIfExist = workingDayArray.indexOf(index);
+			if (indexIfExist !== -1) {
+				workingDayArray.splice(indexIfExist, 1);
+			} else {
+				workingDayArray.push(index);
+			}
+
+			temp = { ...newJobPosting, working_day: workingDayArray };
+		} else {
+			temp =
+				newJobPosting[item] === index
+					? { ...newJobPosting, [item]: null }
+					: { ...newJobPosting, [item]: index };
+		}
+
+		console.log(temp);
+		setNewJobPosting(temp);
+	};
 
 	return (
 		<Container>
@@ -24,32 +80,50 @@ export default function JobOpeningPostingThirdPart() {
 					</ItemTitleDesc>
 				</TitleWrapper>
 				<WageInputWrapper>
-					<WageSelector>
+					<WageSelector name="wage_type" onChange={handleInputChange}>
 						<option value="hourly">시급</option>
 						<option value="monthly">월급</option>
 						<option value="weekly">주급</option>
 					</WageSelector>
 					<PlaceHolderWrapper>
-						<PlaceHolder style={{ marginLeft: 5 }} type="text" />
+						<PlaceHolder
+							style={{ marginLeft: 5 }}
+							type="text"
+							name="wage_amount"
+							value={newJobPosting.wage_amount}
+							onChange={handleInputChange}
+						/>
 						<UnitWrapper>원</UnitWrapper>
 					</PlaceHolderWrapper>
 				</WageInputWrapper>
 			</InputContainer>
-			{Object.keys(PostingThirdPartInfo).map((el) => {
-				const valArray = PostingThirdPartInfo[el];
-				const title = valArray[valArray.length - 1];
+			{Object.keys(PostingThirdPartInfo).map((item, outerIndex) => {
+				const valArray = PostingThirdPartInfo[item];
+				const itemTitle = valArray[valArray.length - 1];
 
 				return (
-					<SubTitleWrapper key={el}>
-						<ItemTitle>{title}</ItemTitle>
+					<SubTitleWrapper key={item}>
+						<ItemTitle>{itemTitle}</ItemTitle>
 						<BoxContainer>
 							{valArray.map((val: string, index: number) => {
 								if (index === valArray.length - 1) {
 									return null;
 								}
 
+								let selected = false;
+								if (outerIndex === 2) {
+									selected = newJobPosting[item].includes(index);
+								} else {
+									selected = newJobPosting[item] === index;
+								}
+
 								return (
-									<UnitBox boxIndex={index} key={val}>
+									<UnitBox
+										selected={selected}
+										boxIndex={index}
+										key={val}
+										onClick={() => handleClickUnitBox(item, index, outerIndex)}
+									>
 										{val}
 									</UnitBox>
 								);
@@ -112,7 +186,8 @@ const BoxContainer = styled.div`
 `;
 
 interface IUnitBoxProps {
-	boxIndex: number;
+	boxIndex: Number;
+	selected: Boolean;
 }
 
 const UnitBox = styled.div<IUnitBoxProps>`
@@ -123,6 +198,12 @@ const UnitBox = styled.div<IUnitBoxProps>`
 	font-size: 15px;
 	font-weight: bold;
 	height: 50px;
+	${(props) =>
+		props.selected &&
+		css`
+			background: #eb6d0d;
+		`}
+
 	${(props) =>
 		props.boxIndex > 0 &&
 		css`

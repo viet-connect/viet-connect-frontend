@@ -1,17 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useRecoilValue } from 'recoil';
 import Layout from '../../../src/components/common/Layout';
 import JobOpeningPostingFirstPart from '../../../src/components/job_opening/posting/first_part';
-import JobOpeningPostingSecondPart from '../../../src/components/job_opening/posting/second_part';
 import JobOpeningPostingThirdPart from '../../../src/components/job_opening/posting/third_part';
 import JobOpeningPostingFourthPart from '../../../src/components/job_opening/posting/fourth_part';
+import { inputPostingState } from '../../../src/recoil/atom/posting';
 
 /*
- First: 공고제목, 업체명, 연락처
- Third: 급여, 성별, 한국어능숙도, 날짜, 시간
- Fourth: 상세정보, 근무장소
+	First: 공고제목, 업체명, 연락처
+	Third: 급여, 성별, 한국어능숙도, 날짜, 시간
+	Fourth: 상세정보, 근무장소
 */
 export default function JobOpeningPosting() {
+	const newJobPosting = useRecoilValue(inputPostingState);
+
 	return (
 		<Layout pageIndex={1}>
 			<Container>

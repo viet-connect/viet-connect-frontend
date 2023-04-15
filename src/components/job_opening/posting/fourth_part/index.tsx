@@ -1,5 +1,7 @@
 import React from 'react';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
+import { inputPostingState } from '../../../../recoil/atom/posting';
 import CommonButton from '../../../common/Button';
 import {
 	ItemTitle,
@@ -7,6 +9,12 @@ import {
 	PlaceHolderWrapper,
 	SubTitleWrapper,
 } from '../first_part';
+
+/*
+	is_time_negotiable: 0,
+	contents: '',
+	address: '',
+*/
 
 export default function JobOpeningPostingFourthPart() {
 	return (

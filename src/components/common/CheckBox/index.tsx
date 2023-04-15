@@ -7,7 +7,7 @@ export default function Checkbox({ children, checked, onChange }) {
 			<BoxWrapper>
 				<InputWrapper>
 					<input
-						style={{ width: 20, height: 20 }}
+						style={{ width: 20, height: 20, cursor: 'pointer' }}
 						type="checkbox"
 						checked={checked}
 						onChange={() => onChange(!checked)}

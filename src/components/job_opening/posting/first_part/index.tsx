@@ -1,16 +1,38 @@
 import React from 'react';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
+import _ from 'lodash';
 import { postingConstant } from '../../../../constant/constant';
+import { inputPostingState } from '../../../../recoil/atom/posting';
+
+/*
+	title: '',
+	contact_name: '',
+	contact_number: 0,
+*/
 
 export default function JobOpeningPostingFirstPart() {
 	const { PostingFirstPartInfo } = postingConstant;
+	const [newJobPosting, setNewJobPosting] = useRecoilState(inputPostingState);
+
 	return (
 		<Container>
 			{PostingFirstPartInfo.map((el) => (
 				<SubTitleWrapper key={el[0]}>
 					<ItemTitle>{el[0]}</ItemTitle>
 					<PlaceHolderWrapper>
-						<PlaceHolder type="text" placeholder={el[1]} />
+						<PlaceHolder
+							type="text"
+							placeholder={el[1]}
+							name={el[2]}
+							defaultValue={newJobPosting[el[2]]}
+							onChange={(e) => {
+								setNewJobPosting({
+									...newJobPosting,
+									[e.target.name]: e.target.value,
+								});
+							}}
+						/>
 					</PlaceHolderWrapper>
 				</SubTitleWrapper>
 			))}

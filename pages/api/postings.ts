@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { IPosting } from '../../src/models/posting';
+import { IMockPosting } from '../../src/models/posting';
 
 // Fake users data -> make UUID later / date time 등 데이터 타입수정
 const postings = [
@@ -86,7 +86,7 @@ const postings = [
  */
 export default function posting_list(
 	_req: NextApiRequest,
-	res: NextApiResponse<IPosting[]>,
+	res: NextApiResponse<IMockPosting[]>,
 ) {
 	try {
 		res.status(200).json(postings);

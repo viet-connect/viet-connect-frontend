@@ -13,6 +13,14 @@ class CommonUtils {
 		return x;
 	}
 
+	static decodeCommaInNumber(x: any): string {
+		if (CommonUtils.isNumber(x)) {
+			return x.replace(/,/g, '');
+		}
+
+		return x;
+	}
+
 	static objectDeepCopy(obj: any): any {
 		return JSON.parse(JSON.stringify(obj));
 	}
