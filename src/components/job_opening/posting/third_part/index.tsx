@@ -27,7 +27,6 @@ import {
 
 export default function JobOpeningPostingThirdPart() {
 	const { PostingThirdPartInfo } = postingConstant;
-	const [isNegotiable, setIsNegotiable] = useState(false);
 	const [newJobPosting, setNewJobPosting] = useRecoilState(inputPostingState);
 
 	const handleInputChange = (e) => {
@@ -38,9 +37,7 @@ export default function JobOpeningPostingThirdPart() {
 				  )
 				: e.target.value;
 
-		const temp = { ...newJobPosting, [e.target.name]: inputValue };
-		console.log(temp);
-		setNewJobPosting(temp);
+		setNewJobPosting({ ...newJobPosting, [e.target.name]: inputValue });
 	};
 
 	const handleClickUnitBox = (
@@ -66,7 +63,6 @@ export default function JobOpeningPostingThirdPart() {
 					: { ...newJobPosting, [item]: index };
 		}
 
-		console.log(temp);
 		setNewJobPosting(temp);
 	};
 
@@ -132,13 +128,26 @@ export default function JobOpeningPostingThirdPart() {
 					</SubTitleWrapper>
 				);
 			})}
-			<Checkbox checked={isNegotiable} onChange={setIsNegotiable}>
+			<Checkbox
+				checked={newJobPosting.is_day_negotiable}
+				onChange={(e) =>
+					setNewJobPosting({ ...newJobPosting, is_day_negotiable: e })
+				}
+			>
 				<div style={{ paddingLeft: 10 }}>근무요일 협의가능</div>
 			</Checkbox>
 			<InputContainer>
 				<ItemTitle>근무시간</ItemTitle>
 				<TimePicker />
 			</InputContainer>
+			<Checkbox
+				checked={newJobPosting.is_time_negotiable}
+				onChange={(e) =>
+					setNewJobPosting({ ...newJobPosting, is_time_negotiable: e })
+				}
+			>
+				<div style={{ paddingLeft: 10 }}>근무시간 협의가능</div>
+			</Checkbox>
 		</Container>
 	);
 }

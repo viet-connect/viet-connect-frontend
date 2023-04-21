@@ -34,7 +34,7 @@ interface ICommonButtonProps {
 	wrapperStyle: IButtonWrapperProps;
 	extraWrapperStyle?: object;
 	children: React.ReactNode;
-	onClick?: Optional<() => void>;
+	onClick?: Optional<(e) => void>;
 	className?: string;
 }
 

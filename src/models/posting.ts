@@ -1,8 +1,8 @@
 export interface IMockPosting {
-	job_opening_no: Number;
+	job_opening_no: number;
 	region: string;
 	title: string;
-	salary: { wage: string; way: Number };
+	salary: { wage: string; way: number };
 	date: string;
 }
 
@@ -12,18 +12,22 @@ export interface IPosting {
 	contact_number: string;
 	wage_type: string;
 	wage_amount: string;
-	gender: Optional<Number>;
-	proficiency: Number;
-	working_day: Array<Number>;
+	gender: Optional<number>;
+	proficiency: number;
+	working_day: Array<number>;
 	is_day_negotiable: boolean;
-	starting_time: Number;
-	ending_time: Number;
+	starting_time: string;
+	ending_time: string;
 	is_time_negotiable: boolean;
 	contents: string;
-	address: string;
+	address: {
+		full: string;
+		main: string;
+		sub: string;
+	};
 	author: string;
 	password: string;
-	createdAt: Number;
+	createdAt: number;
 }
 
 export class Posting {

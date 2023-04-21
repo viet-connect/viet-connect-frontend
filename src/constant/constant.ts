@@ -1,11 +1,11 @@
 const layoutConstant = Object.freeze({
 	ENTERPRISE: '비엣커넥트',
-	EXECUTIVE: '서현욱',
+	EXECUTIVE: '정의성',
 	PERSONAL_INFO_PERSON_IN_CHARGE: '서현욱',
 	ENTERPRISE_NUMBER: '101-1451-2572-10',
 	ADDRESS: '서울특별시 동대문구 이문로 107',
-	COMPANY_EMAIL: 'hyunwook0521@naver.com',
-	COMPANY_PHONE_NUMBER: '010-2242-8129',
+	COMPANY_EMAIL: 'gluesociety@naver.com',
+	COMPANY_PHONE_NUMBER: '010-2693-5087',
 });
 
 const category = Object.freeze({
