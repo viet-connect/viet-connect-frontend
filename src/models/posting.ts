@@ -41,8 +41,7 @@ export class Posting {
 					: `https://${process.env.VERCEL_URL}/api/postings`,
 			);
 
-			console.log(result);
-
+			console.log('result', result);
 			return result;
 		} catch (err) {
 			return console.log(err);
