@@ -32,6 +32,7 @@ export interface IPosting {
 
 export class Posting {
 	static async getPostingList(): Promise<any> {
+		console.log(process.env);
 		try {
 			const result = await fetch(`${process.env.VERCEL_URL}/api/postings`);
 
