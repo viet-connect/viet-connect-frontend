@@ -32,13 +32,9 @@ export interface IPosting {
 
 export class Posting {
 	static async getPostingList(): Promise<any> {
-		console.log(process.env);
-
 		try {
 			const result = await fetch(
-				process.env.NODE_ENV === 'development'
-					? `${process.env.LOCAL_BASE_URL}/api/postings`
-					: `https://${process.env.VERCEL_URL}/api/postings`,
+				`${process.env.HOST}${process.env.VERCEL_URL}/api/postings`,
 			);
 
 			console.log('result', result);
