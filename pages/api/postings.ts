@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import prisma from '../../src/lib/prisma';
 import { IMockPosting } from '../../src/models/posting';
 
 // Fake users data -> make UUID later / date time 등 데이터 타입수정
@@ -60,37 +61,69 @@ const postings = [
 		date: '04-01',
 	},
 ];
-/**
- * @api {get} /posting/list job posting list
- * @apiName PostingList
- * @apiGroup Posting
- * @apiPermission None
- * @apiDescription
- * 채용공고 목록 가져오기
- *
- * @apiParam None
- *
- * @apiSuccess {Array} status success message
- *
- * @apiSuccessExample Success-Response:
- *     {
- *         "status": "success",
- *         "data": [
- *           job_opening_no: 1,
- *           region: '서울특별시 중구',
- *           title: '미스사이공 주방직원 급구asdasdas미스사이공 주방직원',
- *           salary: { wage: '2,000,000원', way: 'monthly' },
- *           date: '2023-04-01',
- *         ]
- *     }
- */
-export default function posting_list(
+
+export default async function posting_list(
 	_req: NextApiRequest,
-	res: NextApiResponse<IMockPosting[]>,
+	res: NextApiResponse,
 ) {
+	const { method } = _req;
+
 	try {
-		res.status(200).json(postings);
+		switch (method) {
+			case 'GET': {
+				res.status(200).json(postings);
+				break;
+			}
+			case 'POST': {
+				const {
+					title,
+					contact_name,
+					contact_number,
+					wage_type,
+					wage_amount,
+					gender,
+					proficiency,
+					working_day,
+					is_day_negotiable,
+					starting_time,
+					ending_time,
+					is_time_negotiable,
+					contents,
+					address,
+					author,
+					password,
+				} = _req.body;
+
+				const posting = prisma.posting.create({
+					data: {
+						title,
+						contact_name,
+						contact_number,
+						wage_type,
+						wage_amount,
+						gender,
+						proficiency,
+						working_day,
+						is_day_negotiable,
+						starting_time,
+						ending_time,
+						is_time_negotiable,
+						contents,
+						address,
+						author,
+						password,
+					},
+				});
+				res.status(201).send({ message: 'ok' });
+				break;
+			}
+			default: {
+				res.setHeader('Allow', ['GET', 'PUT']);
+				res.status(405).end(`Method ${method} Not Allowed`);
+			}
+		}
 	} catch (err) {
 		console.error(err);
+		res.status(500).json({ message: 'server error' });
 	}
 }

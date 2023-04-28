@@ -27,7 +27,6 @@ export interface IPosting {
 	};
 	author: string;
 	password: string;
-	createdAt: number;
 }
 
 export class Posting {
@@ -37,7 +36,6 @@ export class Posting {
 				`${process.env.HOST}${process.env.VERCEL_URL}/api/postings`,
 			);
 
-			console.log('result', result);
 			return result;
 		} catch (err) {
 			return console.log(err);
