@@ -17,13 +17,13 @@ model Posting {
   contents         String?
   createdAt        DateTime @default(now()) @map("created_at")
   updatedAt        DateTime @updatedAt @map("updated_at")
-  endingTime       DateTime @map("ending_time")
+  endingTime       String   @map("ending_time")
   gender           Int
   isDayNegotiable  Boolean  @default(false) @map("is_day_negotiable")
   isTimeNegotiable Boolean  @default(false) @map("is_time_negotiable")
   password         String
   proficiency      Int
-  startingTime     DateTime @map("starting_time")
+  startingTime     String   @map("starting_time")
   title            String
   wageAmount       String   @map("wage_amount")
   wageType         String   @map("wage_type")

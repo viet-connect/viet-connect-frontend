@@ -67,6 +67,7 @@ export default async function posting_list(
 	res: NextApiResponse,
 ) {
 	const { method } = _req;
+	console.log('method', method);
 
 	try {
 		switch (method) {
@@ -94,28 +95,29 @@ export default async function posting_list(
 					password,
 				} = _req.body;
 
-				const posting = prisma.posting.create({
+				const posting = await prisma.posting.create({
 					data: {
 						title,
-						contact_name,
-						contact_number,
-						wage_type,
-						wage_amount,
+						contactName: contact_name,
+						contactNumber: contact_number,
+						wageType: wage_type,
+						wageAmount: wage_amount,
 						gender,
 						proficiency,
-						working_day,
-						is_day_negotiable,
-						starting_time,
-						ending_time,
-						is_time_negotiable,
+						workingDay: JSON.stringify(working_day),
+						isDayNegotiable: is_day_negotiable,
+						startingTime: starting_time,
+						endingTime: ending_time,
+						isTimeNegotiable: is_time_negotiable,
 						contents,
-						address,
+						address: address.full,
 						author,
 						password,
 					},
 				});
 
-				console.log('res', posting);
+				console.log(posting, 'posting');
+
 				res.status(201).send({ message: 'ok' });
 				break;
 			}

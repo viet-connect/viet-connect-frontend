@@ -45,7 +45,22 @@ export class Posting {
 		}
 	}
 
-	// static async handleNewPost(content): Promise<any> {}
+	static async handleNewPost(content: IPosting): Promise<any> {
+		try {
+			await fetch(
+				`${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_VERCEL_URL}/api/postings`,
+				{
+					method: 'POST',
+					body: JSON.stringify(content),
+					headers: {
+						'content-type': 'application/json',
+					},
+				},
+			);
+		} catch (err) {
+			console.log(err);
+		}
+	}
 
 	static validateNewPost(content) {
 		const error = {
@@ -78,20 +93,23 @@ export class Posting {
 		} = content;
 
 		const contentArr: any = Object.entries(content);
-		console.log('contentArr', contentArr);
 		for (let i = 0; i < contentArr.length; i += 1) {
+			if (contentArr[i][0] === 'password' || contentArr[i][0] === 'contents') {
+				// eslint-disable-next-line no-continue
+				continue;
+			}
+
 			if (
 				typeof contentArr[i][1] === 'string' &&
-				validate.hasSpecialCharacters(contentArr[i][1]) &&
-				contentArr[i][0] !== 'password'
+				validate.hasSpecialCharacters(contentArr[i][1])
 			) {
+				console.log(contentArr[i], '특수문자에러');
 				error.hasSpecialChar = '특수문자는 허용되지 않습니다.';
 				break;
 			}
 		}
 
 		if (!validate.isPasswordValid(content.password)) {
-			console.log(content.password);
 			error.password = '패스워드 조건에 맞게 다시 설정해주세요';
 		}
 
@@ -103,6 +121,8 @@ export class Posting {
 			error.contact_number = '연락처를 입력해주세요';
 		} else if (contact_number.length < 9 && contact_number.length > 0) {
 			error.contact_number = '유효한 연락처가 아닙니다.';
+		} else if (isNaN(Number(contact_number))) {
+			error.contact_number = '연락처는 숫자로 입력해주세요';
 		}
 		if (starting_time.length === 0) {
 			error.contact_name = '시작시간을 입력해주세요';

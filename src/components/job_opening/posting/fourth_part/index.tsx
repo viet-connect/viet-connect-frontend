@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { FcHighPriority } from 'react-icons/fc';
-import { Posting } from '../../../../models/posting';
+import { useRouter } from 'next/router';
+import { Posting, IPosting } from '../../../../models/posting';
 import { inputPostingState } from '../../../../recoil/atom/posting';
 import CommonButton from '../../../common/Button';
 import Modal from '../../../common/Modal';
@@ -25,18 +26,31 @@ export default function JobOpeningPostingFourthPart() {
 	const [newJobPosting, setNewJobPosting] = useRecoilState(inputPostingState);
 	const [showErrorModal, setShowErrorModal] = useState(false);
 	const [error, setError] = useState({});
+	const router = useRouter();
 
 	const toggleModal = async (e) => {
 		if (!Posting.validateNewPost(newJobPosting)) {
-			await postRequest(newJobPosting);
+			try {
+				await postRequest(newJobPosting);
+			} catch (err) {
+				console.log(err);
+			} finally {
+				router.push('/');
+			}
 		} else {
 			setError(Posting.validateNewPost(newJobPosting));
 			setShowErrorModal(true);
 		}
 	};
 
-	const postRequest = async (posting) => {
+	const postRequest = async (posting: IPosting) => {
 		console.log('posting', posting);
+
+		try {
+			await Posting.handleNewPost(posting);
+		} catch (err) {
+			console.log('err', err);
+		}
 	};
 
 	return (
@@ -116,6 +130,7 @@ export default function JobOpeningPostingFourthPart() {
 						});
 					}}
 					maxLength={20}
+					autoComplete="off"
 					required
 				/>
 			</RegisterInputContainer>
@@ -133,6 +148,7 @@ export default function JobOpeningPostingFourthPart() {
 					}}
 					name="password"
 					placeholder="8~12자, 최소 하나의 문자 및 하나의 숫자로 설정해주세요"
+					autoComplete="off"
 					required
 				/>
 			</RegisterInputContainer>
