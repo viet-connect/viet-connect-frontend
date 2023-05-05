@@ -2,21 +2,16 @@ import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 
-const Modal = ({ show, onClose, children }) => {
+const Modal = ({ show, children, width, height }) => {
 	const [isBrowser, setIsBrowser] = useState(false);
 
 	useEffect(() => {
 		setIsBrowser(true);
 	}, []);
 
-	const handleCloseClick = (e) => {
-		e.preventDefault();
-		onClose();
-	};
-
 	const modalContent = show ? (
-		<StyledModalOverlay onClick={handleCloseClick}>
-			<StyledModal>
+		<StyledModalOverlay>
+			<StyledModal style={{ width, height }}>
 				<StyledModalBody>{children}</StyledModalBody>
 			</StyledModal>
 		</StyledModalOverlay>
@@ -37,8 +32,7 @@ const StyledModalBody = styled.div`
 
 const StyledModal = styled.div`
 	background: white;
-	width: 500px;
-	height: 600px;
+
 	border-radius: 15px;
 	padding: 15px;
 `;

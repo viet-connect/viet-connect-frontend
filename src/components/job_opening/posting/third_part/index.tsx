@@ -63,6 +63,8 @@ export default function JobOpeningPostingThirdPart() {
 					: { ...newJobPosting, [item]: index };
 		}
 
+		console.log(temp);
+
 		setNewJobPosting(temp);
 	};
 
@@ -88,6 +90,7 @@ export default function JobOpeningPostingThirdPart() {
 							name="wage_amount"
 							value={newJobPosting.wage_amount}
 							onChange={handleInputChange}
+							maxLength={10}
 						/>
 						<UnitWrapper>원</UnitWrapper>
 					</PlaceHolderWrapper>

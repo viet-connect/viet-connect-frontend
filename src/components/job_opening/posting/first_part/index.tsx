@@ -32,6 +32,7 @@ export default function JobOpeningPostingFirstPart() {
 									[e.target.name]: e.target.value,
 								});
 							}}
+							maxLength={el[0] ? 30 : 20}
 						/>
 					</PlaceHolderWrapper>
 				</SubTitleWrapper>
@@ -63,8 +64,9 @@ interface IPlaceHolderProps {
 }
 
 export const PlaceHolder = styled.input.attrs<IPlaceHolderProps>(
-	({ placeholder }) => ({
+	({ placeholder, required }) => ({
 		placeholder,
+		required,
 	}),
 )`
 	width: 100%;

@@ -7,6 +7,7 @@ export default function CommonButton({
 	children,
 	onClick,
 	className,
+	textStyle,
 }: ICommonButtonProps) {
 	const { width, height, color } = wrapperStyle;
 
@@ -19,7 +20,7 @@ export default function CommonButton({
 			onClick={onClick}
 			className={className}
 		>
-			<ButtonText>{children}</ButtonText>
+			<ButtonText style={textStyle}>{children}</ButtonText>
 		</ButtonWrapper>
 	);
 }
@@ -36,6 +37,7 @@ interface ICommonButtonProps {
 	children: React.ReactNode;
 	onClick?: Optional<(e) => void>;
 	className?: string;
+	textStyle?: object;
 }
 
 const ButtonWrapper = styled.div<IButtonWrapperProps>`

@@ -20,7 +20,11 @@ const postingConstant = Object.freeze({
 	PostingFirstPartInfo: [
 		['공고제목', '공고제목을 입력해주세요', 'title'],
 		['업체명', '업체명을 입력해주세요', 'contact_name'],
-		['연락처', '구직자가 연락가능한 번호를 입력해주세요', 'contact_number'],
+		[
+			'연락처',
+			'구직자가 연락가능한 번호를 입력해주세요. ex) 01012345678',
+			'contact_number',
+		],
 	],
 	// PostingSecondPartInfo: [
 	// 	['공장', '식당'],

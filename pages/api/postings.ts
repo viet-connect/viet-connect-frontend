@@ -114,6 +114,8 @@ export default async function posting_list(
 						password,
 					},
 				});
+
+				console.log('res', posting);
 				res.status(201).send({ message: 'ok' });
 				break;
 			}

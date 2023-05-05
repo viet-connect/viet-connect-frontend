@@ -25,6 +25,5 @@ export const inputPostingState = atom<IPosting>({
 		},
 		author: '',
 		password: '',
-		createdAt: 0,
 	},
 });

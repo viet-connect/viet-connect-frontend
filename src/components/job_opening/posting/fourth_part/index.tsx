@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
+import { FcHighPriority } from 'react-icons/fc';
+import { Posting } from '../../../../models/posting';
 import { inputPostingState } from '../../../../recoil/atom/posting';
 import CommonButton from '../../../common/Button';
 import Modal from '../../../common/Modal';
@@ -21,27 +23,20 @@ import {
 export default function JobOpeningPostingFourthPart() {
 	const [showModal, setShowModal] = useState(false);
 	const [newJobPosting, setNewJobPosting] = useRecoilState(inputPostingState);
+	const [showErrorModal, setShowErrorModal] = useState(false);
+	const [error, setError] = useState({});
 
-	const handleChangeSubAddress = (e) => {
-		setNewJobPosting({
-			...newJobPosting,
-			address: {
-				...newJobPosting.address,
-				sub: e.target.value,
-				full: `${newJobPosting.address.main} ${e.target.value}`,
-			},
-		});
+	const toggleModal = async (e) => {
+		if (!Posting.validateNewPost(newJobPosting)) {
+			await postRequest(newJobPosting);
+		} else {
+			setError(Posting.validateNewPost(newJobPosting));
+			setShowErrorModal(true);
+		}
 	};
 
-	const handleChangeContent = (e) => {
-		setNewJobPosting({
-			...newJobPosting,
-			contents: e.target.value,
-		});
-	};
-
-	const saveToJobOpeningDB = (e) => {
-		console.log(newJobPosting);
+	const postRequest = async (posting) => {
+		console.log('posting', posting);
 	};
 
 	return (
@@ -52,10 +47,17 @@ export default function JobOpeningPostingFourthPart() {
 					<label>
 						<textarea
 							value={newJobPosting.contents}
-							onChange={handleChangeContent}
+							onChange={(e) =>
+								setNewJobPosting({
+									...newJobPosting,
+									contents: e.target.value,
+								})
+							}
 							name="postContent"
 							rows={4}
 							cols={40}
+							placeholder="200자 이내로 입력해주세요"
+							maxLength={210}
 						/>
 					</label>
 				</PlaceHolderWrapper>
@@ -79,17 +81,61 @@ export default function JobOpeningPostingFourthPart() {
 				>
 					<PlaceHolder
 						defaultValue={newJobPosting.address.main}
+						placeholder="클릭해서 주소 찾아주세요"
 						onClick={() => setShowModal(true)}
+						readOnly={true}
 					/>
 				</PlaceHolderWrapper>
 				<DetailedAddressWrapper>
 					<AddressLabel>상세주소</AddressLabel>
 					<PlaceHolder
+						style={{ height: 30 }}
 						defaultValue={newJobPosting.address.sub}
-						onChange={handleChangeSubAddress}
+						onChange={(e) => {
+							setNewJobPosting({
+								...newJobPosting,
+								address: {
+									...newJobPosting.address,
+									sub: e.target.value,
+									full: `${newJobPosting.address.main} ${e.target.value}`,
+								},
+							});
+						}}
 					/>
 				</DetailedAddressWrapper>
 			</ButtonWrapper>
+			<RegisterInputContainer>
+				<RegisterInputItemWrapper>작성자</RegisterInputItemWrapper>
+				<PlaceHolder
+					style={{ height: 30 }}
+					defaultValue={newJobPosting.author}
+					onChange={(e) => {
+						setNewJobPosting({
+							...newJobPosting,
+							author: e.target.value,
+						});
+					}}
+					maxLength={20}
+					required
+				/>
+			</RegisterInputContainer>
+			<RegisterInputContainer>
+				<RegisterInputItemWrapper>비밀번호</RegisterInputItemWrapper>
+				<PlaceHolder
+					type="password"
+					style={{ height: 30 }}
+					defaultValue={newJobPosting.password}
+					onChange={(e) => {
+						setNewJobPosting({
+							...newJobPosting,
+							password: e.target.value,
+						});
+					}}
+					name="password"
+					placeholder="8~12자, 최소 하나의 문자 및 하나의 숫자로 설정해주세요"
+					required
+				/>
+			</RegisterInputContainer>
 			<CommonButton
 				wrapperStyle={{
 					width: 150,
@@ -97,17 +143,63 @@ export default function JobOpeningPostingFourthPart() {
 					color: '#EA7B14',
 				}}
 				extraWrapperStyle={{ marginTop: 40 }}
-				onClick={saveToJobOpeningDB}
+				onClick={toggleModal}
 			>
 				등록하기
 			</CommonButton>
-			<Modal onClose={() => setShowModal(false)} show={showModal}>
+			<Modal
+				width={500}
+				height={600}
+				// onClose={() => setShowModal(false)}
+				show={showModal}
+			>
 				<Postcode onComplete={() => setShowModal(false)} />
-				<ClosingModalButton>닫기</ClosingModalButton>
+				<ClosingModalButton onClick={() => setShowModal(false)}>
+					닫기
+				</ClosingModalButton>
+			</Modal>
+			<Modal
+				width={500}
+				height={400}
+				// onClose={() => setShowErrorModal(false)}
+				show={showErrorModal}
+			>
+				{showErrorModal && (
+					<ErrorContainer>
+						{Object.entries(error).map((el: [string, string]) => {
+							if (el[1].length === 0) {
+								return null;
+							}
+
+							return (
+								<ErrorWrapper key={el[0]}>
+									<div style={{ marginRight: 5 }}>
+										<FcHighPriority />
+									</div>
+									<div>{el[1]}</div>
+								</ErrorWrapper>
+							);
+						})}
+						<ClosingModalButton onClick={() => setShowErrorModal(false)}>
+							닫기
+						</ClosingModalButton>
+					</ErrorContainer>
+				)}
 			</Modal>
 		</Container>
 	);
 }
+
+const ErrorContainer = styled.div`
+	padding: 20px;
+`;
+
+const ErrorWrapper = styled.div`
+	padding: 5px;
+	display: flex;
+	align-items: center;
+	font-weight: bold;
+`;
 
 const Container = styled.div`
 	margin-bottom: 20px;
@@ -115,12 +207,12 @@ const Container = styled.div`
 
 const ButtonWrapper = styled.div``;
 
-const AddressLabel = styled.div`
+const AddressLabel = styled.label`
 	display: flex;
 	align-items: center;
-	font-size: 16px;
+	font-size: 18px;
 	font-weight: bold;
-	width: 80px;
+	width: 100px;
 `;
 
 const ClosingModalButton = styled.div`
@@ -134,9 +226,23 @@ const ClosingModalButton = styled.div`
 	border-radius: 10px;
 	background-color: #ea7b14;
 	height: 40px;
+	cursor: pointer;
 `;
 
 const DetailedAddressWrapper = styled.div`
 	display: flex;
 	height: 30px;
+`;
+
+const RegisterInputContainer = styled.div`
+	display: flex;
+	margin-top: 20px;
+`;
+
+const RegisterInputItemWrapper = styled.label`
+	display: flex;
+	align-items: center;
+	width: 100px;
+	font-weight: bold;
+	font-size: 18px;
 `;

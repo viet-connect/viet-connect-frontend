@@ -22,9 +22,6 @@ export default function JobOpeningPostingSecondPart() {
 						</RowContainer>
 					))}
 				</FieldWrapper> */}
-				<WageInputWrapper>
-					<WageInput />
-				</WageInputWrapper>
 			</FieldWrapper>
 		</Container>
 	);
