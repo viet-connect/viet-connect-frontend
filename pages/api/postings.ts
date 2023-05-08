@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import prisma from '../../src/lib/prisma';
 import { IMockPosting } from '../../src/models/posting';
+import { Password } from '../../src/utils/bcrypt';
 
 // Fake users data -> make UUID later / date time 등 데이터 타입수정
 const postings = [
@@ -95,6 +96,8 @@ export default async function posting_list(
 					password,
 				} = _req.body;
 
+				const passwordHelper = new Password(password);
+				const hashedPassword = await passwordHelper.createPassword();
 				const posting = await prisma.posting.create({
 					data: {
 						title,
@@ -112,7 +115,7 @@ export default async function posting_list(
 						contents,
 						address: address.full,
 						author,
-						password,
+						password: hashedPassword,
 					},
 				});
 

@@ -19,6 +19,7 @@
 		"@types/react-dom": "^18.0.11",
 		"@types/react-modal": "^3.13.1",
 		"axios": "^0.27.2",
+		"bcryptjs": "^2.4.3",
 		"dateformat": "^5.0.3",
 		"lodash": "^4.17.21",
 		"next": "^13.1.1",
@@ -28,6 +29,7 @@
 		"react-daum-postcode": "^3.1.1",
 		"react-dom": "^18.2.0",
 		"react-icons": "^4.8.0",
+		"react-loader-spinner": "^5.3.4",
 		"react-modal": "^3.16.1",
 		"react-select": "^5.7.1",
 		"recoil": "^0.7.7",
@@ -38,6 +40,7 @@
 	},
 	"devDependencies": {
 		"@svgr/webpack": "^6.5.1",
+		"@types/bcryptjs": "^2.4.2",
 		"@types/dateformat": "^5.0.0",
 		"@types/styled-components": "^5.1.26",
 		"@types/uuid": "^9.0.1",
