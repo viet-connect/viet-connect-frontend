@@ -3,6 +3,7 @@ import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { FcHighPriority } from 'react-icons/fc';
 import { useRouter } from 'next/router';
+import { Bars } from 'react-loader-spinner';
 import { Posting, IPosting } from '../../../../models/posting';
 import { inputPostingState } from '../../../../recoil/atom/posting';
 import CommonButton from '../../../common/Button';
@@ -21,7 +22,7 @@ import {
 	address: '',
 */
 
-export default function JobOpeningPostingFourthPart() {
+export default function JobOpeningPostingFourthPart({ setIsRequesting }) {
 	const [showModal, setShowModal] = useState(false);
 	const [newJobPosting, setNewJobPosting] = useRecoilState(inputPostingState);
 	const [showErrorModal, setShowErrorModal] = useState(false);
@@ -30,11 +31,13 @@ export default function JobOpeningPostingFourthPart() {
 
 	const toggleModal = async (e) => {
 		if (!Posting.validateNewPost(newJobPosting)) {
+			setIsRequesting(true);
 			try {
 				await postRequest(newJobPosting);
 			} catch (err) {
 				console.log(err);
 			} finally {
+				setIsRequesting(false);
 				router.push('/');
 			}
 		} else {
