@@ -76,6 +76,7 @@ export default async function posting_list(
 				res.status(200).json(postings);
 				break;
 			}
+
 			case 'POST': {
 				const {
 					title,
