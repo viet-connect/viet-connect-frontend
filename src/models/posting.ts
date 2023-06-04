@@ -34,6 +34,27 @@ export interface IPosting {
 	password: string;
 }
 
+export interface ISavedPosting {
+	title: string;
+	contactName: string;
+	contactNumber: string;
+	wageType: string;
+	wageAmount: string;
+	gender: Optional<number>;
+	proficiency: number;
+	workingDay: string;
+	isDayNegotiable: boolean;
+	startingTime: string;
+	endingTime: string;
+	isTimeNegotiable: boolean;
+	contents: string;
+	address: string;
+	author: string;
+	password: string;
+	updatedAt: Date;
+	createdAt: Date;
+}
+
 export class Posting {
 	// eslint-disable-next-line consistent-return
 	static async getPostingList(): Promise<any> {

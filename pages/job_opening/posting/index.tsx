@@ -2,16 +2,19 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useRecoilValue } from 'recoil';
 import { Bars } from 'react-loader-spinner';
+import { useRouter } from 'next/router';
 import Layout from '../../../src/components/common/Layout';
 import JobOpeningPostingFirstPart from '../../../src/components/job_opening/posting/first_part';
 import JobOpeningPostingThirdPart from '../../../src/components/job_opening/posting/third_part';
 import JobOpeningPostingFourthPart from '../../../src/components/job_opening/posting/fourth_part';
+import { Posting } from '../../../src/models/posting';
 /*
 	First: 공고제목, 업체명, 연락처
 	Third: 급여, 성별, 한국어능숙도, 날짜, 시간
 	Fourth: 상세정보, 근무장소
 */
-export default function JobOpeningPosting() {
+export default function JobOpeningPosting({ data }) {
+	const router = useRouter();
 	const [isRequesting, setIsRequesting] = useState(false);
 
 	return (
@@ -19,10 +22,13 @@ export default function JobOpeningPosting() {
 			{!isRequesting ? (
 				<Container>
 					<Title>채용공고 등록</Title>
-					<JobOpeningPostingFirstPart />
+					<JobOpeningPostingFirstPart data={data} />
 					{/* <JobOpeningPostingSecondPart /> */}
-					<JobOpeningPostingThirdPart />
-					<JobOpeningPostingFourthPart setIsRequesting={setIsRequesting} />
+					<JobOpeningPostingThirdPart data={data} />
+					<JobOpeningPostingFourthPart
+						data={data}
+						setIsRequesting={setIsRequesting}
+					/>
 				</Container>
 			) : (
 				<SpinnerContainer>
@@ -55,3 +61,21 @@ const SpinnerContainer = styled.div`
 	left: 50%;
 	transform: translate(-50%, -50%);
 `;
+
+export async function getServerSideProps(context) {
+	if (!context.query.id) {
+		console.log('No PID, new posting');
+		return {
+			props: {
+				data: null,
+			},
+		};
+	}
+
+	const data = await Posting.getUniquePosting(context.query.id);
+	return {
+		props: {
+			data,
+		},
+	};
+}

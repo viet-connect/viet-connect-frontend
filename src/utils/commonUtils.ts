@@ -41,7 +41,7 @@ class CommonUtils {
 			return '잘함';
 		}
 		if (num === 1) {
-			return '남자';
+			return '보통';
 		}
 		if (num === 2) {
 			return '기초';

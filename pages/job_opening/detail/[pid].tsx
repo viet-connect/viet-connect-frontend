@@ -2,6 +2,8 @@ import Image from 'next/image';
 
 import React from 'react';
 import styled from 'styled-components';
+import { useRouter } from 'next/router';
+import { useRecoilState } from 'recoil';
 import mockImage from '../../../src/public/assets/apple.jpeg';
 import CommonButton from '../../../src/components/common/Button';
 import Layout from '../../../src/components/common/Layout';
@@ -9,15 +11,18 @@ import ContentHeader from '../../../src/components/job_opening/detail/content_he
 import MainContent from '../../../src/components/job_opening/detail/main_content';
 import JobDetailMap from '../../../src/components/job_opening/detail/map';
 import JobDetailContactInfo from '../../../src/components/job_opening/detail/contact_info';
-import { Posting, IPosting } from '../../../src/models/posting';
+import { Posting } from '../../../src/models/posting';
 
 export default function JobOpeningDetail({ data }) {
-	console.log(data, 'server provided data');
-	/*
-		1. title, updatedAt, wageType, wageAmount, address
-		2. gender, proficiency, workingDay, startingTime, endingTime, contents
-		3.
-	*/
+	const router = useRouter();
+
+	const onClickRedirectDetail = (id: string) => {
+		router.replace({
+			pathname: '/job_opening/posting',
+			query: { id },
+		});
+	};
+
 	return (
 		<Layout pageIndex={0}>
 			<Container>
@@ -38,6 +43,7 @@ export default function JobOpeningDetail({ data }) {
 						extraWrapperStyle={{
 							marginRight: 10,
 						}}
+						onClick={() => onClickRedirectDetail(data.id)}
 					>
 						수정
 					</CommonButton>

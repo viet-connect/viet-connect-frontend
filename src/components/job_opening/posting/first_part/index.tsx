@@ -11,7 +11,7 @@ import { inputPostingState } from '../../../../recoil/atom/posting';
 	contact_number: 0,
 */
 
-export default function JobOpeningPostingFirstPart() {
+export default function JobOpeningPostingFirstPart({ data }) {
 	const { PostingFirstPartInfo } = postingConstant;
 	const [newJobPosting, setNewJobPosting] = useRecoilState(inputPostingState);
 

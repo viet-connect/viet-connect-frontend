@@ -6,13 +6,13 @@ export default async function posting(
 	res: NextApiResponse,
 ) {
 	const { method } = _req;
+	const {
+		query: { pid },
+	} = _req;
 
 	try {
 		switch (method) {
 			case 'GET': {
-				const {
-					query: { pid },
-				} = _req;
 				const uniquePosting = await prisma.posting.findUnique({
 					where: {
 						id: pid,
@@ -20,6 +20,16 @@ export default async function posting(
 				});
 
 				res.status(200).json(uniquePosting);
+				break;
+			}
+
+			case 'PUT': {
+				res.status(200).end('Posting has been updated');
+				break;
+			}
+
+			case 'DELETE': {
+				res.status(200).end('Posting has been deleted successfully');
 				break;
 			}
 

@@ -22,7 +22,7 @@ import {
 	address: '',
 */
 
-export default function JobOpeningPostingFourthPart({ setIsRequesting }) {
+export default function JobOpeningPostingFourthPart({ data, setIsRequesting }) {
 	const [showModal, setShowModal] = useState(false);
 	const [newJobPosting, setNewJobPosting] = useRecoilState(inputPostingState);
 	const [showErrorModal, setShowErrorModal] = useState(false);

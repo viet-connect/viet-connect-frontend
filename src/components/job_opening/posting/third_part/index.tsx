@@ -25,7 +25,7 @@ import {
 	is_time_negotiable: 0,
 */
 
-export default function JobOpeningPostingThirdPart() {
+export default function JobOpeningPostingThirdPart({ data }) {
 	const { PostingThirdPartInfo } = postingConstant;
 	const [newJobPosting, setNewJobPosting] = useRecoilState(inputPostingState);
 

@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 import { v1 } from 'uuid';
-import { IPosting } from '../../models/posting';
+import { IPosting, ISavedPosting } from '../../models/posting';
 
 export const inputPostingState = atom<IPosting>({
 	key: `inputPostingState/${v1}`,
@@ -25,5 +25,29 @@ export const inputPostingState = atom<IPosting>({
 		},
 		author: '',
 		password: '',
+	},
+});
+
+export const savedInputPostingState = atom<ISavedPosting>({
+	key: `savedInputPostingState/${v1}`,
+	default: {
+		title: '',
+		contactName: '',
+		contactNumber: '',
+		wageType: '',
+		wageAmount: '',
+		gender: 0,
+		proficiency: 0,
+		workingDay: '',
+		isDayNegotiable: true,
+		startingTime: '',
+		endingTime: '',
+		isTimeNegotiable: true,
+		contents: '',
+		address: '',
+		author: '',
+		password: '',
+		updatedAt: null,
+		createdAt: null,
 	},
 });
