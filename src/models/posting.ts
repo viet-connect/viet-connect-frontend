@@ -1,8 +1,10 @@
 import { isNaN } from 'lodash';
+import DateUtils from '../utils/DateUtils';
 import validate from '../utils/validate';
+import { wageTypeConverter } from '../utils/wageConfig';
 
-export interface IMockPosting {
-	job_opening_no: number;
+export interface IPostingSummary {
+	id: string;
 	region: string;
 	title: string;
 	salary: { wage: string; way: number };
@@ -33,16 +35,49 @@ export interface IPosting {
 }
 
 export class Posting {
+	// eslint-disable-next-line consistent-return
 	static async getPostingList(): Promise<any> {
 		try {
-			const result = await fetch(
+			return await fetch(
 				`${process.env.HOST}${process.env.VERCEL_URL}/api/postings`,
-			);
-
-			return result;
+			)
+				.then((res) => res.json())
+				.then((res) => Posting.makePostingList(res));
 		} catch (err) {
 			return console.log(err);
 		}
+	}
+
+	static async getUniquePosting(pid: string): Promise<any> {
+		try {
+			return await fetch(
+				`${process.env.HOST}${process.env.VERCEL_URL}/api/posting/${pid}`,
+			).then((res) => res.json());
+		} catch (err) {
+			return console.log(err);
+		}
+	}
+
+	static makePostingList(rawData): IPostingSummary[] {
+		return rawData.map((el) => {
+			const { id, address, title, wageAmount, wageType, updatedAt } = el;
+			const addressArray = address.split(' ');
+			const shortAddress =
+				addressArray[0] !== '세종특별시'
+					? `${addressArray[0]} ${addressArray[1]}`
+					: `세종 ${addressArray[1]}`;
+
+			return {
+				id,
+				region: shortAddress,
+				title,
+				salary: {
+					wage: wageAmount,
+					way: wageTypeConverter(wageType),
+				},
+				date: DateUtils.getMonthDayDateTimeString(updatedAt),
+			};
+		});
 	}
 
 	static async handleNewPost(content: IPosting): Promise<any> {

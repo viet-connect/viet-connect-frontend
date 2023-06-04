@@ -1,26 +1,27 @@
 import Router, { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
+import { IPostingSummary } from '../../../../models/posting';
 import WageBox from '../../../common/WageBox';
 
 export default function JobContent({ content }) {
 	const router = useRouter();
-	const onClickRedirectDetail = (rowIndex) => {
-		router.push(`job_opening/detail/${rowIndex}`);
+	const onClickRedirectDetail = (id: string) => {
+		router.push(`job_opening/detail/${id}`);
 	};
 
 	return (
 		<Tbody>
-			{content.map((el, index: number) => {
+			{content.map((el: IPostingSummary, index: number) => {
 				const {
-					job_opening_no,
+					id,
 					date,
 					salary: { wage, way },
 					title,
 				} = el;
 
 				return (
-					<Tr key={job_opening_no} onClick={() => onClickRedirectDetail(index)}>
+					<Tr key={id} onClick={() => onClickRedirectDetail(id)}>
 						<Td>{date}</Td>
 						<Td>
 							<WageWrapper>

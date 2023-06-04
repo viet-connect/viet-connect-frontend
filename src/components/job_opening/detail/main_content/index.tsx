@@ -1,29 +1,54 @@
 import React from 'react';
 import styled from 'styled-components';
+import CommonUtils from '../../../../utils/commonUtils';
 
-export default function MainContent() {
+export default function MainContent({ data }) {
+	const {
+		gender,
+		proficiency,
+		workingDay,
+		isDayNegotiable,
+		isTimeNegotiable,
+		startingTime,
+		endingTime,
+		contents,
+	} = data;
+
+	const workDayArr = JSON.parse(workingDay);
+	const convertedWorkDays = workDayArr.map((el) =>
+		CommonUtils.DayConverter(el),
+	);
+	const workDayString = !isDayNegotiable
+		? convertedWorkDays.join(', ')
+		: convertedWorkDays.join(', ').concat(' (협의 가능)');
+
 	return (
 		<Container>
 			<InfoWrapper style={{ marginBottom: 30 }}>
 				<Title>모집조건</Title>
 				<FirstContentWrapper>
-					<HeadCount>모집인원: 2명</HeadCount>
-					<Gender>모집성별: 무관</Gender>
-					<Proficiency>한국어 구사력: 기초</Proficiency>
+					{/* <HeadCount>모집인원: 2명</HeadCount> */}
+					<Gender>모집성별: {CommonUtils.genderConverter(gender)}</Gender>
+					<Proficiency>
+						한국어 구사력: {CommonUtils.proficiencyConverter(proficiency)}
+					</Proficiency>
 				</FirstContentWrapper>
 			</InfoWrapper>
 			<InfoWrapper style={{ marginBottom: 30 }}>
 				<Title>근무조건</Title>
 				<SecondContentWrapper>
 					<WorkingDay>
-						근무요일: 주 5일 - 월, 화, 수, 목, 금 (협의 가능)
+						근무요일: 주 {workDayArr.length}일 - {workDayString}
 					</WorkingDay>
-					<WorkingHour>근무시간: 10:00 ~ 22:00 (협의 가능)</WorkingHour>
+					<WorkingHour>
+						근무시간: {startingTime} ~ {endingTime}
+						{isTimeNegotiable && '(협의 가능)'}
+					</WorkingHour>
 				</SecondContentWrapper>
 			</InfoWrapper>
 			<InfoWrapper>
 				<Title>상세정보</Title>
-				<DescriptionWrapper></DescriptionWrapper>
+				<DescriptionWrapper>{contents}</DescriptionWrapper>
 			</InfoWrapper>
 		</Container>
 	);

@@ -18,9 +18,7 @@ export default function Home({ data }) {
 const Container = styled.div``;
 
 export async function getServerSideProps(context) {
-	const res = await Posting.getPostingList();
-	const data = await res.json();
-
+	const data = await Posting.getPostingList();
 	return {
 		props: {
 			data,

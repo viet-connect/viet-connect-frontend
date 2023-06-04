@@ -46,6 +46,13 @@ class DateUtils {
 		return dateformat(date, 'mm/dd HH:MM');
 	}
 
+	static getMonthDayDateTimeString(
+		date: string | number | Date | undefined,
+	): Optional<string> {
+		if (!date) return null;
+		return dateformat(date, 'mm-dd');
+	}
+
 	static getYearMonthString(dateNum: number | string): string {
 		const dateStr = `${dateNum}`;
 		return `${dateStr.slice(0, 4)}.${dateStr.slice(4, 6)}`;

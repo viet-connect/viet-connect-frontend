@@ -9,11 +9,25 @@ import ContentHeader from '../../../src/components/job_opening/detail/content_he
 import MainContent from '../../../src/components/job_opening/detail/main_content';
 import JobDetailMap from '../../../src/components/job_opening/detail/map';
 import JobDetailContactInfo from '../../../src/components/job_opening/detail/contact_info';
+import { Posting, IPosting } from '../../../src/models/posting';
 
-export default function JobOpeningDetail() {
+export default function JobOpeningDetail({ data }) {
+	console.log(data, 'server provided data');
+	/*
+		1. title, updatedAt, wageType, wageAmount, address
+		2. gender, proficiency, workingDay, startingTime, endingTime, contents
+		3.
+	*/
 	return (
 		<Layout pageIndex={0}>
 			<Container>
+				{/* <ImageWrapper style={{ background: 'lightgrey' }}>
+					<Image src={mockImage} alt="mock-picture" placeholder="blur" />
+				</ImageWrapper> */}
+				<ContentHeader data={data} />
+				<MainContent data={data} />
+				{/* <JobDetailMap /> */}
+				<JobDetailContactInfo data={data} />
 				<ButtonWrapper>
 					<CommonButton
 						wrapperStyle={{
@@ -40,13 +54,6 @@ export default function JobOpeningDetail() {
 						삭제
 					</CommonButton>
 				</ButtonWrapper>
-				<ImageWrapper style={{ background: 'lightgrey' }}>
-					<Image src={mockImage} alt="mock-picture" placeholder="blur" />
-				</ImageWrapper>
-				<ContentHeader />
-				<MainContent />
-				<JobDetailMap />
-				<JobDetailContactInfo />
 			</Container>
 		</Layout>
 	);
@@ -66,3 +73,12 @@ const ImageWrapper = styled.div`
 	align-items: center;
 	margin-bottom: 7px;
 `;
+
+export async function getServerSideProps(context) {
+	const data = await Posting.getUniquePosting(context.query.pid);
+	return {
+		props: {
+			data,
+		},
+	};
+}

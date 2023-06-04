@@ -1,13 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function JobDetailContactInfo() {
+export default function JobDetailContactInfo({ data }) {
+	const { author, contactName, contactNumber } = data;
 	return (
 		<Container>
 			<Title>회사정보</Title>
 			<ContactInfoContentWrapper>
-				<Content style={{ marginBottom: 5 }}>업체명: 경성양꼬치</Content>
-				<Content>담당자: 010-1234-5678</Content>
+				<Content style={{ marginBottom: 5 }}>업체명: {contactName}</Content>
+				<Content style={{ marginBottom: 5 }}>담당자명: {author}</Content>
+				<Content>담당자: {contactNumber}</Content>
 			</ContactInfoContentWrapper>
 		</Container>
 	);
