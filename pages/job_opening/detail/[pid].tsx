@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
@@ -12,15 +12,63 @@ import MainContent from '../../../src/components/job_opening/detail/main_content
 import JobDetailMap from '../../../src/components/job_opening/detail/map';
 import JobDetailContactInfo from '../../../src/components/job_opening/detail/contact_info';
 import { Posting } from '../../../src/models/posting';
+import Modal from '../../../src/components/common/Modal';
+import {
+	ClosingModalButton,
+	RegisterInputContainer,
+	RegisterInputItemWrapper,
+} from '../../../src/components/job_opening/posting/fourth_part';
+import { PlaceHolder } from '../../../src/components/job_opening/posting/first_part';
+import { Password } from '../../../src/utils/bcrypt';
+import validate from '../../../src/utils/validate';
 
 export default function JobOpeningDetail({ data }) {
 	const router = useRouter();
+	const [showModal, setShowModal] = useState(false);
+	const [account, setAccount] = useState({
+		author: '',
+		password: '',
+	});
+	const [action, setAction] = useState({
+		delete: false,
+		put: false,
+	});
+	const [accountError, setAccountError] = useState({
+		author: false,
+		password: false,
+	});
+	const authorRef = useRef(null);
+	const passwordRef = useRef(null);
 
-	const onClickRedirectDetail = (id: string) => {
-		router.replace({
-			pathname: '/job_opening/posting',
-			query: { id },
-		});
+	// onClickRedirectDetail(data.id)
+	const onClickRedirectDetail = async (id: string) => {
+		if (account.author.length === 0) {
+			authorRef.current.focus();
+			return;
+		}
+		if (
+			account.password.length === 0 ||
+			!validate.isPasswordValid(account.password)
+		) {
+			passwordRef.current.focus();
+			return;
+		}
+
+		const passwordMatcher = new Password(account.password, data.password);
+		const isPasswordMatch = await passwordMatcher.createPassword();
+		const isAuthorMatch = account.author === data.author;
+
+		if (isPasswordMatch && isAuthorMatch) {
+			setShowModal(false);
+
+			router.replace({
+				pathname: '/job_opening/posting',
+				query: { id },
+			});
+		} else {
+			if (!isAuthorMatch) authorRef.current.focus();
+			if (!isPasswordMatch) passwordRef.current.focus();
+		}
 	};
 
 	return (
@@ -43,7 +91,10 @@ export default function JobOpeningDetail({ data }) {
 						extraWrapperStyle={{
 							marginRight: 10,
 						}}
-						onClick={() => onClickRedirectDetail(data.id)}
+						onClick={() => {
+							setShowModal(true);
+							setAction({ ...action, put: true });
+						}}
 					>
 						수정
 					</CommonButton>
@@ -56,16 +107,74 @@ export default function JobOpeningDetail({ data }) {
 						extraWrapperStyle={{
 							marginRight: 10,
 						}}
+						onClick={() => {
+							setShowModal(true);
+							setAction({ ...action, delete: true });
+						}}
 					>
 						삭제
 					</CommonButton>
 				</ButtonWrapper>
+				<Modal
+					width={500}
+					height={400}
+					// onClose={() => setShowErrorModal(false)}
+					show={showModal}
+				>
+					<ModalContentContainer>
+						<RegisterInputContainer>
+							<RegisterInputItemWrapper>작성자</RegisterInputItemWrapper>
+							<PlaceHolder
+								style={{ height: 30 }}
+								value={account.author}
+								onChange={(e) => {
+									setAccount({
+										...account,
+										author: e.target.value,
+									});
+								}}
+								maxLength={20}
+								placeholder="작성자명을 입력해주세요"
+								autoComplete="off"
+								ref={authorRef}
+								required
+							/>
+						</RegisterInputContainer>
+						<RegisterInputContainer>
+							<RegisterInputItemWrapper>비밀번호</RegisterInputItemWrapper>
+							<PlaceHolder
+								type="password"
+								style={{ height: 30 }}
+								value={account.password}
+								onChange={(e) => {
+									setAccount({
+										...account,
+										password: e.target.value,
+									});
+								}}
+								name="password"
+								placeholder="비밀번호를 입력해주세요"
+								autoComplete="off"
+								ref={passwordRef}
+								required
+							/>
+						</RegisterInputContainer>
+						<ClosingModalButton onClick={() => onClickRedirectDetail(data.id)}>
+							{action.put ? '수정하기' : '삭제하기'}
+						</ClosingModalButton>
+						<ClosingModalButton onClick={() => setShowModal(false)}>
+							닫기
+						</ClosingModalButton>
+					</ModalContentContainer>
+				</Modal>
 			</Container>
 		</Layout>
 	);
 }
 
 const Container = styled.div``;
+
+const ModalContentContainer = styled.div``;
 
 const ButtonWrapper = styled.div`
 	display: flex;

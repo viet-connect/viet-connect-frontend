@@ -6,8 +6,11 @@ export class Password {
 
 	hashedPassword: string;
 
-	constructor(pass: string) {
+	savedPassword: string;
+
+	constructor(pass: string, savedPass: string) {
 		this.password = pass;
+		this.savedPassword = savedPass;
 		console.log('inserted pass', this.password);
 	}
 
@@ -34,7 +37,7 @@ export class Password {
 				this.hashedPassword = hash;
 
 				bcrypt.compare(
-					this.password,
+					this.savedPassword,
 					this.hashedPassword,
 
 					async (compareErr, isMatch) => {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { FcHighPriority } from 'react-icons/fc';
@@ -17,7 +17,6 @@ import {
 } from '../first_part';
 
 /*
-	is_time_negotiable: 0,
 	contents: '',
 	address: '',
 */
@@ -234,7 +233,7 @@ const AddressLabel = styled.label`
 	width: 100px;
 `;
 
-const ClosingModalButton = styled.div`
+export const ClosingModalButton = styled.div`
 	display: flex;
 	margin-top: 30px;
 	justify-content: center;
@@ -253,12 +252,12 @@ const DetailedAddressWrapper = styled.div`
 	height: 30px;
 `;
 
-const RegisterInputContainer = styled.div`
+export const RegisterInputContainer = styled.div`
 	display: flex;
 	margin-top: 20px;
 `;
 
-const RegisterInputItemWrapper = styled.label`
+export const RegisterInputItemWrapper = styled.label`
 	display: flex;
 	align-items: center;
 	width: 100px;
