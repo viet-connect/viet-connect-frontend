@@ -72,7 +72,7 @@ export class Posting {
 	static async getUniquePosting(pid: string): Promise<any> {
 		try {
 			return await fetch(
-				`${process.env.HOST}${process.env.VERCEL_URL}/api/posting/${pid}`,
+				`${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_VERCEL_URL}/api/posting/${pid}`,
 			).then((res) => res.json());
 		} catch (err) {
 			return console.log(err);
@@ -107,6 +107,25 @@ export class Posting {
 				`${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_VERCEL_URL}/api/postings`,
 				{
 					method: 'POST',
+					body: JSON.stringify(content),
+					headers: {
+						'content-type': 'application/json',
+					},
+				},
+			);
+		} catch (err) {
+			console.log(err);
+		}
+	}
+
+	static async handleUpdatePost(pid: string, content: IPosting): Promise<any> {
+		try {
+			console.log('update - (3)');
+
+			await fetch(
+				`${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_VERCEL_URL}/api/posting/${pid}`,
+				{
+					method: 'PUT',
 					body: JSON.stringify(content),
 					headers: {
 						'content-type': 'application/json',

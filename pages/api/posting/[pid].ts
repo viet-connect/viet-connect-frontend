@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import prisma from '../../../src/lib/prisma';
+import { Password } from '../../../src/utils/bcrypt';
 
 export default async function posting(
 	_req: NextApiRequest,
@@ -24,6 +25,51 @@ export default async function posting(
 			}
 
 			case 'PUT': {
+				console.log('update - (4) fetch req_body', _req.body);
+
+				const {
+					title,
+					contact_name,
+					contact_number,
+					wage_type,
+					wage_amount,
+					gender,
+					proficiency,
+					working_day,
+					is_day_negotiable,
+					starting_time,
+					ending_time,
+					is_time_negotiable,
+					contents,
+					address,
+					password,
+				} = _req.body;
+				const passwordHelper = new Password(password, '');
+				const hashedPassword = await passwordHelper.createPassword();
+
+				await prisma.posting.update({
+					where: {
+						id: pid,
+					},
+					data: {
+						title,
+						contactName: contact_name,
+						contactNumber: contact_number,
+						wageType: wage_type,
+						wageAmount: wage_amount,
+						gender,
+						proficiency,
+						workingDay: JSON.stringify(working_day),
+						isDayNegotiable: is_day_negotiable,
+						startingTime: starting_time,
+						endingTime: ending_time,
+						isTimeNegotiable: is_time_negotiable,
+						contents,
+						address: address.full,
+						password: hashedPassword,
+					},
+				});
+
 				res.status(200).end('Posting has been updated');
 				break;
 			}

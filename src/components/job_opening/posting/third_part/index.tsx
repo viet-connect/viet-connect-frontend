@@ -79,9 +79,10 @@ export default function JobOpeningPostingThirdPart({ data }) {
 				</TitleWrapper>
 				<WageInputWrapper>
 					<WageSelector name="wage_type" onChange={handleInputChange}>
-						<option value="hourly">시급</option>
 						<option value="monthly">월급</option>
 						<option value="weekly">주급</option>
+						<option value="hourly">일급</option>
+						<option value="hourly">시급</option>
 					</WageSelector>
 					<PlaceHolderWrapper>
 						<PlaceHolder

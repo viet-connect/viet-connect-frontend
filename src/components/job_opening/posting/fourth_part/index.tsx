@@ -29,6 +29,14 @@ export default function JobOpeningPostingFourthPart({ data, setIsRequesting }) {
 	const router = useRouter();
 
 	const toggleModal = async (e) => {
+		setNewJobPosting({
+			...newJobPosting,
+			address: {
+				...newJobPosting.address,
+				full: `${newJobPosting.address.main} ${newJobPosting.address.sub}`,
+			},
+		});
+
 		if (!Posting.validateNewPost(newJobPosting)) {
 			setIsRequesting(true);
 			try {
@@ -46,10 +54,15 @@ export default function JobOpeningPostingFourthPart({ data, setIsRequesting }) {
 	};
 
 	const postRequest = async (posting: IPosting) => {
-		console.log('posting', posting);
+		console.log('update - (1)', posting);
 
 		try {
-			await Posting.handleNewPost(posting);
+			if (data.id) {
+				console.log('update - (2)');
+				await Posting.handleUpdatePost(data.id, posting);
+			} else {
+				await Posting.handleNewPost(posting);
+			}
 		} catch (err) {
 			console.log('err', err);
 		}
@@ -113,29 +126,30 @@ export default function JobOpeningPostingFourthPart({ data, setIsRequesting }) {
 								address: {
 									...newJobPosting.address,
 									sub: e.target.value,
-									full: `${newJobPosting.address.main} ${e.target.value}`,
 								},
 							});
 						}}
 					/>
 				</DetailedAddressWrapper>
 			</ButtonWrapper>
-			<RegisterInputContainer>
-				<RegisterInputItemWrapper>작성자</RegisterInputItemWrapper>
-				<PlaceHolder
-					style={{ height: 30 }}
-					defaultValue={newJobPosting.author}
-					onChange={(e) => {
-						setNewJobPosting({
-							...newJobPosting,
-							author: e.target.value,
-						});
-					}}
-					maxLength={20}
-					autoComplete="off"
-					required
-				/>
-			</RegisterInputContainer>
+			{!data && (
+				<RegisterInputContainer>
+					<RegisterInputItemWrapper>작성자</RegisterInputItemWrapper>
+					<PlaceHolder
+						style={{ height: 30 }}
+						defaultValue={newJobPosting.author}
+						onChange={(e) => {
+							setNewJobPosting({
+								...newJobPosting,
+								author: e.target.value,
+							});
+						}}
+						maxLength={20}
+						autoComplete="off"
+						required
+					/>
+				</RegisterInputContainer>
+			)}
 			<RegisterInputContainer>
 				<RegisterInputItemWrapper>비밀번호</RegisterInputItemWrapper>
 				<PlaceHolder
@@ -154,6 +168,7 @@ export default function JobOpeningPostingFourthPart({ data, setIsRequesting }) {
 					required
 				/>
 			</RegisterInputContainer>
+
 			<CommonButton
 				wrapperStyle={{
 					width: 150,
@@ -163,7 +178,7 @@ export default function JobOpeningPostingFourthPart({ data, setIsRequesting }) {
 				extraWrapperStyle={{ marginTop: 40 }}
 				onClick={toggleModal}
 			>
-				등록하기
+				{data ? '수정하기' : '등록하기'}
 			</CommonButton>
 			<Modal
 				width={500}

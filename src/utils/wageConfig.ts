@@ -35,7 +35,7 @@ const wageTermFunction = (
 
 export const wageTypeConverter = (wageType: string): number => {
 	if (wageType === 'monthly') {
-		return 1;
+		return 0;
 	}
 	if (wageType === 'weekly') {
 		return 1;

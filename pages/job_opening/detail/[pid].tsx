@@ -33,10 +33,6 @@ export default function JobOpeningDetail({ data }) {
 		delete: false,
 		put: false,
 	});
-	const [accountError, setAccountError] = useState({
-		author: false,
-		password: false,
-	});
 	const authorRef = useRef(null);
 	const passwordRef = useRef(null);
 

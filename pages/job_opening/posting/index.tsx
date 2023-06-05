@@ -38,10 +38,12 @@ export default function JobOpeningPosting({ data }) {
 				is_time_negotiable: data.isTimeNegotiable,
 				contents: data.contents,
 				address: {
-					full: '',
+					full: data.address,
 					main: addressArray.join(''),
 					sub: subAddress,
 				},
+				author: data.author,
+				password: '',
 			});
 		}
 
