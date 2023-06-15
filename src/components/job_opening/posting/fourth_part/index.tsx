@@ -29,18 +29,23 @@ export default function JobOpeningPostingFourthPart({ data, setIsRequesting }) {
 	const router = useRouter();
 
 	const toggleModal = async (e) => {
-		setNewJobPosting({
+		// 여기서 full state를 setState해줘도, 반영이 안됩니다.
+		const fullAddressHandledObj = {
 			...newJobPosting,
 			address: {
 				...newJobPosting.address,
 				full: `${newJobPosting.address.main} ${newJobPosting.address.sub}`,
 			},
-		});
+		};
 
-		if (!Posting.validateNewPost(newJobPosting)) {
+		console.log(fullAddressHandledObj, 'fulladdresshandledobj');
+
+		setNewJobPosting(fullAddressHandledObj);
+
+		if (!Posting.validateNewPost(fullAddressHandledObj)) {
 			setIsRequesting(true);
 			try {
-				await postRequest(newJobPosting);
+				await postRequest(fullAddressHandledObj);
 			} catch (err) {
 				console.log(err);
 			} finally {
@@ -48,17 +53,14 @@ export default function JobOpeningPostingFourthPart({ data, setIsRequesting }) {
 				router.push('/');
 			}
 		} else {
-			setError(Posting.validateNewPost(newJobPosting));
+			setError(Posting.validateNewPost(fullAddressHandledObj));
 			setShowErrorModal(true);
 		}
 	};
 
 	const postRequest = async (posting: IPosting) => {
-		console.log('update - (1)', posting);
-
 		try {
-			if (data.id) {
-				console.log('update - (2)');
+			if (data) {
 				await Posting.handleUpdatePost(data.id, posting);
 			} else {
 				await Posting.handleNewPost(posting);

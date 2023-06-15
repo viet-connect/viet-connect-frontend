@@ -120,13 +120,27 @@ export class Posting {
 
 	static async handleUpdatePost(pid: string, content: IPosting): Promise<any> {
 		try {
-			console.log('update - (3)');
-
 			await fetch(
 				`${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_VERCEL_URL}/api/posting/${pid}`,
 				{
 					method: 'PUT',
 					body: JSON.stringify(content),
+					headers: {
+						'content-type': 'application/json',
+					},
+				},
+			);
+		} catch (err) {
+			console.log(err);
+		}
+	}
+
+	static async handleDeletePost(pid: string) {
+		try {
+			await fetch(
+				`${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_VERCEL_URL}/api/posting/${pid}`,
+				{
+					method: 'DELETE',
 					headers: {
 						'content-type': 'application/json',
 					},

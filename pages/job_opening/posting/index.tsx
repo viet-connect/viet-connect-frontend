@@ -17,6 +17,8 @@ export default function JobOpeningPosting({ data }) {
 	const [isRequesting, setIsRequesting] = useState(false);
 	const [newJobPosting, setNewJobPosting] = useRecoilState(inputPostingState);
 
+	useEffect(() => console.log(newJobPosting), [newJobPosting]);
+
 	useEffect(() => {
 		if (data) {
 			const addressArray = data.address.split(' ');
@@ -39,7 +41,7 @@ export default function JobOpeningPosting({ data }) {
 				contents: data.contents,
 				address: {
 					full: data.address,
-					main: addressArray.join(''),
+					main: addressArray.join(' '),
 					sub: subAddress,
 				},
 				author: data.author,
@@ -119,7 +121,6 @@ const SpinnerContainer = styled.div`
 `;
 
 export async function getServerSideProps(context) {
-	console.log(context, 'context');
 	if (!context.query.id) {
 		console.log('No PID, new posting');
 		return {
@@ -130,7 +131,6 @@ export async function getServerSideProps(context) {
 	}
 
 	const data = await Posting.getUniquePosting(context.query.id);
-	console.log('data', data);
 	return {
 		props: {
 			data,

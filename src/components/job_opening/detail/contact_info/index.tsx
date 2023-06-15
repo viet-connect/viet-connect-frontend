@@ -8,7 +8,7 @@ export default function JobDetailContactInfo({ data }) {
 			<Title>회사정보</Title>
 			<ContactInfoContentWrapper>
 				<Content style={{ marginBottom: 5 }}>업체명: {contactName}</Content>
-				<Content style={{ marginBottom: 5 }}>담당자명: {author}</Content>
+				<Content style={{ marginBottom: 5 }}>작성자명: {author}</Content>
 				<Content>담당자: {contactNumber}</Content>
 			</ContactInfoContentWrapper>
 		</Container>

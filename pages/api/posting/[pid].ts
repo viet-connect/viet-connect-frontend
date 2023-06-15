@@ -25,8 +25,6 @@ export default async function posting(
 			}
 
 			case 'PUT': {
-				console.log('update - (4) fetch req_body', _req.body);
-
 				const {
 					title,
 					contact_name,
@@ -69,12 +67,20 @@ export default async function posting(
 						password: hashedPassword,
 					},
 				});
+				console.log('Posting has been updated', address);
 
 				res.status(200).end('Posting has been updated');
 				break;
 			}
 
 			case 'DELETE': {
+				await prisma.posting.delete({
+					where: {
+						id: pid,
+					},
+				});
+
+				console.log('Posting has been deleted');
 				res.status(200).end('Posting has been deleted successfully');
 				break;
 			}

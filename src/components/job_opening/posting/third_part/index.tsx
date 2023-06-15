@@ -63,8 +63,6 @@ export default function JobOpeningPostingThirdPart({ data }) {
 					: { ...newJobPosting, [item]: index };
 		}
 
-		console.log(temp);
-
 		setNewJobPosting(temp);
 	};
 

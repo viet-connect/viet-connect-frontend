@@ -1,15 +1,15 @@
-import Image from 'next/image';
+// import Image from 'next/image';
 
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
-import mockImage from '../../../src/public/assets/apple.jpeg';
+// import mockImage from '../../../src/public/assets/apple.jpeg';
 import CommonButton from '../../../src/components/common/Button';
 import Layout from '../../../src/components/common/Layout';
 import ContentHeader from '../../../src/components/job_opening/detail/content_header';
 import MainContent from '../../../src/components/job_opening/detail/main_content';
-import JobDetailMap from '../../../src/components/job_opening/detail/map';
+// import JobDetailMap from '../../../src/components/job_opening/detail/map';
 import JobDetailContactInfo from '../../../src/components/job_opening/detail/contact_info';
 import { Posting } from '../../../src/models/posting';
 import Modal from '../../../src/components/common/Modal';
@@ -55,12 +55,24 @@ export default function JobOpeningDetail({ data }) {
 		const isAuthorMatch = account.author === data.author;
 
 		if (isPasswordMatch && isAuthorMatch) {
-			setShowModal(false);
+			if (action.put) {
+				setShowModal(false);
+				setAction({ ...action, put: false });
 
-			router.replace({
-				pathname: '/job_opening/posting',
-				query: { id },
-			});
+				router.replace({
+					pathname: '/job_opening/posting',
+					query: { id },
+				});
+			} else if (action.delete) {
+				await Posting.handleDeletePost(id);
+
+				setShowModal(false);
+				setAction({ ...action, delete: false });
+
+				router.replace({
+					pathname: '/',
+				});
+			}
 		} else {
 			if (!isAuthorMatch) authorRef.current.focus();
 			if (!isPasswordMatch) passwordRef.current.focus();
