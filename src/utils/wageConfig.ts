@@ -12,7 +12,6 @@ const wageTermFunction = (
 		borderColor: '#ffadd2',
 		value: '월급',
 	};
-
 	if (termIndex === 1) {
 		cssObject.boxFontColor = '#d48806';
 		cssObject.boxColor = '#fffbe6';
