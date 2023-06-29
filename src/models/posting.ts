@@ -60,7 +60,7 @@ export class Posting {
 	static async getPostingList(): Promise<any> {
 		try {
 			return await fetch(
-				`${process.env.HOST}${process.env.VERCEL_URL}/api/postings`,
+				`${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_VERCEL_URL}/api/postings`,
 			)
 				.then((res) => res.json())
 				.then((res) => Posting.makePostingList(res));
