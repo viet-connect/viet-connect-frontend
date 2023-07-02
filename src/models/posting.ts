@@ -63,7 +63,7 @@ export class Posting {
 				.then((res) => res.json())
 				.then((res) => Posting.makePostingList(res));
 		} catch (err) {
-			return console.error(err);
+			return console.log(err);
 		}
 	}
 
