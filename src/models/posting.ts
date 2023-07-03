@@ -69,8 +69,8 @@ export class Posting {
 
 			if (process.env.NODE_ENV === 'production') {
 				const server = process.env.SERVER;
-				console.log('url', `http://${server}/api/postings`);
-				return await fetch(`http://${server}/api/postings`)
+				console.log('url', `${server}/api/postings`);
+				return await fetch(`${server}/api/postings`)
 					.then((res) => res.json())
 					.then((res) => Posting.makePostingList(res));
 			}
