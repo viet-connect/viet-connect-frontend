@@ -68,7 +68,9 @@ export class Posting {
 			}
 
 			if (process.env.NODE_ENV === 'production') {
-				return await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/postings`)
+				return await fetch(
+					`${process.env.NEXT_PUBLIC_ENV_HOST}:${process.env.NEXT_PUBLIC_ENV_PORT}/api/postings`,
+				)
 					.then((res) => res.json())
 					.then((res) => Posting.makePostingList(res));
 			}
