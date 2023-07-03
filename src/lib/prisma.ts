@@ -12,4 +12,7 @@ if (process.env.NODE_ENV === 'production') {
 	prisma = global.prisma;
 }
 
+prisma.$connect();
+console.info('prisma connected');
+
 export default prisma;
