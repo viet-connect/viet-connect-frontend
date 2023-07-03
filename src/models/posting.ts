@@ -59,17 +59,19 @@ export class Posting {
 	// eslint-disable-next-line consistent-return
 	static async getPostingList(): Promise<any> {
 		try {
-			console.log(process.env, 'production');
 			if (process.env.NODE_ENV === 'development') {
-				console.log(
-					`${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_VERCEL_URL}/api/postings`,
-				);
-
 				return await fetch(
 					`${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_VERCEL_URL}/api/postings`,
 				)
 					.then((res) => res.json())
 					.then((res) => Posting.makePostingList(res));
+			}
+
+			if (process.env.NODE_ENV === 'production') {
+				console.log(process.env.HOS, '1');
+				console.log(process.env.VERCEL_URL, '2');
+				console.log(process.env.NEXT_PUBLIC_HOST, '3');
+				console.log(process.env.NEXT_PUBLIC_VERCEL_URL, '4');
 			}
 		} catch (err) {
 			return console.log(err);
