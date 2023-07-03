@@ -10,6 +10,16 @@ export default async function posting_list(
 	try {
 		switch (method) {
 			case 'GET': {
+				console.log('prisma', prisma);
+				await prisma.$on('beforeExit', async () => {
+					console.log('beforeExit hook');
+					// PrismaClient still available
+					await prisma.message.create({
+						data: {
+							message: 'Shutting down server',
+						},
+					});
+				});
 				const postingList = await prisma.posting.findMany();
 				res.status(200).json(postingList);
 				break;
