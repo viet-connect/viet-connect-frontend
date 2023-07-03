@@ -84,7 +84,7 @@ export class Posting {
 				`${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_VERCEL_URL}/api/posting/${pid}`,
 			).then((res) => res.json());
 		} catch (err) {
-			return console.log(err);
+			return console.error(err);
 		}
 	}
 
