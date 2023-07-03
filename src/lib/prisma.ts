@@ -1,31 +1,9 @@
 import { PrismaClient } from '@prisma/client';
 
-// eslint-disable-next-line import/no-mutable-exports
-let prisma;
+const globalForPrisma = globalThis as unknown as {
+	prisma: PrismaClient | undefined;
+};
 
-if (process.env.NODE_ENV === 'production') {
-	prisma = new PrismaClient();
-} else {
-	if (!global.prisma) {
-		global.prisma = new PrismaClient();
-	}
-	prisma = global.prisma;
-}
+export const prisma = globalForPrisma.prisma ?? new PrismaClient();
 
-(async () => {
-	await prisma.$connect();
-})();
-
-(async () => {
-	await prisma.$on('beforeExit', async () => {
-		console.log('beforeExit hook');
-		// PrismaClient still available
-		await prisma.message.create({
-			data: {
-				message: 'Shutting down server',
-			},
-		});
-	});
-})();
-
-export default prisma;
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
