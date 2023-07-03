@@ -68,13 +68,9 @@ export class Posting {
 			}
 
 			if (process.env.NODE_ENV === 'production') {
-				console.log(
-					'url',
-					`http://${process.env.NEXT_PUBLIC_ENV_HOST}:${process.env.NEXT_PUBLIC_ENV_PORT}/api/postings`,
-				);
-				return await fetch(
-					`http://${process.env.NEXT_PUBLIC_ENV_HOST}:${process.env.NEXT_PUBLIC_ENV_PORT}/api/postings`,
-				)
+				const server = process.env.SERVER;
+				console.log('url', `http://${server}/api/postings`);
+				return await fetch(`http://${server}/api/postings`)
 					.then((res) => res.json())
 					.then((res) => Posting.makePostingList(res));
 			}
