@@ -12,7 +12,8 @@ if (process.env.NODE_ENV === 'production') {
 	prisma = global.prisma;
 }
 
-prisma.$connect();
-console.info('prisma connected');
+(async () => {
+	await prisma.$connect();
+})();
 
 export default prisma;
