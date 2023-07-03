@@ -68,10 +68,9 @@ export class Posting {
 			}
 
 			if (process.env.NODE_ENV === 'production') {
-				console.log(process.env.HOS, '1');
+				console.log(process.env.HOST, '1');
 				console.log(process.env.VERCEL_URL, '2');
-				console.log(process.env.NEXT_PUBLIC_HOST, '3');
-				console.log(process.env.NEXT_PUBLIC_VERCEL_URL, '4');
+				console.log(process.env.NEXT_PUBLIC_VERCEL_URL, '3');
 			}
 		} catch (err) {
 			return console.log(err);
