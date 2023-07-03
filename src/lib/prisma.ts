@@ -16,4 +16,16 @@ if (process.env.NODE_ENV === 'production') {
 	await prisma.$connect();
 })();
 
+(async () => {
+	await prisma.$on('beforeExit', async () => {
+		console.log('beforeExit hook');
+		// PrismaClient still available
+		await prisma.message.create({
+			data: {
+				message: 'Shutting down server',
+			},
+		});
+	});
+})();
+
 export default prisma;
