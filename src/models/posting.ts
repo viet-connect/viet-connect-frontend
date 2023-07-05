@@ -71,10 +71,7 @@ export class Posting {
 				const server = process.env.SERVER;
 				return await fetch(`${server}/api/postings`)
 					.then((res) => res.json())
-					.then((res) => {
-						console.log('res', res);
-						Posting.makePostingList(res);
-					});
+					.then((res) => Posting.makePostingList(res));
 			}
 		} catch (err) {
 			return console.error(err);
