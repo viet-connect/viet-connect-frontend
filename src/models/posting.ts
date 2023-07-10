@@ -80,7 +80,7 @@ export class Posting {
 					});
 			}
 		} catch (err) {
-			return console.error(err);
+			return console.log(err);
 		}
 	}
 
