@@ -75,8 +75,7 @@ export class Posting {
 					.then((res) => res.json())
 					.then((res) => {
 						console.log('res입니다!', res);
-						Posting.makePostingList(res);
-						console.log('res 끝!', typeof res);
+						return Posting.makePostingList(res);
 					});
 			}
 		} catch (err) {
