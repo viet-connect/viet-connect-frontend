@@ -2,7 +2,7 @@
 
 const nextConfig = {
 	env: {
-		SERVER: process.env.SERVER,
+		DEPLOY_URL: process.env.DEPLOY_URL,
 	},
 	reactStrictMode: false,
 	compiler: {
