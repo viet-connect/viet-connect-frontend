@@ -5,7 +5,8 @@ import { jobTableConstant } from '../../../constant/constant';
 import { selectedRegionState } from '../../../recoil/atom/region';
 import JobContent from './job_content';
 
-export default function JobTable({ tableContent }) {
+export default function JobTable(props) {
+	const { tableContent } = props;
 	const ThElement = Object.values(jobTableConstant);
 	const selectedRegionArray = useRecoilValue(selectedRegionState);
 	const selectedRegion = selectedRegionArray[0].concat(
