@@ -13,6 +13,7 @@ export default function JobTable({ tableContent }) {
 	);
 
 	const comparableData = [];
+	console.log('tableContent?', tableContent, typeof tableContent);
 	for (let i = 0; i < tableContent.length; i += 1) {
 		if (tableContent[i].region === selectedRegion) {
 			comparableData.push(tableContent[i]);
