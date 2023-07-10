@@ -69,7 +69,7 @@ export default async function posting_list(
 			}
 		}
 	} catch (err) {
-		console.error(err);
+		console.log(err);
 		res.status(500).json({ message: 'server error' });
 	}
 }
