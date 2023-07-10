@@ -71,7 +71,7 @@ export class Posting {
 				console.log('currently being deployed');
 				const server = process.env.DEPLOY_URL;
 				console.log('server', server);
-				return await fetch(`${server}/api/postings`)
+				return await fetch('/api/postings')
 					.then((res) => res.json())
 					.then((res) => {
 						console.log('res입니다!', res);
