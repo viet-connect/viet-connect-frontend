@@ -68,7 +68,9 @@ export class Posting {
 			}
 
 			if (process.env.NODE_ENV === 'production') {
-				const server = process.env.SERVER;
+				console.log('currently being deployed');
+				const server = process.env.DEPLOY_URL;
+				console.log('server', server);
 				return await fetch(`${server}/api/postings`)
 					.then((res) => res.json())
 					.then((res) => {
