@@ -20,6 +20,7 @@ const Container = styled.div``;
 
 export async function getServerSideProps(context) {
 	const data = await Posting.getPostingList();
+	console.log('index data', data);
 	return {
 		props: {
 			data,
