@@ -85,9 +85,13 @@ export class Posting {
 
 	static async getUniquePosting(pid: string): Promise<any> {
 		try {
-			return await fetch(
-				`${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_VERCEL_URL}/api/posting/${pid}`,
-			).then((res) => res.json());
+			const server =
+				process.env.NODE_ENV === 'development'
+					? `${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_VERCEL_URL}`
+					: process.env.DEPLOY_URL;
+			return await fetch(`${server}/api/posting/${pid}`).then((res) =>
+				res.json(),
+			);
 		} catch (err) {
 			return console.error(err);
 		}
