@@ -19,12 +19,10 @@ export default function Home({ data }) {
 const Container = styled.div``;
 
 export async function getServerSideProps(context) {
-	console.log('/ serverSideProps');
-	// console.log('prisma', prisma);
-	// const data = await Posting.getPostingList();
+	const data = await Posting.getPostingList();
 	return {
 		props: {
-			// data,
+			data,
 		},
 	};
 }
