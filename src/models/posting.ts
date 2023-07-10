@@ -122,16 +122,17 @@ export class Posting {
 
 	static async handleNewPost(content: IPosting): Promise<any> {
 		try {
-			await fetch(
-				`${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_VERCEL_URL}/api/postings`,
-				{
-					method: 'POST',
-					body: JSON.stringify(content),
-					headers: {
-						'content-type': 'application/json',
-					},
+			const server =
+				process.env.NODE_ENV === 'development'
+					? `${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_VERCEL_URL}`
+					: process.env.DEPLOY_URL;
+			await fetch(`${server}/api/postings`, {
+				method: 'POST',
+				body: JSON.stringify(content),
+				headers: {
+					'content-type': 'application/json',
 				},
-			);
+			});
 		} catch (err) {
 			console.log(err);
 		}
@@ -139,16 +140,17 @@ export class Posting {
 
 	static async handleUpdatePost(pid: string, content: IPosting): Promise<any> {
 		try {
-			await fetch(
-				`${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_VERCEL_URL}/api/posting/${pid}`,
-				{
-					method: 'PUT',
-					body: JSON.stringify(content),
-					headers: {
-						'content-type': 'application/json',
-					},
+			const server =
+				process.env.NODE_ENV === 'development'
+					? `${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_VERCEL_URL}`
+					: process.env.DEPLOY_URL;
+			await fetch(`${server}/api/posting/${pid}`, {
+				method: 'PUT',
+				body: JSON.stringify(content),
+				headers: {
+					'content-type': 'application/json',
 				},
-			);
+			});
 		} catch (err) {
 			console.log(err);
 		}
@@ -156,15 +158,16 @@ export class Posting {
 
 	static async handleDeletePost(pid: string) {
 		try {
-			await fetch(
-				`${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_VERCEL_URL}/api/posting/${pid}`,
-				{
-					method: 'DELETE',
-					headers: {
-						'content-type': 'application/json',
-					},
+			const server =
+				process.env.NODE_ENV === 'development'
+					? `${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_VERCEL_URL}`
+					: process.env.DEPLOY_URL;
+			await fetch(`${server}/api/posting/${pid}`, {
+				method: 'DELETE',
+				headers: {
+					'content-type': 'application/json',
 				},
-			);
+			});
 		} catch (err) {
 			console.error(err);
 		}
