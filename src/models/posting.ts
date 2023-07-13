@@ -68,15 +68,10 @@ export class Posting {
 			}
 
 			if (process.env.NODE_ENV === 'production') {
-				console.log('currently being deployed');
 				const server = process.env.DEPLOY_URL;
-				console.log('server', server);
 				return await fetch(`${server}/api/postings`)
 					.then((res) => res.json())
-					.then((res) => {
-						console.log('res입니다!', res);
-						return Posting.makePostingList(res);
-					});
+					.then((res) => Posting.makePostingList(res));
 			}
 		} catch (err) {
 			return console.log(err);
