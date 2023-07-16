@@ -10,7 +10,13 @@ export default async function posting_list(
 	try {
 		switch (method) {
 			case 'GET': {
-				const postingList = await prisma.posting.findMany();
+				const postingList = await prisma.posting.findMany({
+					orderBy: [
+						{
+							updatedAt: 'desc',
+						},
+					],
+				});
 				res.status(200).json(postingList);
 				break;
 			}
