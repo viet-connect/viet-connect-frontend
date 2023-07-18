@@ -20,6 +20,7 @@ export default function HomeFilter() {
 			...styles,
 			cursor: 'pointer',
 			width: 260,
+			height: 50,
 		}),
 		option: (styles, state) => ({
 			...styles,
@@ -47,34 +48,36 @@ export default function HomeFilter() {
 
 	return (
 		<Container>
-			<SelectWrapper>
-				<Select
-					styles={customStyles}
-					options={regionArray.map(({ province }) => ({
-						value: province[1],
-						label: province[0],
-					}))}
-					defaultValue={{ value: 'city/province', label: '-- 시/도 --' }}
-					instanceId={useId()}
-					onChange={(e) => setSelectedProvince(e.value)}
-				/>
-			</SelectWrapper>
-			<SelectWrapper>
-				<Select
-					styles={customStyles}
-					options={
-						selectedDistrictArray.length > 0 &&
-						selectedDistrictArray.map((el) => ({
-							value: el,
-							label: el,
-						}))
-					}
-					onChange={(e) => setSelectedDistrict(e.value)}
-					instanceId={useId()}
-					isDisabled={selectedProvince.length === 0}
-					defaultValue={{ value: 'district/county', label: '-- 시/군/구 --' }}
-				/>
-			</SelectWrapper>
+			<SelectContainer>
+				<SelectWrapper>
+					<Select
+						styles={customStyles}
+						options={regionArray.map(({ province }) => ({
+							value: province[1],
+							label: province[0],
+						}))}
+						defaultValue={{ value: 'city/province', label: '-- 시/도 --' }}
+						instanceId={useId()}
+						onChange={(e) => setSelectedProvince(e.value)}
+					/>
+				</SelectWrapper>
+				<SelectWrapper>
+					<Select
+						styles={customStyles}
+						options={
+							selectedDistrictArray.length > 0 &&
+							selectedDistrictArray.map((el) => ({
+								value: el,
+								label: el,
+							}))
+						}
+						onChange={(e) => setSelectedDistrict(e.value)}
+						instanceId={useId()}
+						isDisabled={selectedProvince.length === 0}
+						defaultValue={{ value: 'district/county', label: '-- 시/군/구 --' }}
+					/>
+				</SelectWrapper>
+			</SelectContainer>
 			{/* <SelectWrapper style={{ marginRight: 20 }}>
 				<Select
 					styles={customStyles}
@@ -123,23 +126,25 @@ export default function HomeFilter() {
 
 const Container = styled.div`
 	display: flex;
-	justify-content: flex-start;
-	align-items: center;
-	flex-wrap: wrap;
+	flex-direction: column;
+	gap: 20px;
 `;
 
-const SelectWrapper = styled.div`
-	margin: 0px 5px 20px 0;
+const SelectContainer = styled.div`
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
 `;
 
-const ButtonOutterWrapper = styled.div`
-	margin: 0px 0px 20px 0;
-`;
+const SelectWrapper = styled.div``;
+
+const ButtonOutterWrapper = styled.div``;
 
 const ButtonChildrenWrapper = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	gap: 5px;
 	:hover {
 		webkit-filter: blur(0.7px); /* Chrome, Safari, Opera */
 		filter: blur(0.7px);
@@ -148,16 +153,13 @@ const ButtonChildrenWrapper = styled.div`
 
 const IconWrapper = styled.div``;
 const ButtonTextWrapper = styled.div`
-	margin-right: 5px;
 	font-size: 15px;
 	color: white;
 	font-weight: 400;
 `;
 
-const InputWrapper = styled.div`
-	margin-bottom: 20px;
-`;
+const InputWrapper = styled.div``;
 
 const SearchInput = styled.input`
-	height: 38px;
+	height: 45px;
 `;
