@@ -9,6 +9,7 @@ const REGEX = {
 	blank: /[\s]/g,
 	special: /[!@#$%^&*()_+\-=\[\]{};'"\\|.<>\/?]/,
 	passwordRule: /^(?=.*[A-Za-z])(?=.*d)[A-Za-zd]{8,}$/,
+	money: /^(?:[0-9]|[1-9][0-9]+)$/,
 };
 
 export default {
@@ -31,5 +32,9 @@ export default {
 			.digits(1); // Must have at least 1 digits
 
 		return schema.validate(val);
+	},
+	isMoneyValid: (val: string) => {
+		const number = val.replaceAll(',', '');
+		return REGEX.money.test(number);
 	},
 };

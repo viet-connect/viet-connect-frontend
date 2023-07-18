@@ -238,7 +238,7 @@ export class Posting {
 		}
 		if (proficiency === null) error.proficiency = '한국어 수준을 입력해주세요';
 		if (wage_amount.length === 0) error.wage_amount = '급여액을 입력해주세요';
-		else if (!isNaN(Number(wage_amount))) {
+		else if (!validate.isMoneyValid(wage_amount)) {
 			error.wage_amount = '급여액은 숫자로 입력해주세요.';
 		}
 
