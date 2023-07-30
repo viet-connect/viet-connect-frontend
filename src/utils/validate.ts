@@ -25,11 +25,11 @@ export default {
 			.max(12) // Maximum length 12
 			.has()
 			.not()
-			.spaces() // Should not have spaces
-			.has()
-			.letters(1)
-			.has()
-			.digits(1); // Must have at least 1 digits
+			.spaces(); // Should not have spaces
+		// .has()
+		// .letters(1)
+		// .has()
+		// .digits(1); // Must have at least 1 digits
 
 		return schema.validate(val);
 	},

@@ -165,7 +165,7 @@ export default function JobOpeningPostingFourthPart({ data, setIsRequesting }) {
 						});
 					}}
 					name="password"
-					placeholder="8~12자, 최소 하나의 문자 및 하나의 숫자로 설정해주세요"
+					placeholder="비밀번호 길이는 8~12자로 설정해주세요"
 					autoComplete="off"
 					required
 				/>
