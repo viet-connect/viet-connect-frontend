@@ -19,13 +19,11 @@ export default function HomeFilter() {
 		control: (styles, state) => ({
 			...styles,
 			cursor: 'pointer',
-			width: 260,
 			height: 50,
 		}),
 		option: (styles, state) => ({
 			...styles,
 			cursor: 'pointer',
-			width: 260,
 		}),
 	};
 
@@ -133,10 +131,13 @@ const Container = styled.div`
 const SelectContainer = styled.div`
 	display: flex;
 	justify-content: space-between;
+	gap: 10px;
 	width: 100%;
 `;
 
-const SelectWrapper = styled.div``;
+const SelectWrapper = styled.div`
+	flex: 1 0;
+`;
 
 const ButtonOutterWrapper = styled.div``;
 
@@ -158,8 +159,11 @@ const ButtonTextWrapper = styled.div`
 	font-weight: 400;
 `;
 
-const InputWrapper = styled.div``;
+const InputWrapper = styled.div`
+	width: 100%;
+`;
 
 const SearchInput = styled.input`
+	width: 100%;
 	height: 45px;
 `;

@@ -1,3 +1,10 @@
+html,
+body,
+body > div:first-child {
+	height: 100%;
+	margin: 0px;
+}
+
 :root {
 	--backgroundColor: #f7f7f7;
 	--primaryColor: #191a1b;
@@ -20,21 +27,17 @@ select:focus {
 	outline-width: 0;
 }
 
-@media (max-width: 1000px) {
-	.search-input {
-		width: 525px;
-	}
+.search-input {
+	box-sizing: border-box;
+}
 
+@media (max-width: 1000px) {
 	.home-button-wrapper {
 		width: 100%;
 	}
 }
 
 @media (min-width: 1000px) {
-	.search-input {
-		width: 525px;
-	}
-
 	.home-button-wrapper {
 		width: 100%;
 	}
