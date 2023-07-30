@@ -40,6 +40,7 @@ export default function HomeFilter() {
 
 			if (Array.isArray(target)) {
 				setSelectedDistrictArray(target);
+				setSelectedDistrict('-- 시/군/구 --');
 			}
 		}
 	}, [selectedProvince]);
@@ -62,6 +63,10 @@ export default function HomeFilter() {
 				<SelectWrapper>
 					<Select
 						styles={customStyles}
+						value={{
+							value: selectedDistrict,
+							label: selectedDistrict,
+						}}
 						options={
 							selectedDistrictArray.length > 0 &&
 							selectedDistrictArray.map((el) => ({
