@@ -38,8 +38,6 @@ export default function JobOpeningPostingFourthPart({ data, setIsRequesting }) {
 			},
 		};
 
-		console.log(fullAddressHandledObj, 'fulladdresshandledobj');
-
 		setNewJobPosting(fullAddressHandledObj);
 
 		if (!Posting.validateNewPost(fullAddressHandledObj)) {
