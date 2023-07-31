@@ -120,6 +120,7 @@ export class Posting {
 				process.env.NODE_ENV === 'development'
 					? `${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_VERCEL_URL}`
 					: process.env.DEPLOY_URL;
+			console.log('post request', server);
 			await fetch(`${server}/api/postings`, {
 				method: 'POST',
 				body: JSON.stringify(content),
