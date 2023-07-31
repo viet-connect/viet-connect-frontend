@@ -21,7 +21,6 @@ const Postcode = ({ onComplete }) => {
 			fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
 		}
 
-		console.log(fullAddress);
 		setNewJobPosting({
 			...newJobPosting,
 			address: { ...newJobPosting.address, main: fullAddress },

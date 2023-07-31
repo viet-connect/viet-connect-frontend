@@ -17,8 +17,6 @@ export default function JobOpeningPosting({ data }) {
 	const [isRequesting, setIsRequesting] = useState(false);
 	const [newJobPosting, setNewJobPosting] = useRecoilState(inputPostingState);
 
-	useEffect(() => console.log(newJobPosting), [newJobPosting]);
-
 	useEffect(() => {
 		if (data) {
 			const addressArray = data.address.split(' ');

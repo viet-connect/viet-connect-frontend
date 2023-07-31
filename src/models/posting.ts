@@ -93,7 +93,6 @@ export class Posting {
 	}
 
 	static makePostingList(rawData): IPostingSummary[] {
-		console.log('makePosting rawData', rawData);
 		return rawData.map((el) => {
 			const { id, address, title, wageAmount, wageType, updatedAt } = el;
 			const addressArray = address.split(' ');
