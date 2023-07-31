@@ -31,12 +31,10 @@ const Container = styled.div<IContrainerProps>`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 30px;
-	height: 25px;
+	padding: 2px 4px;
 	background: ${(props) => props.boxColor};
 	border: 1px solid ${(props) => props.borderColor};
 	border-radius: 4px;
 	color: ${(props) => props.boxFontColor};
-	font-size: 14px;
-	line-height: 22px;
+	font-size: 12px;
 `;
