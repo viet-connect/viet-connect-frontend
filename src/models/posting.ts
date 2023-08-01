@@ -94,7 +94,8 @@ export class Posting {
 
 	static makePostingList(rawData): IPostingSummary[] {
 		return rawData.map((el) => {
-			const { id, address, title, wageAmount, wageType, updatedAt } = el;
+			const { id, address, title, wageAmount, wageType, updatedAt, contents } =
+				el;
 			const addressArray = address.split(' ');
 			const shortAddress =
 				addressArray[0] !== '세종특별시'
@@ -109,6 +110,7 @@ export class Posting {
 					wage: wageAmount,
 					way: wageTypeConverter(wageType),
 				},
+				contents,
 				date: DateUtils.getMonthDayDateTimeString(updatedAt),
 			};
 		});
@@ -120,7 +122,6 @@ export class Posting {
 				process.env.NODE_ENV === 'development'
 					? `${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_VERCEL_URL}`
 					: process.env.DEPLOY_URL;
-			console.log('post request', server);
 			await fetch(`${server}/api/postings`, {
 				method: 'POST',
 				body: JSON.stringify(content),

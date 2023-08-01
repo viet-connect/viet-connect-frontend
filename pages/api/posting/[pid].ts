@@ -67,7 +67,6 @@ export default async function posting(
 						password: hashedPassword,
 					},
 				});
-				console.log('Posting has been updated', address);
 
 				res.status(200).end('Posting has been updated');
 				break;

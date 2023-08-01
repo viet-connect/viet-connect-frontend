@@ -63,7 +63,6 @@ export default async function posting_list(
 						password: hashedPassword,
 					},
 				});
-				console.log('posting', posting);
 
 				res.status(201).send({ message: 'ok' });
 				break;

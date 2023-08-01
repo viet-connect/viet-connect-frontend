@@ -16,7 +16,7 @@ export default function HomeFilter() {
 	const [selectedDistrictArray, setSelectedDistrictArray] = useState([]);
 	const [selectedDistrict, setSelectedDistrict] = useState('');
 	const [keyword, setKeyword] = useState('');
-	const setSearchKeyword = useSetRecoilState(searchKeyword);
+	const [inputKeyword, setSearchKeyword] = useRecoilState(searchKeyword);
 	const regionArray = Object.values(region);
 	const setSelectedRegionState = useSetRecoilState(selectedRegionState);
 
@@ -33,6 +33,11 @@ export default function HomeFilter() {
 	};
 
 	const handleClickSetRegionArray = () => {
+		if (keyword !== inputKeyword) {
+			const trimedKeyword = keyword.trim();
+			setSearchKeyword(trimedKeyword);
+		}
+
 		setSelectedRegionState([
 			region[selectedProvince].province[0],
 			selectedDistrict,

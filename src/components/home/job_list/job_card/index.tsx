@@ -8,7 +8,7 @@ export default function JobCard({ content }) {
 	const onClickRedirectDetail = () => {
 		router.push(`job_opening/detail/${id}`);
 	};
-	console.log(content);
+
 	return (
 		<CardWrapper onClick={onClickRedirectDetail}>
 			<CardHeader>
