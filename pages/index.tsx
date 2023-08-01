@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import Layout from '../src/components/common/Layout';
 import HomeFilter from '../src/components/home/filter';
-import JobTable from '../src/components/home/job_table';
-// import prisma from '../src/lib/prisma';
+import JobList from '../src/components/home/job_list';
 import { Posting } from '../src/models/posting';
 
 export default function Home({ data }) {
@@ -10,13 +9,17 @@ export default function Home({ data }) {
 		<Layout pageIndex={0}>
 			<Container>
 				<HomeFilter />
-				<JobTable tableContent={data} />
+				<JobList tableContent={data} />
 			</Container>
 		</Layout>
 	);
 }
 
-const Container = styled.div``;
+const Container = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+`;
 
 export async function getServerSideProps(context) {
 	const data = await Posting.getPostingList();

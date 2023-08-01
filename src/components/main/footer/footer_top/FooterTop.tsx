@@ -16,11 +16,17 @@ export default function FooterTop() {
 			{/* <br />
 			<FooterTopText>
 				사업자등록번호 : {layoutConstant.ENTERPRISE_NUMBER}
-			</FooterTopText>
+			</FooterTopText> */}
 			<Divider />
+<<<<<<< HEAD
 			<br />
 			<FooterTopText>주소 : {layoutConstant.ADDRESS}</FooterTopText>
 			<Divider /> */}
+=======
+			{/* <br /> */}
+			{/* <FooterTopText>주소 : {layoutConstant.ADDRESS}</FooterTopText> */}
+			<Divider />
+>>>>>>> 44662d6b604f512d9abfd0212041ae9aaffba054
 			<br />
 			<FooterTopText>대표이메일 : {layoutConstant.COMPANY_EMAIL}</FooterTopText>
 			<Divider />

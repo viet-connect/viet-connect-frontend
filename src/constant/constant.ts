@@ -1,6 +1,6 @@
 const layoutConstant = Object.freeze({
 	ENTERPRISE: '비엣커넥트',
-	EXECUTIVE: '정의성',
+	EXECUTIVE: '서현욱',
 	PERSONAL_INFO_PERSON_IN_CHARGE: '서현욱',
 	ENTERPRISE_NUMBER: '101-1451-2572-10',
 	ADDRESS: '서울특별시 동대문구 이문로 107',
