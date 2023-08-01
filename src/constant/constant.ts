@@ -5,7 +5,7 @@ const layoutConstant = Object.freeze({
 	ENTERPRISE_NUMBER: '101-1451-2572-10',
 	ADDRESS: '서울특별시 동대문구 이문로 107',
 	COMPANY_EMAIL: 'gluesociety@naver.com',
-	COMPANY_PHONE_NUMBER: '010-2693-5087',
+	COMPANY_PHONE_NUMBER: '010-8453-8883',
 });
 
 const category = Object.freeze({

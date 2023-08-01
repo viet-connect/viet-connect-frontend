@@ -2,13 +2,18 @@
 import { useRecoilValue } from 'recoil';
 import styled, { css } from 'styled-components';
 import { jobTableConstant } from '../../../constant/constant';
-import { selectedRegionState } from '../../../recoil/atom/region';
+import {
+	searchKeyword,
+	selectedRegionState,
+} from '../../../recoil/atom/region';
 import JobContent from './job_content';
 
 export default function JobTable(props) {
 	const { tableContent } = props;
-	const ThElement = Object.values(jobTableConstant);
+	const thElement = Object.values(jobTableConstant);
 	const selectedRegionArray = useRecoilValue(selectedRegionState);
+	const keyword = useRecoilValue(searchKeyword);
+
 	const selectedRegion = selectedRegionArray[0].concat(
 		` ${selectedRegionArray[1]}`,
 	);
@@ -16,21 +21,30 @@ export default function JobTable(props) {
 	const comparableData = [];
 	for (let i = 0; i < tableContent.length; i += 1) {
 		if (!selectedRegion.trim() || tableContent[i].region === selectedRegion) {
-			comparableData.push(tableContent[i]);
+			if (keyword.length > 0) {
+				const { title } = tableContent;
+				if (title === keyword) {
+					comparableData.push(tableContent[i]);
+				}
+			} else {
+				comparableData.push(tableContent[i]);
+			}
 		}
 	}
+
+	console.log('여기는?', keyword);
 
 	return (
 		<Container>
 			<TableWrapper>
 				<colgroup>
-					{ThElement.map((el, index) => (
+					{thElement.map((el, index) => (
 						<col key={el.renderingTitle} width={el.width} />
 					))}
 				</colgroup>
 				<Thead>
 					<Tr>
-						{ThElement.map((el, index) =>
+						{thElement.map((el, index) =>
 							index < 2 ? (
 								<Th
 									className="home-content-header"

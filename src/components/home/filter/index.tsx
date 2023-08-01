@@ -2,16 +2,21 @@ import styled from 'styled-components';
 import Select from 'react-select';
 import { BsSearch } from 'react-icons/bs';
 import { useEffect, useId, useState } from 'react';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import CommonButton from '../../common/Button';
 import region from '../../../constant/region';
-import { selectedRegionState } from '../../../recoil/atom/region';
+import {
+	searchKeyword,
+	selectedRegionState,
+} from '../../../recoil/atom/region';
 // import { category } from '../../../constant/constant';
 
 export default function HomeFilter() {
 	const [selectedProvince, setSelectedProvince] = useState('');
 	const [selectedDistrictArray, setSelectedDistrictArray] = useState([]);
 	const [selectedDistrict, setSelectedDistrict] = useState('');
+	const [keyword, setKeyword] = useState('');
+	const setSearchKeyword = useSetRecoilState(searchKeyword);
 	const regionArray = Object.values(region);
 	const setSelectedRegionState = useSetRecoilState(selectedRegionState);
 
@@ -95,7 +100,16 @@ export default function HomeFilter() {
 				/>
 			</SelectWrapper> */}
 			<InputWrapper>
-				<SearchInput className="search-input"></SearchInput>
+				<SearchInput
+					type="text"
+					id="search-input"
+					name="search-input"
+					className="search-input"
+					placeholder="채용공고를 검색해보세요!"
+					onChange={(event) => {
+						setKeyword(event.target.value);
+					}}
+				></SearchInput>
 			</InputWrapper>
 			<ButtonOutterWrapper className="home-button-wrapper">
 				<CommonButton
