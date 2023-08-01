@@ -13,13 +13,13 @@ export default function FooterTop() {
 				개인정보책임자 : {layoutConstant.PERSONAL_INFO_PERSON_IN_CHARGE}
 			</FooterTopText>
 			<Divider />
-			<br />
+			{/* <br />
 			<FooterTopText>
 				사업자등록번호 : {layoutConstant.ENTERPRISE_NUMBER}
-			</FooterTopText>
+			</FooterTopText> */}
 			<Divider />
-			<br />
-			<FooterTopText>주소 : {layoutConstant.ADDRESS}</FooterTopText>
+			{/* <br /> */}
+			{/* <FooterTopText>주소 : {layoutConstant.ADDRESS}</FooterTopText> */}
 			<Divider />
 			<br />
 			<FooterTopText>대표이메일 : {layoutConstant.COMPANY_EMAIL}</FooterTopText>
