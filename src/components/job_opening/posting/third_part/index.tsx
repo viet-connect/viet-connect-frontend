@@ -37,6 +37,7 @@ export default function JobOpeningPostingThirdPart({ data }) {
 				  )
 				: e.target.value;
 
+		console.log(e.target.name, inputValue);
 		setNewJobPosting({ ...newJobPosting, [e.target.name]: inputValue });
 	};
 
@@ -79,7 +80,7 @@ export default function JobOpeningPostingThirdPart({ data }) {
 					<WageSelector name="wage_type" onChange={handleInputChange}>
 						<option value="monthly">월급</option>
 						<option value="weekly">주급</option>
-						<option value="hourly">일급</option>
+						<option value="daily">일급</option>
 						<option value="hourly">시급</option>
 					</WageSelector>
 					<PlaceHolderWrapper>
@@ -197,7 +198,7 @@ const BoxContainer = styled.div`
 `;
 
 interface IUnitBoxProps {
-	boxIndex: Number;
+	boxIndex: number;
 	selected: Boolean;
 }
 

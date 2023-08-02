@@ -37,7 +37,7 @@ export default function JobOpeningPostingFourthPart({ data, setIsRequesting }) {
 				full: `${newJobPosting.address.main} ${newJobPosting.address.sub}`,
 			},
 		};
-
+		console.log('newjob', fullAddressHandledObj);
 		setNewJobPosting(fullAddressHandledObj);
 
 		if (!Posting.validateNewPost(fullAddressHandledObj)) {

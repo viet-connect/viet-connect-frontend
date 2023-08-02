@@ -8,7 +8,7 @@ export const inputPostingState = atom<IPosting>({
 		title: '',
 		contact_name: '',
 		contact_number: '',
-		wage_type: 'hourly',
+		wage_type: 'monthly',
 		wage_amount: '',
 		gender: null,
 		proficiency: null,
