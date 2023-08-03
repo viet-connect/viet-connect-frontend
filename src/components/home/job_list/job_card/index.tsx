@@ -47,6 +47,9 @@ const CardHeader = styled.div`
 `;
 const CardMain = styled.div`
 	font-weight: bold;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 `;
 const CardFooter = styled.div`
 	display: flex;
