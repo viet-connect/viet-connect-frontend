@@ -18,6 +18,7 @@ export default function Home({ data }) {
 const Container = styled.div`
 	display: flex;
 	flex-direction: column;
+	gap: 20px;
 `;
 
 export async function getServerSideProps(context) {
