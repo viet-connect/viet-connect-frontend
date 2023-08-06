@@ -5,30 +5,16 @@ import {
 	selectedRegionState,
 } from '../../../recoil/atom/region';
 import JobCard from './job_card';
+import { regionListSelector } from '../../../utils/regionUtils';
 
 export default function JobList({ tableContent }) {
-	const comparableData = [];
-	const selectedRegionArray = useRecoilValue(selectedRegionState);
-	const selectedRegion = selectedRegionArray[0].concat(
-		` ${selectedRegionArray[1]}`,
-	);
+	const regionArray = useRecoilValue(selectedRegionState);
 	const keyword = useRecoilValue(searchKeyword);
+	const jobList = regionListSelector(regionArray, tableContent, keyword);
 
-	for (let i = 0; i < tableContent.length; i += 1) {
-		if (!selectedRegion.trim() || tableContent[i].region === selectedRegion) {
-			if (keyword.length > 0) {
-				const { title, contents } = tableContent[i];
-				if (title.includes(keyword) || contents.includes(keyword)) {
-					comparableData.push(tableContent[i]);
-				}
-			} else {
-				comparableData.push(tableContent[i]);
-			}
-		}
-	}
 	return (
 		<JobListWrapper>
-			{comparableData.map((content) => (
+			{jobList.map((content) => (
 				<JobCard key={content.id} content={content} />
 			))}
 		</JobListWrapper>

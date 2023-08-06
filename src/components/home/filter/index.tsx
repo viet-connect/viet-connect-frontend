@@ -12,14 +12,17 @@ import {
 // import { category } from '../../../constant/constant';
 
 export default function HomeFilter() {
-	const [selectedProvince, setSelectedProvince] = useState('');
+	const [selectedProvince, setSelectedProvince] = useState([
+		'-- 전체 지역 --',
+		'ALL',
+	]);
 	const [selectedDistrictArray, setSelectedDistrictArray] = useState([]);
-	const [selectedDistrict, setSelectedDistrict] = useState('');
+	const [selectedDistrict, setSelectedDistrict] = useState('-- 전체 지역 --');
 	const [keyword, setKeyword] = useState('');
 	const [inputKeyword, setSearchKeyword] = useRecoilState(searchKeyword);
 	const regionArray = Object.values(region);
 	const setSelectedRegionState = useSetRecoilState(selectedRegionState);
-
+	const [isDisabled, setIsDisabled] = useState(true);
 	const customStyles = {
 		control: (styles, state) => ({
 			...styles,
@@ -39,18 +42,44 @@ export default function HomeFilter() {
 		}
 
 		setSelectedRegionState([
-			region[selectedProvince].province[0],
+			region[selectedProvince[1]].province[0],
 			selectedDistrict,
 		]);
 	};
 
-	useEffect(() => {
-		if (selectedProvince.length > 0) {
-			const target = Object.values(region[selectedProvince])[1];
+	/*
+		1. 초기 : 박스1 -> 전체지역, 박스2 -> 전체지역(비활성)
+		2. 2차지역 변경
+		  - 전체 -> 2차지역 O
+			- 2차지역 -> 전체 O
+			- 2차지역 -> 2차지역 O
+		3. 1차지역 변경
+			- 전체 -> 1차지역 O
+			- 1차지역 -> 전체 O
+			- 1차지역 -> 1차지역
+	*/
 
+	useEffect(() => {
+		if (selectedProvince[0] !== '-- 전체 지역 --') {
+			const target = Object.values(region[selectedProvince[1]])[1];
 			if (Array.isArray(target)) {
-				setSelectedDistrictArray(target);
-				setSelectedDistrict('-- 시/군/구 --');
+				if (isDisabled) {
+					setIsDisabled(false);
+				}
+
+				if (selectedDistrict !== '-- 전체 지역 --') {
+					setSelectedDistrict('-- 전체 지역 --');
+				}
+
+				setSelectedDistrictArray(['-- 전체 지역 --', ...target]);
+			}
+		} else {
+			if (!isDisabled) {
+				setIsDisabled(true);
+			}
+
+			if (selectedDistrict !== '-- 전체 지역 --') {
+				setSelectedDistrict('-- 전체 지역 --');
 			}
 		}
 	}, [selectedProvince]);
@@ -61,13 +90,17 @@ export default function HomeFilter() {
 				<SelectWrapper>
 					<Select
 						styles={customStyles}
+						value={{
+							value: selectedProvince[1],
+							label: selectedProvince[0],
+						}}
 						options={regionArray.map(({ province }) => ({
 							value: province[1],
 							label: province[0],
 						}))}
-						defaultValue={{ value: 'city/province', label: '-- 시/도 --' }}
+						// defaultValue={{ value: 'city/province', label: '-- 전체 지역 --' }}
 						instanceId={useId()}
-						onChange={(e) => setSelectedProvince(e.value)}
+						onChange={(e) => setSelectedProvince([e.label, e.value])}
 					/>
 				</SelectWrapper>
 				<SelectWrapper>
@@ -86,8 +119,11 @@ export default function HomeFilter() {
 						}
 						onChange={(e) => setSelectedDistrict(e.value)}
 						instanceId={useId()}
-						isDisabled={selectedProvince.length === 0}
-						defaultValue={{ value: 'district/county', label: '-- 시/군/구 --' }}
+						isDisabled={isDisabled}
+						// defaultValue={{
+						// 	value: 'district/county',
+						// 	label: '-- 전체 지역 --',
+						// }}
 					/>
 				</SelectWrapper>
 			</SelectContainer>
