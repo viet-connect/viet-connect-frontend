@@ -21,8 +21,4 @@ export default function Logo() {
 
 const Container = styled.div`
 	cursor: pointer;
-	:hover {
-		webkit-filter: blur(1px); /* Chrome, Safari, Opera */
-		filter: blur(1px);
-	}
 `;
