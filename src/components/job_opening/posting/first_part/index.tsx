@@ -32,7 +32,7 @@ export default function JobOpeningPostingFirstPart({ data }) {
 									[e.target.name]: e.target.value,
 								});
 							}}
-							maxLength={el[0] ? 30 : 20}
+							maxLength={el[0] ? 50 : 20}
 						/>
 					</PlaceHolderWrapper>
 				</SubTitleWrapper>

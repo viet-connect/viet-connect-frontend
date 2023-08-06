@@ -12,8 +12,8 @@ export default function JobCard({ content }) {
 	return (
 		<CardWrapper onClick={onClickRedirectDetail}>
 			<CardHeader>
-				{/* TODO: 모집분야 data 추가시 적용 */}
-				{/* <div>모집분야</div> */}
+				{/* TODO: 업체명 적용 */}
+				{/* <div>업체명</div> */}
 				<div>{date}</div>
 			</CardHeader>
 			<CardMain>{title}</CardMain>
@@ -47,6 +47,9 @@ const CardHeader = styled.div`
 `;
 const CardMain = styled.div`
 	font-weight: bold;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 `;
 const CardFooter = styled.div`
 	display: flex;
