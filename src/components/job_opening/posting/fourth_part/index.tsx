@@ -38,6 +38,7 @@ export default function JobOpeningPostingFourthPart({ data, setIsRequesting }) {
 			},
 		};
 
+		console.log('toggle modal place', fullAddressHandledObj);
 		setNewJobPosting(fullAddressHandledObj);
 
 		if (!Posting.validateNewPost(fullAddressHandledObj)) {
