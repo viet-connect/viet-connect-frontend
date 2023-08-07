@@ -14,9 +14,7 @@ import { inputPostingState } from '../../../src/recoil/atom/posting';
 	Fourth: 상세정보, 근무장소
 */
 export default function JobOpeningPosting({ data }) {
-	const [isRequesting, setIsRequesting] = useState(false);
 	const [newJobPosting, setNewJobPosting] = useRecoilState(inputPostingState);
-
 	useEffect(() => {
 		if (data) {
 			const addressArray = data.address.split(' ');
@@ -72,31 +70,15 @@ export default function JobOpeningPosting({ data }) {
 			});
 		};
 	}, []);
-
 	return (
 		<Layout pageIndex={1}>
-			{!isRequesting ? (
-				<Container>
-					<Title>채용공고 등록</Title>
-					<JobOpeningPostingFirstPart data={data} />
-					{/* <JobOpeningPostingSecondPart /> */}
-					<JobOpeningPostingThirdPart data={data} />
-					<JobOpeningPostingFourthPart
-						data={data}
-						setIsRequesting={setIsRequesting}
-					/>
-				</Container>
-			) : (
-				<SpinnerContainer>
-					<Bars
-						height="100"
-						width="100"
-						color="#4fa94d"
-						ariaLabel="bars-loading"
-						visible={true}
-					/>
-				</SpinnerContainer>
-			)}
+			<Container>
+				<Title>채용공고 등록</Title>
+				<JobOpeningPostingFirstPart data={data} />
+				{/* <JobOpeningPostingSecondPart /> */}
+				<JobOpeningPostingThirdPart data={data} />
+				<JobOpeningPostingFourthPart data={data} />
+			</Container>
 		</Layout>
 	);
 }
@@ -109,13 +91,6 @@ const Title = styled.div`
 	font-size: 25px;
 	font-weight: bold;
 	margin-bottom: 15px;
-`;
-
-const SpinnerContainer = styled.div`
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
 `;
 
 export async function getServerSideProps(context) {
