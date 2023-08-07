@@ -1,5 +1,14 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import styled from 'styled-components';
+import BarLoader from 'react-spinners/BarLoader';
+
+const loaderCss: CSSProperties = {
+	position: 'absolute',
+	display: 'block',
+	width: '100%',
+	margin: '0 auto',
+	opacity: '0.5',
+};
 
 export default function CommonButton({
 	wrapperStyle,
@@ -8,19 +17,28 @@ export default function CommonButton({
 	onClick,
 	className,
 	textStyle,
+	disabled,
+	loading,
 }: ICommonButtonProps) {
 	const { width, height, color } = wrapperStyle;
-
 	return (
 		<ButtonWrapper
 			width={width}
 			height={height}
 			color={color}
 			style={{ ...extraWrapperStyle }}
+			disabled={disabled || loading || false}
 			onClick={onClick}
 			className={className}
 		>
 			<ButtonText style={textStyle}>{children}</ButtonText>
+			<BarLoader
+				loading={loading ?? false}
+				cssOverride={loaderCss}
+				height={'100%'}
+				color={'white'}
+				speedMultiplier={0.8}
+			/>
 		</ButtonWrapper>
 	);
 }
@@ -38,15 +56,19 @@ interface ICommonButtonProps {
 	onClick?: Optional<(e) => void>;
 	className?: string;
 	textStyle?: object;
+	disabled?: boolean;
+	loading?: boolean;
 }
 
-const ButtonWrapper = styled.div<IButtonWrapperProps>`
+const ButtonWrapper = styled.button<IButtonWrapperProps>`
+	position: relative;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	width: ${(props) => (props.width ? `${props.width}px` : '100%')};
 	height: ${(props) => props.height}px;
 	border-radius: 5px;
+	border: none;
 	background: ${(props) => props.color};
 	cursor: pointer;
 `;
