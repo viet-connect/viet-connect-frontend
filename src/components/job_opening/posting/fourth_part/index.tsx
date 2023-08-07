@@ -21,14 +21,17 @@ import {
 	address: '',
 */
 
-export default function JobOpeningPostingFourthPart({ data, setIsRequesting }) {
+export default function JobOpeningPostingFourthPart({ data }) {
 	const [showModal, setShowModal] = useState(false);
 	const [newJobPosting, setNewJobPosting] = useRecoilState(inputPostingState);
 	const [showErrorModal, setShowErrorModal] = useState(false);
 	const [error, setError] = useState({});
 	const router = useRouter();
+	const [isRequesting, setIsRequesting] = useState(false);
 
 	const toggleModal = async (e) => {
+		if (isRequesting) return;
+
 		// 여기서 full state를 setState해줘도, 반영이 안됩니다.
 		const fullAddressHandledObj = {
 			...newJobPosting,
@@ -45,11 +48,11 @@ export default function JobOpeningPostingFourthPart({ data, setIsRequesting }) {
 			setIsRequesting(true);
 			try {
 				await postRequest(fullAddressHandledObj);
+				await router.push('/');
 			} catch (err) {
 				console.log(err);
 			} finally {
 				setIsRequesting(false);
-				router.push('/');
 			}
 		} else {
 			setError(Posting.validateNewPost(fullAddressHandledObj));
@@ -177,6 +180,8 @@ export default function JobOpeningPostingFourthPart({ data, setIsRequesting }) {
 					color: '#EA7B14',
 				}}
 				extraWrapperStyle={{ marginTop: 40 }}
+				disabled={isRequesting}
+				loading={isRequesting}
 				onClick={toggleModal}
 			>
 				{data ? '수정하기' : '등록하기'}
