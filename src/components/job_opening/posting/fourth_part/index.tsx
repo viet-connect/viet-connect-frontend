@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { FcHighPriority } from 'react-icons/fc';
 import { useRouter } from 'next/router';
-import { Bars } from 'react-loader-spinner';
 import { Posting, IPosting } from '../../../../models/posting';
 import { inputPostingState } from '../../../../recoil/atom/posting';
 import CommonButton from '../../../common/Button';

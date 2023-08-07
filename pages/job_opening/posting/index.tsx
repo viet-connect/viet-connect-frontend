@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
-import { Bars } from 'react-loader-spinner';
 import Layout from '../../../src/components/common/Layout';
 import JobOpeningPostingFirstPart from '../../../src/components/job_opening/posting/first_part';
 import JobOpeningPostingThirdPart from '../../../src/components/job_opening/posting/third_part';
