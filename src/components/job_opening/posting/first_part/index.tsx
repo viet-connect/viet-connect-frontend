@@ -57,7 +57,7 @@ export const SubTitleWrapper = styled.div`
 `;
 
 export const ItemTitle = styled.div`
-	font-size: 18px;
+	font-size: 16px;
 	font-weight: bold;
 	padding-bottom: 15px;
 `;
