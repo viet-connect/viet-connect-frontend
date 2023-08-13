@@ -4,7 +4,7 @@ import WageBox from '../../../common/WageBox';
 
 export default function JobCard({ content }) {
 	const router = useRouter();
-	const { id, date, region, salary, title } = content;
+	const { id, date, region, salary, title, contact_name } = content;
 	const onClickRedirectDetail = () => {
 		router.push(`job_opening/detail/${id}`);
 	};
@@ -12,9 +12,8 @@ export default function JobCard({ content }) {
 	return (
 		<CardWrapper onClick={onClickRedirectDetail}>
 			<CardHeader>
-				{/* TODO: 업체명 적용 */}
-				{/* <div>업체명</div> */}
-				<div>{date}</div>
+				<div>{contact_name}</div>
+				<DateWrapper>{date}</DateWrapper>
 			</CardHeader>
 			<CardMain>{title}</CardMain>
 			<CardFooter>
@@ -42,9 +41,14 @@ const CardWrapper = styled.div`
 `;
 const CardHeader = styled.div`
 	display: flex;
-	justify-content: flex-end;
+	justify-content: space-between;
 	font-size: 14px;
 `;
+
+const DateWrapper = styled.div`
+	font-size: 12px;
+`;
+
 const CardMain = styled.div`
 	font-weight: bold;
 	white-space: nowrap;

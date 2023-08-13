@@ -93,9 +93,18 @@ export class Posting {
 	}
 
 	static makePostingList(rawData): IPostingSummary[] {
+		console.log(rawData);
 		return rawData.map((el) => {
-			const { id, address, title, wageAmount, wageType, updatedAt, contents } =
-				el;
+			const {
+				id,
+				address,
+				title,
+				wageAmount,
+				wageType,
+				updatedAt,
+				contents,
+				contactName,
+			} = el;
 			const addressArray = address.split(' ');
 			const shortAddress =
 				addressArray[0] !== '세종특별시'
@@ -111,6 +120,7 @@ export class Posting {
 					way: wageTypeConverter(wageType),
 				},
 				contents,
+				contact_name: contactName,
 				date: DateUtils.getMonthDayDateTimeString(updatedAt),
 			};
 		});
