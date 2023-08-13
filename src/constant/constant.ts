@@ -22,7 +22,7 @@ const postingConstant = Object.freeze({
 		['업체명', '업체명을 입력해주세요', 'contact_name'],
 		[
 			'연락처',
-			'구직자가 연락가능한 휴대폰 번호를 입력해주세요. ex) 010-1234-5678',
+			'연락 가능한 번호를 입력해주세요. ex) 010-1234-5678',
 			'contact_number',
 		],
 	],
