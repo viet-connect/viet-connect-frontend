@@ -5,6 +5,10 @@ body > div:first-child {
 	margin: 0px;
 }
 
+* {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
 :root {
 	--backgroundColor: #f7f7f7;
 	--primaryColor: #191a1b;
