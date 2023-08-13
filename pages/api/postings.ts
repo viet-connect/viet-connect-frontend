@@ -37,7 +37,6 @@ export default async function posting_list(
 					is_time_negotiable,
 					contents,
 					address,
-					author,
 					password,
 				} = _req.body;
 
@@ -59,7 +58,6 @@ export default async function posting_list(
 						isTimeNegotiable: is_time_negotiable,
 						contents,
 						address: address.full,
-						author,
 						password: hashedPassword,
 					},
 				});

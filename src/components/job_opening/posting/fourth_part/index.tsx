@@ -40,7 +40,10 @@ export default function JobOpeningPostingFourthPart({ data }) {
 			},
 		};
 
-		console.log('toggle modal place', fullAddressHandledObj);
+		/* 저장 전에는 전화번호 하이픈 제거 */
+		fullAddressHandledObj.contact_number =
+			fullAddressHandledObj.contact_number.replaceAll('-', '');
+
 		setNewJobPosting(fullAddressHandledObj);
 
 		if (!Posting.validateNewPost(fullAddressHandledObj)) {
@@ -135,7 +138,7 @@ export default function JobOpeningPostingFourthPart({ data }) {
 					/>
 				</DetailedAddressWrapper>
 			</ButtonWrapper>
-			{!data && (
+			{/* {!data && (
 				<RegisterInputContainer>
 					<RegisterInputItemWrapper>작성자</RegisterInputItemWrapper>
 					<PlaceHolder
@@ -152,7 +155,7 @@ export default function JobOpeningPostingFourthPart({ data }) {
 						required
 					/>
 				</RegisterInputContainer>
-			)}
+			)} */}
 			<RegisterInputContainer>
 				<RegisterInputItemWrapper>비밀번호</RegisterInputItemWrapper>
 				<PlaceHolder

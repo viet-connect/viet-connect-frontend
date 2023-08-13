@@ -1,15 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
+import CommonUtils from '../../../../utils/commonUtils';
 
 export default function JobDetailContactInfo({ data }) {
-	const { author, contactName, contactNumber } = data;
+	const { contactName, contactNumber } = data;
+
 	return (
 		<Container>
 			<Title>회사정보</Title>
 			<ContactInfoContentWrapper>
 				<Content style={{ marginBottom: 5 }}>업체명: {contactName}</Content>
-				<Content style={{ marginBottom: 5 }}>작성자명: {author}</Content>
-				<Content>담당자: {contactNumber}</Content>
+				<Content>
+					담당자 연락처: {CommonUtils.addHyphenToPhoneNumber(contactNumber)}
+				</Content>
 			</ContactInfoContentWrapper>
 		</Container>
 	);

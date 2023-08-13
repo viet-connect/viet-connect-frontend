@@ -26,22 +26,17 @@ export default function JobOpeningDetail({ data }) {
 	const router = useRouter();
 	const [showModal, setShowModal] = useState(false);
 	const [account, setAccount] = useState({
-		author: '',
 		password: '',
 	});
 	const [action, setAction] = useState({
 		delete: false,
 		put: false,
 	});
-	const authorRef = useRef(null);
+
 	const passwordRef = useRef(null);
 
 	// onClickRedirectDetail(data.id)
 	const onClickRedirectDetail = async (id: string) => {
-		if (account.author.length === 0) {
-			authorRef.current.focus();
-			return;
-		}
 		if (
 			account.password.length === 0 ||
 			!validate.isPasswordValid(account.password)
@@ -52,9 +47,8 @@ export default function JobOpeningDetail({ data }) {
 
 		const passwordMatcher = new Password(account.password, data.password);
 		const isPasswordMatch = await passwordMatcher.createPassword();
-		const isAuthorMatch = account.author === data.author;
 
-		if (isPasswordMatch && isAuthorMatch) {
+		if (isPasswordMatch) {
 			if (action.put) {
 				setShowModal(false);
 				setAction({ ...action, put: false });
@@ -73,10 +67,7 @@ export default function JobOpeningDetail({ data }) {
 					pathname: '/',
 				});
 			}
-		} else {
-			if (!isAuthorMatch) authorRef.current.focus();
-			if (!isPasswordMatch) passwordRef.current.focus();
-		}
+		} else if (!isPasswordMatch) passwordRef.current.focus();
 	};
 
 	return (
@@ -130,24 +121,6 @@ export default function JobOpeningDetail({ data }) {
 					show={showModal}
 				>
 					<ModalContentContainer>
-						<RegisterInputContainer>
-							<RegisterInputItemWrapper>작성자</RegisterInputItemWrapper>
-							<PlaceHolder
-								style={{ height: 30 }}
-								value={account.author}
-								onChange={(e) => {
-									setAccount({
-										...account,
-										author: e.target.value,
-									});
-								}}
-								maxLength={20}
-								placeholder="작성자명을 입력해주세요"
-								autoComplete="off"
-								ref={authorRef}
-								required
-							/>
-						</RegisterInputContainer>
 						<RegisterInputContainer>
 							<RegisterInputItemWrapper>비밀번호</RegisterInputItemWrapper>
 							<PlaceHolder

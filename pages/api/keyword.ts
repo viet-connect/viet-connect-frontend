@@ -23,8 +23,6 @@ export default async function posting(
           `,
 				);
 
-				console.log(searchedPostings, 'searchedPostings');
-
 				res.status(200).json(searchedPostings);
 				break;
 			}

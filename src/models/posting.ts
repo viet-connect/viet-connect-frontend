@@ -30,7 +30,6 @@ export interface IPosting {
 		main: string;
 		sub: string;
 	};
-	author: string;
 	password: string;
 }
 
@@ -49,7 +48,6 @@ export interface ISavedPosting {
 	isTimeNegotiable: boolean;
 	contents: string;
 	address: string;
-	author: string;
 	password: string;
 	updatedAt: Date;
 	createdAt: Date;
@@ -93,7 +91,6 @@ export class Posting {
 	}
 
 	static makePostingList(rawData): IPostingSummary[] {
-		console.log(rawData);
 		return rawData.map((el) => {
 			const {
 				id,
@@ -192,7 +189,6 @@ export class Posting {
 			address: '',
 			gender: '',
 			hasSpecialChar: '',
-			author: '',
 			password: '',
 		};
 		const {
@@ -206,7 +202,6 @@ export class Posting {
 			wage_amount,
 			working_day,
 			gender,
-			author,
 		} = content;
 
 		const contentArr: any = Object.entries(content);
@@ -220,7 +215,6 @@ export class Posting {
 				typeof contentArr[i][1] === 'string' &&
 				validate.hasSpecialCharacters(contentArr[i][1])
 			) {
-				console.log(contentArr[i], '특수문자에러');
 				error.hasSpecialChar = '특수문자는 허용되지 않습니다.';
 				break;
 			}
@@ -230,7 +224,6 @@ export class Posting {
 			error.password = '패스워드 조건에 맞게 다시 설정해주세요';
 		}
 
-		if (author.length === 0) error.author = '작성자를 입력해주세요';
 		if (title.length === 0) error.title = '공고제목을 입력해주세요';
 		if (contact_name.length === 0) error.contact_name = '업체명을 입력해주세요';
 

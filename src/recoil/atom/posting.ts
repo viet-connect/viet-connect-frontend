@@ -23,7 +23,6 @@ export const inputPostingState = atom<IPosting>({
 			main: '',
 			sub: '',
 		},
-		author: '',
 		password: '',
 	},
 });
@@ -45,7 +44,6 @@ export const savedInputPostingState = atom<ISavedPosting>({
 		isTimeNegotiable: true,
 		contents: '',
 		address: '',
-		author: '',
 		password: '',
 		updatedAt: null,
 		createdAt: null,

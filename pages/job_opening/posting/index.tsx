@@ -39,7 +39,6 @@ export default function JobOpeningPosting({ data }) {
 					main: addressArray.join(' '),
 					sub: subAddress,
 				},
-				author: data.author,
 				password: '',
 			});
 		}
@@ -64,7 +63,6 @@ export default function JobOpeningPosting({ data }) {
 					main: '',
 					sub: '',
 				},
-				author: '',
 				password: '',
 			});
 		};
