@@ -29,8 +29,6 @@ export default function JobOpeningPostingThirdPart({ data }) {
 	const { PostingThirdPartInfo } = postingConstant;
 	const [newJobPosting, setNewJobPosting] = useRecoilState(inputPostingState);
 
-	console.log(newJobPosting, 'newJobPosting');
-
 	const handleInputChange = (e) => {
 		const inputValue =
 			e.target.name === 'wage_amount'
@@ -39,7 +37,6 @@ export default function JobOpeningPostingThirdPart({ data }) {
 				  )
 				: e.target.value;
 
-		console.log(e.target.name, inputValue);
 		setNewJobPosting({ ...newJobPosting, [e.target.name]: inputValue });
 	};
 

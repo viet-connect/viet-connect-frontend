@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import _ from 'lodash';
 import { postingConstant } from '../../../../constant/constant';
 import { inputPostingState } from '../../../../recoil/atom/posting';
+import CommonUtils from '../../../../utils/commonUtils';
 
 /*
 	title: '',
@@ -27,6 +28,12 @@ export default function JobOpeningPostingFirstPart({ data }) {
 							name={el[2]}
 							defaultValue={newJobPosting[el[2]]}
 							onChange={(e) => {
+								if (e.target.name === 'contact_number') {
+									e.target.value = CommonUtils.addHyphenToPhoneNumber(
+										e.target.value,
+									);
+								}
+
 								setNewJobPosting({
 									...newJobPosting,
 									[e.target.name]: e.target.value,
