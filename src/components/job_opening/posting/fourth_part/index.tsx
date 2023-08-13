@@ -79,7 +79,7 @@ export default function JobOpeningPostingFourthPart({ data }) {
 			<SubTitleWrapper>
 				<ItemTitle>상세정보</ItemTitle>
 				<PlaceHolderWrapper>
-					<label>
+					<TextAreaWrapper>
 						<textarea
 							value={newJobPosting.contents}
 							onChange={(e) =>
@@ -90,11 +90,10 @@ export default function JobOpeningPostingFourthPart({ data }) {
 							}
 							name="postContent"
 							rows={4}
-							cols={40}
 							placeholder="200자 이내로 입력해주세요"
 							maxLength={210}
 						/>
-					</label>
+					</TextAreaWrapper>
 				</PlaceHolderWrapper>
 			</SubTitleWrapper>
 			<ButtonWrapper>
@@ -292,4 +291,13 @@ export const RegisterInputItemWrapper = styled.label`
 const RegisterButtonWrapper = styled.div`
 	display: flex;
 	justify-content: flex-end;
+`;
+
+const TextAreaWrapper = styled.label`
+	width: 100%;
+	textarea {
+		width: 100%;
+		box-sizing: border-box;
+		resize: none;
+	}
 `;
