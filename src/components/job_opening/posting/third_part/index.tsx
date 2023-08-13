@@ -5,7 +5,7 @@ import { postingConstant } from '../../../../constant/constant';
 import { inputPostingState } from '../../../../recoil/atom/posting';
 import CommonUtils from '../../../../utils/commonUtils';
 import Checkbox from '../../../common/CheckBox';
-import TimePicker from '../../../common/TimePicker';
+import TimeRangePicker from '../../../common/TimeRangePicker';
 import {
 	SubTitleWrapper,
 	ItemTitle,
@@ -140,7 +140,7 @@ export default function JobOpeningPostingThirdPart({ data }) {
 			</Checkbox>
 			<InputContainer>
 				<ItemTitle>근무시간</ItemTitle>
-				<TimePicker />
+				<TimeRangePicker />
 			</InputContainer>
 			<Checkbox
 				checked={newJobPosting.is_time_negotiable}
