@@ -171,20 +171,21 @@ export default function JobOpeningPostingFourthPart({ data }) {
 					required
 				/>
 			</RegisterInputContainer>
-
-			<CommonButton
-				wrapperStyle={{
-					width: 150,
-					height: 40,
-					color: '#EA7B14',
-				}}
-				extraWrapperStyle={{ marginTop: 40 }}
-				disabled={isRequesting}
-				loading={isRequesting}
-				onClick={toggleModal}
-			>
-				{data ? '수정하기' : '등록하기'}
-			</CommonButton>
+			<RegisterButtonWrapper>
+				<CommonButton
+					wrapperStyle={{
+						width: 150,
+						height: 40,
+						color: '#EA7B14',
+					}}
+					extraWrapperStyle={{ marginTop: 40 }}
+					disabled={isRequesting}
+					loading={isRequesting}
+					onClick={toggleModal}
+				>
+					{data ? '수정하기' : '등록하기'}
+				</CommonButton>
+			</RegisterButtonWrapper>
 			<Modal
 				width={500}
 				height={600}
@@ -283,4 +284,9 @@ export const RegisterInputItemWrapper = styled.label`
 	width: 100px;
 	font-weight: bold;
 	font-size: 18px;
+`;
+
+const RegisterButtonWrapper = styled.div`
+	display: flex;
+	justify-content: flex-end;
 `;
