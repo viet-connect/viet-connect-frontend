@@ -293,3 +293,5 @@ const RegisterButtonWrapper = styled.div`
 	display: flex;
 	justify-content: flex-end;
 `;
+
+// const ContentText = styled.textarea``;
