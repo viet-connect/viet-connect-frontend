@@ -10,7 +10,7 @@ export default function ContentHeader({ data }) {
 		<Container>
 			<InfoFirstLine>{title}</InfoFirstLine>
 			<InfoSecondLine>
-				<TimeWrapper>{DateUtils.getDateHourMinString(updatedAt)}</TimeWrapper>
+				{/* <TimeWrapper>{DateUtils.getDateHourMinString(updatedAt)}</TimeWrapper> */}
 				<WageWrapper>
 					<WageBox termIndex={wageTypeConverter(wageType)} />
 				</WageWrapper>
@@ -35,6 +35,7 @@ const InfoSecondLine = styled.div`
 	display: flex;
 	align-items: center;
 	margin-bottom: 5px;
+	justify-content: flex-start;
 `;
 
 const InfoThirdLine = styled.div``;
