@@ -24,7 +24,7 @@ export default function MainContent({ data }) {
 
 	return (
 		<Container>
-			<InfoWrapper style={{ marginBottom: 30 }}>
+			<InfoWrapper style={{ marginBottom: 20 }}>
 				<Title>모집조건</Title>
 				<FirstContentWrapper>
 					{/* <HeadCount>모집인원: 2명</HeadCount> */}
@@ -34,7 +34,7 @@ export default function MainContent({ data }) {
 					</Proficiency>
 				</FirstContentWrapper>
 			</InfoWrapper>
-			<InfoWrapper style={{ marginBottom: 30 }}>
+			<InfoWrapper style={{ marginBottom: 20 }}>
 				<Title>근무조건</Title>
 				<SecondContentWrapper>
 					<WorkingDay>
@@ -48,14 +48,14 @@ export default function MainContent({ data }) {
 			</InfoWrapper>
 			<InfoWrapper>
 				<Title>상세정보</Title>
-				<DescriptionWrapper>{contents}</DescriptionWrapper>
+				<DescriptionWrapper disabled>{contents}</DescriptionWrapper>
 			</InfoWrapper>
 		</Container>
 	);
 }
 
 const Container = styled.div`
-	margin-bottom: 40px;
+	margin-bottom: 10px;
 `;
 
 const InfoWrapper = styled.div``;
@@ -72,10 +72,6 @@ const FirstContentWrapper = styled.div`
 
 const SecondContentWrapper = styled.div``;
 
-const HeadCount = styled.div`
-	margin-right: 30px;
-`;
-
 const Gender = styled.div`
 	margin-right: 30px;
 `;
@@ -87,9 +83,10 @@ const WorkingDay = styled.div`
 `;
 
 const WorkingHour = styled.div``;
-const DescriptionWrapper = styled.div`
+const DescriptionWrapper = styled.textarea`
 	border: 1px solid black;
 	width: 100%;
-	height: 100px;
+	height: 150px;
 	white-space: pre-wrap;
+	font-size: 16px;
 `;

@@ -22,7 +22,7 @@ export default function ContentHeader({ data }) {
 }
 
 const Container = styled.div`
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 `;
 
 const InfoFirstLine = styled.div`

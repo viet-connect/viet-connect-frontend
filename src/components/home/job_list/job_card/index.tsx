@@ -42,7 +42,7 @@ const CardWrapper = styled.div`
 const CardHeader = styled.div`
 	display: flex;
 	justify-content: space-between;
-	font-size: 14px;
+	font-size: 13px;
 `;
 
 const DateWrapper = styled.div`
@@ -50,6 +50,7 @@ const DateWrapper = styled.div`
 `;
 
 const CardMain = styled.div`
+	font-size: 13px;
 	font-weight: bold;
 	white-space: nowrap;
 	overflow: hidden;
