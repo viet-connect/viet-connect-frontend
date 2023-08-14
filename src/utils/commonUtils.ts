@@ -86,7 +86,7 @@ class CommonUtils {
 			return '기초';
 		}
 
-		return '미숙';
+		return '무관';
 	}
 
 	static DayConverter(num: number): string {

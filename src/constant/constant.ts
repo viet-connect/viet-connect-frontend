@@ -34,7 +34,7 @@ const postingConstant = Object.freeze({
 	// ],
 	PostingThirdPartInfo: {
 		gender: ['성별 무관', '남자', '여자', '모집성별'],
-		proficiency: ['잘함', '보통', '기초', '미숙', '한국어 구사력'],
+		proficiency: ['잘함', '보통', '기초', '무관', '한국어 구사력'],
 		working_day: ['월', '화', '수', '목', '금', '토', '일', '선호 근무요일'],
 	},
 });
