@@ -25,6 +25,7 @@ const Postcode = ({ onComplete }) => {
 			...newJobPosting,
 			address: { ...newJobPosting.address, main: fullAddress },
 		});
+
 		onComplete();
 	};
 

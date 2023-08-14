@@ -190,7 +190,7 @@ export default function JobOpeningPostingFourthPart({ data }) {
 			</RegisterButtonWrapper>
 			<Modal
 				width={500}
-				height={600}
+				height={500}
 				// onClose={() => setShowModal(false)}
 				show={showModal}
 			>
