@@ -189,8 +189,8 @@ export default function JobOpeningPostingFourthPart({ data }) {
 				</CommonButton>
 			</RegisterButtonWrapper>
 			<Modal
-				width={500}
-				height={500}
+				width={330}
+				height={420}
 				// onClose={() => setShowModal(false)}
 				show={showModal}
 			>
@@ -200,7 +200,7 @@ export default function JobOpeningPostingFourthPart({ data }) {
 				</ClosingModalButton>
 			</Modal>
 			<Modal
-				width={500}
+				width={320}
 				height={400}
 				// onClose={() => setShowErrorModal(false)}
 				show={showErrorModal}
@@ -258,7 +258,7 @@ const AddressLabel = styled.label`
 
 export const ClosingModalButton = styled.div`
 	display: flex;
-	margin-top: 30px;
+	margin-top: 10px;
 	justify-content: center;
 	align-items: center;
 	font-size: 20px;

@@ -30,7 +30,11 @@ const Postcode = ({ onComplete }) => {
 	};
 
 	return (
-		<DaumPostcodeEmbed onComplete={handleComplete} className="post-code" />
+		<DaumPostcodeEmbed
+			style={{ width: 100, height: 350 }}
+			onComplete={handleComplete}
+			className="post-code"
+		/>
 	);
 };
 
