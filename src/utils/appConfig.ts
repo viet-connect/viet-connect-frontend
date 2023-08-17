@@ -11,7 +11,7 @@ const AppConfig = {
 		site_name: '비엣커넥트',
 		images: [
 			{
-				url: 'src/public/assets/vietconnect-logo.png',
+				url: 'https://www.vietconnect.co.kr/src/public/assets/vietconnect-logo.png',
 				width: 285,
 				height: 167,
 				alt: '이미지',
