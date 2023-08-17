@@ -9,14 +9,14 @@ const AppConfig = {
 		url: 'https://vietconnect.co.kr/',
 		title: '외국인 알바 찾을 땐? 비엣커넥트',
 		site_name: '비엣커넥트',
-		// images: [
-		// 	{
-		// 		url: '카카오톡, 페이스북에에 링크 넣으면 올라올 이미지',
-		// 		width: 285,
-		// 		height: 167,
-		// 		alt: '이미지',
-		// 	},
-		// ],
+		images: [
+			{
+				url: 'src/public/assets/vietconnect-logo.png',
+				width: 285,
+				height: 167,
+				alt: '이미지',
+			},
+		],
 	},
 	// twitter: {
 	// 	handle: '@handle',

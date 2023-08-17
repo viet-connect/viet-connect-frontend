@@ -48,7 +48,7 @@ export default function MainContent({ data }) {
 			</InfoWrapper>
 			<InfoWrapper>
 				<Title>상세정보</Title>
-				<DescriptionWrapper disabled>{contents}</DescriptionWrapper>
+				<DescriptionWrapper disabled defaultValue={contents} />
 			</InfoWrapper>
 		</Container>
 	);
