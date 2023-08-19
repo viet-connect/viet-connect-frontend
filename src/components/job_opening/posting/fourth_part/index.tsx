@@ -44,6 +44,9 @@ export default function JobOpeningPostingFourthPart({ data }) {
 		fullAddressHandledObj.contact_number =
 			fullAddressHandledObj.contact_number.replaceAll('-', '');
 
+		/* 일하는 날짜 sorting */
+		const workingDay = [...fullAddressHandledObj.working_day].sort();
+		fullAddressHandledObj.working_day = workingDay;
 		setNewJobPosting(fullAddressHandledObj);
 
 		if (!Posting.validateNewPost(fullAddressHandledObj)) {
