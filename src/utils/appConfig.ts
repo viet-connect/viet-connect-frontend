@@ -11,7 +11,7 @@ const AppConfig = {
 		site_name: '비엣커넥트',
 		images: [
 			{
-				url: 'https://www.vietconnect.co.kr/src/public/assets/vietconnect-logo.png',
+				url: 'https://postfiles.pstatic.net/MjAyMzA4MTlfMTY2/MDAxNjkyNDE5NTM5OTE5.wihT2F94ofYFuj_oTk-nV-5FHlIXjABxSieeQ9COJjsg.wHZbp9_j6WtpFYLwdMJPjS6JYrNfUT-d4Vatv71F_mwg.PNG.hyunwook0521/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2023-01-05_%EC%98%A4%ED%9B%84_6.41.54.png?type=w773',
 				width: 285,
 				height: 167,
 				alt: '이미지',
