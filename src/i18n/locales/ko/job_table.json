@@ -1,0 +1,10 @@
+{
+	"test": "테스트",
+	"defaultProvince": "-- 전체 지역 --",
+	"salary": "월급",
+	"weeklyWage": "주급",
+	"dailyWage": "일급",
+	"hourlyWage": "시급",
+	"searchPlaceHolder": "채용공고를 검색해보세요!",
+	"searchBtnLabel": "검색"
+}

@@ -1,0 +1,10 @@
+{
+	"test": "viet test",
+	"defaultProvince": "Toàn quốc",
+	"salary": "Lương tháng",
+	"weeklyWage": "Lương hàng tuần",
+	"dailyWage": "Lương hàng ngày",
+	"hourlyWage": "Lương theo giờ",
+	"searchPlaceHolder": "tìm kiếm thông tin tuyển dụng",
+	"searchBtnLabel": "tìm kiếm"
+}
