@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import wageTermFunction from '../../../utils/wageConfig';
 
 interface IWageBox {
@@ -15,14 +16,14 @@ interface IContrainerProps {
 export default function WageBox({ termIndex }: IWageBox) {
 	const { boxFontColor, boxColor, borderColor, value } =
 		wageTermFunction(termIndex);
-
+	const { t } = useTranslation();
 	return (
 		<Container
 			boxColor={boxColor}
 			boxFontColor={boxFontColor}
 			borderColor={borderColor}
 		>
-			{value}
+			{t(`jobTable:${value}`)}
 		</Container>
 	);
 }

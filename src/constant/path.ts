@@ -1,4 +1,4 @@
 export default [
-	{ label: '채용공고', key: '/' },
-	{ label: '채용공고등록', key: '/job_opening/posting' },
+	{ label: 'jobTable', key: '/' },
+	{ label: 'jobOpening', key: '/job_opening/posting' },
 ];

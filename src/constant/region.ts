@@ -1,6 +1,6 @@
 export default Object.freeze({
 	ALL: {
-		province: ['-- 전체 지역 --', 'ALL'],
+		province: ['defaultProvince', 'ALL'],
 		ALL: [],
 	},
 	SEOUL: {

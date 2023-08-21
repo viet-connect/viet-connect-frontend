@@ -1,9 +1,11 @@
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import items from '../../../../constant/path';
 
 export default function Menu({ pageIndex }: HeaderMenuProps) {
+	const { t } = useTranslation();
 	const router = useRouter();
 	const [isClicked, setIsClicked] = useState(pageIndex);
 	const onClick = (index: number, key: string) => {
@@ -11,13 +13,12 @@ export default function Menu({ pageIndex }: HeaderMenuProps) {
 
 		router.push(key);
 	};
-
 	return (
 		<Container>
 			{items.map((item: MenuItemProps, index: number) => (
 				<MenuItem key={item.key} onClick={() => onClick(index, item.key)}>
 					<MenuItemContent index={index} clickedItem={isClicked}>
-						{item.label}
+						{t(`navigation:${item.label}`)}
 					</MenuItemContent>
 				</MenuItem>
 			))}

@@ -3,6 +3,7 @@ import Select from 'react-select';
 import { BsSearch } from 'react-icons/bs';
 import { useEffect, useId, useState } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useTranslation } from 'react-i18next';
 import CommonButton from '../../common/Button';
 import region from '../../../constant/region';
 import {
@@ -12,12 +13,14 @@ import {
 // import { category } from '../../../constant/constant';
 
 export default function HomeFilter() {
+	// TODO: region-selector 컴포넌트 분리
+	const { t } = useTranslation();
 	const [selectedProvince, setSelectedProvince] = useState([
-		'-- 전체 지역 --',
+		'defaultProvince',
 		'ALL',
 	]);
 	const [selectedDistrictArray, setSelectedDistrictArray] = useState([]);
-	const [selectedDistrict, setSelectedDistrict] = useState('-- 전체 지역 --');
+	const [selectedDistrict, setSelectedDistrict] = useState('defaultProvince');
 	const [keyword, setKeyword] = useState('');
 	const [inputKeyword, setSearchKeyword] = useRecoilState(searchKeyword);
 	const regionArray = Object.values(region);
@@ -60,26 +63,26 @@ export default function HomeFilter() {
 	*/
 
 	useEffect(() => {
-		if (selectedProvince[0] !== '-- 전체 지역 --') {
+		if (selectedProvince[0] !== 'defaultProvince') {
 			const target = Object.values(region[selectedProvince[1]])[1];
 			if (Array.isArray(target)) {
 				if (isDisabled) {
 					setIsDisabled(false);
 				}
 
-				if (selectedDistrict !== '-- 전체 지역 --') {
-					setSelectedDistrict('-- 전체 지역 --');
+				if (selectedDistrict !== 'defaultProvince') {
+					setSelectedDistrict('defaultProvince');
 				}
 
-				setSelectedDistrictArray(['-- 전체 지역 --', ...target]);
+				setSelectedDistrictArray(['defaultProvince', ...target]);
 			}
 		} else {
 			if (!isDisabled) {
 				setIsDisabled(true);
 			}
 
-			if (selectedDistrict !== '-- 전체 지역 --') {
-				setSelectedDistrict('-- 전체 지역 --');
+			if (selectedDistrict !== 'defaultProvince') {
+				setSelectedDistrict('defaultProvince');
 			}
 		}
 	}, [selectedProvince]);
@@ -92,11 +95,14 @@ export default function HomeFilter() {
 						styles={customStyles}
 						value={{
 							value: selectedProvince[1],
-							label: selectedProvince[0],
+							label:
+								selectedProvince[0] === 'defaultProvince'
+									? t(`jobTable:${selectedProvince[0]}`)
+									: selectedProvince[0],
 						}}
 						options={regionArray.map(({ province }) => ({
 							value: province[1],
-							label: province[0],
+							label: t(`jobTable:${province[0]}`),
 						}))}
 						// defaultValue={{ value: 'city/province', label: '-- 전체 지역 --' }}
 						instanceId={useId()}
@@ -108,13 +114,13 @@ export default function HomeFilter() {
 						styles={customStyles}
 						value={{
 							value: selectedDistrict,
-							label: selectedDistrict,
+							label: t(`jobTable:${selectedDistrict}`),
 						}}
 						options={
 							selectedDistrictArray.length > 0 &&
 							selectedDistrictArray.map((el) => ({
 								value: el,
-								label: el,
+								label: t(`jobTable:${el}`),
 							}))
 						}
 						onChange={(e) => setSelectedDistrict(e.value)}
@@ -146,7 +152,7 @@ export default function HomeFilter() {
 					id="search-input"
 					name="search-input"
 					className="search-input"
-					placeholder="채용공고를 검색해보세요!"
+					placeholder={t('jobTable:searchPlaceHolder')}
 					onChange={(event) => {
 						setKeyword(event.target.value);
 					}}
@@ -167,7 +173,9 @@ export default function HomeFilter() {
 					}
 				>
 					<ButtonChildrenWrapper>
-						<ButtonTextWrapper>검색</ButtonTextWrapper>
+						<ButtonTextWrapper>
+							{t('jobTable:searchBtnLabel')}
+						</ButtonTextWrapper>
 						<IconWrapper>
 							<BsSearch
 								style={{ verticalAlign: 'top' }}

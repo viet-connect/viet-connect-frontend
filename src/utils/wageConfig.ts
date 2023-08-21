@@ -10,23 +10,23 @@ const wageTermFunction = (
 		boxFontColor: '#c41d7f',
 		boxColor: '#fff0f6',
 		borderColor: '#ffadd2',
-		value: '월급',
+		value: 'salary',
 	};
 	if (termIndex === 1) {
 		cssObject.boxFontColor = '#d48806';
 		cssObject.boxColor = '#fffbe6';
 		cssObject.borderColor = '#ffe58f';
-		cssObject.value = '주급';
+		cssObject.value = 'weeklyWage';
 	} else if (termIndex === 2) {
 		cssObject.boxFontColor = '#0958d9';
 		cssObject.boxColor = '#e6f4ff';
 		cssObject.borderColor = '#91caff';
-		cssObject.value = '일급';
+		cssObject.value = 'dailyWage';
 	} else if (termIndex === 3) {
 		cssObject.boxFontColor = '#531dab';
 		cssObject.boxColor = '#f9f0ff';
 		cssObject.borderColor = '#d3adf7';
-		cssObject.value = '시급';
+		cssObject.value = 'hourlyWage';
 	}
 
 	return cssObject;

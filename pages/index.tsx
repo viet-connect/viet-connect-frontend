@@ -3,6 +3,7 @@ import Layout from '../src/components/common/Layout';
 import HomeFilter from '../src/components/home/filter';
 import JobList from '../src/components/home/job_list';
 import { Posting } from '../src/models/posting';
+import '../src/i18n';
 
 export default function Home({ data }) {
 	return (
