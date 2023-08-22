@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import CommonUtils from '../../../../utils/commonUtils';
 
 export default function MainContent({ data }) {
+	const { t } = useTranslation();
 	const {
 		gender,
 		proficiency,
@@ -25,7 +27,7 @@ export default function MainContent({ data }) {
 	return (
 		<Container>
 			<InfoWrapper style={{ marginBottom: 20 }}>
-				<Title>모집조건</Title>
+				<Title>{t('detail:recruitCondition')}</Title>
 				<FirstContentWrapper>
 					{/* <HeadCount>모집인원: 2명</HeadCount> */}
 					<Gender>모집성별: {CommonUtils.genderConverter(gender)}</Gender>
@@ -35,19 +37,19 @@ export default function MainContent({ data }) {
 				</FirstContentWrapper>
 			</InfoWrapper>
 			<InfoWrapper style={{ marginBottom: 20 }}>
-				<Title>근무조건</Title>
+				<Title>{t('detail:workingCondition')}</Title>
 				<SecondContentWrapper>
 					<WorkingDay>
-						근무요일: 주 {workDayArr.length}일 - {workDayString}
+						{t('detail:workingDay')}: 주 {workDayArr.length}일 - {workDayString}
 					</WorkingDay>
 					<WorkingHour>
-						근무시간: {startingTime} ~ {endingTime}
+						{t('detail:workingHour')}: {startingTime} ~ {endingTime}
 						{isTimeNegotiable && '(협의 가능)'}
 					</WorkingHour>
 				</SecondContentWrapper>
 			</InfoWrapper>
 			<InfoWrapper>
-				<Title>상세정보</Title>
+				<Title>{t('detail:workInformation')}</Title>
 				<DescriptionWrapper disabled>{contents}</DescriptionWrapper>
 			</InfoWrapper>
 		</Container>
