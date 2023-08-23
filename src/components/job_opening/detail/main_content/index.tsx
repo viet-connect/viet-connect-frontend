@@ -20,9 +20,7 @@ export default function MainContent({ data }) {
 	const convertedWorkDays = workDayArr.map((el) =>
 		CommonUtils.DayConverter(el),
 	);
-	const workDayString = !isDayNegotiable
-		? convertedWorkDays.join(', ')
-		: convertedWorkDays.join(', ').concat(' (협의 가능)');
+	const workDayString = convertedWorkDays.join(', ');
 
 	return (
 		<Container>
@@ -43,17 +41,28 @@ export default function MainContent({ data }) {
 				<Title>{t('detail:workingCondition')}</Title>
 				<SecondContentWrapper>
 					<WorkingDay>
-						{t('detail:workingDay')}: 주 {workDayArr.length}일 - {workDayString}
+						<div>{t('detail:workingDay')} :</div>
+						<div style={{ marginLeft: 5 }}>
+							<div>
+								주 {workDayArr.length}일 - {workDayString}
+							</div>
+							<div>{isTimeNegotiable && '(협의 가능)'}</div>
+						</div>
 					</WorkingDay>
 					<WorkingHour>
-						{t('detail:workingHour')}: {startingTime} ~ {endingTime}
-						{isTimeNegotiable && '(협의 가능)'}
+						<div>{t('detail:workingHour')} :</div>
+						<div style={{ marginLeft: 5 }}>
+							<div>
+								{startingTime} ~ {endingTime}
+							</div>
+							<div>{isTimeNegotiable && '(협의 가능)'}</div>
+						</div>
 					</WorkingHour>
 				</SecondContentWrapper>
 			</InfoWrapper>
 			<InfoWrapper>
 				<Title>{t('detail:workInformation')}</Title>
-				<DescriptionWrapper disabled>{contents}</DescriptionWrapper>
+				<DescriptionWrapper disabled defaultValue={contents} />
 			</InfoWrapper>
 		</Container>
 	);
@@ -84,10 +93,13 @@ const Gender = styled.div`
 const Proficiency = styled.div``;
 
 const WorkingDay = styled.div`
+	display: flex;
 	margin-bottom: 10px;
 `;
 
-const WorkingHour = styled.div``;
+const WorkingHour = styled.div`
+	display: flex;
+`;
 const DescriptionWrapper = styled.textarea`
 	border: 1px solid black;
 	width: 100%;

@@ -33,75 +33,6 @@ export default Object.freeze({
 			'강동구',
 		],
 	},
-	BUSAN: {
-		province: ['부산', 'BUSAN'],
-		BUSAN: [
-			'중구',
-			'서구',
-			'동구',
-			'영도구',
-			'부산진구',
-			'동래구',
-			'남구',
-			'북구',
-			'해운대구',
-			'사하구',
-			'금정구',
-			'강서구',
-			'연제구',
-			'수영구',
-			'사상구',
-			'기장군',
-		],
-	},
-	DAEGU: {
-		province: ['대구', 'DAEGU'],
-		DAEGU: [
-			'중구',
-			'동구',
-			'서구',
-			'남구',
-			'북구',
-			'수성구',
-			'달서구',
-			'달성군',
-		],
-	},
-	INCHEON: {
-		province: ['인천', 'INCHEON'],
-		INCHEON: [
-			'중구',
-			'동구',
-			'미추홀구',
-			'연수구',
-			'남동구',
-			'부평구',
-			'계양구',
-			'서구',
-			'강화군',
-			'옹진군',
-		],
-	},
-	GWANGJU: {
-		province: ['광주', 'GWANGJU'],
-		GWANGJU: ['동구', '서구', '남구', '북구', '광산구'],
-	},
-	DAEJEON: {
-		province: ['대전', 'DAEJEON'],
-		DAEJEON: ['동구', '중구', '서구', '유성구', '대덕구'],
-	},
-	ULSAN: {
-		province: ['울산', 'ULSAN'],
-		ULSAN: ['중구', '남구', '동구', '북구', '울주군'],
-	},
-	SEJONG: {
-		province: ['세종', 'SEJONG'],
-		SEJONG: ['세종시'],
-	},
-	JEJU: {
-		province: ['제주', 'JEJU'],
-		JEJU: ['제주시', '서귀포시'],
-	},
 	GYEONGGI: {
 		province: ['경기', 'GYEONGGI'],
 		GYEONGGI: [
@@ -154,6 +85,77 @@ export default Object.freeze({
 			'양평군',
 		],
 	},
+	INCHEON: {
+		province: ['인천', 'INCHEON'],
+		INCHEON: [
+			'중구',
+			'동구',
+			'미추홀구',
+			'연수구',
+			'남동구',
+			'부평구',
+			'계양구',
+			'서구',
+			'강화군',
+			'옹진군',
+		],
+	},
+	BUSAN: {
+		province: ['부산', 'BUSAN'],
+		BUSAN: [
+			'중구',
+			'서구',
+			'동구',
+			'영도구',
+			'부산진구',
+			'동래구',
+			'남구',
+			'북구',
+			'해운대구',
+			'사하구',
+			'금정구',
+			'강서구',
+			'연제구',
+			'수영구',
+			'사상구',
+			'기장군',
+		],
+	},
+	DAEGU: {
+		province: ['대구', 'DAEGU'],
+		DAEGU: [
+			'중구',
+			'동구',
+			'서구',
+			'남구',
+			'북구',
+			'수성구',
+			'달서구',
+			'달성군',
+		],
+	},
+
+	GWANGJU: {
+		province: ['광주', 'GWANGJU'],
+		GWANGJU: ['동구', '서구', '남구', '북구', '광산구'],
+	},
+	DAEJEON: {
+		province: ['대전', 'DAEJEON'],
+		DAEJEON: ['동구', '중구', '서구', '유성구', '대덕구'],
+	},
+	ULSAN: {
+		province: ['울산', 'ULSAN'],
+		ULSAN: ['중구', '남구', '동구', '북구', '울주군'],
+	},
+	SEJONG: {
+		province: ['세종', 'SEJONG'],
+		SEJONG: ['세종시'],
+	},
+	JEJU: {
+		province: ['제주', 'JEJU'],
+		JEJU: ['제주시', '서귀포시'],
+	},
+
 	GANGWON: {
 		province: ['강원', 'GANGWON'],
 		GANGWON: [

@@ -7,6 +7,7 @@ import FooterBottom from '../../main/footer/footer_bottom/FooterBottom';
 import Meta from './meta';
 import Flag from '../../main/header_top/flag';
 import Content from './Content';
+import { Analytics } from '../Analytics/Analytics';
 
 interface IMainProps {
 	children: ReactNode;
@@ -25,6 +26,7 @@ export default function Layout({ children, pageIndex }: IMainProps) {
 					</Row>
 				</Header>
 				<Content pageIndex={pageIndex}>{children}</Content>
+				<Analytics />
 				<Footer>
 					<FooterTop />
 					<FooterBottom />
