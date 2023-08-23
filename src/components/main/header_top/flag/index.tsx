@@ -25,8 +25,4 @@ const Container = styled.div`
 `;
 const IconWrapper = styled.div`
 	cursor: pointer;
-	:hover {
-		webkit-filter: blur(0.7px); /* Chrome, Safari, Opera */
-		filter: blur(0.7px);
-	}
 `;

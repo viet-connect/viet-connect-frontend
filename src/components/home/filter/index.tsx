@@ -206,10 +206,6 @@ const ButtonChildrenWrapper = styled.div`
 	align-items: center;
 	justify-content: center;
 	gap: 5px;
-	:hover {
-		webkit-filter: blur(0.7px); /* Chrome, Safari, Opera */
-		filter: blur(0.7px);
-	}
 `;
 
 const IconWrapper = styled.div``;
