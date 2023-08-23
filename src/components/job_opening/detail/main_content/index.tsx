@@ -18,9 +18,7 @@ export default function MainContent({ data }) {
 	const convertedWorkDays = workDayArr.map((el) =>
 		CommonUtils.DayConverter(el),
 	);
-	const workDayString = !isDayNegotiable
-		? convertedWorkDays.join(', ')
-		: convertedWorkDays.join(', ').concat(' (협의 가능)');
+	const workDayString = convertedWorkDays.join(', ');
 
 	return (
 		<Container>
@@ -38,11 +36,22 @@ export default function MainContent({ data }) {
 				<Title>근무조건</Title>
 				<SecondContentWrapper>
 					<WorkingDay>
-						근무요일: 주 {workDayArr.length}일 - {workDayString}
+						<div>근무요일 :</div>
+						<div style={{ marginLeft: 5 }}>
+							<div>
+								주 {workDayArr.length}일 - {workDayString}
+							</div>
+							<div>{isTimeNegotiable && '(협의 가능)'}</div>
+						</div>
 					</WorkingDay>
 					<WorkingHour>
-						근무시간: {startingTime} ~ {endingTime}
-						{isTimeNegotiable && '(협의 가능)'}
+						<div>근무시간 :</div>
+						<div style={{ marginLeft: 5 }}>
+							<div>
+								{startingTime} ~ {endingTime}
+							</div>
+							<div>{isTimeNegotiable && '(협의 가능)'}</div>
+						</div>
 					</WorkingHour>
 				</SecondContentWrapper>
 			</InfoWrapper>
@@ -79,10 +88,13 @@ const Gender = styled.div`
 const Proficiency = styled.div``;
 
 const WorkingDay = styled.div`
+	display: flex;
 	margin-bottom: 10px;
 `;
 
-const WorkingHour = styled.div``;
+const WorkingHour = styled.div`
+	display: flex;
+`;
 const DescriptionWrapper = styled.textarea`
 	border: 1px solid black;
 	width: 100%;
