@@ -20,10 +20,9 @@
 		"**/*.ts",
 		"**/*.tsx",
 		"pages/index.tsx",
-		"pages/index.tsx",
 		"pages/_error.tsx",
-		"pages/_error.tsx",
-		"pages/_document.jsx"
+		"pages/_document.jsx",
+		"pages/_app.jsx"
 	],
 	"exclude": ["node_modules"]
 }

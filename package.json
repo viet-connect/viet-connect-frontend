@@ -20,7 +20,9 @@
 		"@types/react": "^18.0.20",
 		"@types/react-dom": "^18.0.11",
 		"@types/react-modal": "^3.13.1",
+		"@vercel/analytics": "^1.0.2",
 		"@vercel/og": "^0.5.11",
+		"@emotion/styled": "^11.11.0",
 		"axios": "^0.27.2",
 		"bcryptjs": "^2.4.3",
 		"dateformat": "^5.0.3",
@@ -51,10 +53,11 @@
 		"eslint": "^7.32.0",
 		"eslint-config-airbnb-base": "^15.0.0",
 		"eslint-config-next": "^12.1.6",
+		"eslint-import-resolver-typescript": "^3.6.0",
+		"eslint-plugin-import": "^2.28.1",
 		"prisma": "^4.13.0"
 	},
 	"peerDependencies": {
-		"@emotion/react": "^11.11.1",
-		"@emotion/styled": "^11.11.0"
+		"@emotion/react": "^11.11.1"
 	}
 }
