@@ -93,8 +93,8 @@ export default function JobOpeningPostingFourthPart({ data }) {
 							}
 							name="postContent"
 							rows={4}
-							placeholder="200자 이내로 입력해주세요"
-							maxLength={210}
+							placeholder="400자 이내로 입력해주세요"
+							maxLength={402}
 						/>
 					</TextAreaWrapper>
 				</PlaceHolderWrapper>
