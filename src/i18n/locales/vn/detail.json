@@ -6,5 +6,12 @@
 	"workInformation": "Thông tin chi tiết",
 	"companyInformation": "Thông tin công ty",
 	"companyName": "Tên công ty",
-	"managerContact": "Liên hệ người phụ trách"
+	"managerContact": "Liên hệ người phụ trách",
+	"recruitmentGender": "Yêu cầu giới tínhg",
+	"editBtnLabel": "Chỉnh sửa",
+	"deleteBtnLabel": "Xóa",
+	"doDeleteBtnLabel": "Xóa",
+	"doEditBtnLabel": "Chỉnh sửa",
+	"closeBtnLabel": "Đóng",
+	"passwordPlaceholder": "Vui lòng nhập mật khẩu"
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import styled, { css } from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { postingConstant } from '../../../../constant/constant';
 import { inputPostingState } from '../../../../recoil/atom/posting';
 import CommonUtils from '../../../../utils/commonUtils';
@@ -28,7 +29,7 @@ import {
 export default function JobOpeningPostingThirdPart({ data }) {
 	const { PostingThirdPartInfo } = postingConstant;
 	const [newJobPosting, setNewJobPosting] = useRecoilState(inputPostingState);
-
+	const { t } = useTranslation();
 	const handleInputChange = (e) => {
 		const inputValue =
 			e.target.name === 'wage_amount'
@@ -70,17 +71,15 @@ export default function JobOpeningPostingThirdPart({ data }) {
 		<Container>
 			<InputContainer>
 				<TitleWrapper>
-					<ItemTitle>급여</ItemTitle>
-					<ItemTitleDesc>
-						2023년 기준 최저임금은 시간급 기준 9,620원입니다
-					</ItemTitleDesc>
+					<ItemTitle>{t('posting:pay')}</ItemTitle>
+					<ItemTitleDesc>{t('posting:payDescription')}</ItemTitleDesc>
 				</TitleWrapper>
 				<WageInputWrapper>
 					<WageSelector name="wage_type" onChange={handleInputChange}>
-						<option value="monthly">월급</option>
-						<option value="weekly">주급</option>
-						<option value="daily">일급</option>
-						<option value="hourly">시급</option>
+						<option value="monthly">{t('jobTable:salary')}</option>
+						<option value="weekly">{t('jobTable:weeklyWage')}</option>
+						<option value="daily">{t('jobTable:dailyWage')}</option>
+						<option value="hourly">{t('jobTable:hourlyWage')}</option>
 					</WageSelector>
 					<PlaceHolderWrapper>
 						<PlaceHolder
@@ -101,7 +100,7 @@ export default function JobOpeningPostingThirdPart({ data }) {
 
 				return (
 					<SubTitleWrapper key={item}>
-						<ItemTitle>{itemTitle}</ItemTitle>
+						<ItemTitle>{t(`posting:${itemTitle}`)}</ItemTitle>
 						<BoxContainer>
 							{valArray.map((val: string, index: number) => {
 								if (index === valArray.length - 1) {
@@ -122,7 +121,7 @@ export default function JobOpeningPostingThirdPart({ data }) {
 										key={val}
 										onClick={() => handleClickUnitBox(item, index, outerIndex)}
 									>
-										{val}
+										{t(`posting:${val}`)}
 									</UnitBox>
 								);
 							})}
@@ -136,10 +135,12 @@ export default function JobOpeningPostingThirdPart({ data }) {
 					setNewJobPosting({ ...newJobPosting, is_day_negotiable: e })
 				}
 			>
-				<div style={{ paddingLeft: 10 }}>근무요일 협의가능</div>
+				<div style={{ paddingLeft: 10 }}>
+					{t('posting:workingdayNegotiable')}
+				</div>
 			</Checkbox>
 			<InputContainer>
-				<ItemTitle>근무시간</ItemTitle>
+				<ItemTitle>{t('posting:workingHours')}</ItemTitle>
 				<TimeRangePicker />
 			</InputContainer>
 			<Checkbox
@@ -148,7 +149,9 @@ export default function JobOpeningPostingThirdPart({ data }) {
 					setNewJobPosting({ ...newJobPosting, is_time_negotiable: e })
 				}
 			>
-				<div style={{ paddingLeft: 10 }}>근무시간 협의가능</div>
+				<div style={{ paddingLeft: 10 }}>
+					{t('posting:workingHoursNegotiable')}
+				</div>
 			</Checkbox>
 		</Container>
 	);

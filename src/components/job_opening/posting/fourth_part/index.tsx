@@ -3,6 +3,7 @@ import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { FcHighPriority } from 'react-icons/fc';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
 import { Posting, IPosting } from '../../../../models/posting';
 import { inputPostingState } from '../../../../recoil/atom/posting';
 import CommonButton from '../../../common/Button';
@@ -27,6 +28,7 @@ export default function JobOpeningPostingFourthPart({ data }) {
 	const [error, setError] = useState({});
 	const router = useRouter();
 	const [isRequesting, setIsRequesting] = useState(false);
+	const { t } = useTranslation();
 
 	const toggleModal = async (e) => {
 		if (isRequesting) return;
@@ -77,7 +79,7 @@ export default function JobOpeningPostingFourthPart({ data }) {
 	return (
 		<Container>
 			<SubTitleWrapper>
-				<ItemTitle>상세정보</ItemTitle>
+				<ItemTitle>{t('posting:moreInformation')}</ItemTitle>
 				<PlaceHolderWrapper>
 					<TextAreaWrapper>
 						<textarea
@@ -90,14 +92,16 @@ export default function JobOpeningPostingFourthPart({ data }) {
 							}
 							name="postContent"
 							rows={4}
-							placeholder="200자 이내로 입력해주세요"
+							placeholder={t('posting:moreInformationPlaceholder')}
 							maxLength={210}
 						/>
 					</TextAreaWrapper>
 				</PlaceHolderWrapper>
 			</SubTitleWrapper>
 			<ButtonWrapper>
-				<ItemTitle style={{ width: 120, paddingBottom: 0 }}>근무장소</ItemTitle>
+				<ItemTitle style={{ width: 120, paddingBottom: 0 }}>
+					{t('posting:placeOfWork')}
+				</ItemTitle>
 				{/* <CommonButton
 					wrapperStyle={{
 						// width: 355,
@@ -115,13 +119,13 @@ export default function JobOpeningPostingFourthPart({ data }) {
 				>
 					<PlaceHolder
 						defaultValue={newJobPosting.address.main}
-						placeholder="클릭해서 주소 찾아주세요"
+						placeholder={t('posting:placeOfWorkPlaceholder')}
 						onClick={() => setShowModal(true)}
 						readOnly={true}
 					/>
 				</PlaceHolderWrapper>
 				<DetailedAddressWrapper>
-					<AddressLabel>상세주소</AddressLabel>
+					<AddressLabel>{t('posting:detailedAddress')}</AddressLabel>
 					<PlaceHolder
 						style={{ height: 30 }}
 						defaultValue={newJobPosting.address.sub}
@@ -156,7 +160,9 @@ export default function JobOpeningPostingFourthPart({ data }) {
 				</RegisterInputContainer>
 			)} */}
 			<RegisterInputContainer>
-				<RegisterInputItemWrapper>비밀번호</RegisterInputItemWrapper>
+				<RegisterInputItemWrapper>
+					{t('posting:password')}
+				</RegisterInputItemWrapper>
 				<PlaceHolder
 					type="password"
 					style={{ height: 30 }}
@@ -168,7 +174,7 @@ export default function JobOpeningPostingFourthPart({ data }) {
 						});
 					}}
 					name="password"
-					placeholder="비밀번호 길이는 8~12자로 설정해주세요"
+					placeholder={t('posting:passwordPlaceholder')}
 					autoComplete="off"
 					required
 				/>
@@ -185,7 +191,7 @@ export default function JobOpeningPostingFourthPart({ data }) {
 					loading={isRequesting}
 					onClick={toggleModal}
 				>
-					{data ? '수정하기' : '등록하기'}
+					{data ? t('posting:editBtnLabel') : t('posting:registrationBtnLabel')}
 				</CommonButton>
 			</RegisterButtonWrapper>
 			<Modal
@@ -196,7 +202,7 @@ export default function JobOpeningPostingFourthPart({ data }) {
 			>
 				<Postcode onComplete={() => setShowModal(false)} />
 				<ClosingModalButton onClick={() => setShowModal(false)}>
-					닫기
+					{t('posting:closeBtnLabel')}
 				</ClosingModalButton>
 			</Modal>
 			<Modal

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
+import { useTranslation } from 'react-i18next';
 import Layout from '../../../src/components/common/Layout';
 import JobOpeningPostingFirstPart from '../../../src/components/job_opening/posting/first_part';
 import JobOpeningPostingThirdPart from '../../../src/components/job_opening/posting/third_part';
@@ -13,6 +14,7 @@ import { inputPostingState } from '../../../src/recoil/atom/posting';
 	Fourth: 상세정보, 근무장소
 */
 export default function JobOpeningPosting({ data }) {
+	const { t } = useTranslation();
 	const [newJobPosting, setNewJobPosting] = useRecoilState(inputPostingState);
 	useEffect(() => {
 		if (data) {
@@ -70,7 +72,7 @@ export default function JobOpeningPosting({ data }) {
 	return (
 		<Layout pageIndex={1}>
 			<Container>
-				<Title>채용공고 등록</Title>
+				<Title>{t('posting:jobOpening')}</Title>
 				<JobOpeningPostingFirstPart data={data} />
 				{/* <JobOpeningPostingSecondPart /> */}
 				<JobOpeningPostingThirdPart data={data} />

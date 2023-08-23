@@ -30,7 +30,10 @@ export default function MainContent({ data }) {
 				<Title>{t('detail:recruitCondition')}</Title>
 				<FirstContentWrapper>
 					{/* <HeadCount>모집인원: 2명</HeadCount> */}
-					<Gender>모집성별: {CommonUtils.genderConverter(gender)}</Gender>
+					<Gender>
+						{t('detail:recruitmentGender')}:{' '}
+						{CommonUtils.genderConverter(gender)}
+					</Gender>
 					<Proficiency>
 						한국어 구사력: {CommonUtils.proficiencyConverter(proficiency)}
 					</Proficiency>

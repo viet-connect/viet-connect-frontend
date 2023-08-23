@@ -2,6 +2,7 @@ import React from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import _ from 'lodash';
+import { useTranslation } from 'react-i18next';
 import { postingConstant } from '../../../../constant/constant';
 import { inputPostingState } from '../../../../recoil/atom/posting';
 import CommonUtils from '../../../../utils/commonUtils';
@@ -13,6 +14,7 @@ import CommonUtils from '../../../../utils/commonUtils';
 */
 
 export default function JobOpeningPostingFirstPart({ data }) {
+	const { t } = useTranslation();
 	const { PostingFirstPartInfo } = postingConstant;
 	const [newJobPosting, setNewJobPosting] = useRecoilState(inputPostingState);
 
@@ -20,11 +22,11 @@ export default function JobOpeningPostingFirstPart({ data }) {
 		<Container>
 			{PostingFirstPartInfo.map((el) => (
 				<SubTitleWrapper key={el[0]}>
-					<ItemTitle>{el[0]}</ItemTitle>
+					<ItemTitle>{t(`posting:${el[0]}`)}</ItemTitle>
 					<PlaceHolderWrapper>
 						<PlaceHolder
 							type="text"
-							placeholder={el[1]}
+							placeholder={t(`posting:${el[1]}`)}
 							name={el[2]}
 							defaultValue={newJobPosting[el[2]]}
 							onChange={(e) => {

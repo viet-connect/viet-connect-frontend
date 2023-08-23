@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 // import mockImage from '../../../src/public/assets/apple.jpeg';
+import { useTranslation } from 'react-i18next';
 import CommonButton from '../../../src/components/common/Button';
 import Layout from '../../../src/components/common/Layout';
 import ContentHeader from '../../../src/components/job_opening/detail/content_header';
@@ -34,6 +35,7 @@ export default function JobOpeningDetail({ data }) {
 	});
 
 	const passwordRef = useRef(null);
+	const { t } = useTranslation();
 
 	// onClickRedirectDetail(data.id)
 	const onClickRedirectDetail = async (id: string) => {
@@ -95,7 +97,7 @@ export default function JobOpeningDetail({ data }) {
 							setAction({ ...action, put: true });
 						}}
 					>
-						수정
+						{t('detail:editBtnLabel')}
 					</CommonButton>
 					<CommonButton
 						wrapperStyle={{
@@ -111,7 +113,7 @@ export default function JobOpeningDetail({ data }) {
 							setAction({ ...action, delete: true });
 						}}
 					>
-						삭제
+						{t('detail:deleteBtnLabel')}
 					</CommonButton>
 				</ButtonWrapper>
 				<Modal
@@ -122,7 +124,9 @@ export default function JobOpeningDetail({ data }) {
 				>
 					<ModalContentContainer>
 						<RegisterInputContainer>
-							<RegisterInputItemWrapper>비밀번호</RegisterInputItemWrapper>
+							<RegisterInputItemWrapper>
+								{t('posting:password')}
+							</RegisterInputItemWrapper>
 							<PlaceHolder
 								type="password"
 								style={{ height: 30 }}
@@ -134,17 +138,19 @@ export default function JobOpeningDetail({ data }) {
 									});
 								}}
 								name="password"
-								placeholder="비밀번호를 입력해주세요"
+								placeholder={t('detail:passwordPlaceholder')}
 								autoComplete="off"
 								ref={passwordRef}
 								required
 							/>
 						</RegisterInputContainer>
 						<ClosingModalButton onClick={() => onClickRedirectDetail(data.id)}>
-							{action.put ? '수정하기' : '삭제하기'}
+							{action.put
+								? t('detail:doEditBtnLabel')
+								: t('detail:doDeleteBtnLabel')}
 						</ClosingModalButton>
 						<ClosingModalButton onClick={() => setShowModal(false)}>
-							닫기
+							{t('detail:closeBtnLabel')}
 						</ClosingModalButton>
 					</ModalContentContainer>
 				</Modal>

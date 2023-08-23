@@ -18,13 +18,9 @@ const category = Object.freeze({
 
 const postingConstant = Object.freeze({
 	PostingFirstPartInfo: [
-		['공고제목', '공고제목을 입력해주세요', 'title'],
-		['업체명', '업체명을 입력해주세요', 'contact_name'],
-		[
-			'연락처',
-			'연락 가능한 번호를 입력해주세요. ex) 010-1234-5678',
-			'contact_number',
-		],
+		['noticeTitle', 'noticePlaceholder', 'title'],
+		['companyName', 'companyNamePlaceholder', 'contact_name'],
+		['contact', 'contactPlaceholder', 'contact_number'],
 	],
 	// PostingSecondPartInfo: [
 	// 	['공장', '식당'],
@@ -33,9 +29,24 @@ const postingConstant = Object.freeze({
 	// 	['기타 서비스업', '직접 입력'],
 	// ],
 	PostingThirdPartInfo: {
-		gender: ['성별 무관', '남자', '여자', '모집성별'],
-		proficiency: ['잘함', '보통', '기초', '무관', '한국어 구사력'],
-		working_day: ['월', '화', '수', '목', '금', '토', '일', '선호 근무요일'],
+		gender: ['regardlessOfGender', 'male', 'female', 'recruitmentGender'],
+		proficiency: [
+			'koLangExcellence',
+			'koLangAverage',
+			'koLangBasic',
+			'koLangirrelevance',
+			'koLangSkill',
+		],
+		working_day: [
+			'monday',
+			'tuesday',
+			'wednesday',
+			'thursday',
+			'friday',
+			'saturday',
+			'sunday',
+			'preferredWorkday',
+		],
 	},
 });
 
