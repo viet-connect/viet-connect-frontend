@@ -102,7 +102,7 @@ export default function JobOpeningPostingFourthPart({ data }) {
 				</PlaceHolderWrapper>
 			</SubTitleWrapper>
 			<ButtonWrapper>
-				<ItemTitle style={{ width: 120, paddingBottom: 0 }}>
+				<ItemTitle style={{ width: 140, paddingBottom: 0 }}>
 					{t('posting:placeOfWork')}
 				</ItemTitle>
 				{/* <CommonButton
