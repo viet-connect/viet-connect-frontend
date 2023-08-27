@@ -3,7 +3,7 @@ import Select from 'react-select';
 import { BsSearch } from 'react-icons/bs';
 import { useEffect, useId, useState } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import CommonButton from '../../common/Button';
 import region from '../../../constant/region';
 import {

@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+const { i18n } = require('./next-i18next.config');
 
 const nextConfig = {
 	env: {
@@ -20,6 +21,7 @@ const nextConfig = {
 		return config;
 	},
 	pageExtensions: ['mdx', 'md', 'jsx', 'js', 'tsx', 'ts'],
+	i18n,
 };
 
 module.exports = nextConfig;

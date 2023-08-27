@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Layout from '../../../src/components/common/Layout';
 import JobOpeningPostingFirstPart from '../../../src/components/job_opening/posting/first_part';
 import JobOpeningPostingThirdPart from '../../../src/components/job_opening/posting/third_part';
 import JobOpeningPostingFourthPart from '../../../src/components/job_opening/posting/fourth_part';
 import { Posting } from '../../../src/models/posting';
 import { inputPostingState } from '../../../src/recoil/atom/posting';
+
 /*
 	First: 공고제목, 업체명, 연락처
 	Third: 급여, 성별, 한국어능숙도, 날짜, 시간
@@ -98,6 +100,14 @@ export async function getServerSideProps(context) {
 		return {
 			props: {
 				data: null,
+				...(await serverSideTranslations(context.locale, [
+					'common',
+					'detail',
+					'jobTable',
+					'navigation',
+					'opening',
+					'posting',
+				])),
 			},
 		};
 	}

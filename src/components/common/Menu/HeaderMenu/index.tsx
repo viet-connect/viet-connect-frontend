@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import items from '../../../../constant/path';
 
 export default function Menu({ pageIndex }: HeaderMenuProps) {

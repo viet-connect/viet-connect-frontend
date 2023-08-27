@@ -66,50 +66,50 @@ class CommonUtils {
 
 	static genderConverter(num: number): string {
 		if (num === 0) {
-			return '성별 무관';
+			return 'regardlessOfGender';
 		}
 		if (num === 1) {
-			return '남자';
+			return 'male';
 		}
 
-		return '여자';
+		return 'female';
 	}
 
 	static proficiencyConverter(num: number): string {
 		if (num === 0) {
-			return '잘함';
+			return 'koLangExcellence';
 		}
 		if (num === 1) {
-			return '보통';
+			return 'koLangAverage';
 		}
 		if (num === 2) {
-			return '기초';
+			return 'koLangBasic';
 		}
 
-		return '무관';
+		return 'koLangirrelevance';
 	}
 
 	static DayConverter(num: number): string {
 		if (num === 0) {
-			return '월';
+			return 'monday';
 		}
 		if (num === 1) {
-			return '화';
+			return 'tuesday';
 		}
 		if (num === 2) {
-			return '수';
+			return 'wednesday';
 		}
 		if (num === 3) {
-			return '목';
+			return 'thursday';
 		}
 		if (num === 4) {
-			return '금';
+			return 'friday';
 		}
 		if (num === 5) {
-			return '토';
+			return 'saturday';
 		}
 
-		return '일';
+		return 'sunday';
 	}
 }
 

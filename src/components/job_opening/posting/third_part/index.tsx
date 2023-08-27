@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import styled, { css } from 'styled-components';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { postingConstant } from '../../../../constant/constant';
 import { inputPostingState } from '../../../../recoil/atom/posting';
 import CommonUtils from '../../../../utils/commonUtils';

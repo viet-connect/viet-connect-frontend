@@ -4,6 +4,7 @@ import '../src/config/recoil';
 import '../src/styles/globals.css';
 import '../src/styles/vars.css';
 import { RecoilRoot } from 'recoil';
+import { appWithTranslation } from 'next-i18next';
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
 	return (
@@ -13,4 +14,4 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
 	);
 }
 
-export default MyApp;
+export default appWithTranslation(MyApp);

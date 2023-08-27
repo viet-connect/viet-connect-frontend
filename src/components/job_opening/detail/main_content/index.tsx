@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import CommonUtils from '../../../../utils/commonUtils';
 
 export default function MainContent({ data }) {
 	const { t } = useTranslation();
 	const {
-		gender,
-		proficiency,
+		gender: _gender,
+		proficiency: _proficiency,
 		workingDay,
 		isDayNegotiable,
 		isTimeNegotiable,
@@ -17,11 +17,13 @@ export default function MainContent({ data }) {
 	} = data;
 
 	const workDayArr = JSON.parse(workingDay);
-	const convertedWorkDays = workDayArr.map((el) =>
-		CommonUtils.DayConverter(el),
-	);
+	const convertedWorkDays = workDayArr.map((el) => {
+		const workDay = CommonUtils.DayConverter(el);
+		return t(`posting:${workDay}`);
+	});
 	const workDayString = convertedWorkDays.join(', ');
-
+	const gender = CommonUtils.genderConverter(_gender);
+	const proficiency = CommonUtils.proficiencyConverter(_proficiency);
 	return (
 		<Container>
 			<InfoWrapper style={{ marginBottom: 20 }}>
@@ -29,11 +31,10 @@ export default function MainContent({ data }) {
 				<FirstContentWrapper>
 					{/* <HeadCount>모집인원: 2명</HeadCount> */}
 					<Gender>
-						{t('detail:recruitmentGender')}:{' '}
-						{CommonUtils.genderConverter(gender)}
+						{t('detail:recruitmentGender')}: {t(`posting:${gender}`)}
 					</Gender>
 					<Proficiency>
-						한국어 구사력: {CommonUtils.proficiencyConverter(proficiency)}
+						{t('posting:koLangSkill')}: {t(`posting:${proficiency}`)}
 					</Proficiency>
 				</FirstContentWrapper>
 			</InfoWrapper>

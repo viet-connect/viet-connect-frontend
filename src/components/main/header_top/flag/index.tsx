@@ -1,25 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
-import i18n from 'i18next';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import SvgIcon from '../../../common/Icon';
 
 export default function Flag() {
-	const onChangeLang = (locale) => {
-		i18n.changeLanguage(locale);
-	};
+	const router = useRouter();
 	return (
 		<Container>
-			<IconWrapper onClick={() => onChangeLang('vn')}>
+			<Link href={router.asPath} locale="vn">
 				<SvgIcon
 					style={{ marginRight: 5 }}
 					name="vietnamFlag"
 					width={29}
 					height={19}
 				/>
-			</IconWrapper>
-			<IconWrapper onClick={() => onChangeLang('ko')}>
+			</Link>
+			<Link href={router.asPath} locale="ko">
 				<SvgIcon name="koreanFlag" width={29} height={19} />
-			</IconWrapper>
+			</Link>
 		</Container>
 	);
 }

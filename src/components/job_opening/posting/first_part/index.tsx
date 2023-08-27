@@ -2,7 +2,7 @@ import React from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import _ from 'lodash';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { postingConstant } from '../../../../constant/constant';
 import { inputPostingState } from '../../../../recoil/atom/posting';
 import CommonUtils from '../../../../utils/commonUtils';

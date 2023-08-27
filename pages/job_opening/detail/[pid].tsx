@@ -5,7 +5,8 @@ import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 // import mockImage from '../../../src/public/assets/apple.jpeg';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import CommonButton from '../../../src/components/common/Button';
 import Layout from '../../../src/components/common/Layout';
 import ContentHeader from '../../../src/components/job_opening/detail/content_header';
@@ -181,6 +182,14 @@ export async function getServerSideProps(context) {
 	return {
 		props: {
 			data,
+			...(await serverSideTranslations(context.locale, [
+				'common',
+				'detail',
+				'jobTable',
+				'navigation',
+				'opening',
+				'posting',
+			])),
 		},
 	};
 }
