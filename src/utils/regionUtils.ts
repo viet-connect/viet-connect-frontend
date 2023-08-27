@@ -1,9 +1,11 @@
 export const regionListSelector = (regionArray, tableContent, keyword) => {
 	const comparableData = [];
 	const selectedRegion = regionArray[0].concat(` ${regionArray[1]}`);
+	// '-- 전체 지역 --'
+	const ALL_INCLUDED = 'defaultProvince';
 
-	if (regionArray[1] === '-- 전체 지역 --') {
-		if (regionArray[0] === '-- 전체 지역 --') {
+	if (regionArray[1] === ALL_INCLUDED) {
+		if (regionArray[0] === ALL_INCLUDED) {
 			return keyword.length > 0
 				? tableContent.filter(
 						(el) => el.title.includes(keyword) || el.contents.includes(keyword),
