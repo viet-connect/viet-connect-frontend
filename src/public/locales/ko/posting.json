@@ -29,7 +29,7 @@
 	"workingHours": "근무시간",
 	"workingHoursNegotiable": "근무시간 협의가능",
 	"moreInformation": "상세정보",
-	"moreInformationPlaceholder": "200자 이내로 입력해주세요",
+	"moreInformationPlaceholder": "400자 이내로 업무내용 상세, 업체 정보, 추가 필요조건, 우대사항, 복리후생(예: 기숙사) 등을 기입해주세요",
 	"placeOfWork": "근무장소",
 	"placeOfWorkPlaceholder": "클릭해서 주소 찾아주세요",
 	"detailedAddress": "상세주소",
