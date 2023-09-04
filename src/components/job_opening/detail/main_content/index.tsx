@@ -62,7 +62,7 @@ export default function MainContent({ data }) {
 							<div>
 								{startingTime} ~ {endingTime}
 							</div>
-							<div>{isTimeNegotiable && '(협의 가능)'}</div>
+							<div>{isTimeNegotiable && `(${t('detail:negotiable')})`}</div>
 						</div>
 					</WorkingHour>
 				</SecondContentWrapper>
