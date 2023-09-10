@@ -69,7 +69,7 @@ export const PlaceHolderWrapper = styled.div`
 `;
 
 interface IPlaceHolderProps {
-	placeholder: string;
+	placeholder?: string;
 }
 
 export const PlaceHolder = styled.input.attrs<IPlaceHolderProps>(

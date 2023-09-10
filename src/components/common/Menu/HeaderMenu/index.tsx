@@ -13,11 +13,12 @@ export default function Menu({ pageIndex }: HeaderMenuProps) {
 
 		router.push(key);
 	};
+
 	return (
 		<Container>
 			{items.map((item: MenuItemProps, index: number) => (
 				<MenuItem key={item.key} onClick={() => onClick(index, item.key)}>
-					<MenuItemContent index={index} clickedItem={isClicked}>
+					<MenuItemContent $index={index} $clickedItem={isClicked}>
 						{t(`navigation:${item.label}`)}
 					</MenuItemContent>
 				</MenuItem>
@@ -36,8 +37,8 @@ interface MenuItemProps {
 }
 
 interface MenuItemContentProps {
-	clickedItem: number;
-	index: number;
+	$clickedItem: number;
+	$index: number;
 }
 
 interface MenuProps {
@@ -60,9 +61,9 @@ const MenuItem = styled.li`
 `;
 
 const MenuItemContent = styled.div<MenuItemContentProps>`
-	color: ${({ clickedItem, index }) =>
-		clickedItem === index ? '#DB1A1A;' : '#BEBEBE'};
+	color: ${({ $clickedItem, $index }) =>
+		$clickedItem === $index ? '#DB1A1A;' : '#BEBEBE'};
 	font-weight: bold;
-	border-bottom: ${({ clickedItem, index }) =>
-		clickedItem === index ? ' 2px solid #DB1A1A;' : 0};
+	border-bottom: ${({ $clickedItem, $index }) =>
+		$clickedItem === $index ? ' 2px solid #DB1A1A;' : 0};
 `;

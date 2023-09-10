@@ -8,9 +8,9 @@ interface IWageBox {
 }
 
 interface IContrainerProps {
-	boxColor: string;
-	boxFontColor: string;
-	borderColor: string;
+	$boxColor: string;
+	$boxFontColor: string;
+	$borderColor: string;
 }
 
 export default function WageBox({ termIndex }: IWageBox) {
@@ -19,9 +19,9 @@ export default function WageBox({ termIndex }: IWageBox) {
 	const { t } = useTranslation();
 	return (
 		<Container
-			boxColor={boxColor}
-			boxFontColor={boxFontColor}
-			borderColor={borderColor}
+			$boxColor={boxColor}
+			$boxFontColor={boxFontColor}
+			$borderColor={borderColor}
 		>
 			{t(`jobTable:${value}`)}
 		</Container>
@@ -33,9 +33,9 @@ const Container = styled.div<IContrainerProps>`
 	justify-content: center;
 	align-items: center;
 	padding: 2px 4px;
-	background: ${(props) => props.boxColor};
-	border: 1px solid ${(props) => props.borderColor};
+	background: ${({ $boxColor }) => $boxColor};
+	border: 1px solid ${({ $borderColor }) => $borderColor};
 	border-radius: 4px;
-	color: ${(props) => props.boxFontColor};
+	color: ${({ $boxFontColor }) => $boxFontColor};
 	font-size: 12px;
 `;
