@@ -205,6 +205,7 @@ export class Posting {
 		} = content;
 
 		const contentArr: any = Object.entries(content);
+
 		for (let i = 0; i < contentArr.length; i += 1) {
 			if (contentArr[i][0] === 'password' || contentArr[i][0] === 'contents') {
 				// eslint-disable-next-line no-continue
@@ -247,7 +248,8 @@ export class Posting {
 		}
 
 		if (working_day.length === 0) error.working_day = '근무일을 선택해주세요';
-		if (full.length === 0) error.address = '주소를 입력해주세요';
+		/* 현재는 full을 통해 검증하였으나, 추후 main으로 검증가능 */
+		if (full.trim().length === 0) error.address = '주소를 입력해주세요';
 		if (gender === null) error.gender = '성별을 선택해주세요';
 
 		const errVal = Object.values(error);
