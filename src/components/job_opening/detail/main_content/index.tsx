@@ -24,6 +24,7 @@ export default function MainContent({ data }) {
 	const workDayString = convertedWorkDays.join(', ');
 	const gender = CommonUtils.genderConverter(_gender);
 	const proficiency = CommonUtils.proficiencyConverter(_proficiency);
+
 	return (
 		<Container>
 			<InfoWrapper style={{ marginBottom: 20 }}>
@@ -45,9 +46,14 @@ export default function MainContent({ data }) {
 						<div>{t('detail:workingDay')} :</div>
 						<div style={{ marginLeft: 5 }}>
 							<div>
-								주 {workDayArr.length}일 - {workDayString}
+								<div>
+									{`${t('detail:workingDayPrefix')} ${workDayArr.length}${t(
+										'detail:workingDaySuffix',
+									)}`}
+								</div>
+								<div>{workDayString}</div>
 							</div>
-							<div>{isTimeNegotiable && '(협의 가능)'}</div>
+							<div>{isTimeNegotiable && `(${t('detail:negotiable')})`}</div>
 						</div>
 					</WorkingDay>
 					<WorkingHour>
@@ -56,7 +62,7 @@ export default function MainContent({ data }) {
 							<div>
 								{startingTime} ~ {endingTime}
 							</div>
-							<div>{isTimeNegotiable && '(협의 가능)'}</div>
+							<div>{isTimeNegotiable && `(${t('detail:negotiable')})`}</div>
 						</div>
 					</WorkingHour>
 				</SecondContentWrapper>

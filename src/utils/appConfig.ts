@@ -7,7 +7,8 @@ const AppConfig = {
 		type: 'website',
 		locale: 'ko_KR',
 		url: 'https://vietconnect.co.kr/',
-		title: '외국인 알바 찾을 땐? 비엣커넥트',
+		title:
+			'외국인 알바 찾을 땐? 비엣커넥트. Vietconnect giới thiệu việc làm tại Hàn Quốc miễn ph',
 		site_name: '비엣커넥트',
 		images: [
 			{
