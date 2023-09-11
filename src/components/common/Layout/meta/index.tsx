@@ -21,6 +21,7 @@ export default function Meta() {
 					content="width=device-width, initial-scale=1.0, user-scalable=no"
 					key="viewport"
 				/>
+				<meta name="naver-site-verification" content="a3154e684a886e0928f1e7fbe02fb760c5640589" />
 				<link
 					rel="icon"
 					type="image/png"
