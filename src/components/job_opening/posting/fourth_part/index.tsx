@@ -26,6 +26,7 @@ export default function JobOpeningPostingFourthPart({ data }) {
 	const [newJobPosting, setNewJobPosting] = useRecoilState(inputPostingState);
 	const [showErrorModal, setShowErrorModal] = useState(false);
 	const [error, setError] = useState({});
+	const [isDetailedAddressOn, setIsDetailedAddressOn] = useState(true);
 	const router = useRouter();
 	const [isRequesting, setIsRequesting] = useState(false);
 	const { t } = useTranslation();
@@ -141,6 +142,7 @@ export default function JobOpeningPostingFourthPart({ data }) {
 								},
 							});
 						}}
+						disabled={isDetailedAddressOn}
 					/>
 				</DetailedAddressWrapper>
 			</ButtonWrapper>
@@ -203,7 +205,15 @@ export default function JobOpeningPostingFourthPart({ data }) {
 				// onClose={() => setShowModal(false)}
 				show={showModal}
 			>
-				<Postcode onComplete={() => setShowModal(false)} />
+				<Postcode
+					onComplete={() => {
+						setShowModal(false);
+
+						if (isDetailedAddressOn) {
+							setIsDetailedAddressOn(false);
+						}
+					}}
+				/>
 				<ClosingModalButton onClick={() => setShowModal(false)}>
 					{t('posting:closeBtnLabel')}
 				</ClosingModalButton>

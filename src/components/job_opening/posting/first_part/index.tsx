@@ -70,12 +70,14 @@ export const PlaceHolderWrapper = styled.div`
 
 interface IPlaceHolderProps {
 	placeholder?: string;
+	disabled?: boolean;
 }
 
 export const PlaceHolder = styled.input.attrs<IPlaceHolderProps>(
-	({ placeholder, required }) => ({
+	({ placeholder, required, disabled }) => ({
 		placeholder,
 		required,
+		disabled,
 	}),
 )`
 	width: 100%;
