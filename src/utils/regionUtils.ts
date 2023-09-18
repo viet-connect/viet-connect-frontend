@@ -8,7 +8,10 @@ export const regionListSelector = (regionArray, tableContent, keyword) => {
 		if (regionArray[0] === ALL_INCLUDED) {
 			return keyword.length > 0
 				? tableContent.filter(
-						(el) => el.title.includes(keyword) || el.contents.includes(keyword),
+						(el) =>
+							el.title.includes(keyword) ||
+							el.contents.includes(keyword) ||
+							el.contact_name.includes(keyword),
 				  )
 				: tableContent;
 		}
@@ -19,8 +22,12 @@ export const regionListSelector = (regionArray, tableContent, keyword) => {
 			const targetProvince = region.split(' ')[0];
 			if (province === targetProvince) {
 				if (keyword.length > 0) {
-					const { title, contents } = tableContent[i];
-					if (title.includes(keyword) || contents.includes(keyword)) {
+					const { title, contents, contact_name } = tableContent[i];
+					if (
+						title.includes(keyword) ||
+						contents.includes(keyword) ||
+						contact_name.includes(keyword)
+					) {
 						comparableData.push(tableContent[i]);
 					}
 				} else {
@@ -35,8 +42,12 @@ export const regionListSelector = (regionArray, tableContent, keyword) => {
 	for (let i = 0; i < tableContent.length; i += 1) {
 		if (!selectedRegion.trim() || tableContent[i].region === selectedRegion) {
 			if (keyword.length > 0) {
-				const { title, contents } = tableContent[i];
-				if (title.includes(keyword) || contents.includes(keyword)) {
+				const { title, contents, contact_name } = tableContent[i];
+				if (
+					title.includes(keyword) ||
+					contents.includes(keyword) ||
+					contact_name.includes(keyword)
+				) {
 					comparableData.push(tableContent[i]);
 				}
 			} else {
