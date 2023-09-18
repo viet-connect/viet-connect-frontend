@@ -11,7 +11,12 @@ export default function Menu({ pageIndex }: HeaderMenuProps) {
 	const onClick = (index: number, key: string) => {
 		setIsClicked(index);
 
-		router.push(key);
+		/* 만약 '채용공고' 메뉴를 클릭 시, 초기상태로 리셋 */
+		if (index === 0) {
+			router.push(key).then(() => router.reload());
+		} else {
+			router.push(key);
+		}
 	};
 
 	return (
