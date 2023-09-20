@@ -56,19 +56,14 @@ export default function JobOpeningDetail({ data }) {
 				setShowModal(false);
 				setAction({ ...action, put: false });
 
-				router.replace({
-					pathname: '/job_opening/posting',
-					query: { id },
-				});
+				router.push(`/job_opening/posting?id=${id}`);
 			} else if (action.delete) {
 				await Posting.handleDeletePost(id);
 
 				setShowModal(false);
 				setAction({ ...action, delete: false });
 
-				router.replace({
-					pathname: '/',
-				});
+				router.push('/');
 			}
 		} else if (!isPasswordMatch) passwordRef.current.focus();
 	};

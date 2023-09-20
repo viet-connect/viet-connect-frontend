@@ -16,6 +16,7 @@ import { inputPostingState } from '../../../src/recoil/atom/posting';
 	Fourth: 상세정보, 근무장소
 */
 export default function JobOpeningPosting({ data }) {
+	console.log('?????');
 	const { t } = useTranslation();
 	const [newJobPosting, setNewJobPosting] = useRecoilState(inputPostingState);
 	useEffect(() => {
@@ -95,27 +96,10 @@ const Title = styled.div`
 `;
 
 export async function getServerSideProps(context) {
-	if (!context.query.id) {
-		console.log('No PID, new posting');
-		return {
-			props: {
-				data: null,
-				...(await serverSideTranslations(context.locale, [
-					'common',
-					'detail',
-					'jobTable',
-					'navigation',
-					'opening',
-					'posting',
-				])),
-			},
-		};
-	}
+	const i18n = ['common', 'detail', 'jobTable', 'navigation', 'opening', 'posting'];
+	const translation = (await serverSideTranslations(context.locale, i18n));
 
-	const data = await Posting.getUniquePosting(context.query.id);
-	return {
-		props: {
-			data,
-		},
-	};
+	let data = null;
+	if (context.query.id) data = await Posting.getUniquePosting(context.query.id);
+	return { props: { data, ...translation } };
 }
