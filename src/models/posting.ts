@@ -212,13 +212,15 @@ export class Posting {
 				continue;
 			}
 
-			if (
-				typeof contentArr[i][1] === 'string' &&
-				validate.hasSpecialCharacters(contentArr[i][1])
-			) {
-				error.hasSpecialChar = '특수문자는 허용되지 않습니다.';
-				break;
-			}
+			/* 특수문자 허용정책 변경
+				if (
+					typeof contentArr[i][1] === 'string' &&
+					validate.hasSpecialCharacters(contentArr[i][1])
+				) {
+					error.hasSpecialChar = '특수문자는 허용되지 않습니다.';
+					break;
+				}
+			*/
 		}
 
 		if (!validate.isPasswordValid(content.password)) {
