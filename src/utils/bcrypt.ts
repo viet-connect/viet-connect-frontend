@@ -11,7 +11,6 @@ export class Password {
 	constructor(pass: string, savedPass: string) {
 		this.password = pass;
 		this.savedPassword = savedPass;
-		console.log('inserted pass');
 	}
 
 	async createPassword() {
