@@ -40,7 +40,6 @@ export default function JobOpeningDetail({ data }) {
 
 	// onClickRedirectDetail(data.id)
 	const onClickRedirectDetail = async (id: string) => {
-		console.log(account.password, process.env.NEXT_PUBLIC_MASTER_PASSWORD);
 		if (
 			account.password.length === 0 ||
 			!validate.isPasswordValid(account.password)
