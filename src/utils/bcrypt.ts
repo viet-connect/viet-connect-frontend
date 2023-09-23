@@ -23,41 +23,49 @@ export class Password {
 		}
 	}
 
-	comparePassword() {
-		bcrypt.genSalt(10, (saltErr, salt) => {
-			if (saltErr) {
-				return console.log('Cannot make salt');
-			}
+	async comparePassword() {
+		try {
+			const isMatch = bcrypt.compare(this.password, this.savedPassword);
 
-			bcrypt.hash(this.password, salt, (hashErr, hash) => {
-				if (hashErr) {
-					return console.log('Cannot encrypt');
-				}
+			return isMatch;
+		} catch (err) {
+			console.log(err);
+		}
 
-				this.hashedPassword = hash;
+		// bcrypt.genSalt(10, (saltErr, salt) => {
+		// 	if (saltErr) {
+		// 		return console.log('Cannot make salt');
+		// 	}
 
-				bcrypt.compare(
-					this.savedPassword,
-					this.hashedPassword,
+		// 	bcrypt.hash(this.password, salt, (hashErr, hash) => {
+		// 		if (hashErr) {
+		// 			return console.log('Cannot encrypt');
+		// 		}
 
-					async (compareErr, isMatch) => {
-						if (compareErr) {
-							return console.log('password compare error');
-						}
+		// 		this.hashedPassword = hash;
 
-						if (isMatch) {
-							console.log('Encrypted password is: ', this.password);
-							console.log('Decrypted password is: ', this.hashedPassword);
-							return true;
-						}
+		// 		bcrypt.compare(
+		// 			this.savedPassword,
+		// 			this.hashedPassword,
 
-						console.log(
-							`${this.hashedPassword} is not encryption of ${this.password}`,
-						);
-						return false;
-					},
-				);
-			});
-		});
+		// 			async (compareErr, isMatch) => {
+		// 				if (compareErr) {
+		// 					return console.log('password compare error');
+		// 				}
+
+		// 				if (isMatch) {
+		// 					console.log('Encrypted password is: ', this.password);
+		// 					console.log('Decrypted password is: ', this.hashedPassword);
+		// 					return true;
+		// 				}
+
+		// 				console.log(
+		// 					`${this.hashedPassword} is not encryption of ${this.password}`,
+		// 				);
+		// 				return false;
+		// 			},
+		// 		);
+		// 	});
+		// });
 	}
 }

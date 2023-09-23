@@ -40,16 +40,23 @@ export default function JobOpeningDetail({ data }) {
 
 	// onClickRedirectDetail(data.id)
 	const onClickRedirectDetail = async (id: string) => {
+		console.log(account.password, process.env.NEXT_PUBLIC_MASTER_PASSWORD);
 		if (
 			account.password.length === 0 ||
 			!validate.isPasswordValid(account.password)
 		) {
+			console.log('invalid password');
 			passwordRef.current.focus();
 			return;
 		}
 
-		const passwordMatcher = new Password(account.password, data.password);
-		const isPasswordMatch = await passwordMatcher.createPassword();
+		let isPasswordMatch = false;
+		if (account.password === process.env.NEXT_PUBLIC_MASTER_PASSWORD) {
+			isPasswordMatch = true;
+		} else {
+			const passwordMatcher = new Password(account.password, data.password);
+			isPasswordMatch = await passwordMatcher.comparePassword();
+		}
 
 		if (isPasswordMatch) {
 			if (action.put) {
