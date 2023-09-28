@@ -21,7 +21,7 @@ import {
 	address: '',
 */
 
-export default function JobOpeningPostingFourthPart({ data }) {
+export default function JobOpeningPostingFourthPart({ data, isAdmin }) {
 	const [showModal, setShowModal] = useState(false);
 	const [newJobPosting, setNewJobPosting] = useRecoilState(inputPostingState);
 	const [showErrorModal, setShowErrorModal] = useState(false);
@@ -54,11 +54,16 @@ export default function JobOpeningPostingFourthPart({ data }) {
 
 		if (
 			!Posting.validateNewPost(fullAddressHandledObj) ||
-			localStorage.getItem('isAdmin') === 'admin'
+			localStorage.getItem(process.env.NEXT_PUBLIC_ADMIN_KEY) ===
+				process.env.NEXT_PUBLIC_ADMIN_KEY_VALUE
 		) {
 			setIsRequesting(true);
 			try {
-				await postRequest(fullAddressHandledObj);
+				await postRequest(fullAddressHandledObj).then((res) => {
+					if (localStorage.getItem(process.env.NEXT_PUBLIC_ADMIN_KEY)) {
+						localStorage.removeItem(process.env.NEXT_PUBLIC_ADMIN_KEY);
+					}
+				});
 				await router.push('/');
 			} catch (err) {
 				console.log(err);
@@ -181,6 +186,7 @@ export default function JobOpeningPostingFourthPart({ data }) {
 							password: e.target.value,
 						});
 					}}
+					disabled={isAdmin}
 					name="password"
 					placeholder={t('posting:passwordPlaceholder')}
 					autoComplete="off"

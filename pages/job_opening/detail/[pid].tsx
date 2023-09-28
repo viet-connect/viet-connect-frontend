@@ -52,8 +52,11 @@ export default function JobOpeningDetail({ data }) {
 		let isPasswordMatch = false;
 		if (account.password === process.env.NEXT_PUBLIC_MASTER_PASSWORD) {
 			isPasswordMatch = true;
-			if (!localStorage.getItem('isAdmin')) {
-				localStorage.setItem('isAdmin', 'admin');
+			if (!localStorage.getItem(process.env.NEXT_PUBLIC_ADMIN_KEY)) {
+				localStorage.setItem(
+					process.env.NEXT_PUBLIC_ADMIN_KEY,
+					process.env.NEXT_PUBLIC_ADMIN_KEY_VALUE,
+				);
 			}
 		} else {
 			const passwordMatcher = new Password(account.password, data.password);
