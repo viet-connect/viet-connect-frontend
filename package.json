@@ -8,7 +8,8 @@
 		"start": "next start",
 		"lint": "next lint",
 		"vercel-deploy": "vercel deploy --prod",
-		"vercel-dev": "vercel dev"
+		"vercel-dev": "vercel dev",
+		"prisma-start": "pscale auth login && pscale connect vietconnect_db"
 	},
 	"dependencies": {
 		"@emotion/styled": "^11.11.0",
@@ -40,6 +41,7 @@
 		"react-dom": "^18.2.0",
 		"react-i18next": "^13.1.2",
 		"react-icons": "^4.8.0",
+		"react-lottie-player": "^1.5.5",
 		"react-modal": "^3.16.1",
 		"react-select": "^5.7.1",
 		"react-spinners": "^0.13.8",
