@@ -101,6 +101,7 @@ export class Posting {
 				updatedAt,
 				contents,
 				contactName,
+				password,
 			} = el;
 			const addressArray = address.split(' ');
 			const shortAddress =
@@ -116,6 +117,7 @@ export class Posting {
 					wage: wageAmount,
 					way: wageTypeConverter(wageType),
 				},
+				password,
 				contents,
 				contact_name: contactName,
 				date: DateUtils.getMonthDayDateTimeString(updatedAt),

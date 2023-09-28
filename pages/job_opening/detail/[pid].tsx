@@ -3,7 +3,7 @@
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 // import mockImage from '../../../src/public/assets/apple.jpeg';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -52,6 +52,12 @@ export default function JobOpeningDetail({ data }) {
 		let isPasswordMatch = false;
 		if (account.password === process.env.NEXT_PUBLIC_MASTER_PASSWORD) {
 			isPasswordMatch = true;
+			if (!localStorage.getItem(process.env.NEXT_PUBLIC_ADMIN_KEY)) {
+				localStorage.setItem(
+					process.env.NEXT_PUBLIC_ADMIN_KEY,
+					process.env.NEXT_PUBLIC_ADMIN_KEY_VALUE,
+				);
+			}
 		} else {
 			const passwordMatcher = new Password(account.password, data.password);
 			isPasswordMatch = await passwordMatcher.comparePassword();

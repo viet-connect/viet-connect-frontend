@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
 import { useTranslation } from 'next-i18next';
@@ -18,11 +18,15 @@ import { inputPostingState } from '../../../src/recoil/atom/posting';
 export default function JobOpeningPosting({ data }) {
 	const { t } = useTranslation();
 	const [newJobPosting, setNewJobPosting] = useRecoilState(inputPostingState);
+	const [adminState, setAdminState] = useState('');
+
 	useEffect(() => {
 		if (data) {
 			const addressArray = data.address.split(' ');
 			const subAddress = addressArray.pop();
+			const isAdmin = localStorage.getItem(process.env.NEXT_PUBLIC_ADMIN_KEY);
 
+			setAdminState(isAdmin);
 			setNewJobPosting({
 				...newJobPosting,
 				title: data.title,
@@ -43,7 +47,10 @@ export default function JobOpeningPosting({ data }) {
 					main: addressArray.join(' '),
 					sub: subAddress,
 				},
-				password: '',
+				password:
+					isAdmin === process.env.NEXT_PUBLIC_ADMIN_KEY_VALUE
+						? data.password
+						: '',
 			});
 		}
 
@@ -71,6 +78,7 @@ export default function JobOpeningPosting({ data }) {
 			});
 		};
 	}, []);
+
 	return (
 		<Layout pageIndex={1}>
 			<Container>
@@ -78,7 +86,7 @@ export default function JobOpeningPosting({ data }) {
 				<JobOpeningPostingFirstPart data={data} />
 				{/* <JobOpeningPostingSecondPart /> */}
 				<JobOpeningPostingThirdPart data={data} />
-				<JobOpeningPostingFourthPart data={data} />
+				<JobOpeningPostingFourthPart data={data} isAdmin={adminState} />
 			</Container>
 		</Layout>
 	);

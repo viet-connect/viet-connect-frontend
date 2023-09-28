@@ -10,6 +10,7 @@ export default async function posting(
 	const {
 		query: { pid },
 	} = _req;
+	const CURRENT_PASSWORD_LIMIT = 12;
 
 	try {
 		switch (method) {
@@ -43,7 +44,13 @@ export default async function posting(
 					password,
 				} = _req.body;
 				const passwordHelper = new Password(password, '');
-				const hashedPassword = await passwordHelper.createPassword();
+				let savingPassword = '';
+
+				if (password.length > CURRENT_PASSWORD_LIMIT) {
+					savingPassword = password;
+				} else {
+					savingPassword = await passwordHelper.createPassword();
+				}
 
 				await prisma.posting.update({
 					where: {
@@ -64,7 +71,7 @@ export default async function posting(
 						isTimeNegotiable: is_time_negotiable,
 						contents,
 						address: address.full,
-						password: hashedPassword,
+						password: savingPassword,
 					},
 				});
 
