@@ -18,10 +18,12 @@ import { inputPostingState } from '../../../src/recoil/atom/posting';
 export default function JobOpeningPosting({ data }) {
 	const { t } = useTranslation();
 	const [newJobPosting, setNewJobPosting] = useRecoilState(inputPostingState);
+
 	useEffect(() => {
 		if (data) {
 			const addressArray = data.address.split(' ');
 			const subAddress = addressArray.pop();
+			const isAdmin = localStorage.getItem('isAdmin');
 
 			setNewJobPosting({
 				...newJobPosting,
@@ -43,7 +45,7 @@ export default function JobOpeningPosting({ data }) {
 					main: addressArray.join(' '),
 					sub: subAddress,
 				},
-				password: '',
+				password: isAdmin === 'admin' ? data.password : '',
 			});
 		}
 

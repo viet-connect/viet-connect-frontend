@@ -52,7 +52,10 @@ export default function JobOpeningPostingFourthPart({ data }) {
 		fullAddressHandledObj.working_day = workingDay;
 		setNewJobPosting(fullAddressHandledObj);
 
-		if (!Posting.validateNewPost(fullAddressHandledObj)) {
+		if (
+			!Posting.validateNewPost(fullAddressHandledObj) ||
+			localStorage.getItem('isAdmin') === 'admin'
+		) {
 			setIsRequesting(true);
 			try {
 				await postRequest(fullAddressHandledObj);

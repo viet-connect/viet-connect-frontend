@@ -101,6 +101,7 @@ export class Posting {
 				updatedAt,
 				contents,
 				contactName,
+				password,
 			} = el;
 			const addressArray = address.split(' ');
 			const shortAddress =
@@ -116,6 +117,7 @@ export class Posting {
 					wage: wageAmount,
 					way: wageTypeConverter(wageType),
 				},
+				password,
 				contents,
 				contact_name: contactName,
 				date: DateUtils.getMonthDayDateTimeString(updatedAt),
@@ -212,15 +214,13 @@ export class Posting {
 				continue;
 			}
 
-			/* 특수문자 허용정책 변경
-				if (
-					typeof contentArr[i][1] === 'string' &&
-					validate.hasSpecialCharacters(contentArr[i][1])
-				) {
-					error.hasSpecialChar = '특수문자는 허용되지 않습니다.';
-					break;
-				}
-			*/
+			if (
+				typeof contentArr[i][1] === 'string' &&
+				validate.hasSpecialCharacters(contentArr[i][1])
+			) {
+				error.hasSpecialChar = '특수문자는 허용되지 않습니다.';
+				break;
+			}
 		}
 
 		if (!validate.isPasswordValid(content.password)) {

@@ -42,7 +42,6 @@ export default async function posting_list(
 
 				const passwordHelper = new Password(password, '');
 				const hashedPassword = await passwordHelper.createPassword();
-				console.log('create first password', hashedPassword);
 				const posting = await prisma.posting.create({
 					data: {
 						title,
