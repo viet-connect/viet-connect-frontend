@@ -50,6 +50,12 @@ const AppConfig = {
 			sizes: '196x196',
 			key: 'icon196',
 		},
+		{
+			rel: 'icon',
+			type: 'image/x-icon',
+			href: '/favicon.ico',
+			sizes: '48x48',
+		},
 	],
 	openGraph: {
 		url: 'https://vietconnect.co.kr',
