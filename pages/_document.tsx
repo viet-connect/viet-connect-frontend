@@ -39,7 +39,21 @@ class MyDocument extends Document {
 	render() {
 		return (
 			<Html lang={AppConfig.openGraph.locale}>
-				<Head />
+				<Head>
+					<meta charSet="UTF-8" key="charset" />
+					<meta httpEquiv="X-UA-Compatible" content="IE=edge; chrome=1" />
+					<meta
+						name="naver-site-verification"
+						content="a3154e684a886e0928f1e7fbe02fb760c5640589"
+					/>
+					<link
+						rel="icon"
+						type="image/png"
+						href="/favicon-32x32.png"
+						sizes="32x32"
+						key="icon32"
+					/>
+				</Head>
 				<body>
 					<Main />
 					<NextScript />

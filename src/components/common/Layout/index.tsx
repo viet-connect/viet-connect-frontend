@@ -4,7 +4,6 @@ import type { ReactNode } from 'react';
 import Logo from '../../main/header_top/logo';
 import FooterTop from '../../main/footer/footer_top/FooterTop';
 import FooterBottom from '../../main/footer/footer_bottom/FooterBottom';
-import Meta from './meta';
 import Flag from '../../main/header_top/flag';
 import Content from './Content';
 import { Analytics } from '../Analytics/Analytics';
@@ -17,7 +16,6 @@ interface IMainProps {
 export default function Layout({ children, pageIndex }: IMainProps) {
 	return (
 		<Wrapper>
-			<Meta />
 			<Container id="layout-container">
 				<Header>
 					<Row>

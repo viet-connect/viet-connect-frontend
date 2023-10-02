@@ -224,7 +224,7 @@ export class Posting {
 		}
 
 		if (!validate.isPasswordValid(content.password)) {
-			error.password = '패스워드 조건에 맞게 다시 설정해주세요';
+			error.password = '패스워드 조건에 맞게 재설정해주세요';
 		}
 
 		if (title.length === 0) error.title = '공고제목을 입력해주세요';
