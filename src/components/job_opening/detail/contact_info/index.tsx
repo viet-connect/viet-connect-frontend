@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
 import CommonUtils from '../../../../utils/commonUtils';
+import Map from '../../../common/Map';
 
 export default function JobDetailContactInfo({ data }) {
 	const { t } = useTranslation();
@@ -11,7 +12,7 @@ export default function JobDetailContactInfo({ data }) {
 		<Container>
 			<Title>{t('detail:companyInformation')}</Title>
 			<ContactInfoContentWrapper>
-				<Content style={{ marginBottom: 5 }}>
+				<Content>
 					{t('detail:companyName')}: {contactName}
 				</Content>
 				<Content>
@@ -19,19 +20,26 @@ export default function JobDetailContactInfo({ data }) {
 					{CommonUtils.addHyphenToPhoneNumber(contactNumber)}
 				</Content>
 			</ContactInfoContentWrapper>
+			<Map location={data.geoLocation}/>
 		</Container>
 	);
 }
 
 const Container = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 	margin-bottom: 40px;
 `;
 
 const Title = styled.div`
 	font-size: 20px;
 	font-weight: bold;
-	margin-bottom: 10px;
 `;
 
-const ContactInfoContentWrapper = styled.div``;
+const ContactInfoContentWrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+`;
 const Content = styled.div``;
