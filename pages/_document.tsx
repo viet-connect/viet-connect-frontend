@@ -6,6 +6,7 @@ import Document, {
 	DocumentContext,
 } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import Script from 'next/script';
 import AppConfig from '../src/utils/appConfig';
 
 class MyDocument extends Document {
@@ -50,6 +51,7 @@ class MyDocument extends Document {
 				<body>
 					<Main />
 					<NextScript />
+					<Script type="text/javascript" strategy="beforeInteractive" src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_CLIENT_ID}`} />
 					<div id="modal-root"></div>
 				</body>
 			</Html>

@@ -55,6 +55,7 @@
 		"@svgr/webpack": "^6.5.1",
 		"@types/bcryptjs": "^2.4.2",
 		"@types/dateformat": "^5.0.0",
+		"@types/navermaps": "^3.7.0",
 		"@types/styled-components": "^5.1.26",
 		"@types/uuid": "^9.0.1",
 		"eslint": "^7.32.0",

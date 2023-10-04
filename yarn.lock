@@ -1786,6 +1786,11 @@
   resolved "https://registry.npmjs.org/@types/dateformat/-/dateformat-5.0.0.tgz"
   integrity sha512-SZg4JdHIWHQGEokbYGZSDvo5wA4TLYPXaqhigs/wH+REDOejcJzgH+qyY+HtEUtWOZxEUkbhbdYPqQDiEgrXeA==
 
+"@types/geojson@*":
+  version "7946.0.11"
+  resolved "https://registry.yarnpkg.com/@types/geojson/-/geojson-7946.0.11.tgz#012c17cb2256ad8de78560da851ab914a7b9b40e"
+  integrity sha512-L7A0AINMXQpVwxHJ4jxD6/XjZ4NDufaRlUJHjNIFKYUFBH1SvOW+neaqb0VTRSLW5suSrSu19ObFEFnfNcr+qg==
+
 "@types/hoist-non-react-statics@*", "@types/hoist-non-react-statics@^3.3.1":
   version "3.3.1"
   resolved "https://registry.npmjs.org/@types/hoist-non-react-statics/-/hoist-non-react-statics-3.3.1.tgz"
@@ -1803,6 +1808,13 @@
   version "4.14.194"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.194.tgz#b71eb6f7a0ff11bff59fc987134a093029258a76"
   integrity sha512-r22s9tAS7imvBt2lyHC9B8AGwWnXaYb1tY09oyLkXDs4vArpYJzw09nj8MLx5VfciBPGIb+ZwG0ssYnEPJxn/g==
+
+"@types/navermaps@^3.7.0":
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/@types/navermaps/-/navermaps-3.7.0.tgz#d63633dda7a46e1bca87212805d80a302ad12e97"
+  integrity sha512-NSUiFwRzaeBg5gjcIuItGIGhb/BFj0L6b7ftUpDc7M4rpHEKbxnuGlZeO3vGooSkFQTMrBkkwHRwk7QFzVwPIA==
+  dependencies:
+    "@types/geojson" "*"
 
 "@types/node@^18.7.18":
   version "18.7.18"
