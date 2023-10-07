@@ -2,6 +2,7 @@ import { isNaN } from 'lodash';
 import DateUtils from '../utils/DateUtils';
 import validate from '../utils/validate';
 import { wageTypeConverter } from '../utils/wageConfig';
+import { geoCoding } from '../../pages/api/map/geocoding';
 
 export interface IPostingSummary {
 	id: string;
@@ -82,9 +83,13 @@ export class Posting {
 				process.env.NODE_ENV === 'development'
 					? `${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_VERCEL_URL}`
 					: process.env.DEPLOY_URL;
-			return await fetch(`${server}/api/posting/${pid}`).then((res) =>
+			const post = await fetch(`${server}/api/posting/${pid}`).then((res) =>
 				res.json(),
 			);
+			const { addresses } = await geoCoding.getGeoLocation(post.address);
+			const [{ x: lng, y: lat }] = addresses;
+			const data = { ...post, geoLocation: { lat, lng } };
+			return data;
 		} catch (err) {
 			return console.error(err);
 		}

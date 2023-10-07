@@ -23,6 +23,7 @@ import {
 import { PlaceHolder } from '../../../src/components/job_opening/posting/first_part';
 import { Password } from '../../../src/utils/bcrypt';
 import validate from '../../../src/utils/validate';
+import LocationInfo from '../../../src/components/job_opening/detail/location_iinfo';
 
 export default function JobOpeningDetail({ data }) {
 	const router = useRouter();
@@ -89,6 +90,7 @@ export default function JobOpeningDetail({ data }) {
 				<ContentHeader data={data} />
 				<MainContent data={data} />
 				{/* <JobDetailMap /> */}
+				<LocationInfo data={data}/>
 				<JobDetailContactInfo data={data} />
 				<ButtonWrapper>
 					<CommonButton

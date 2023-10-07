@@ -11,6 +11,7 @@
 	"companyName": "업체명",
 	"managerContact": "담당자 연락처",
 	"recruitmentGender": "모집성별",
+	"locationInformation": "근무 지역",
 	"editBtnLabel": "수정",
 	"deleteBtnLabel": "삭제",
 	"doDeleteBtnLabel": "삭제하기",
