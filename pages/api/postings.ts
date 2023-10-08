@@ -13,7 +13,7 @@ export default async function posting_list(
 				const postingList = await prisma.posting.findMany({
 					orderBy: [
 						{
-							createdAt: 'desc',
+							updatedAt: 'desc',
 						},
 					],
 				});
