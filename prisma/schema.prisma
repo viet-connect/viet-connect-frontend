@@ -9,23 +9,23 @@ datasource db {
 }
 
 model Article {
-  id        String   @id @default(uuid())
+  id        String   @id @unique @default(uuid())
   author    String
-  contents  String
+  contents  String   @db.Text
   category  String
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
   password  String
   title     String
-  viewCount Int
+  viewCount Int      @default(0) @map("view_count")
 }
 
 model Posting {
-  id               String   @id @default(uuid())
+  id               String   @id @unique @default(uuid())
   address          String
   contactName      String   @map("contact_name")
   contactNumber    String   @map("contact_number")
-  contents         String?
+  contents         String?  @db.VarChar(800)
   createdAt        DateTime @default(now()) @map("created_at")
   updatedAt        DateTime @updatedAt @map("updated_at")
   endingTime       String   @map("ending_time")
