@@ -8,7 +8,7 @@ export default function Map({ contactName, location }) {
     useEffect(() => {
         const { LatLng, Map: MapMaker, Marker, Position, CustomControl, Event } = window.naver.maps;
         const position = new LatLng(lat, lng);
-        const options = { center: position, zoom: 19 };
+        const options = { center: position, zoom: 13 };
         const map = new MapMaker('map', options);
         Event.once(map, 'init', () => {
             const mapLink = `https://map.naver.com?title=${contactName}&lng=${lng}&lat=${lat}&zoom=19`;

@@ -6,12 +6,15 @@ import Map from '../../../common/Map';
 export default function LocationInfo({ data }) {
 	const { t } = useTranslation();
 	const { address, geoLocation, contactName } = data;
+
 	return (
 		<Container>
 			<Title>{t('detail:locationInformation')}</Title>
 			<ContactInfoContentWrapper>
 				<div>{address}</div>
-				<Map contactName={contactName} location={geoLocation}/>
+				{geoLocation && (
+					<Map contactName={contactName} location={geoLocation} />
+				)}
 			</ContactInfoContentWrapper>
 		</Container>
 	);
