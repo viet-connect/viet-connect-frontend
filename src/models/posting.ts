@@ -49,6 +49,8 @@ export interface ISavedPosting {
 	isTimeNegotiable: boolean;
 	contents: string;
 	address: string;
+	mainAddress: string;
+	subAddress: string;
 	password: string;
 	updatedAt: Date;
 	createdAt: Date;
@@ -86,10 +88,22 @@ export class Posting {
 			const post = await fetch(`${server}/api/posting/${pid}`).then((res) =>
 				res.json(),
 			);
+
 			const { addresses } = await geoCoding.getGeoLocation(post.address);
-			const [{ x: lng, y: lat }] = addresses;
-			const data = { ...post, geoLocation: { lat, lng } };
-			return data;
+			if (addresses.length > 0) {
+				const [{ x: lng, y: lat }] = addresses;
+				const data = { ...post, geoLocation: { lat, lng } };
+				return data;
+			}
+
+			const res = await geoCoding.getGeoLocation(post.mainAddress);
+			if (res.addresses.length > 0) {
+				const [{ x: lng, y: lat }] = res.addresses;
+				const data = { ...post, geoLocation: { lat, lng } };
+				return data;
+			}
+
+			return post;
 		} catch (err) {
 			return console.error(err);
 		}

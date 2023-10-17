@@ -58,6 +58,8 @@ export default async function posting_list(
 						isTimeNegotiable: is_time_negotiable,
 						contents,
 						address: address.full,
+						mainAddress: address.main,
+						subAddress: address.sub,
 						password: hashedPassword,
 					},
 				});

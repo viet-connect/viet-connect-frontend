@@ -47,5 +47,7 @@ export const savedInputPostingState = atom<ISavedPosting>({
 		password: '',
 		updatedAt: null,
 		createdAt: null,
+		subAddress: '',
+		mainAddress: '',
 	},
 });

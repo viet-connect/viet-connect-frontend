@@ -111,6 +111,21 @@ class CommonUtils {
 
 		return 'sunday';
 	}
+
+	static retry = (url: string, retries: number, options = {}) =>
+		fetch(url, options)
+			.then((res) => {
+				if (res.ok) {
+					return res;
+				}
+
+				if (retries > 0) {
+					return CommonUtils.retry(url, retries - 1, options);
+				}
+
+				throw new Error('stop retry');
+			})
+			.catch((err) => console.error(err));
 }
 
 export default CommonUtils;
