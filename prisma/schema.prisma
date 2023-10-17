@@ -11,7 +11,7 @@ datasource db {
 model Article {
   id        String   @id @default(uuid())
   author    String
-  contents  String
+  contents  String   @db.Text
   category  String
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -23,9 +23,11 @@ model Article {
 model Posting {
   id               String   @id @default(uuid())
   address          String
+  mainAddress      String   @default("") @map("main_address")
+  subAddress       String   @default("") @map("sub_address")
   contactName      String   @map("contact_name")
   contactNumber    String   @map("contact_number")
-  contents         String?
+  contents         String?  @db.VarChar(800)
   createdAt        DateTime @default(now()) @map("created_at")
   updatedAt        DateTime @updatedAt @map("updated_at")
   endingTime       String   @map("ending_time")
