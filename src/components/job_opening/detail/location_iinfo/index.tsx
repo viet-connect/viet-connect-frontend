@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
-import Map from '../../../common/Map';
+// import Map from '../../../common/Map';
 
 export default function LocationInfo({ data }) {
 	const { t } = useTranslation();
@@ -12,9 +12,7 @@ export default function LocationInfo({ data }) {
 			<Title>{t('detail:locationInformation')}</Title>
 			<ContactInfoContentWrapper>
 				<div>{address}</div>
-				{geoLocation && (
-					<Map contactName={contactName} location={geoLocation} />
-				)}
+				<Map contactName={contactName} location={geoLocation} />
 			</ContactInfoContentWrapper>
 		</Container>
 	);
