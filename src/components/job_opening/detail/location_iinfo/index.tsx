@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
-// import Map from '../../../common/Map';
+import Map from '../../../common/Map';
 
 export default function LocationInfo({ data }) {
 	const { t } = useTranslation();
