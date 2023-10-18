@@ -66,7 +66,7 @@ const AppConfig = {
 		site_name: '비엣커넥트',
 		images: [
 			{
-				url: 'https://drive.google.com/file/d/1q4bME8tEpvnpBufOxam-hmSiPMFZihQL/view?usp=sharing',
+				url: 'https://blogfiles.pstatic.net/MjAyMzEwMTlfMTM5/MDAxNjk3NjQzOTY2OTcy.UQiGtO8ljSS8t3M7gXrrcri9yrXq02JDl5qr5aO-fAog.EjM8II_VuYYSeKaj-MMHBFnabTh1ohEMj8lzfBaCAxcg.PNG.dyddyd14321/vietconnect_og.png',
 				width: 171,
 				height: 90,
 				alt: '이미지',
