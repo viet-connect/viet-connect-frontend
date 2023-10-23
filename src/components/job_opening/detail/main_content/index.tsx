@@ -116,4 +116,5 @@ const DescriptionWrapper = styled.textarea`
 	height: 150px;
 	white-space: pre-wrap;
 	font-size: 16px;
+	color: black;
 `;
