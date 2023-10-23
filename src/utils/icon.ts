@@ -1,3 +1,9 @@
 export { default as vietconnectLogo } from '../public/svg/vietconnect_logo.svg';
 export { default as vietnamFlag } from '../public/svg/vietnam_flag.svg';
 export { default as koreanFlag } from '../public/svg/korean_flag.svg';
+export { default as editIcon } from '../public/svg/edit_icon.svg';
+export { default as deleteIcon } from '../public/svg/trash_icon.svg';
+export { default as wageIcon } from '../public/svg/wage_icon.svg';
+export { default as workingDayIcon } from '../public/svg/working_day_icon.svg';
+export { default as workingHourIcon } from '../public/svg/working_hour_icon.svg';
+export { default as koreanSpeakingIcon } from '../public/svg/korean_speaking_icon.svg';

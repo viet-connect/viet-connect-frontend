@@ -112,6 +112,43 @@ class CommonUtils {
 		return 'sunday';
 	}
 
+	static DayConverterInKorean(num: number): string {
+		if (num === 0) {
+			return '월';
+		}
+		if (num === 1) {
+			return '화';
+		}
+		if (num === 2) {
+			return '수';
+		}
+		if (num === 3) {
+			return '목';
+		}
+		if (num === 4) {
+			return '금';
+		}
+		if (num === 5) {
+			return '토';
+		}
+
+		return '일';
+	}
+
+	static proficiencyConverterInKorean(num: number): string {
+		if (num === 0) {
+			return '잘함';
+		}
+		if (num === 1) {
+			return '보통';
+		}
+		if (num === 2) {
+			return '기초';
+		}
+
+		return '무관';
+	}
+
 	static retry = (url: string, retries: number, options = {}) =>
 		fetch(url, options)
 			.then((res) => {

@@ -46,4 +46,19 @@ export const wageTypeConverter = (wageType: string): number => {
 	return 3;
 };
 
+export const wageTypeConverterInKorean = (wageType: string): string => {
+	if (wageType === 'monthly') {
+		return '월급';
+	}
+
+	if (wageType === 'weekly') {
+		return '주급';
+	}
+	if (wageType === 'daily') {
+		return '일급';
+	}
+
+	return '시급';
+};
+
 export default wageTermFunction;

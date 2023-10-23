@@ -1,22 +1,294 @@
-import React from 'react';
 import styled from 'styled-components';
+import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
+import { useRef, useState } from 'react';
 import DateUtils from '../../../../utils/DateUtils';
-import { wageTypeConverter } from '../../../../utils/wageConfig';
-import WageBox from '../../../common/WageBox';
+import SvgIcon from '../../../common/Icon';
+import { wageTypeConverterInKorean } from '../../../../utils/wageConfig';
+import CommonUtils from '../../../../utils/commonUtils';
+import { Password } from '../../../../utils/bcrypt';
+import validate from '../../../../utils/validate';
+import { Posting } from '../../../../models/posting';
+import {
+	ClosingModalButton,
+	RegisterInputContainer,
+	RegisterInputItemWrapper,
+} from '../../posting/fourth_part';
+import { PlaceHolder } from '../../posting/first_part';
+import Modal from '../../../common/Modal';
+
+function WorkingDayGrid({ isNegotiable, workingDay }) {
+	const normalDays = ['월', '화', '수', '목', '금', '토', '일'];
+	const workDayArr: string[] = JSON.parse(workingDay).map((day) =>
+		CommonUtils.DayConverterInKorean(day),
+	);
+
+	return (
+		<DashboardItemWrapper>
+			<div style={{ marginBottom: 6 }}>
+				<SvgIcon name="workingDayIcon" width={40} height={40} />
+			</div>
+			<DayContainer>
+				{normalDays.map((day) => {
+					if (workDayArr.includes(day)) {
+						return (
+							<DayWrapper style={{ color: '#000000' }} key={day}>
+								{day}
+							</DayWrapper>
+						);
+					}
+					return null;
+					// return (
+					// 	<DayWrapper key={day} style={{ color: '#d9d9d9' }}>
+					// 		{day}
+					// 	</DayWrapper>
+					// );
+				})}
+			</DayContainer>
+			{isNegotiable && <IsNegotiable>{'(협의가능)'}</IsNegotiable>}
+		</DashboardItemWrapper>
+	);
+}
+
+const DayContainer = styled.div`
+	display: flex;
+	margin-bottom: 6px;
+`;
+
+const DayWrapper = styled.div`
+	margin-right: 2px;
+`;
+
+function WorkingTimeGrid({ isNegotiable, start, end }) {
+	return (
+		<DashboardItemWrapper>
+			<div style={{ marginBottom: 6 }}>
+				<SvgIcon name="workingHourIcon" width={40} height={40} />
+			</div>
+			<TimeWrapper>
+				<div>{start}</div>
+				<div>~</div>
+				<div>{end}</div>
+			</TimeWrapper>
+			{isNegotiable && <IsNegotiable>{'(협의가능)'}</IsNegotiable>}
+		</DashboardItemWrapper>
+	);
+}
+
+const TimeWrapper = styled.div`
+	display: flex;
+	margin-bottom: 6px;
+`;
+
+function KoreanProficiencyGrid({ proficiency }) {
+	const levelArr = ['무관', '기초', '보통', '잘함'];
+	return (
+		<DashboardItemWrapper>
+			<div>
+				<SvgIcon name="koreanSpeakingIcon" width={50} height={40} />
+			</div>
+			<LevelGrid>
+				{levelArr.map((lev) => {
+					if (CommonUtils.proficiencyConverterInKorean(proficiency) === lev) {
+						return (
+							<Cell style={{ color: '#000000', fontSize: 15 }} key={lev}>
+								{lev}
+							</Cell>
+						);
+					}
+					return (
+						<Cell style={{ color: '#d9d9d9' }} key={lev}>
+							{lev}
+						</Cell>
+					);
+				})}
+			</LevelGrid>
+		</DashboardItemWrapper>
+	);
+}
+
+const LevelGrid = styled.div`
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
+`;
+
+const Cell = styled.div`
+	padding: 3px;
+`;
+
+const IsNegotiable = styled.div`
+	color: #7f7f7f;
+	opacity: 0.7;
+	font-size: 13px;
+`;
 
 export default function ContentHeader({ data }) {
-	const { title, updatedAt, wageType, wageAmount, address } = data;
+	const {
+		title,
+		updatedAt,
+		wageType,
+		wageAmount,
+		address,
+		workingDay,
+		startingTime,
+		endingTime,
+		proficiency,
+		isDayNegotiable,
+		isTimeNegotiable,
+	} = data;
+
+	const router = useRouter();
+	const [showModal, setShowModal] = useState(false);
+	const [account, setAccount] = useState({
+		password: '',
+	});
+	const [action, setAction] = useState({
+		delete: false,
+		put: false,
+	});
+
+	const passwordRef = useRef(null);
+	const { t } = useTranslation();
+
+	const onClickRedirectDetail = async (id: string) => {
+		if (
+			account.password.length === 0 ||
+			!validate.isPasswordValid(account.password)
+		) {
+			console.log('invalid password');
+			passwordRef.current.focus();
+			return;
+		}
+
+		let isPasswordMatch = false;
+		if (account.password === process.env.NEXT_PUBLIC_MASTER_PASSWORD) {
+			isPasswordMatch = true;
+			if (!localStorage.getItem(process.env.NEXT_PUBLIC_ADMIN_KEY)) {
+				localStorage.setItem(
+					process.env.NEXT_PUBLIC_ADMIN_KEY,
+					process.env.NEXT_PUBLIC_ADMIN_KEY_VALUE,
+				);
+			}
+		} else {
+			const passwordMatcher = new Password(account.password, data.password);
+			isPasswordMatch = await passwordMatcher.comparePassword();
+		}
+
+		if (isPasswordMatch) {
+			if (action.put) {
+				setShowModal(false);
+				setAction({ ...action, put: false });
+
+				router.push(`/job_opening/posting?id=${id}`);
+			} else if (action.delete) {
+				await Posting.handleDeletePost(id);
+
+				setShowModal(false);
+				setAction({ ...action, delete: false });
+
+				router.push('/');
+			}
+		} else if (!isPasswordMatch) passwordRef.current.focus();
+	};
+
 	return (
 		<Container>
-			<InfoFirstLine>{title}</InfoFirstLine>
-			<InfoSecondLine>
-				{/* <TimeWrapper>{DateUtils.getDateHourMinString(updatedAt)}</TimeWrapper> */}
-				<WageWrapper>
-					<WageBox termIndex={wageTypeConverter(wageType)} />
-				</WageWrapper>
-				<WageWrapper>{wageAmount}원</WageWrapper>
-			</InfoSecondLine>
-			<InfoThirdLine>{address}</InfoThirdLine>
+			<InfoFirstLine>
+				<div style={{ fontSize: 14, opacity: 0.5 }}>
+					등록일: {DateUtils.getDateHourMinString(updatedAt)}
+				</div>
+				<div>
+					<span
+						onClick={() => {
+							setShowModal(true);
+							setAction({ ...action, put: true });
+						}}
+					>
+						<SvgIcon
+							name="editIcon"
+							width={21}
+							height={20}
+							style={{ marginRight: 10, cursor: 'pointer' }}
+						/>
+					</span>
+					<span
+						onClick={() => {
+							setShowModal(true);
+							setAction({ ...action, delete: true });
+						}}
+					>
+						<SvgIcon
+							name="deleteIcon"
+							width={23}
+							height={20}
+							style={{ cursor: 'pointer' }}
+						/>
+					</span>
+				</div>
+			</InfoFirstLine>
+			<TitleWrapper>{title}</TitleWrapper>
+			<AddressWrapper>{address}</AddressWrapper>
+			<Divider style={{ marginBottom: 20 }} />
+			<DashboardWrapper>
+				<DashboardItemWrapper>
+					<div style={{ marginBottom: 5 }}>
+						<SvgIcon name="wageIcon" width={40} height={40} />
+					</div>
+					<div style={{ marginBottom: 8 }}>
+						{wageTypeConverterInKorean(wageType)}
+					</div>
+					<div>{wageAmount}원</div>
+				</DashboardItemWrapper>
+				<WorkingDayGrid
+					isNegotiable={isDayNegotiable}
+					workingDay={workingDay}
+				/>
+				<WorkingTimeGrid
+					isNegotiable={isTimeNegotiable}
+					start={startingTime}
+					end={endingTime}
+				/>
+				<KoreanProficiencyGrid proficiency={proficiency} />
+			</DashboardWrapper>
+			<Modal
+				width={500}
+				height={400}
+				// onClose={() => setShowErrorModal(false)}
+				show={showModal}
+			>
+				<ModalContentContainer>
+					<RegisterInputContainer>
+						<RegisterInputItemWrapper>
+							{t('posting:password')}
+						</RegisterInputItemWrapper>
+						<PlaceHolder
+							type="password"
+							style={{ height: 30 }}
+							value={account.password}
+							onChange={(e) => {
+								setAccount({
+									...account,
+									password: e.target.value,
+								});
+							}}
+							name="password"
+							placeholder={t('detail:passwordPlaceholder')}
+							autoComplete="off"
+							ref={passwordRef}
+							required
+						/>
+					</RegisterInputContainer>
+					<ClosingModalButton onClick={() => onClickRedirectDetail(data.id)}>
+						{action.put
+							? t('detail:doEditBtnLabel')
+							: t('detail:doDeleteBtnLabel')}
+					</ClosingModalButton>
+					<ClosingModalButton onClick={() => setShowModal(false)}>
+						{t('detail:closeBtnLabel')}
+					</ClosingModalButton>
+				</ModalContentContainer>
+			</Modal>
 		</Container>
 	);
 }
@@ -24,25 +296,52 @@ export default function ContentHeader({ data }) {
 const Container = styled.div`
 	margin-bottom: 20px;
 `;
-
-const InfoFirstLine = styled.div`
+const TitleWrapper = styled.div`
 	font-weight: bold;
 	font-size: 25px;
-	margin-bottom: 5px;
+	margin-bottom: 25px;
 `;
 
-const InfoSecondLine = styled.div`
+const AddressWrapper = styled.div`
+	font-size: 14px;
+	padding-bottom: 5px;
+`;
+
+const Divider = styled.div`
+	flex: 1;
+	height: 1px;
+	background-color: #d9d9d9;
+	opacity: 0.5;
+`;
+
+const InfoFirstLine = styled.div`
 	display: flex;
+	justify-content: space-between;
 	align-items: center;
-	margin-bottom: 5px;
-	justify-content: flex-start;
+	margin-bottom: 30px;
 `;
 
-const InfoThirdLine = styled.div``;
-const TimeWrapper = styled.div`
-	margin-right: 10px;
+const DashboardWrapper = styled.div`
+	flex: 1;
+	height: 100px;
+	border: 1px solid #d9d9d9;
+	border-radius: 10px;
+	margin-bottom: 30px;
+	box-shadow: 5px 5px 5px #d9d9d9;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	font-size: 13px;
+	font-weight: bold;
+	padding: 10px;
 `;
 
-const WageWrapper = styled.div`
-	margin-right: 10px;
+const DashboardItemWrapper = styled.div`
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 100%;
 `;
+
+const ModalContentContainer = styled.div``;
