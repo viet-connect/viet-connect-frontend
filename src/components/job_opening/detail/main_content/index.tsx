@@ -85,6 +85,7 @@ const Title = styled.div`
 	font-size: 20px;
 	font-weight: bold;
 	margin-bottom: 10px;
+	color: black;
 `;
 
 const FirstContentWrapper = styled.div`
