@@ -32,17 +32,17 @@ function WorkingDayGrid({ isNegotiable, workingDay }) {
 				{normalDays.map((day) => {
 					if (workDayArr.includes(day)) {
 						return (
-							<DayWrapper style={{ color: '#000000' }} key={day}>
+							<DayWrapper style={{ color: '#000000', fontSize: 15 }} key={day}>
 								{day}
 							</DayWrapper>
 						);
 					}
-					return null;
-					// return (
-					// 	<DayWrapper key={day} style={{ color: '#d9d9d9' }}>
-					// 		{day}
-					// 	</DayWrapper>
-					// );
+					// return null;
+					return (
+						<DayWrapper key={day} style={{ color: '#d9d9d9' }}>
+							{day}
+						</DayWrapper>
+					);
 				})}
 			</DayContainer>
 			{isNegotiable && <IsNegotiable>{'(협의가능)'}</IsNegotiable>}

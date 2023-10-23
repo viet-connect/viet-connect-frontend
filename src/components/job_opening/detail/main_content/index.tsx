@@ -24,6 +24,12 @@ export default function MainContent({ data }) {
 	const workDayString = convertedWorkDays.join(', ');
 	const gender = CommonUtils.genderConverter(_gender);
 	const proficiency = CommonUtils.proficiencyConverter(_proficiency);
+	// const [startHour, startMinute] = startingTime
+	// 	.split(':')
+	// 	.map((time) => Number(time));
+	// const [endHour, endMinute] = endingTime
+	// 	.split(':')
+	// 	.map((time) => Number(time));
 
 	return (
 		<Container>
@@ -64,6 +70,10 @@ export default function MainContent({ data }) {
 							</div>
 							<div>{isTimeNegotiable && `(${t('detail:negotiable')})`}</div>
 						</div>
+						{/* <Worklog>
+							(총 근무시간: {endHour - startHour}시간 {endMinute - startMinute}
+							분)
+						</Worklog> */}
 					</WorkingHour>
 				</SecondContentWrapper>
 			</InfoWrapper>
@@ -78,6 +88,11 @@ export default function MainContent({ data }) {
 const Container = styled.div`
 	margin-bottom: 10px;
 `;
+
+// const Worklog = styled.div`
+// 	margin-left: 5px;
+// 	font-size: 12px;
+// `;
 
 const InfoWrapper = styled.div``;
 
@@ -106,6 +121,7 @@ const WorkingDay = styled.div`
 
 const WorkingHour = styled.div`
 	display: flex;
+	align-items: flex-end;
 `;
 const DescriptionWrapper = styled.textarea`
 	border: 1px solid black;

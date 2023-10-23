@@ -23,28 +23,40 @@ export default function TimeRangePicker() {
 
 	return (
 		<Container>
-			<LocalizationProvider dateAdapter={AdapterDayjs}>
-				<TimePicker
-					value={dayjs().hour(startHour).minute(startMinute)}
-					defaultValue={dayjs().hour(9).minute(0)}
-					onChange={(e) => handleChangeTime(e, 'starting_time')}
-				/>
-				<Divider>~</Divider>
-				<TimePicker
-					value={dayjs().hour(endHour).minute(endMinute)}
-					defaultValue={dayjs().hour(18).minute(0)}
-					onChange={(e) => handleChangeTime(e, 'ending_time')}
-				/>
-			</LocalizationProvider>
+			<TimeSelector>
+				<LocalizationProvider dateAdapter={AdapterDayjs}>
+					<TimePicker
+						value={dayjs().hour(startHour).minute(startMinute)}
+						defaultValue={dayjs().hour(9).minute(0)}
+						onChange={(e) => handleChangeTime(e, 'starting_time')}
+					/>
+					<Divider>~</Divider>
+					<TimePicker
+						value={dayjs().hour(endHour).minute(endMinute)}
+						defaultValue={dayjs().hour(18).minute(0)}
+						onChange={(e) => handleChangeTime(e, 'ending_time')}
+					/>
+				</LocalizationProvider>
+			</TimeSelector>
+			<Worklog>
+				총 근무시간: {endHour - startHour}시간 {endMinute - startMinute}분
+			</Worklog>
 		</Container>
 	);
 }
 
-const Container = styled.div`
+const Container = styled.div``;
+
+const Worklog = styled.div`
+	font-size: 12px;
+`;
+
+const TimeSelector = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	width: 100%;
+	margin-bottom: 2px;
 `;
 
 const Divider = styled.div`
