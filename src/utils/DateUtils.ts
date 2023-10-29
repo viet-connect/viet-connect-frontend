@@ -29,7 +29,7 @@ class DateUtils {
 		date: string | number | Date | undefined,
 	): Optional<string> {
 		if (!date) return null;
-		return dateformat(date, 'yyyy-mm-dd');
+		return dateformat(date, 'yy-mm-dd');
 	}
 
 	static getDateTimeString(

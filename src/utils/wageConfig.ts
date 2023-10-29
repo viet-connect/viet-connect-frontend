@@ -46,4 +46,19 @@ export const wageTypeConverter = (wageType: string): number => {
 	return 3;
 };
 
+export const wageTypeConverterInI18n = (wageType: string): string => {
+	if (wageType === 'monthly') {
+		return 'salary';
+	}
+
+	if (wageType === 'weekly') {
+		return 'weeklyWage';
+	}
+	if (wageType === 'daily') {
+		return 'dailyWage';
+	}
+
+	return 'hourlyWage';
+};
+
 export default wageTermFunction;

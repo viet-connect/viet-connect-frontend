@@ -85,6 +85,7 @@ const Title = styled.div`
 	font-size: 20px;
 	font-weight: bold;
 	margin-bottom: 10px;
+	color: black;
 `;
 
 const FirstContentWrapper = styled.div`
@@ -106,11 +107,14 @@ const WorkingDay = styled.div`
 
 const WorkingHour = styled.div`
 	display: flex;
+	align-items: flex-end;
 `;
 const DescriptionWrapper = styled.textarea`
-	border: 1px solid black;
+	border: solid 1px rgba(128, 128, 128, 0.5);
+	border-radius: 6px;
 	width: 100%;
 	height: 150px;
 	white-space: pre-wrap;
 	font-size: 16px;
+	color: black;
 `;
