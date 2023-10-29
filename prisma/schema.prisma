@@ -27,7 +27,7 @@ model Posting {
   subAddress       String   @default("") @map("sub_address")
   contactName      String   @map("contact_name")
   contactNumber    String   @map("contact_number")
-  contents         String?  @db.VarChar(800)
+  contents         String?  @db.Text
   createdAt        DateTime @default(now()) @map("created_at")
   updatedAt        DateTime @updatedAt @map("updated_at")
   endingTime       String   @map("ending_time")
