@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { useRef, useState } from 'react';
 import DateUtils from '../../../../utils/DateUtils';
 import SvgIcon from '../../../common/Icon';
-import { wageTypeConverterInKorean } from '../../../../utils/wageConfig';
+import { wageTypeConverterInI18n } from '../../../../utils/wageConfig';
 import CommonUtils from '../../../../utils/commonUtils';
 import { Password } from '../../../../utils/bcrypt';
 import validate from '../../../../utils/validate';
@@ -18,10 +18,11 @@ import { PlaceHolder } from '../../posting/first_part';
 import Modal from '../../../common/Modal';
 
 function WorkingDayGrid({ isNegotiable, workingDay }) {
-	const normalDays = ['월', '화', '수', '목', '금', '토', '일'];
+	const normalDays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
 	const workDayArr: string[] = JSON.parse(workingDay).map((day) =>
-		CommonUtils.DayConverterInKorean(day),
+		CommonUtils.DayConverter(day),
 	);
+	const { t } = useTranslation();
 
 	return (
 		<DashboardItemWrapper>
@@ -33,14 +34,14 @@ function WorkingDayGrid({ isNegotiable, workingDay }) {
 					if (workDayArr.includes(day)) {
 						return (
 							<DayWrapper style={{ color: '#000000', fontSize: 15 }} key={day}>
-								{day}
+								{t(`posting:${day}`)}
 							</DayWrapper>
 						);
 					}
 					// return null;
 					return (
 						<DayWrapper key={day} style={{ color: '#d9d9d9' }}>
-							{day}
+							{t(`posting:${day}`)}
 						</DayWrapper>
 					);
 				})}
@@ -81,7 +82,8 @@ const TimeWrapper = styled.div`
 `;
 
 function KoreanProficiencyGrid({ proficiency }) {
-	const levelArr = ['무관', '기초', '보통', '잘함'];
+	const levelArr = ['koLangirrelevance', 'koLangBasic', 'koLangAverage', 'koLangExcellence'];
+	const { t } = useTranslation();
 	return (
 		<DashboardItemWrapper>
 			<div>
@@ -89,16 +91,16 @@ function KoreanProficiencyGrid({ proficiency }) {
 			</div>
 			<LevelGrid>
 				{levelArr.map((lev) => {
-					if (CommonUtils.proficiencyConverterInKorean(proficiency) === lev) {
+					if (CommonUtils.proficiencyConverter(proficiency) === lev) {
 						return (
 							<Cell style={{ color: '#000000', fontSize: 15 }} key={lev}>
-								{lev}
+								{t(`posting:${lev}`)}
 							</Cell>
 						);
 					}
 					return (
 						<Cell style={{ color: '#d9d9d9' }} key={lev}>
-							{lev}
+							{t(`posting:${lev}`)}
 						</Cell>
 					);
 				})}
@@ -196,7 +198,7 @@ export default function ContentHeader({ data }) {
 		<Container>
 			<InfoFirstLine>
 				<div style={{ fontSize: 14, opacity: 0.5 }}>
-					등록일: {DateUtils.getDateHourMinString(updatedAt)}
+					{t('posting:openingDate')}: {DateUtils.getDateHourMinString(updatedAt)}
 				</div>
 				<div>
 					<span
@@ -236,7 +238,7 @@ export default function ContentHeader({ data }) {
 						<SvgIcon name="wageIcon" width={40} height={40} />
 					</div>
 					<div style={{ marginBottom: 8 }}>
-						{wageTypeConverterInKorean(wageType)}
+						{t(`jobTable:${wageTypeConverterInI18n(wageType)}`)}
 					</div>
 					<div>{wageAmount}원</div>
 				</DashboardItemWrapper>
@@ -323,14 +325,17 @@ const InfoFirstLine = styled.div`
 
 const DashboardWrapper = styled.div`
 	flex: 1;
-	height: 100px;
 	border: 1px solid #d9d9d9;
 	border-radius: 10px;
 	margin-bottom: 30px;
 	box-shadow: 5px 5px 5px #d9d9d9;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
+	display: grid;
+	justify-content: center;
+	gap: 16px;
+	grid-template-columns: repeat(4, 1fr);
+	@media (max-width: 500px) {
+		grid-template-columns: repeat(2, 1fr);
+	}
 	font-size: 13px;
 	font-weight: bold;
 	padding: 10px;
