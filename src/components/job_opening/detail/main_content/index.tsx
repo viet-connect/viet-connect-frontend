@@ -103,11 +103,12 @@ const Proficiency = styled.div``;
 const WorkingDay = styled.div`
 	display: flex;
 	margin-bottom: 10px;
+	align-items: flex-start;
 `;
 
 const WorkingHour = styled.div`
 	display: flex;
-	align-items: flex-end;
+	align-items: flex-start;
 `;
 const DescriptionWrapper = styled.textarea`
 	border: solid 1px rgba(128, 128, 128, 0.5);
