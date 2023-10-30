@@ -18,7 +18,15 @@ import { PlaceHolder } from '../../posting/first_part';
 import Modal from '../../../common/Modal';
 
 function WorkingDayGrid({ isNegotiable, workingDay }) {
-	const normalDays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+	const normalDays = [
+		'monday',
+		'tuesday',
+		'wednesday',
+		'thursday',
+		'friday',
+		'saturday',
+		'sunday',
+	];
 	const workDayArr: string[] = JSON.parse(workingDay).map((day) =>
 		CommonUtils.DayConverter(day),
 	);
@@ -26,14 +34,14 @@ function WorkingDayGrid({ isNegotiable, workingDay }) {
 
 	return (
 		<DashboardItemWrapper>
-			<div style={{ marginBottom: 6 }}>
+			<div style={{ marginBottom: 2 }}>
 				<SvgIcon name="workingDayIcon" width={40} height={40} />
 			</div>
 			<DayContainer>
 				{normalDays.map((day) => {
 					if (workDayArr.includes(day)) {
 						return (
-							<DayWrapper style={{ color: '#000000', fontSize: 15 }} key={day}>
+							<DayWrapper style={{ color: '#000000' }} key={day}>
 								{t(`posting:${day}`)}
 							</DayWrapper>
 						);
@@ -81,30 +89,51 @@ const TimeWrapper = styled.div`
 	margin-bottom: 6px;
 `;
 
-function KoreanProficiencyGrid({ proficiency }) {
-	const levelArr = ['koLangirrelevance', 'koLangBasic', 'koLangAverage', 'koLangExcellence'];
+function WageIndicator({ wageType, wageAmount }) {
 	const { t } = useTranslation();
+
 	return (
 		<DashboardItemWrapper>
 			<div>
-				<SvgIcon name="koreanSpeakingIcon" width={50} height={40} />
+				<SvgIcon name="wageIcon" width={40} height={40} />
 			</div>
-			<LevelGrid>
+			<div>{t(`jobTable:${wageTypeConverterInI18n(wageType)}`)}</div>
+			<div>{wageAmount}원</div>
+		</DashboardItemWrapper>
+	);
+}
+
+function KoreanProficiencyGrid({ proficiency }) {
+	const levelArr = [
+		'koLangirrelevance',
+		'koLangBasic',
+		'koLangAverage',
+		'koLangExcellence',
+	];
+	const { t } = useTranslation();
+	return (
+		<DashboardItemWrapper>
+			<div style={{ marginBottom: 3 }}>
+				<SvgIcon name="koreanSpeakingIcon" width={59} height={40} />
+			</div>
+			<div>
 				{levelArr.map((lev) => {
 					if (CommonUtils.proficiencyConverter(proficiency) === lev) {
 						return (
-							<Cell style={{ color: '#000000', fontSize: 15 }} key={lev}>
+							<Cell style={{ color: '#000000' }} key={lev}>
 								{t(`posting:${lev}`)}
 							</Cell>
 						);
 					}
-					return (
-						<Cell style={{ color: '#d9d9d9' }} key={lev}>
-							{t(`posting:${lev}`)}
-						</Cell>
-					);
+
+					return null;
+					// return (
+					// 	<Cell style={{ color: '#d9d9d9' }} key={lev}>
+					// 		{t(`posting:${lev}`)}
+					// 	</Cell>
+					// );
 				})}
-			</LevelGrid>
+			</div>
 		</DashboardItemWrapper>
 	);
 }
@@ -198,7 +227,8 @@ export default function ContentHeader({ data }) {
 		<Container>
 			<InfoFirstLine>
 				<div style={{ fontSize: 14, opacity: 0.5 }}>
-					{t('posting:openingDate')}: {DateUtils.getDateHourMinString(updatedAt)}
+					{t('posting:openingDate')}:{' '}
+					{DateUtils.getDateHourMinString(updatedAt)}
 				</div>
 				<div>
 					<span
@@ -233,15 +263,7 @@ export default function ContentHeader({ data }) {
 			<AddressWrapper>{address}</AddressWrapper>
 			<Divider style={{ marginBottom: 20 }} />
 			<DashboardWrapper>
-				<DashboardItemWrapper>
-					<div style={{ marginBottom: 5 }}>
-						<SvgIcon name="wageIcon" width={40} height={40} />
-					</div>
-					<div style={{ marginBottom: 8 }}>
-						{t(`jobTable:${wageTypeConverterInI18n(wageType)}`)}
-					</div>
-					<div>{wageAmount}원</div>
-				</DashboardItemWrapper>
+				<WageIndicator wageType={wageType} wageAmount={wageAmount} />
 				<WorkingDayGrid
 					isNegotiable={isDayNegotiable}
 					workingDay={workingDay}
@@ -330,6 +352,7 @@ const DashboardWrapper = styled.div`
 	margin-bottom: 30px;
 	box-shadow: 5px 5px 5px #d9d9d9;
 	display: grid;
+
 	justify-content: center;
 	gap: 16px;
 	grid-template-columns: repeat(4, 1fr);
@@ -346,7 +369,8 @@ const DashboardItemWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	height: 100%;
+	justify-content: flex-start;
+	height: 90px;
 `;
 
 const ModalContentContainer = styled.div``;
