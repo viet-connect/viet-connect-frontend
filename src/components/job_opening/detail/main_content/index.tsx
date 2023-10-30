@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
 import CommonUtils from '../../../../utils/commonUtils';
+import WageBox from '../../../common/WageBox';
 
 export default function MainContent({ data }) {
 	const { t } = useTranslation();
@@ -9,11 +10,13 @@ export default function MainContent({ data }) {
 		gender: _gender,
 		proficiency: _proficiency,
 		workingDay,
-		isDayNegotiable,
 		isTimeNegotiable,
 		startingTime,
 		endingTime,
 		contents,
+		isDayNegotiable,
+		wageType,
+		wageAmount,
 	} = data;
 
 	const workDayArr = JSON.parse(workingDay);
@@ -42,6 +45,10 @@ export default function MainContent({ data }) {
 			<InfoWrapper style={{ marginBottom: 20 }}>
 				<Title>{t('detail:workingCondition')}</Title>
 				<SecondContentWrapper>
+					<WageWrapper>
+						<WageBox termIndex={wageType} />
+						<div>{`${wageAmount}원`}</div>
+					</WageWrapper>
 					<WorkingDay>
 						<div>{t('detail:workingDay')} :</div>
 						<div style={{ marginLeft: 5 }}>
@@ -53,7 +60,7 @@ export default function MainContent({ data }) {
 								</div>
 								<div>{workDayString}</div>
 							</div>
-							<div>{isTimeNegotiable && `(${t('detail:negotiable')})`}</div>
+							<div>{isDayNegotiable && `(${t('detail:negotiable')})`}</div>
 						</div>
 					</WorkingDay>
 					<WorkingHour>
@@ -90,9 +97,18 @@ const Title = styled.div`
 
 const FirstContentWrapper = styled.div`
 	display: flex;
+	border: 1px solid #d9d9d9;
+	border-radius: 10px;
+	box-shadow: 5px 5px 5px #d9d9d9;
+	padding: 10px;
 `;
 
-const SecondContentWrapper = styled.div``;
+const SecondContentWrapper = styled.div`
+	border: 1px solid #d9d9d9;
+	border-radius: 10px;
+	box-shadow: 5px 5px 5px #d9d9d9;
+	padding: 10px;
+`;
 
 const Gender = styled.div`
 	margin-right: 30px;
@@ -118,4 +134,11 @@ const DescriptionWrapper = styled.textarea`
 	white-space: pre-wrap;
 	font-size: 16px;
 	color: black;
+`;
+
+const WageWrapper = styled.div`
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 5px;
 `;
