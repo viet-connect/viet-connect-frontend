@@ -7,7 +7,6 @@ import Layout from '../../src/components/common/Layout';
 
 export default function Introduction() {
     const { t } = useTranslation();
-    // const guides = ['ceo', 'jobSeeker'];
 	const guides = ['ceo', 'jobSeeker'].map((key) => {
 		const title = t(`introduction:guide.${key}.title`);
 		const descs = t(`introduction:guide.${key}.desc`).split('|');
