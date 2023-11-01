@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
 import CommonUtils from '../../../../utils/commonUtils';
 import WageBox from '../../../common/WageBox';
+import { wageTypeConverter } from '../../../../utils/wageConfig';
 
 export default function MainContent({ data }) {
 	const { t } = useTranslation();
@@ -46,7 +47,7 @@ export default function MainContent({ data }) {
 				<Title>{t('detail:workingCondition')}</Title>
 				<SecondContentWrapper>
 					<WageWrapper>
-						<WageBox termIndex={wageType} />
+						<WageBox termIndex={wageTypeConverter(wageType)} />
 						<div>{`${wageAmount}원`}</div>
 					</WageWrapper>
 					<WorkingDay>
