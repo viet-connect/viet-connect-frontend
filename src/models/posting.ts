@@ -124,8 +124,11 @@ export class Posting {
 			} = el;
 			const addressArray = address.split(' ');
 			const shortAddress =
-				addressArray[0] !== '세종특별시'
-					? `${addressArray[0]} ${addressArray[1]}`
+				// eslint-disable-next-line no-nested-ternary
+				addressArray[0] !== '세종특별자치시'
+					? addressArray[0] !== '강원특별자치도'
+						? `${addressArray[0]} ${addressArray[1]}`
+						: `강원 ${addressArray[1]}`
 					: `세종 ${addressArray[1]}`;
 
 			return {
