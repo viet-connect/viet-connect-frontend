@@ -24,6 +24,7 @@ export const inputPostingState = atom<IPosting>({
 			sub: '',
 		},
 		password: '',
+		view_count: 0,
 	},
 });
 
@@ -49,5 +50,6 @@ export const savedInputPostingState = atom<ISavedPosting>({
 		createdAt: null,
 		subAddress: '',
 		mainAddress: '',
+		viewCount: 0,
 	},
 });

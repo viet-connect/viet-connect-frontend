@@ -15,9 +15,20 @@ export default async function posting(
 	try {
 		switch (method) {
 			case 'GET': {
-				const uniquePosting = await prisma.posting.findUnique({
+				const uniquePosting = await prisma.posting.findUniqueOrThrow({
 					where: {
 						id: pid,
+					},
+				});
+
+				await prisma.posting.update({
+					where: {
+						id: pid,
+					},
+					data: {
+						viewCount: {
+							increment: 1,
+						},
 					},
 				});
 

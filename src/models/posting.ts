@@ -10,6 +10,7 @@ export interface IPostingSummary {
 	title: string;
 	salary: { wage: string; way: number };
 	date: string;
+	view_count: number;
 }
 
 export interface IPosting {
@@ -32,6 +33,7 @@ export interface IPosting {
 		sub: string;
 	};
 	password: string;
+	view_count: number;
 }
 
 export interface ISavedPosting {
@@ -54,6 +56,7 @@ export interface ISavedPosting {
 	password: string;
 	updatedAt: Date;
 	createdAt: Date;
+	viewCount: number;
 }
 
 export class Posting {
@@ -88,6 +91,8 @@ export class Posting {
 			const post = await fetch(`${server}/api/posting/${pid}`).then((res) =>
 				res.json(),
 			);
+			// 조회수 1 추가
+			post.viewCount += 1;
 
 			const { addresses } = await geoCoding.getGeoLocation(post.address);
 			if (addresses.length > 0) {
