@@ -8,13 +8,16 @@ import DateUtils from '../../../src/utils/DateUtils';
 
 export default function ForumDetail({ post }) {
 	const { title, author, descs, images, createdAt } = post;
-	const date = DateUtils.getDateString(createdAt);
+	const date = DateUtils.getFullDateString(createdAt);
     return (
-        <Layout pageIndex={2}>
+        <Layout pageIndex={3}>
 			<Header>
 				<div className="forum-detail__title">{title}</div>
 				<SpecificInfo>
-					<div>{author}</div>
+					<div className="forum-detail__writer">
+						<Image src="/favicon-96x96.png" alt="비엣커넥트 파비콘" width="24" height="24"/>
+						<div>{author}</div>
+					</div>
 					<div className="forum-detail__specific">
 						<div className="forum-detail__date">{date}</div>
 						{/* <div className="forum-detail__view">조회수</div> */}
@@ -23,10 +26,16 @@ export default function ForumDetail({ post }) {
 			</Header>
 			<Body>
 				<div className="forum-detail__content">
-					{descs.map((desc, i) => (
+					{descs.map(({ subTitle, desc }, i) => (
+						<li key={i}>
+							<span className="forum-detail__content--sub-title">{subTitle}</span>
+							<br />
+							{desc}
+						</li>
+					))}
+					{images.map((image, i) => (
 						<div key={i}>
-							<div>{desc}</div>
-							<div className="forum-detail__content--img-box"><Image src={images[i]} alt="test" width={693} height={478}/></div>
+							<Image src={image} alt="test" width={693} height={478}/>
 						</div>
 					))}
 				</div>
@@ -67,6 +76,11 @@ const SpecificInfo = styled.div`
 	gap: 8px;
 	font-size: 14px;
 	.forum-detail {
+		&__writer {
+			display: flex;
+			align-items: center;
+			gap: 4px;
+		}
 		&__specific {
 			display: flex;
 			gap: 4px;
@@ -81,13 +95,25 @@ const Body = styled.div`
 	display: flex;
 	flex-direction: column;
 	padding-top: 16px;
-	.forum-detail__content {
-		line-height: 1.5;
-		white-space: pre-wrap;
-		img {
-			margin: 16px 0px;
-			width: 100%;
-			height: auto;
+	.forum-detail {
+		&__content {
+			line-height: 1.7;
+			white-space: pre-wrap;
+			img {
+				margin: 16px 0px;
+				width: 100%;
+				height: auto;
+			}
+			li {
+				margin-bottom: 16px;
+				list-style-position: inside;
+				padding-inline-start: 20px;
+				text-indent: -20px;
+				font-weight: bold;
+			}
+			&--sub-title {
+				color: #2f5597
+			}
 		}
 	}
 `;

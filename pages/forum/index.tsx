@@ -8,7 +8,7 @@ import { posts } from '../../src/constant/announcement';
 export default function Forum() {
     const postList = Object.values(posts);
     return (
-        <Layout pageIndex={2}>
+        <Layout pageIndex={3}>
             <AnnounceSection>
                 {postList.map((post) => (
                     <ArticleCard key={post.id} article={post} announcement/>
