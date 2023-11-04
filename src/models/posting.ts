@@ -126,6 +126,7 @@ export class Posting {
 				contents,
 				contactName,
 				password,
+				viewCount,
 			} = el;
 			const addressArray = address.split(' ');
 			const shortAddress =
@@ -148,6 +149,8 @@ export class Posting {
 				contents,
 				contact_name: contactName,
 				date: DateUtils.getMonthDayDateTimeString(updatedAt),
+				view_count: viewCount,
+				updated_at: updatedAt,
 			};
 		});
 	}

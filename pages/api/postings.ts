@@ -42,7 +42,8 @@ export default async function posting_list(
 
 				const passwordHelper = new Password(password, '');
 				const hashedPassword = await passwordHelper.createPassword();
-				const posting = await prisma.posting.create({
+
+				await prisma.posting.create({
 					data: {
 						title,
 						contactName: contact_name,
@@ -61,6 +62,7 @@ export default async function posting_list(
 						mainAddress: address.main,
 						subAddress: address.sub,
 						password: hashedPassword,
+						viewCount: 0,
 					},
 				});
 
