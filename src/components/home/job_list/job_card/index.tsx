@@ -14,7 +14,7 @@ export default function JobCard({ content }) {
 			<CardHeader>
 				{contact_name}
 				<DateWrapper>
-					<span style={{ marginRight: 10 }}>조회수: {view_count}</span>
+					<span style={{ marginRight: 13 }}>조회수: {view_count}</span>
 					<span>{date}</span>
 				</DateWrapper>
 			</CardHeader>
