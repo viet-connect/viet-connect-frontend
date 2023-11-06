@@ -4,7 +4,7 @@ import WageBox from '../../../common/WageBox';
 
 export default function JobCard({ content }) {
 	const router = useRouter();
-	const { id, date, region, salary, title, contact_name } = content;
+	const { id, date, region, salary, title, contact_name, view_count } = content;
 	const onClickRedirectDetail = () => {
 		router.push(`job_opening/detail/${id}`);
 	};
@@ -12,8 +12,11 @@ export default function JobCard({ content }) {
 	return (
 		<CardWrapper onClick={onClickRedirectDetail}>
 			<CardHeader>
-				<div>{contact_name}</div>
-				<DateWrapper>{date}</DateWrapper>
+				{contact_name}
+				<DateWrapper>
+					<span style={{ marginRight: 13 }}>조회수: {view_count}</span>
+					<span>{date}</span>
+				</DateWrapper>
 			</CardHeader>
 			<CardMain>{title}</CardMain>
 			<CardFooter>

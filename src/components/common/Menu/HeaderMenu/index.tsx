@@ -61,7 +61,7 @@ const Container = styled.ul`
 `;
 
 const MenuItem = styled.li`
-	padding-inline: 16px;
+	padding-inline: 11px;
 	cursor: pointer;
 `;
 

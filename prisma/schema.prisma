@@ -9,15 +9,15 @@ datasource db {
 }
 
 model Article {
-  id        String   @id @default(uuid())
-  author    String
-  contents  String   @db.Text
-  category  String
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-  password  String
-  title     String
-  viewCount Int
+  id         String   @id @default(uuid())
+  author     String
+  contents   String   @db.Text
+  category   String
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+  password   String
+  title      String
+  view_count Int      @default(0) @map("view_count")
 }
 
 model Posting {
@@ -41,4 +41,5 @@ model Posting {
   wageAmount       String   @map("wage_amount")
   wageType         String   @map("wage_type")
   workingDay       Json     @map("working_day")
+  viewCount        Int      @default(0) @map("view_count")
 }

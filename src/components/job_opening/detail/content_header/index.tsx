@@ -167,6 +167,7 @@ export default function ContentHeader({ data }) {
 		proficiency,
 		isDayNegotiable,
 		isTimeNegotiable,
+		viewCount,
 	} = data;
 
 	const router = useRouter();
@@ -227,8 +228,11 @@ export default function ContentHeader({ data }) {
 		<Container>
 			<InfoFirstLine>
 				<div style={{ fontSize: 14, opacity: 0.5 }}>
-					{t('posting:openingDate')}:{' '}
-					{DateUtils.getDateHourMinString(updatedAt)}
+					<span style={{ marginRight: 5 }}>
+						{t('posting:openingDate')}:{' '}
+						{DateUtils.getDateHourMinString(updatedAt)}
+					</span>
+					<span>조회수: {viewCount}</span>
 				</div>
 				<div>
 					<span
