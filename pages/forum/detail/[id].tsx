@@ -65,7 +65,7 @@ const Header = styled.div`
 	border-bottom: 1px solid rgba(128, 128, 128, 0.50);
 	padding-bottom: 16px;
 	.forum-detail__title {
-		font-size: 32px;
+		font-size: 25px;
 		line-height: 1.3;
 	}
 `;
