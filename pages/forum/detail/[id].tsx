@@ -3,43 +3,30 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import styled from 'styled-components';
 import Image from 'next/image';
 import Layout from '../../../src/components/common/Layout';
-import { posts } from '../../../src/constant/announcement';
 import DateUtils from '../../../src/utils/DateUtils';
+import { Article } from '../../../src/models/article';
+import ArticlePost from '../../../src/components/forum/article-post';
 
 export default function ForumDetail({ post }) {
-	const { title, author, descs, images, createdAt } = post;
+	const { author, createdAt } = post;
 	const date = DateUtils.getFullDateString(createdAt);
     return (
         <Layout pageIndex={3}>
-			<Header>
-				<div className="forum-detail__title">{title}</div>
-				<SpecificInfo>
-					<div className="forum-detail__writer">
-						<Image src="/favicon-96x96.png" alt="비엣커넥트 파비콘" width="24" height="24"/>
-						<div>{author}</div>
-					</div>
-					<div className="forum-detail__specific">
-						<div className="forum-detail__date">{date}</div>
-						{/* <div className="forum-detail__view">조회수</div> */}
-					</div>
-				</SpecificInfo>
-			</Header>
-			<Body>
-				<div className="forum-detail__content">
-					{descs.map(({ subTitle, desc }, i) => (
-						<li key={i}>
-							<span className="forum-detail__content--sub-title">{subTitle}</span>
-							<br />
-							{desc}
-						</li>
-					))}
-					{images.map((image, i) => (
-						<div key={i}>
-							<Image src={image} alt="test" width={693} height={478}/>
+
+			<ArticlePost article={post} readOnly>
+				<Header>
+					<SpecificInfo>
+						<div className="forum-detail__writer">
+							<Image src="/favicon-96x96.png" alt="비엣커넥트 파비콘" width="24" height="24"/>
+							<div>{author}</div>
 						</div>
-					))}
-				</div>
-			</Body>
+						<div className="forum-detail__specific">
+							<div className="forum-detail__date">{date}</div>
+							{/* <div className="forum-detail__view">조회수</div> */}
+						</div>
+					</SpecificInfo>
+				</Header>
+			</ArticlePost>
         </Layout>
     );
 }
@@ -54,7 +41,7 @@ export async function getServerSideProps({ locale, query }) {
 		'posting',
 	];
 	const translation = await serverSideTranslations(locale, i18n);
-	const post = posts[query.id];
+	const post = await Article.getUniqueArticle(query.id);
 	return { props: { post, ...translation } };
 }
 

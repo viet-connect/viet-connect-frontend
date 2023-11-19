@@ -1,13 +1,17 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import DateUtils from '../../../utils/DateUtils';
+import Badge from '../../common/Badge';
 
 export default function ArticleCard({ article, announcement }) {
     const router = useRouter();
+    const { t } = useTranslation();
 
-    const { id, author, category, title, viewCount, createdAt } = article;
+    const { id, author, category: _category, title, viewCount, createdAt } = article;
     const date = createdAt ? DateUtils.timeForToday(createdAt) : '';
+    const category = t(`article:${_category}`);
 
     const onClick = () => {
         router.push(`forum/detail/${id}`);
