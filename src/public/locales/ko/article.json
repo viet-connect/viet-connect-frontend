@@ -1,0 +1,9 @@
+{
+    "none": "전체",
+    "announcement": "공지사항",
+    "koreanNews": "한국 뉴스",
+    "koreanLanguage": "한국어 공부",
+    "title": "글쓰기 페이지 제목 placeholder",
+    "editor": "글쓰기 페이지 컨텐츠 placeholder",
+    "addBtn": "글쓰기 페이지 등록 버튼 label"
+}

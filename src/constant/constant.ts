@@ -82,4 +82,11 @@ const jobTableConstant = Object.freeze({
 	// },
 });
 
-export { layoutConstant, postingConstant, jobTableConstant, category };
+const articleCategory = Object.freeze({
+	None: 'none',
+	Announcement: 'announcement',
+	KoreanNews: 'koreanNews',
+	KoreanLanguage: 'koreanLanguage',
+});
+
+export { layoutConstant, postingConstant, jobTableConstant, category, articleCategory };
