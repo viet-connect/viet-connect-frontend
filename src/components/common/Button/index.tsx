@@ -14,6 +14,7 @@ export default function CommonButton({
 	wrapperStyle,
 	extraWrapperStyle,
 	children,
+	label,
 	onClick,
 	className,
 	textStyle,
@@ -31,7 +32,7 @@ export default function CommonButton({
 			onClick={onClick}
 			className={className}
 		>
-			<ButtonText style={textStyle}>{children}</ButtonText>
+			<ButtonText style={textStyle}>{label ?? children}</ButtonText>
 			<BarLoader
 				loading={loading ?? false}
 				cssOverride={loaderCss}
@@ -44,15 +45,16 @@ export default function CommonButton({
 }
 
 interface IButtonWrapperProps {
-	width?: number;
-	height: number;
+	width?: number | string;
+	height: number | string;
 	color: string;
 }
 
 interface ICommonButtonProps {
 	wrapperStyle: IButtonWrapperProps;
 	extraWrapperStyle?: object;
-	children: React.ReactNode;
+	children?: React.ReactNode;
+	label?: string;
 	onClick?: Optional<(e) => void>;
 	className?: string;
 	textStyle?: object;
@@ -65,9 +67,18 @@ const ButtonWrapper = styled.button<IButtonWrapperProps>`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: ${(props) => (props.width ? `${props.width}px` : '100%')};
-	height: ${(props) => props.height}px;
-	border-radius: 5px;
+	width: ${({ width }) => {
+		if (!width) return '100%';
+		if (typeof width === 'string') return width;
+		return `${width}px`;
+	}};
+	// height: ${(props) => props.height}px;
+	height: ${({ height }) => {
+		if (!height) return '100%';
+		if (typeof height === 'string') return height;
+		return `${height}px`;
+	}}
+	border-radius: 6px;
 	border: none;
 	background: ${(props) => props.color};
 	cursor: pointer;
