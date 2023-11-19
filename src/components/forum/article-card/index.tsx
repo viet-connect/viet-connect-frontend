@@ -10,7 +10,7 @@ export default function ArticleCard({ article, announcement }) {
     const { t } = useTranslation();
 
     const { id, author, category: _category, title, viewCount, createdAt } = article;
-    const date = createdAt ? DateUtils.timeForToday(createdAt) : '';
+    const date = createdAt ? DateUtils.getFullDateString(createdAt) : '';
     const category = t(`article:${_category}`);
 
     const onClick = () => {

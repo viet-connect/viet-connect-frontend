@@ -70,6 +70,7 @@ const SpecificInfo = styled.div`
 		}
 		&__specific {
 			display: flex;
+			align-items: center;
 			gap: 4px;
 		}
 		&__date, &__view {
