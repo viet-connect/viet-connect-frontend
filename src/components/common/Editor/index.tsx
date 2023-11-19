@@ -38,7 +38,7 @@ const formats = [
     'list',
     'indent',
     'link',
-    // 'image',
+    'image',
 ];
 
 export default function Editor(props: QuillEditorProps) {
