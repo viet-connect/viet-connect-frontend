@@ -18,7 +18,7 @@ export default function JobList({ tableContent }) {
 	return (
 		<JobListWrapper>
 			<Banner onClick={onClick}>
-				<Image alt="banner" src="/beemall_banner.png" width={289} height={195}/>
+				<Image alt="banner" src="/beemall_banner.png" fill/>
 			</Banner>
 			{jobList.map((content) => (
 				<JobCard key={content.id} content={content} />
@@ -28,11 +28,13 @@ export default function JobList({ tableContent }) {
 }
 
 const Banner = styled.div`
+	position: relative;
+	width: 100%;
+	height: 104px;
 	cursor: pointer;
 
 	img {
-		width: 100%;
-		height: auto;
+		object-fit: fit;
 		border-radius: 6px;
 	}
 `;
