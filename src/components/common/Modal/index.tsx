@@ -37,6 +37,7 @@ const StyledModal = styled.div`
 	padding: 15px;
 `;
 const StyledModalOverlay = styled.div`
+	z-index: 9999;
 	position: fixed;
 	top: 0;
 	left: 0;
