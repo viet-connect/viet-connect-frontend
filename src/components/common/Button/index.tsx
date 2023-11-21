@@ -72,12 +72,11 @@ const ButtonWrapper = styled.button<IButtonWrapperProps>`
 		if (typeof width === 'string') return width;
 		return `${width}px`;
 	}};
-	// height: ${(props) => props.height}px;
 	height: ${({ height }) => {
 		if (!height) return '100%';
 		if (typeof height === 'string') return height;
 		return `${height}px`;
-	}}
+	}};
 	border-radius: 6px;
 	border: none;
 	background: ${(props) => props.color};
