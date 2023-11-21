@@ -56,7 +56,6 @@ export default function ArticlePosting() {
     };
 
     const onChange = (value) => {
-        console.log('??', value);
         setArticle({ ...article, ...value });
     };
 

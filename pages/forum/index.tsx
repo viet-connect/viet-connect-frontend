@@ -9,19 +9,21 @@ import ArticleCard from '../../src/components/forum/article-card';
 import { Article } from '../../src/models/article';
 import { articleCategory } from '../../src/constant/constant';
 import Badge from '../../src/components/common/Badge';
+import { ClosingModalButton, RegisterInputContainer, RegisterInputItemWrapper } from '../../src/components/job_opening/posting/fourth_part';
+import { PlaceHolder } from '../../src/components/job_opening/posting/first_part';
+import Modal from '../../src/components/common/Modal';
 
 const { None } = articleCategory;
 export default function Forum(props) {
     const router = useRouter();
     const { t } = useTranslation();
+
     const [selectedCategories, setSelectedCategories] = useState([None]);
     const [posts, setPosts] = useState([]);
+    const [password, setPassword] = useState('');
+    const [showModal, setShowModal] = useState(false);
 
     const categories = Object.values(articleCategory);
-
-    const onClick = () => {
-        router.push('forum/posting');
-    };
 
     const onBadgeClick = (category) => {
         let categoryList = null;
@@ -40,6 +42,13 @@ export default function Forum(props) {
         }
 
         setSelectedCategories(categoryList);
+    };
+
+    const onClickMovePostPage = () => {
+        if (password !== process.env.NEXT_PUBLIC_MASTER_PASSWORD) return;
+
+        setShowModal(false);
+        router.push('forum/posting');
     };
 
     useEffect(() => {
@@ -66,8 +75,8 @@ export default function Forum(props) {
                             />
                         ))}
                     </Category>
-                    {/* <CommonButton TODO: 게시판 글쓰기 기능 기획시 주석 해제
-                        label="글쓰기"
+                    <CommonButton
+                        label={t('article:postPageBtnLabel')}
                         wrapperStyle={{
                             width: 'auto',
                             height: 'auto',
@@ -79,14 +88,44 @@ export default function Forum(props) {
                             border: '1px solid rgba(128, 128, 128, 0.50)',
                             borderRadius: '6px',
                         }}
-                        onClick={onClick}
-                    /> */}
+                        onClick={() => setShowModal(true)}
+                    />
                 </HeadWrapper>
                 <AnnounceSection>
                     {posts.map((post) => (
                         <ArticleCard key={post.id} article={post} announcement/>
                     ))}
                 </AnnounceSection>
+                <Modal
+                    width={500}
+                    height={400}
+                    show={showModal}
+                >
+                    <ModalContentContainer>
+                        <RegisterInputContainer>
+                            <RegisterInputItemWrapper>
+                                {t('posting:password')}
+                            </RegisterInputItemWrapper>
+                            <PlaceHolder
+                                type="password"
+                                style={{ height: 30 }}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                name="password"
+                                placeholder={t('detail:passwordPlaceholder')}
+                                autoComplete="off"
+                                required
+                            />
+                        </RegisterInputContainer>
+                        <div className="post-ready-guide">{t('article:postGuide')}</div>
+                        <ClosingModalButton onClick={onClickMovePostPage}>
+                            {t('detail:checkBtnLabel')}
+                        </ClosingModalButton>
+                        <ClosingModalButton onClick={() => setShowModal(false)}>
+                            {t('detail:closeBtnLabel')}
+                        </ClosingModalButton>
+                    </ModalContentContainer>
+                </Modal>
             </Wrapper>
         </Layout>
     );
@@ -130,6 +169,14 @@ const AnnounceSection = styled.div`
     flex-direction: column;
     .title {
         font-weight: bold;
+    }
+`;
+
+const ModalContentContainer = styled.div`
+    .post-ready-guide {
+        font-size: 13px;
+        line-height: 2;
+        color: #448ef7;
     }
 `;
 

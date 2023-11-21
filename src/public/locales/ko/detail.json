@@ -12,6 +12,7 @@
 	"managerContact": "담당자 연락처",
 	"recruitmentGender": "모집 성별",
 	"locationInformation": "근무 지역",
+	"checkBtnLabel":"확인",
 	"editBtnLabel": "수정",
 	"deleteBtnLabel": "삭제",
 	"doDeleteBtnLabel": "삭제하기",

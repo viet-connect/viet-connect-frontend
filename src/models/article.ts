@@ -64,4 +64,22 @@ export class Article {
 			console.log(err);
 		}
     }
+
+	// TODO: 삭제 기능
+	// static async deleteArticle(id: string) {
+	// 	try {
+	// 		const server =
+	// 			process.env.NODE_ENV === 'development'
+	// 				? `${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_VERCEL_URL}`
+	// 				: process.env.DEPLOY_URL;
+	// 		await fetch(`${server}/api/article/${id}`, {
+	// 			method: 'DELETE',
+	// 			headers: {
+	// 				'content-type': 'application/json',
+	// 			},
+	// 		});
+	// 	} catch (err) {
+	// 		console.error(err);
+	// 	}
+	// }
 }
