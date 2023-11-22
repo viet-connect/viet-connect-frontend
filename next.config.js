@@ -22,6 +22,15 @@ const nextConfig = {
 	},
 	pageExtensions: ['mdx', 'md', 'jsx', 'js', 'tsx', 'ts'],
 	i18n,
+	async redirects() {
+		return [
+			{
+				source: '/forum/posting',
+				destination: '/forum',
+				permanent: false,
+			},
+		];
+	},
 };
 
 module.exports = nextConfig;
