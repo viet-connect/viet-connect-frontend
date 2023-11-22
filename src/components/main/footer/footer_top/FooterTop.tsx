@@ -9,18 +9,17 @@ export default function FooterTop() {
 			<Divider />
 			<FooterTopText>대표 : {layoutConstant.EXECUTIVE}</FooterTopText>
 			<Divider />
-			<br />
 			<FooterTopText>
 				개인정보 보호 책임자 : {layoutConstant.PERSONAL_INFO_PERSON_IN_CHARGE}
 			</FooterTopText>
-			{/* <br />
+			<br />
 			<FooterTopText>
 				사업자등록번호 : {layoutConstant.ENTERPRISE_NUMBER}
-			</FooterTopText> */}
-			{/* <Divider /> */}
-			{/* <br /> */}
-			{/* <FooterTopText>주소 : {layoutConstant.ADDRESS}</FooterTopText> */}
-			{/* <Divider /> */}
+			</FooterTopText>
+			<Divider />
+			<br />
+			<FooterTopText>주소 : {layoutConstant.ADDRESS}</FooterTopText>
+			<Divider />
 			<br />
 			<FooterTopText>
 				대표 이메일 : {layoutConstant.COMPANY_EMAIL}

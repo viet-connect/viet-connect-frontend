@@ -1,11 +1,11 @@
 const layoutConstant = Object.freeze({
 	ENTERPRISE: '비엣커넥트',
 	EXECUTIVE: '서현욱',
-	PERSONAL_INFO_PERSON_IN_CHARGE: '하석호',
-	ENTERPRISE_NUMBER: '101-1451-2572-10',
-	ADDRESS: '서울특별시 동대문구 이문로 107',
+	PERSONAL_INFO_PERSON_IN_CHARGE: '서현욱',
+	ENTERPRISE_NUMBER: '645-32-01502',
+	ADDRESS: '인천광역시 연수구 계림로 35번길 27, 3층(청학동)',
 	COMPANY_EMAIL: 'gluesociety@naver.com',
-	COMPANY_PHONE_NUMBER: '010-8453-8883',
+	COMPANY_PHONE_NUMBER: '+010-8453-8883',
 });
 
 const category = Object.freeze({
@@ -89,4 +89,10 @@ const articleCategory = Object.freeze({
 	KoreanLanguage: 'koreanLanguage',
 });
 
-export { layoutConstant, postingConstant, jobTableConstant, category, articleCategory };
+export {
+	layoutConstant,
+	postingConstant,
+	jobTableConstant,
+	category,
+	articleCategory,
+};
