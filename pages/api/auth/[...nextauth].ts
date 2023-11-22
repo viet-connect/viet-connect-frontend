@@ -1,14 +1,25 @@
-import NextAuth from 'next-auth';
-import GithubProvider from 'next-auth/providers/github';
+import NextAuth from 'next-auth/next';
+import KakaoProvider from 'next-auth/providers/kakao';
 
-export const authOptions = {
-	// Configure one or more authentication providers
+export default NextAuth({
 	providers: [
-		GithubProvider({
-			clientId: process.env.GITHUB_ID,
-			clientSecret: process.env.GITHUB_SECRET,
+		KakaoProvider({
+			clientId: process.env.KAKAO_CLIENT_ID!,
+			clientSecret: process.env.KAKAO_CLIENT_SECRET!,
 		}),
-		// ...add more providers here
 	],
-};
-export default NextAuth(authOptions);
+	callbacks: {
+		async jwt({ token, user }) {
+			return { ...token, ...user };
+		},
+
+		async session({ session, token }) {
+			// eslint-disable-next-line no-param-reassign
+			session.user = token as any;
+			return session;
+		},
+	},
+	pages: {
+		signIn: '/auth/signin',
+	},
+});

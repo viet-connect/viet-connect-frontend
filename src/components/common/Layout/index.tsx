@@ -7,6 +7,7 @@ import FooterBottom from '../../main/footer/footer_bottom/FooterBottom';
 import Flag from '../../main/header_top/flag';
 import Content from './Content';
 import { Analytics } from '../Analytics/Analytics';
+import LoginButton from '../Login/LoginButton';
 
 interface IMainProps {
 	children: ReactNode;
@@ -20,7 +21,10 @@ export default function Layout({ children, pageIndex }: IMainProps) {
 				<Header>
 					<Row>
 						<Logo />
-						<Flag />
+						<div style={{ display: 'flex' }}>
+							<LoginButton />
+							<Flag />
+						</div>
 					</Row>
 				</Header>
 				<Content pageIndex={pageIndex}>{children}</Content>

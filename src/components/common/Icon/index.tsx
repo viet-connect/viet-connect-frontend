@@ -8,6 +8,7 @@ interface IconProps {
 	height?: number;
 	color?: string;
 	style?: object;
+	onClick?: () => void;
 }
 
 function SvgIcon({
@@ -17,13 +18,16 @@ function SvgIcon({
 	size,
 	color,
 	style,
+	onClick,
 }: IconProps) {
 	const SelectedIcon = Icons[name];
 	const width = _width ?? size;
 	const height = _height ?? size;
 
 	return (
-		<SelectedIcon style={style} width={width} height={height} color={color} />
+		<div onClick={onClick}>
+			<SelectedIcon style={style} width={width} height={height} color={color} />
+		</div>
 	);
 }
 
