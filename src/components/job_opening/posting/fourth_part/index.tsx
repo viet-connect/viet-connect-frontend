@@ -105,7 +105,11 @@ export default function JobOpeningPostingFourthPart({ data, isAdmin }) {
 							name="postContent"
 							rows={4}
 							placeholder={t('posting:moreInformationPlaceholder')}
-							maxLength={402}
+							maxLength={
+								localStorage.getItem(process.env.NEXT_PUBLIC_ADMIN_KEY)
+									? Number.MAX_SAFE_INTEGER
+									: 402
+							}
 						/>
 					</TextAreaWrapper>
 				</PlaceHolderWrapper>

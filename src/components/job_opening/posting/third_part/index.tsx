@@ -75,7 +75,11 @@ export default function JobOpeningPostingThirdPart({ data }) {
 					<ItemTitleDesc>{t('posting:payDescription')}</ItemTitleDesc>
 				</TitleWrapper>
 				<WageInputWrapper>
-					<WageSelector name="wage_type" onChange={handleInputChange}>
+					<WageSelector
+						name="wage_type"
+						value={newJobPosting.wage_type}
+						onChange={handleInputChange}
+					>
 						<option value="monthly">{t('jobTable:salary')}</option>
 						<option value="weekly">{t('jobTable:weeklyWage')}</option>
 						<option value="daily">{t('jobTable:dailyWage')}</option>
