@@ -5,7 +5,7 @@ const layoutConstant = Object.freeze({
 	ENTERPRISE_NUMBER: '645-32-01502',
 	ADDRESS: '인천광역시 연수구 계림로 35번길 27, 3층(청학동)',
 	COMPANY_EMAIL: 'gluesociety@naver.com',
-	COMPANY_PHONE_NUMBER: '+010-8453-8883',
+	COMPANY_PHONE_NUMBER: '010-8453-8883',
 });
 
 const category = Object.freeze({
