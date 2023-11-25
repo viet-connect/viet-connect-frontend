@@ -5,18 +5,21 @@ import { layoutConstant } from '../../../../constant/constant';
 export default function FooterTop() {
 	return (
 		<Container>
-			<FooterTopText>상호 : {layoutConstant.ENTERPRISE}</FooterTopText>
+			<FooterTopText>상호명 {layoutConstant.ENTERPRISE}</FooterTopText>
 			<Divider />
-			<FooterTopText>대표 : {layoutConstant.EXECUTIVE}</FooterTopText>
+			<FooterTopText>대표이사 : {layoutConstant.EXECUTIVE}</FooterTopText>
 			<Divider />
 			<FooterTopText>
-				개인정보 보호 책임자 : {layoutConstant.PERSONAL_INFO_PERSON_IN_CHARGE}
+				개인정보책임자 : {layoutConstant.PERSONAL_INFO_PERSON_IN_CHARGE}
 			</FooterTopText>
 			<br />
 			<FooterTopText>
 				사업자등록번호 : {layoutConstant.ENTERPRISE_NUMBER}
 			</FooterTopText>
 			<Divider />
+			<FooterTopText>
+				통신판매업신고번호 :{layoutConstant.MAIL_ORDER_SALES_APPROVAL_NUMBER}
+			</FooterTopText>
 			<br />
 			<FooterTopText>주소 : {layoutConstant.ADDRESS}</FooterTopText>
 			<Divider />
