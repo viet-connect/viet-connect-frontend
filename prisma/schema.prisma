@@ -43,3 +43,14 @@ model Posting {
   workingDay       Json     @map("working_day")
   viewCount        Int      @default(0) @map("view_count")
 }
+
+model User {
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  name     String?
+  password String
+}
+
+model Employee {
+  id Int @id @default(autoincrement())
+}
