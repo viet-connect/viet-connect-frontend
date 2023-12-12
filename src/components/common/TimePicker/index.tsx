@@ -1,56 +1,55 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { DesktopTimePicker } from '@mui/x-date-pickers';
-import { renderTimeViewClock } from '@mui/x-date-pickers/timeViewRenderers';
-import dayjs from 'dayjs';
+import { useRecoilState } from 'recoil';
+import { inputPostingState } from '../../../recoil/atom/posting';
 
-export default function TimePicker({
-	value,
-	defaultValue: _defaultValue,
-	onChange,
-}) {
-	const pickerInput = useRef(null);
-	const defaultValue = _defaultValue ?? dayjs(new Date());
-
-	const onTimePickerChange = (timeInfo) => {
-		const { $H, $m } = timeInfo;
-		const hour = $H < 10 ? `0${$H}` : $H;
-		const minute = $m < 10 ? `0${$m}` : $m;
-		onChange(`${hour}:${minute}`);
+export default function TimePicker() {
+	const [newJobPosting, setNewJobPosting] = useRecoilState(inputPostingState);
+	const handleChangeTime = (e, type) => {
+		setNewJobPosting({ ...newJobPosting, [type]: e.target.value });
 	};
-
-	useEffect(() => {
-		pickerInput.current.readOnly = true;
-	}, []);
 
 	return (
 		<Container>
-			<DesktopTimePicker
-				className="time-picker"
-				value={value}
-				defaultValue={defaultValue}
-				views={['hours', 'minutes']}
-				inputRef={pickerInput}
-				viewRenderers={{
-					hours: renderTimeViewClock,
-					minutes: renderTimeViewClock,
-					seconds: renderTimeViewClock,
-				}}
-				minutesStep={5}
-				onChange={onTimePickerChange}
-			/>
+			<TimeInputWrapper style={{ marginRight: 20, width: 120 }}>
+				<input
+					type="time"
+					value={newJobPosting.starting_time}
+					step={3600}
+					required
+					onChange={(e) => handleChangeTime(e, 'starting_time')}
+				/>
+			</TimeInputWrapper>
+			<Divider>~</Divider>
+			<TimeInputWrapper style={{ marginLeft: 20, width: 120 }}>
+				<input
+					type="time"
+					value={newJobPosting.ending_time}
+					step={3600}
+					required
+					onChange={(e) => handleChangeTime(e, 'ending_time')}
+				/>
+			</TimeInputWrapper>
 		</Container>
 	);
 }
 
 const Container = styled.div`
-	.time-picker {
-		> div {
-			padding: 16px;
-		}
-		input[type='text'] {
-			border: none;
-			padding: 0px;
-		}
+	display: flex;
+	align-items: center;
+	width: 100%;
+`;
+
+const TimeInputWrapper = styled.div`
+	flex: 1;
+	
+	input {
+		height: 30px;
+		font-size: 15px;
 	}
+`;
+
+const Divider = styled.div`
+	font-weight: bold;
+	font-size: 20px;
 `;
