@@ -227,15 +227,15 @@ export default function ContentHeader({ data }) {
 	return (
 		<Container>
 			<InfoFirstLine>
-				<div style={{ fontSize: 14, opacity: 0.5 }}>
-					<span style={{ marginRight: 5 }}>
+				<div className="first-line__left" style={{ fontSize: 14, opacity: 0.5 }}>
+					<div style={{ marginRight: 5 }}>
 						{t('posting:openingDate')}:{' '}
 						{DateUtils.getDateHourMinString(updatedAt)}
-					</span>
-					<span>조회수: {viewCount}</span>
+					</div>
+					<div>{`${t('posting:viewCount')}: ${viewCount}`}</div>
 				</div>
-				<div>
-					<span
+				<div className="first-line__right">
+					<div
 						onClick={() => {
 							setShowModal(true);
 							setAction({ ...action, put: true });
@@ -247,8 +247,8 @@ export default function ContentHeader({ data }) {
 							height={20}
 							style={{ marginRight: 10, cursor: 'pointer' }}
 						/>
-					</span>
-					<span
+					</div>
+					<div
 						onClick={() => {
 							setShowModal(true);
 							setAction({ ...action, delete: true });
@@ -260,7 +260,7 @@ export default function ContentHeader({ data }) {
 							height={20}
 							style={{ cursor: 'pointer' }}
 						/>
-					</span>
+					</div>
 				</div>
 			</InfoFirstLine>
 			<TitleWrapper>{title}</TitleWrapper>
@@ -347,6 +347,18 @@ const InfoFirstLine = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	margin-bottom: 30px;
+	.first-line {
+		&__left {
+			display: flex;
+			flex-direction: column;
+			gap: 4px;
+		}
+
+		&__right {
+			display: flex;
+			flex-wrap: nowrap;
+		}
+	}
 `;
 
 const DashboardWrapper = styled.div`
