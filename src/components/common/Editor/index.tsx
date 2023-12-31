@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import dynamic from 'next/dynamic';
-import { useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import styled from 'styled-components';
 import 'react-quill/dist/quill.snow.css';
 
@@ -11,10 +11,11 @@ const QuillNoSSRWrapper = dynamic(async () => {
 }, { ssr: false });
 
 interface QuillEditorProps {
-    placeholder: string
+    placeholder?: string
     onChange?: (arg0: string) => void
     value: string
-    readOnly?: boolean
+    readOnly?: boolean,
+    maxLength?: number
 }
 
 const toolbarOptions = [
@@ -43,7 +44,8 @@ const formats = [
 
 export default function Editor(props: QuillEditorProps) {
     const quillRef = useRef(null);
-    const { value, placeholder, readOnly, onChange } = props;
+    const [innerValue, setInnerValue] = useState('');
+    const { value, placeholder = '', readOnly, maxLength = Number.MAX_SAFE_INTEGER, onChange } = props;
     // TODO: cdn 구축 후 업로드 로직 추가
     // const imageHandler = async () => {
     //     const input = document.createElement('input');
@@ -62,6 +64,26 @@ export default function Editor(props: QuillEditorProps) {
             // handlers: { image: imageHandler },
         },
     }), []);
+
+    const handleChange = (v) => {
+        if (readOnly) return;
+
+        const editor = quillRef.current.getEditor();
+        const unprivilegedEditor = quillRef.current.makeUnprivilegedEditor(editor);
+        const currentLength = unprivilegedEditor.getLength() - 1;
+        if (currentLength > maxLength) {
+            onChange(innerValue);
+            return;
+        }
+
+        setInnerValue(v);
+        onChange(v);
+    };
+
+    useEffect(() => {
+        setInnerValue(value);
+    }, []);
+
     return (
         <Wrapper>
             <QuillNoSSRWrapper
@@ -72,7 +94,7 @@ export default function Editor(props: QuillEditorProps) {
                 formats={formats}
                 value={value}
                 readOnly={readOnly}
-                onChange={(v) => readOnly ? {} : onChange(v)}
+                onChange={handleChange}
                 style={{
                     height: 'auto',
                     width: '100%',
@@ -94,6 +116,8 @@ const Wrapper = styled.div`
         line-height: 1.7;
         
         .ql-editor {
+            min-height: 70px;
+
             ul {
                 padding-left: 0px;
             }
@@ -113,5 +137,11 @@ const Wrapper = styled.div`
             });
             return indent;
         }}
+    }
+
+    .ql-disabled {
+        border: 1px solid #d9d9d9;
+        border-radius: 10px;
+        box-shadow: 5px 5px 5px #d9d9d9;
     }
 `;

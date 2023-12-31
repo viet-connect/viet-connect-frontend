@@ -15,6 +15,7 @@ import {
 	PlaceHolderWrapper,
 	SubTitleWrapper,
 } from '../first_part';
+import Editor from '../../../common/Editor';
 
 /*
 	contents: '',
@@ -92,27 +93,21 @@ export default function JobOpeningPostingFourthPart({ data, isAdmin }) {
 		<Container>
 			<SubTitleWrapper>
 				<ItemTitle>{t('posting:moreInformation')}</ItemTitle>
-				<PlaceHolderWrapper>
-					<TextAreaWrapper>
-						<textarea
-							value={newJobPosting.contents}
-							onChange={(e) =>
-								setNewJobPosting({
-									...newJobPosting,
-									contents: e.target.value,
-								})
-							}
-							name="postContent"
-							rows={4}
-							placeholder={t('posting:moreInformationPlaceholder')}
-							maxLength={
-								localStorage.getItem(process.env.NEXT_PUBLIC_ADMIN_KEY)
-									? Number.MAX_SAFE_INTEGER
-									: 402
-							}
-						/>
-					</TextAreaWrapper>
-				</PlaceHolderWrapper>
+				<Editor
+					value={newJobPosting.contents}
+					onChange={(value) =>
+						setNewJobPosting({
+							...newJobPosting,
+							contents: value,
+						})
+					}
+					placeholder={t('posting:moreInformationPlaceholder')}
+					maxLength={
+						localStorage.getItem(process.env.NEXT_PUBLIC_ADMIN_KEY)
+							? Number.MAX_SAFE_INTEGER
+							: 402
+					}
+				/>
 			</SubTitleWrapper>
 			<ButtonWrapper>
 				<ItemTitle style={{ width: 140, paddingBottom: 0 }}>
@@ -276,6 +271,9 @@ const ErrorWrapper = styled.div`
 
 const Container = styled.div`
 	margin-bottom: 20px;
+	.ql-toolbar {
+		border-radius: 6px 6px 0px 0px;
+	}
 `;
 
 const ButtonWrapper = styled.div``;
