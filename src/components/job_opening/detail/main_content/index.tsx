@@ -88,7 +88,12 @@ const Container = styled.div`
 	margin-bottom: 10px;
 `;
 
-const InfoWrapper = styled.div``;
+const InfoWrapper = styled.div`
+	.ql-container {
+		max-height: 500px;
+		overflow: scroll;
+	}
+`;
 
 const Title = styled.div`
 	font-size: 20px;
