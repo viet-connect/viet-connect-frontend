@@ -6,7 +6,7 @@ export default function LoginButton() {
 	if (session) {
 		return (
 			<>
-				{session.user.email}로 로그인 되어있음 <br />
+				{session.user?.name}으로 로그인 되어있음 <br />
 				<button onClick={() => signOut()}>로그아웃</button>
 			</>
 		);

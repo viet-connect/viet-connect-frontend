@@ -7,7 +7,7 @@ import { RecoilRoot } from 'recoil';
 import { appWithTranslation } from 'next-i18next';
 import { DefaultSeo } from 'next-seo';
 import Head from 'next/head';
-import { SessionProvider } from 'next-auth/react';
+import { SessionProvider, useSession } from 'next-auth/react';
 import AppConfig from '../src/utils/appConfig';
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
