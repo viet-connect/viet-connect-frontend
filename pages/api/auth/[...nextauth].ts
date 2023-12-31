@@ -1,7 +1,10 @@
-import NextAuth from 'next-auth/next';
+import { PrismaAdapter } from '@next-auth/prisma-adapter';
+import { NextApiRequest, NextApiResponse } from 'next';
+import NextAuth, { NextAuthOptions } from 'next-auth';
 import KakaoProvider from 'next-auth/providers/kakao';
+import prisma from '../../../src/lib/prisma';
 
-export default NextAuth({
+export const authOptions: NextAuthOptions = {
 	providers: [
 		KakaoProvider({
 			clientId: process.env.KAKAO_CLIENT_ID!,
@@ -13,7 +16,7 @@ export default NextAuth({
 			return { ...token, ...user };
 		},
 
-		async session({ session, token }) {
+		async session({ session, token, user }) {
 			// eslint-disable-next-line no-param-reassign
 			session.user = token as any;
 			return session;
@@ -21,5 +24,15 @@ export default NextAuth({
 	},
 	pages: {
 		signIn: '/auth/signin',
+		signOut: '/auth/signout',
+		error: '/auth/error',
+		verifyRequest: 'auth/verify-request',
 	},
-});
+	adapter: PrismaAdapter(prisma),
+};
+
+const Auth = (req: NextApiRequest, res: NextApiResponse) => {
+	NextAuth(req, res, authOptions);
+};
+
+export default Auth;
