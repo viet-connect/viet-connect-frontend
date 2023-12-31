@@ -200,7 +200,8 @@ const UnitWrapper = styled.div`
 
 const BoxContainer = styled.div`
 	display: flex;
-	border: 1px solid black;
+	border: 1px solid #d9d9d9;
+	border-radius: 10px;
 `;
 
 interface IUnitBoxProps {
@@ -219,14 +220,18 @@ const UnitBox = styled.div<IUnitBoxProps>`
 	${(props) =>
 		props.selected &&
 		css`
-			background: #eb6d0d;
+			background: rgba(68,142,247, 0.2);
 		`}
 
 	${({ $boxIndex }) =>
 		$boxIndex > 0 &&
 		css`
-			border-left: 1px solid black;
+			border-left: 1px solid #d9d9d9;
 		`}
 
 	cursor: pointer;
+
+	&:hover {
+		background-color: rgba(68,142,247, 0.2);
+	}
 `;

@@ -4,6 +4,7 @@ import { useTranslation } from 'next-i18next';
 import CommonUtils from '../../../../utils/commonUtils';
 import WageBox from '../../../common/WageBox';
 import { wageTypeConverter } from '../../../../utils/wageConfig';
+import Editor from '../../../common/Editor';
 
 export default function MainContent({ data }) {
 	const { t } = useTranslation();
@@ -77,7 +78,7 @@ export default function MainContent({ data }) {
 			</InfoWrapper>
 			<InfoWrapper>
 				<Title>{t('detail:workInformation')}</Title>
-				<DescriptionWrapper disabled defaultValue={contents} />
+				<Editor value={contents} readOnly/>
 			</InfoWrapper>
 		</Container>
 	);
@@ -87,7 +88,12 @@ const Container = styled.div`
 	margin-bottom: 10px;
 `;
 
-const InfoWrapper = styled.div``;
+const InfoWrapper = styled.div`
+	.ql-container {
+		max-height: 500px;
+		overflow: scroll;
+	}
+`;
 
 const Title = styled.div`
 	font-size: 20px;

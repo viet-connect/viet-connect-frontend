@@ -1,6 +1,7 @@
 {
 	"jobOpening": "Đăng tuyển",
-	"openingDate": "ngày đăng ký",
+	"openingDate": "Ngày DK",
+	"viewCount": "lượt xem",
 	"noticeTitle": "Tên tin tuyển dụng",
 	"noticePlaceholder": "Vui lòng nhập Tên tin tuyển dụng",
 	"companyName": "Tên công ty",
