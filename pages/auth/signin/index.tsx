@@ -11,7 +11,6 @@ import Logo from '../../../src/components/main/header_top/logo';
 
 function Login() {
 	const [providers, setProviders] = useState(null);
-	const session = useSession();
 
 	useEffect(() => {
 		(async () => {
