@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useRecoilState } from 'recoil';
 import styled, { css } from 'styled-components';
 import { useTranslation } from 'next-i18next';
@@ -6,7 +6,7 @@ import { postingConstant } from '../../../../constant/constant';
 import { inputPostingState } from '../../../../recoil/atom/posting';
 import CommonUtils from '../../../../utils/commonUtils';
 import Checkbox from '../../../common/CheckBox';
-import TimeRangePicker from '../../../common/TimeRangePicker';
+import TimePicker from '../../../common/TimePicker';
 import {
 	SubTitleWrapper,
 	ItemTitle,
@@ -145,7 +145,7 @@ export default function JobOpeningPostingThirdPart({ data }) {
 			</Checkbox>
 			<InputContainer>
 				<ItemTitle>{t('posting:workingHours')}</ItemTitle>
-				<TimeRangePicker />
+				<TimePicker />
 			</InputContainer>
 			<Checkbox
 				checked={newJobPosting.is_time_negotiable}
