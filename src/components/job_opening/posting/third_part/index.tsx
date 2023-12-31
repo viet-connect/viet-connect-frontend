@@ -122,6 +122,7 @@ export default function JobOpeningPostingThirdPart({ data }) {
 									<UnitBox
 										selected={selected}
 										$boxIndex={index}
+										$lastBox={index === valArray.length - 2}
 										key={val}
 										onClick={() => handleClickUnitBox(item, index, outerIndex)}
 									>
@@ -206,6 +207,7 @@ const BoxContainer = styled.div`
 
 interface IUnitBoxProps {
 	$boxIndex: number;
+	$lastBox: boolean;
 	selected: Boolean;
 }
 
@@ -229,6 +231,16 @@ const UnitBox = styled.div<IUnitBoxProps>`
 			border-left: 1px solid #d9d9d9;
 		`}
 
+	${({ $boxIndex }) =>
+		$boxIndex === 0 &&
+		css`
+			border-radius: 10px 0px 0px 10px;
+		`}
+	${({ $lastBox }) =>
+		$lastBox &&
+		css`
+			border-radius: 0px 10px 10px 0px;
+		`}
 	cursor: pointer;
 
 	&:hover {
