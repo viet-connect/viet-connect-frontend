@@ -116,7 +116,7 @@ const Wrapper = styled.div`
         line-height: 1.7;
         
         .ql-editor {
-            min-height: 70px;
+            min-height: 90px;
 
             ul {
                 padding-left: 0px;
