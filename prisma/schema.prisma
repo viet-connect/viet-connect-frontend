@@ -66,9 +66,8 @@ model Account {
 
 model Session {
   id           String   @id @default(cuid())
-  userId       String?  @map("user_id")
-  sessionToken String   @db.Text
-  accessToken  String?  @db.Text
+  userId       String?  @unique
+  sessionToken String   @unique
   expires      DateTime
   user         User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt    DateTime @default(now())
@@ -85,8 +84,6 @@ model User {
   updatedAt     DateTime  @updatedAt
   accounts      Account[]
   sessions      Session[]
-
-  @@map("users")
 }
 
 model VerificationRequest {
