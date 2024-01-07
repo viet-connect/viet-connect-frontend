@@ -227,7 +227,10 @@ export default function ContentHeader({ data }) {
 	return (
 		<Container>
 			<InfoFirstLine>
-				<div className="first-line__left" style={{ fontSize: 14, opacity: 0.5 }}>
+				<div
+					className="first-line__left"
+					style={{ fontSize: 14, opacity: 0.5 }}
+				>
 					<div style={{ marginRight: 5 }}>
 						{t('posting:openingDate')}:{' '}
 						{DateUtils.getDateHourMinString(updatedAt)}

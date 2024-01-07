@@ -30,6 +30,8 @@ export default function MainContent({ data }) {
 	const gender = CommonUtils.genderConverter(_gender);
 	const proficiency = CommonUtils.proficiencyConverter(_proficiency);
 
+	console.log('here', data, gender, proficiency);
+
 	return (
 		<Container>
 			<InfoWrapper style={{ marginBottom: 20 }}>
@@ -78,7 +80,7 @@ export default function MainContent({ data }) {
 			</InfoWrapper>
 			<InfoWrapper>
 				<Title>{t('detail:workInformation')}</Title>
-				<Editor value={contents} readOnly/>
+				<Editor value={contents} readOnly />
 			</InfoWrapper>
 		</Container>
 	);
