@@ -8,7 +8,6 @@ import { Posting } from '../../../src/models/posting';
 import LocationInfo from '../../../src/components/job_opening/detail/location_iinfo';
 
 export default function JobOpeningDetail({ data }) {
-	console.log('intro data', data);
 	return (
 		<Layout pageIndex={0}>
 			<Container>
