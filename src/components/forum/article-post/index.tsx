@@ -86,5 +86,9 @@ const Wrapper = styled.div`
                 color: #B8B8B8;
             }
         }
+
+        .ql-disabled {
+            box-shadow: none;
+        }
     }
 `;
