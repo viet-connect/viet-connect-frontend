@@ -21,7 +21,7 @@ function Login() {
 	}, []);
 
 	const handleKakao = async () => {
-		const result = await signIn('kakao', {
+		await signIn('kakao', {
 			redirect: true,
 			callbackUrl: '/',
 		});
