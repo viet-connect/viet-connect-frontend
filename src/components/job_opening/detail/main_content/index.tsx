@@ -89,9 +89,9 @@ const Container = styled.div`
 `;
 
 const InfoWrapper = styled.div`
-	.ql-container {
+	.ql-editor {
 		max-height: 500px;
-		overflow: scroll;
+		overflow-y: auto;
 	}
 `;
 
