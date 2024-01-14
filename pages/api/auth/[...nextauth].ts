@@ -18,7 +18,7 @@ export const authOptions: NextAuthOptions = {
 
 		async session({ session, token, user }) {
 			// eslint-disable-next-line no-param-reassign
-			session.user = token as any;
+			session.user = { ...user, ...token };
 			return session;
 		},
 	},

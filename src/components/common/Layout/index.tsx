@@ -21,8 +21,10 @@ export default function Layout({ children, pageIndex }: IMainProps) {
 				<Header>
 					<Row>
 						<Logo />
-						<div style={{ display: 'flex' }}>
-							<LoginButton />
+						<div style={{ display: 'flex', alignItems: 'center' }}>
+							<div style={{ marginRight: 8 }}>
+								<LoginButton />
+							</div>
 							<Flag />
 						</div>
 					</Row>
