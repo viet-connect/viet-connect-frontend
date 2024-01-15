@@ -35,8 +35,6 @@ const LoginSign = styled.div`
 `;
 
 const LogOutWrapper = styled.div`
-	/* border: 1px solid gray; */
-	/* border-radius: 5px; */
 	cursor: pointer;
 	padding: 1px;
 	background-color: yellow;
