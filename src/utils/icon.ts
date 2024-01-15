@@ -7,3 +7,4 @@ export { default as wageIcon } from '../public/svg/wage_icon.svg';
 export { default as workingDayIcon } from '../public/svg/working_day_icon.svg';
 export { default as workingHourIcon } from '../public/svg/working_hour_icon.svg';
 export { default as koreanSpeakingIcon } from '../public/svg/korean_speaking_icon.svg';
+export { default as kakaoLoginButton } from '../public/svg/kakao_login_medium.svg';
