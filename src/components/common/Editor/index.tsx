@@ -1,14 +1,14 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import dynamic from 'next/dynamic';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { ContentState, EditorState, convertFromHTML, convertToRaw } from 'draft-js';
+import { EditorProps } from 'react-draft-wysiwyg';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import 'react-quill/dist/quill.snow.css';
+import draftToHtml from 'draftjs-to-html';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
-const QuillNoSSRWrapper = dynamic(async () => {
-    const { default: RQ } = await import('react-quill');
-    // eslint-disable-next-line react/display-name
-    return ({ forwardedRef, ...props }: any) => <RQ ref={forwardedRef} {...props}></RQ>;
-}, { ssr: false });
+const Editorr = dynamic<EditorProps>(() => import('react-draft-wysiwyg').then((mod) => mod.Editor), {
+    ssr: false,
+  });
 
 interface QuillEditorProps {
     placeholder?: string
@@ -18,86 +18,91 @@ interface QuillEditorProps {
     maxLength?: number
 }
 
-const toolbarOptions = [
-    [
-        { size: ['small', false, 'large', 'huge'] },
-        { color: [] },
-        'bold',
-        { list: 'ordered' },
-        { list: 'bullet' },
-        { indent: '-1' },
-        { indent: '+1' },
-    ],
-    ['link'], // 'image'
-];
-
-const formats = [
-    'header',
-    'size',
-    'color',
-    'bold',
-    'list',
-    'indent',
-    'link',
-    'image',
-];
-
 export default function Editor(props: QuillEditorProps) {
-    const quillRef = useRef(null);
-    const [innerValue, setInnerValue] = useState('');
-    const { value, placeholder = '', readOnly, maxLength = Number.MAX_SAFE_INTEGER, onChange } = props;
-    // TODO: cdn 구축 후 업로드 로직 추가
-    // const imageHandler = async () => {
-    //     const input = document.createElement('input');
-    //     input.setAttribute('type', 'file');
-    //     input.setAttribute('accept', 'image/*');
-    //     input.click();
-    //     input.addEventListener('change', async () => {
-    //          cdn 업로드 -> url -> url 넣기
-    //     });
-    // };
+    const { value, placeholder = '', readOnly, maxLength, onChange } = props;
 
-    const modules = useMemo(() => ({
-        toolbar: readOnly ? false : {
-            container: toolbarOptions,
-            // TODO: cdn 구축 후 업로드 로직 추가
-            // handlers: { image: imageHandler },
-        },
-    }), []);
+  	const [editorState, setEditorState] = useState<EditorState>(EditorState.createEmpty());
+    const [isValueValid, setIsValueValid] = useState(false);
 
-    const handleChange = (v) => {
+  	const onEditorStateChange = (state: EditorState) => {
         if (readOnly) return;
 
-        const editor = quillRef.current.getEditor();
-        const unprivilegedEditor = quillRef.current.makeUnprivilegedEditor(editor);
-        const currentLength = unprivilegedEditor.getLength() - 1;
-        if (currentLength > maxLength) {
-            onChange(innerValue);
-            return;
-        }
+        setEditorState(state);
 
-        setInnerValue(v);
-        onChange(v);
+        const content = draftToHtml(convertToRaw(state.getCurrentContent()));
+        onChange(content);
+    };
+
+    const onHandleBeforeChange = () => {
+        const currentLength = editorState.getCurrentContent().getPlainText().length + 1;
+        if (currentLength > maxLength) return 'handled';
+        return 'not-handled';
+    };
+    const onHandlePasteText = (text) => {
+        const currentLength = editorState.getCurrentContent().getPlainText().length + 1;
+        const isPastedOverLength = currentLength + text.length > maxLength;
+        const isTargetOverLength = text.length > maxLength;
+        return isTargetOverLength || isPastedOverLength;
+    };
+
+    const customContentStateConverter = (contentState) => {
+        const newBlockMap = contentState.getBlockMap().map((block) => {
+            const entityKey = block.getEntityAt(0);
+            if (entityKey !== null) {
+                const entityBlock = contentState.getEntity(entityKey);
+                const entityType = entityBlock.getType();
+                switch (entityType) {
+                    case 'IMAGE': {
+                        const newBlock = block.merge({
+                            type: 'atomic',
+                            text: 'img',
+                        });
+                        return newBlock;
+                    }
+                    default:
+                        return block;
+                }
+            }
+            return block;
+        });
+        const newContentState = contentState.set('blockMap', newBlockMap);
+        return newContentState;
     };
 
     useEffect(() => {
-        setInnerValue(value);
-    }, []);
+        if (isValueValid) return;
+        setIsValueValid(value.length > 0);
 
-    return (
-        <Wrapper>
-            <QuillNoSSRWrapper
-                forwardedRef={quillRef}
-                theme='snow'
+        const blocksFromHTML = convertFromHTML(value);
+        const { contentBlocks, entityMap } = blocksFromHTML;
+        const customState = customContentStateConverter(ContentState.createFromBlockArray(
+            contentBlocks,
+            entityMap,
+        ));
+        const state = EditorState.createWithContent(customState);
+        const selection = EditorState.moveFocusToEnd(state);
+        setEditorState(selection);
+    }, [value]);
+	return (
+		<Wrapper>
+            <Editorr
+                editorState={editorState}
+                wrapperClassName="common-editor"
+                toolbarClassName="common-editor__toolbar"
+                editorClassName="common-editor__editor"
+                onEditorStateChange={onEditorStateChange}
+                handleBeforeInput={onHandleBeforeChange}
+                handlePastedText={onHandlePasteText}
                 placeholder={placeholder}
-                modules={modules}
-                formats={formats}
-                value={value}
                 readOnly={readOnly}
-                onChange={handleChange}
-                style={{
-                    height: 'auto',
-                    width: '100%',
+                toolbarHidden={readOnly}
+                toolbar={{
+                    options: ['fontSize', 'inline', 'list', 'link', 'colorPicker', 'image'],
+                    inline: { options: ['bold'] },
+                    fontSize: { inDropdown: true },
+                    list: { options: ['ordered', 'unordered', 'indent', 'outdent'] },
+                    link: { inDropdown: true, options: ['link', 'unlink'] },
+                    image: { uploadEnabled: false, alignmentEnabled: false },
                 }}
             />
         </Wrapper>
@@ -105,43 +110,27 @@ export default function Editor(props: QuillEditorProps) {
 }
 
 const Wrapper = styled.div`
-    width: 100%;
-
-    .ql-toolbar {
-        border-radius: 6px;
-    }
-
-    .ql-container {
-        font-size: 16px;
-        line-height: 1.7;
-        
-        .ql-editor {
-            min-height: 90px;
-
-            ul {
-                padding-left: 0px;
-            }
-            
-            li {
-                padding-left: 1em;
-            }
-        }
-        ${() => {
-            let indent = '';
-            Array(8).fill(null).forEach((_, i) => {
-                indent += `
-                    .ql-indent-${i} {
-                        padding-left: ${i}em;
-                    }
-                `;
-            });
-            return indent;
-        }}
-    }
-
-    .ql-disabled {
+    .common-editor {
+        min-height: 130px;
         border: 1px solid #d9d9d9;
         border-radius: 10px;
-        box-shadow: 5px 5px 5px #d9d9d9;
+
+        img {
+            max-width: 100%
+        }
+
+        &__toolbar {
+            border-bottom: 1px solid #d9d9d9;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+
+            .rdw-option-wrapper, .rdw-dropdown-wrapper {
+                border: none;
+            }
+        }
+
+        &__editor {
+            padding: 0px 5px 5px 5px;
+        }
     }
 `;
