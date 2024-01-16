@@ -67,28 +67,15 @@ const Wrapper = styled.div`
         }
     }
 
-    .quill {
-        .ql-toolbar.ql-snow {
+    .common-editor {
+        border: none !important;
+        &__toolbar {
             position: absolute;
             top: 0px;
-            padding: 8px 0px;
             width: 100%;
-            border: solid 1px rgba(128, 128, 128, 0.5);
-        }
-        
-        .ql-container {
-            border: none;
-        }
-    
-        .ql-editor {
-            padding: 8px;
-            &.ql-blank::before {
-                color: #B8B8B8;
-            }
-        }
-
-        .ql-disabled {
-            box-shadow: none;
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            box-sizing: border-box;
         }
     }
 `;

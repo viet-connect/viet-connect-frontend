@@ -91,9 +91,10 @@ const Container = styled.div`
 `;
 
 const InfoWrapper = styled.div`
-	.ql-editor {
+	.common-editor {
 		max-height: 500px;
 		overflow-y: auto;
+		box-shadow: 5px 5px 5px #d9d9d9;
 	}
 `;
 
