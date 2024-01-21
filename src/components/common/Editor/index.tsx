@@ -19,7 +19,7 @@ interface QuillEditorProps {
 }
 
 export default function Editor(props: QuillEditorProps) {
-    const [, setForceUpdate] = useState();
+    const [, setForceUpdate] = useState({});
     const forceUpdate = useCallback(() => setForceUpdate({}), []);
     const { value, placeholder = '', readOnly, maxLength, onChange } = props;
 
