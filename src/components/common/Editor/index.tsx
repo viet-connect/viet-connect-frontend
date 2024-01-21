@@ -25,7 +25,6 @@ export default function Editor(props: QuillEditorProps) {
 
   	const [editorState, setEditorState] = useState<EditorState>(EditorState.createEmpty());
     const [isValueValid, setIsValueValid] = useState(false);
-    const [, seti18nPlaceholder] = useState('');
 
   	const onEditorStateChange = (state: EditorState) => {
         if (readOnly) return;
