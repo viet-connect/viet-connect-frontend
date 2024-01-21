@@ -1,12 +1,12 @@
 import dynamic from 'next/dynamic';
 import { ContentState, EditorState, convertFromHTML, convertToRaw } from 'draft-js';
 import { EditorProps } from 'react-draft-wysiwyg';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import draftToHtml from 'draftjs-to-html';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
-const Editorr = dynamic<EditorProps>(() => import('react-draft-wysiwyg').then((mod) => mod.Editor), {
+const EditorNoSSR = dynamic<EditorProps>(() => import('react-draft-wysiwyg').then((mod) => mod.Editor), {
     ssr: false,
   });
 
@@ -19,10 +19,13 @@ interface QuillEditorProps {
 }
 
 export default function Editor(props: QuillEditorProps) {
+    const [, setForceUpdate] = useState();
+    const forceUpdate = useCallback(() => setForceUpdate({}), []);
     const { value, placeholder = '', readOnly, maxLength, onChange } = props;
 
   	const [editorState, setEditorState] = useState<EditorState>(EditorState.createEmpty());
     const [isValueValid, setIsValueValid] = useState(false);
+    const [, seti18nPlaceholder] = useState('');
 
   	const onEditorStateChange = (state: EditorState) => {
         if (readOnly) return;
@@ -83,9 +86,14 @@ export default function Editor(props: QuillEditorProps) {
         const selection = EditorState.moveFocusToEnd(state);
         setEditorState(selection);
     }, [value]);
+
+    useEffect(() => {
+        forceUpdate();
+    }, [placeholder]);
+
 	return (
 		<Wrapper>
-            <Editorr
+            <EditorNoSSR
                 editorState={editorState}
                 wrapperClassName="common-editor"
                 toolbarClassName="common-editor__toolbar"

@@ -92,7 +92,7 @@ export default function JobOpeningPostingFourthPart({ data, isAdmin }) {
 
 	useEffect(() => {
 		const item = localStorage.getItem(process.env.NEXT_PUBLIC_ADMIN_KEY);
-		if (!item) setMaxContentLength(Number.MAX_SAFE_INTEGER);
+		if (item) setMaxContentLength(Number.MAX_SAFE_INTEGER);
 	}, []);
 
 	return (
@@ -273,6 +273,10 @@ const ErrorWrapper = styled.div`
 
 const Container = styled.div`
 	margin-bottom: 20px;
+
+	.common-editor__editor {
+		min-height: 100px;
+	}
 `;
 
 const ButtonWrapper = styled.div``;
