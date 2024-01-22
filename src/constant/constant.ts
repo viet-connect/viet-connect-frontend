@@ -1,5 +1,5 @@
 const layoutConstant = Object.freeze({
-	ENTERPRISE: '비엣커넥트',
+	ENTERPRISE: '글루소사이어티',
 	EXECUTIVE: '서현욱',
 	PERSONAL_INFO_PERSON_IN_CHARGE: '서현욱',
 	ENTERPRISE_NUMBER: '645-32-01502',
