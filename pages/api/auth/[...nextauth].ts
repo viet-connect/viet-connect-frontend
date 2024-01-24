@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import { NextApiRequest, NextApiResponse } from 'next';
 import NextAuth, { NextAuthOptions } from 'next-auth';
@@ -12,13 +13,22 @@ export const authOptions: NextAuthOptions = {
 		}),
 	],
 	callbacks: {
-		async jwt({ token, user }) {
-			return { ...token, ...user };
+		async jwt({ token, account, user }) {
+			console.log(token, account, user);
+			if (account && user) {
+				return {
+					accessToken: account.access_token,
+					accessTokenExpires: account.expires_at,
+					refreshToken: account.refresh_token,
+					user,
+				};
+			}
+			return token;
 		},
 
-		async session({ session, token, user }) {
-			// eslint-disable-next-line no-param-reassign
-			session.user = { ...user, ...token };
+		async session({ session, user, token }) {
+			console.log(session, user, token);
+			session.user = user;
 			return session;
 		},
 	},
@@ -29,6 +39,7 @@ export const authOptions: NextAuthOptions = {
 		verifyRequest: 'auth/verify-request',
 	},
 	adapter: PrismaAdapter(prisma),
+	session: { strategy: 'jwt' },
 };
 
 const Auth = (req: NextApiRequest, res: NextApiResponse) => {
