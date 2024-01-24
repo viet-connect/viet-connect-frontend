@@ -13,6 +13,7 @@ export const authOptions: NextAuthOptions = {
 	],
 	callbacks: {
 		async jwt({ token, user }) {
+			console.log(1);
 			return { ...token, ...user };
 		},
 
