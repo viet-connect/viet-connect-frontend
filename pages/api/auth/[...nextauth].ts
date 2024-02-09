@@ -4,6 +4,7 @@ import NextAuth, { NextAuthOptions } from 'next-auth';
 import KakaoProvider from 'next-auth/providers/kakao';
 import { JWT } from 'next-auth/jwt';
 import axios from 'axios';
+import log from 'logging-service';
 import prisma from '../../../src/lib/prisma';
 
 export const authOptions: NextAuthOptions = {
@@ -41,6 +42,11 @@ export const authOptions: NextAuthOptions = {
 		signOut: '/auth/signout',
 		error: '/auth/error',
 		verifyRequest: 'auth/verify-request',
+	},
+	logger: {
+		error(code, metadata) {
+			log.error(code, metadata);
+		},
 	},
 	adapter: PrismaAdapter(prisma),
 };
