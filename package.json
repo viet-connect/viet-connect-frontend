@@ -21,7 +21,7 @@
 		"@types/react-modal": "^3.13.1",
 		"@vercel/analytics": "^1.0.2",
 		"@vercel/og": "^0.5.11",
-		"axios": "^0.27.2",
+		"axios": "^1.6.7",
 		"bcryptjs": "^2.4.3",
 		"dateformat": "^5.0.3",
 		"draft-js": "^0.11.7",

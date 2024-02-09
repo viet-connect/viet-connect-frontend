@@ -24,7 +24,7 @@ function Login() {
 		await signIn('kakao', {
 			redirect: true,
 			callbackUrl: '/',
-		});
+		}).catch((err) => console.log(err));
 	};
 
 	return (
