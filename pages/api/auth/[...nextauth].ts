@@ -43,11 +43,11 @@ export const authOptions: NextAuthOptions = {
 		error: '/auth/error',
 		verifyRequest: 'auth/verify-request',
 	},
-	logger: {
-		error(code, metadata) {
-			log.error(code, metadata);
-		},
-	},
+	// logger: {
+	// 	error(code, metadata) {
+	// 		log.error(code, metadata);
+	// 	},
+	// },
 	adapter: PrismaAdapter(prisma),
 };
 
