@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { FcHighPriority } from 'react-icons/fc';
@@ -31,6 +31,7 @@ export default function JobOpeningPostingFourthPart({ data, isAdmin }) {
 	const router = useRouter();
 	const [isRequesting, setIsRequesting] = useState(false);
 	const { t } = useTranslation();
+	const [maxContentLength, setMaxContentLength] = useState(402);
 
 	const toggleModal = async (e) => {
 		if (isRequesting) return;
@@ -89,6 +90,11 @@ export default function JobOpeningPostingFourthPart({ data, isAdmin }) {
 		}
 	};
 
+	useEffect(() => {
+		const item = localStorage.getItem(process.env.NEXT_PUBLIC_ADMIN_KEY);
+		if (item) setMaxContentLength(Number.MAX_SAFE_INTEGER);
+	}, []);
+
 	return (
 		<Container>
 			<SubTitleWrapper>
@@ -102,11 +108,7 @@ export default function JobOpeningPostingFourthPart({ data, isAdmin }) {
 						})
 					}
 					placeholder={t('posting:moreInformationPlaceholder')}
-					maxLength={
-						localStorage.getItem(process.env.NEXT_PUBLIC_ADMIN_KEY)
-							? Number.MAX_SAFE_INTEGER
-							: 402
-					}
+					maxLength={maxContentLength}
 				/>
 			</SubTitleWrapper>
 			<ButtonWrapper>
@@ -271,8 +273,9 @@ const ErrorWrapper = styled.div`
 
 const Container = styled.div`
 	margin-bottom: 20px;
-	.ql-toolbar {
-		border-radius: 6px 6px 0px 0px;
+
+	.common-editor__editor {
+		min-height: 100px;
 	}
 `;
 

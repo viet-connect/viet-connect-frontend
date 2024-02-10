@@ -30,8 +30,6 @@ export default function MainContent({ data }) {
 	const gender = CommonUtils.genderConverter(_gender);
 	const proficiency = CommonUtils.proficiencyConverter(_proficiency);
 
-	console.log('here', data, gender, proficiency);
-
 	return (
 		<Container>
 			<InfoWrapper style={{ marginBottom: 20 }}>
@@ -91,9 +89,10 @@ const Container = styled.div`
 `;
 
 const InfoWrapper = styled.div`
-	.ql-container {
+	.common-editor {
 		max-height: 500px;
-		overflow: scroll;
+		overflow-y: auto;
+		box-shadow: 5px 5px 5px #d9d9d9;
 	}
 `;
 

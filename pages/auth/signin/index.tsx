@@ -1,10 +1,5 @@
 import { useEffect, useState } from 'react';
-import {
-	getProviders,
-	signIn,
-	useSession,
-	getCsrfToken,
-} from 'next-auth/react';
+import { getProviders, signIn, useSession } from 'next-auth/react';
 import styled from 'styled-components';
 import SvgIcon from '../../../src/components/common/Icon';
 import Logo from '../../../src/components/main/header_top/logo';
@@ -24,7 +19,7 @@ function Login() {
 		await signIn('kakao', {
 			redirect: true,
 			callbackUrl: '/',
-		});
+		}).catch((err) => console.log(err));
 	};
 
 	return (
