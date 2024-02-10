@@ -4,7 +4,6 @@ import NextAuth, { NextAuthOptions } from 'next-auth';
 import KakaoProvider from 'next-auth/providers/kakao';
 import { JWT } from 'next-auth/jwt';
 import axios from 'axios';
-import log from 'logging-service';
 import prisma from '../../../src/lib/prisma';
 
 export const authOptions: NextAuthOptions = {
@@ -16,22 +15,25 @@ export const authOptions: NextAuthOptions = {
 	],
 	callbacks: {
 		async jwt({ token, account, user }) {
-			if (account && user) {
-				return { ...token, ...user };
-			}
+			console.log('111');
+			// if (account && user) {
+			return { ...token, ...user };
+			// }
 
-			const nowTime = Math.round(Date.now() / 1000);
-			const shouldRefreshTime =
-				(token.accessTokenExpires as number) - 10 * 60 - nowTime;
+			// const nowTime = Math.round(Date.now() / 1000);
+			// const shouldRefreshTime =
+			// 	(token.accessTokenExpires as number) - 10 * 60 - nowTime;
 
-			// 토큰이 만료되지 않았을때는 원래사용하던 토큰을 반환
-			if (shouldRefreshTime > 0) {
-				return token;
-			}
-			return refreshAccessToken(token);
+			// // 토큰이 만료되지 않았을때는 원래사용하던 토큰을 반환
+			// if (shouldRefreshTime > 0) {
+			// 	return token;
+			// }
+			// return refreshAccessToken(token);
 		},
 
 		async session({ session, token, user }) {
+			console.log('112');
+
 			// eslint-disable-next-line no-param-reassign
 			session.user = { ...user, ...token };
 			return session;
@@ -43,11 +45,6 @@ export const authOptions: NextAuthOptions = {
 		error: '/auth/error',
 		verifyRequest: 'auth/verify-request',
 	},
-	// logger: {
-	// 	error(code, metadata) {
-	// 		log.error(code, metadata);
-	// 	},
-	// },
 	adapter: PrismaAdapter(prisma),
 };
 
