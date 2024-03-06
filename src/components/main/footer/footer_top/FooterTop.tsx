@@ -28,11 +28,11 @@ export default function FooterTop() {
 				대표 이메일 : {layoutConstant.COMPANY_EMAIL}
 			</FooterTopText>
 			<Divider />
-			<br />
+			{/* <br />
 			<FooterTopText>
 				대표전화 : {layoutConstant.COMPANY_PHONE_NUMBER}
 			</FooterTopText>
-			<Divider />
+			<Divider /> */}
 		</Container>
 	);
 }
