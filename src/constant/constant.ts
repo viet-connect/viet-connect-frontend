@@ -7,6 +7,7 @@ const layoutConstant = Object.freeze({
 	COMPANY_EMAIL: 'gluesociety@naver.com',
 	COMPANY_PHONE_NUMBER: '010-8453-8883',
 	MAIL_ORDER_SALES_APPROVAL_NUMBER: '2023-인천연수구-3153',
+	OCCUPATION_REGISTER_NUMBER: 'J1500020240002',
 });
 
 const category = Object.freeze({

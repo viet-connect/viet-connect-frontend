@@ -21,6 +21,11 @@ export default function FooterTop() {
 				통신판매업신고번호 :{layoutConstant.MAIL_ORDER_SALES_APPROVAL_NUMBER}
 			</FooterTopText>
 			<br />
+			<FooterTopText>
+				직업정보제공사업신고번호 :{layoutConstant.OCCUPATION_REGISTER_NUMBER}
+			</FooterTopText>
+			<Divider />
+			<br />
 			<FooterTopText>주소 : {layoutConstant.ADDRESS}</FooterTopText>
 			<Divider />
 			<br />
