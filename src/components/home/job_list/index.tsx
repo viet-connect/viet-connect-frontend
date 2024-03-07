@@ -7,6 +7,7 @@ import {
 } from '../../../recoil/atom/region';
 import JobCard from './job_card';
 import { regionListSelector } from '../../../utils/regionUtils';
+import DisplayAds from '../../common/DisplayAdd';
 
 export default function JobList({ tableContent }) {
 	const regionArray = useRecoilValue(selectedRegionState);
@@ -17,8 +18,9 @@ export default function JobList({ tableContent }) {
 	};
 	return (
 		<JobListWrapper>
+			<DisplayAds />
 			<Banner onClick={onClick}>
-				<Image alt="banner" src="/beemall_banner.png" fill/>
+				<Image alt="banner" src="/beemall_banner.png" fill />
 			</Banner>
 			{jobList.map((content) => (
 				<JobCard key={content.id} content={content} />
