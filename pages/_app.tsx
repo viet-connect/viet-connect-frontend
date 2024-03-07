@@ -22,6 +22,10 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
 						content="width=device-width, initial-scale=1.0, user-scalable=no"
 						key="viewport"
 					/>
+					<meta
+						name="google-adsense-account"
+						content="ca-pub-3731091119912055"
+					/>
 				</Head>
 				<DefaultSeo {...AppConfig} />
 				<Component {...pageProps} />
