@@ -33,6 +33,7 @@ const Banner = styled.div`
 	position: relative;
 	width: 100%;
 	height: 104px;
+	gap: 5px;
 	cursor: pointer;
 
 	img {
