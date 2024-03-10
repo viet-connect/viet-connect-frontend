@@ -34,6 +34,7 @@ export async function getServerSideProps({ locale }) {
 				'navigation',
 				'opening',
 				'posting',
+				'login',
 			])),
 		},
 	};
