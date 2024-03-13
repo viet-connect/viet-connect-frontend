@@ -111,6 +111,7 @@ export async function getServerSideProps(context) {
 		'navigation',
 		'opening',
 		'posting',
+		'login',
 	];
 	const translation = await serverSideTranslations(context.locale, i18n);
 

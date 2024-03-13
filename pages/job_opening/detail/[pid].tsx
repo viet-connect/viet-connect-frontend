@@ -34,6 +34,7 @@ export async function getServerSideProps(context) {
 				'navigation',
 				'opening',
 				'posting',
+				'login',
 			])),
 		},
 	};

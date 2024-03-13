@@ -10,14 +10,18 @@ import ArticlePost from '../../../src/components/forum/article-post';
 export default function ForumDetail({ post }) {
 	const { author, createdAt } = post;
 	const date = DateUtils.getFullDateString(createdAt);
-    return (
-        <Layout pageIndex={3}>
-
+	return (
+		<Layout pageIndex={3}>
 			<ArticlePost article={post} readOnly>
 				<Header>
 					<SpecificInfo>
 						<div className="forum-detail__writer">
-							<Image src="/favicon-96x96.png" alt="비엣커넥트 파비콘" width="24" height="24"/>
+							<Image
+								src="/favicon-96x96.png"
+								alt="비엣커넥트 파비콘"
+								width="24"
+								height="24"
+							/>
 							<div>{author}</div>
 						</div>
 						<div className="forum-detail__specific">
@@ -27,8 +31,8 @@ export default function ForumDetail({ post }) {
 					</SpecificInfo>
 				</Header>
 			</ArticlePost>
-        </Layout>
-    );
+		</Layout>
+	);
 }
 
 export async function getServerSideProps({ locale, query }) {
@@ -39,6 +43,7 @@ export async function getServerSideProps({ locale, query }) {
 		'navigation',
 		'opening',
 		'posting',
+		'login',
 	];
 	const translation = await serverSideTranslations(locale, i18n);
 	const post = await Article.getUniqueArticle(query.id);
@@ -49,7 +54,7 @@ const Header = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 24px;
-	border-bottom: 1px solid rgba(128, 128, 128, 0.50);
+	border-bottom: 1px solid rgba(128, 128, 128, 0.5);
 	padding-bottom: 16px;
 	.forum-detail__title {
 		font-size: 25px;
@@ -73,8 +78,9 @@ const SpecificInfo = styled.div`
 			align-items: center;
 			gap: 4px;
 		}
-		&__date, &__view {
-			color: #BEBEBE
+		&__date,
+		&__view {
+			color: #bebebe;
 		}
 	}
 `;
@@ -100,7 +106,7 @@ const Body = styled.div`
 				font-weight: bold;
 			}
 			&--sub-title {
-				color: #2f5597
+				color: #2f5597;
 			}
 		}
 	}
