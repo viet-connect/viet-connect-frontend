@@ -19,9 +19,9 @@ export default function JobList({ tableContent }) {
 	return (
 		<JobListWrapper>
 			<DisplayAds />
-			<Banner onClick={onClick}>
+			{/* <Banner onClick={onClick}>
 				<Image alt="banner" src="/beemall_banner.png" fill />
-			</Banner>
+			</Banner> */}
 			{jobList.map((content) => (
 				<JobCard key={content.id} content={content} />
 			))}
