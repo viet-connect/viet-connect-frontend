@@ -3,6 +3,7 @@ import DateUtils from '../utils/DateUtils';
 import validate from '../utils/validate';
 import { wageTypeConverter } from '../utils/wageConfig';
 import { geoCoding } from '../../pages/api/map/geocoding';
+import { objectToQueryString } from '../utils/encode';
 
 export interface IPostingSummary {
 	id: string;
@@ -59,23 +60,36 @@ export interface ISavedPosting {
 	viewCount: number;
 }
 
+interface PostingListParams {
+	postingPage?: string
+}
+
 export class Posting {
 	// eslint-disable-next-line consistent-return
-	static async getPostingList(): Promise<any> {
+	static async getPostingList(params: PostingListParams = {}): Promise<any> {
+		const queryString = objectToQueryString(params);
 		try {
 			if (process.env.NODE_ENV === 'development') {
 				return await fetch(
-					`${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_VERCEL_URL}/api/postings`,
+					`${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_VERCEL_URL}/api/postings${queryString ? `?${queryString}` : ''}`,
 				)
 					.then((res) => res.json())
-					.then((res) => Posting.makePostingList(res));
+					.then((res) => {
+						const { postingList, totalPages } = res;
+						const list = Posting.makePostingList(postingList);
+						return { list, totalPages };
+					});
 			}
 
 			if (process.env.NODE_ENV === 'production') {
 				const server = process.env.DEPLOY_URL;
-				return await fetch(`${server}/api/postings`)
+				return await fetch(`${server}/api/postings${queryString ? `?${queryString}` : ''}`)
 					.then((res) => res.json())
-					.then((res) => Posting.makePostingList(res));
+					.then((res) => {
+						const { postingList, totalPages } = res;
+						const list = Posting.makePostingList(postingList);
+						return { list, totalPages };
+					});
 			}
 		} catch (err) {
 			return console.log(err);

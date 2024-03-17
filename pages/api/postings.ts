@@ -1,23 +1,31 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import prisma from '../../src/lib/prisma';
 import { Password } from '../../src/utils/bcrypt';
+import { SHOW_PAGES } from '../../src/constant/page';
 
 export default async function posting_list(
 	_req: NextApiRequest,
 	res: NextApiResponse,
 ) {
-	const { method } = _req;
+	const { method, query = {} } = _req;
 	try {
 		switch (method) {
 			case 'GET': {
+				const { postingPage = '1' } = query as { postingPage?: string};
+				const totalPostings = await prisma.posting.count();
+				const totalPages = Math.ceil(totalPostings / 2);
+				const page = parseInt(postingPage, 10) - 1;
+				const skip = Number.isNaN(page) ? 0 : page;
 				const postingList = await prisma.posting.findMany({
 					orderBy: [
 						{
 							updatedAt: 'desc',
 						},
 					],
+					skip,
+					take: SHOW_PAGES,
 				});
-				res.status(200).json(postingList);
+				res.status(200).json({ postingList, totalPages });
 				break;
 			}
 
