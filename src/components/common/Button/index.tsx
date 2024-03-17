@@ -21,7 +21,7 @@ export default function CommonButton({
 	disabled,
 	loading,
 }: ICommonButtonProps) {
-	const { width, height, color } = wrapperStyle;
+	const { width, height, color = 'blue' } = wrapperStyle ?? {};
 	return (
 		<ButtonWrapper
 			width={width}
@@ -46,12 +46,12 @@ export default function CommonButton({
 
 interface IButtonWrapperProps {
 	width?: number | string;
-	height: number | string;
-	color: string;
+	height?: number | string;
+	color?: string;
 }
 
 interface ICommonButtonProps {
-	wrapperStyle: IButtonWrapperProps;
+	wrapperStyle?: IButtonWrapperProps;
 	extraWrapperStyle?: object;
 	children?: React.ReactNode;
 	label?: string;
