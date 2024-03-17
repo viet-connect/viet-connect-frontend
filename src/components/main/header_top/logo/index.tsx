@@ -10,9 +10,7 @@ export default function Logo() {
 
 	return (
 		<Container
-			onClick={() => {
-				router.push('/').then(() => router.reload());
-			}}
+			onClick={() => router.push('/')}
 		>
 			<SvgIcon name="vietconnectLogo" width={131} height={38} />
 		</Container>
