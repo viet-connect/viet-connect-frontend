@@ -13,9 +13,9 @@ export default async function posting_list(
 			case 'GET': {
 				const { postingPage = '1' } = query as { postingPage?: string};
 				const totalPostings = await prisma.posting.count();
-				const totalPages = Math.ceil(totalPostings / 2);
+				const totalPages = Math.ceil(totalPostings / SHOW_PAGES);
 				const page = parseInt(postingPage, 10) - 1;
-				const skip = Number.isNaN(page) ? 0 : page;
+				const skip = Number.isNaN(page) ? 0 : page * SHOW_PAGES;
 				const postingList = await prisma.posting.findMany({
 					orderBy: [
 						{
