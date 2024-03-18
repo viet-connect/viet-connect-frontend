@@ -4,6 +4,8 @@ import { BsSearch } from 'react-icons/bs';
 import { useEffect, useId, useState } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
+import { ParsedUrlQuery } from 'querystring';
 import CommonButton from '../../common/Button';
 import region from '../../../constant/region';
 import {
@@ -12,9 +14,18 @@ import {
 } from '../../../recoil/atom/region';
 // import { category } from '../../../constant/constant';
 
+interface Query extends ParsedUrlQuery{
+	keyword: string
+	mainRegion: string
+	subRegion: string
+}
+
 export default function HomeFilter() {
+	const router = useRouter();
+	const { query: q } = router;
 	// TODO: region-selector 컴포넌트 분리
 	const { t } = useTranslation();
+	const [isQuerySetting, setIsQuerySetting] = useState(false);
 	const [selectedProvince, setSelectedProvince] = useState([
 		'defaultProvince',
 		'ALL',
@@ -39,15 +50,25 @@ export default function HomeFilter() {
 	};
 
 	const handleClickSetRegionArray = () => {
+		const { keyword: k, mainRegion: mR, subRegion: sR, ...query } = q;
 		if (keyword !== inputKeyword) {
 			const trimedKeyword = keyword.trim();
 			setSearchKeyword(trimedKeyword);
 		}
+		if (keyword) Object.assign(query, { keyword });
 
 		setSelectedRegionState([
 			region[selectedProvince[1]].province[0],
 			selectedDistrict,
 		]);
+
+		const regionQuery = {} as {mainRegion?: string, subRegion?: string};
+		const [_, mRegion] = region[selectedProvince[1]].province;
+		if (mRegion !== 'ALL') regionQuery.mainRegion = mRegion;
+		if (selectedDistrict !== 'defaultProvince') regionQuery.subRegion = selectedDistrict;
+
+		Object.assign(query, regionQuery);
+		router.push({ pathname: router.pathname, query });
 	};
 
 	/*
@@ -70,6 +91,11 @@ export default function HomeFilter() {
 					setIsDisabled(false);
 				}
 
+				if (isQuerySetting) {
+					setIsQuerySetting(true);
+					return;
+				}
+
 				if (selectedDistrict !== 'defaultProvince') {
 					setSelectedDistrict('defaultProvince');
 				}
@@ -81,11 +107,31 @@ export default function HomeFilter() {
 				setIsDisabled(true);
 			}
 
+			if (isQuerySetting) {
+				setIsQuerySetting(true);
+				return;
+			}
+
 			if (selectedDistrict !== 'defaultProvince') {
 				setSelectedDistrict('defaultProvince');
 			}
 		}
 	}, [selectedProvince]);
+
+	useEffect(() => {
+		const { keyword: k = '', mainRegion = 'ALL', subRegion = 'defaultProvince' } = q as Query;
+		const { province } = regionArray.find(({ province: p }) => p[1] === mainRegion);
+		setSelectedProvince(province);
+
+		const target: string[] = region[mainRegion][mainRegion];
+		setSelectedDistrictArray(['defaultProvince', ...target]);
+		setSelectedDistrict(subRegion);
+
+		setSelectedRegionState([region[mainRegion].province[0], subRegion]);
+		setKeyword(k);
+
+		setIsQuerySetting(true);
+	}, [q]);
 
 	return (
 		<Container>
@@ -153,6 +199,7 @@ export default function HomeFilter() {
 					name="search-input"
 					className="search-input"
 					placeholder={t('jobTable:searchPlaceHolder')}
+					value={keyword}
 					onChange={(event) => {
 						setKeyword(event.target.value);
 					}}

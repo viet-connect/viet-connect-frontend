@@ -28,8 +28,7 @@ const Container = styled.div`
 
 export async function getServerSideProps(context) {
 	const { locale, query } = context;
-	const { postingPage = 1 } = query;
-	const { list, totalPages } = await Posting.getPostingList({ postingPage });
+	const { list = [], totalPages = 1 } = await Posting.getPostingList(query) ?? {};
 	return {
 		props: {
 			data: { list, totalPages },

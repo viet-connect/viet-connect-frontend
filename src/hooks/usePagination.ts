@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { SHOW_PAGES } from '../constant/page';
+import { MAX_SHOW_PAGES } from '../constant/page';
 
 export default function usePagination(totalPages) {
     const router = useRouter();
@@ -26,15 +26,15 @@ export default function usePagination(totalPages) {
     }, [currentPage, pathname, query]);
 
     const showPages = useMemo(() => {
-        const maxShowPage = Math.min(SHOW_PAGES, totalPages);
+        const maxShowPage = Math.min(MAX_SHOW_PAGES, totalPages);
         const mock = Math.floor(currentPage / (maxShowPage + 1)) + 1;
-        const unit = SHOW_PAGES * mock;
+        const unit = MAX_SHOW_PAGES * mock;
         return Array(maxShowPage).fill(null).map((_, i) => {
-            const page = unit - SHOW_PAGES + i + 1;
+            const page = unit - MAX_SHOW_PAGES + i + 1;
             const isShowPagesVariable = currentPage > unit;
-            return isShowPagesVariable ? page + SHOW_PAGES : page;
+            return isShowPagesVariable ? page + MAX_SHOW_PAGES : page;
         });
-    }, [currentPage]);
+    }, [currentPage, totalPages]);
 
     useEffect(() => {
         const { postingPage, lastId: _lastId } = router.query;

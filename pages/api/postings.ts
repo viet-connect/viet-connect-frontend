@@ -1,7 +1,23 @@
+/* eslint-disable max-len */
 import type { NextApiRequest, NextApiResponse } from 'next';
 import prisma from '../../src/lib/prisma';
 import { Password } from '../../src/utils/bcrypt';
-import { SHOW_PAGES } from '../../src/constant/page';
+import { SHOW_CONTENTS } from '../../src/constant/page';
+import region from '../../src/constant/region';
+
+interface PostingListParams {
+	postingPage?: string
+	keyword?: string
+	mainRegion?: string
+	subRegion?: string
+}
+
+interface PostingListOptions {
+	orderBy?: {[key: string]: string}[]
+	skip?: number
+	take?: number
+	where?: object
+}
 
 export default async function posting_list(
 	_req: NextApiRequest,
@@ -11,20 +27,34 @@ export default async function posting_list(
 	try {
 		switch (method) {
 			case 'GET': {
-				const { postingPage = '1' } = query as { postingPage?: string};
-				const totalPostings = await prisma.posting.count();
-				const totalPages = Math.ceil(totalPostings / SHOW_PAGES);
+				const { postingPage = '1', keyword = '', mainRegion: mRegion, subRegion = '' } = query as PostingListParams;
 				const page = parseInt(postingPage, 10) - 1;
-				const skip = Number.isNaN(page) ? 0 : page * SHOW_PAGES;
-				const postingList = await prisma.posting.findMany({
+				const skip = Number.isNaN(page) ? 0 : page * SHOW_CONTENTS;
+				const [mainRegion = ''] = mRegion ? region[mRegion].province : [];
+				const isFilterInvalid = [keyword, mainRegion, subRegion].every((filter) => filter.length === 0);
+				const where = {
+					AND: [
+						{ title: { contains: keyword } },
+						{ address: { contains: mainRegion } },
+					],
+					OR: [
+						{ address: { contains: subRegion } },
+					],
+				};
+				const options: PostingListOptions = {
 					orderBy: [
 						{
 							updatedAt: 'desc',
 						},
 					],
 					skip,
-					take: SHOW_PAGES,
-				});
+					take: SHOW_CONTENTS,
+				};
+				if (!isFilterInvalid) options.where = where;
+				const postingList = await prisma.posting.findMany(options);
+				const totalPostings = await prisma.posting.count({ where });
+				const totalPages = Math.ceil(totalPostings / SHOW_CONTENTS);
+
 				res.status(200).json({ postingList, totalPages });
 				break;
 			}

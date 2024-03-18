@@ -62,6 +62,9 @@ export interface ISavedPosting {
 
 interface PostingListParams {
 	postingPage?: string
+	keyword?: string
+	mainRegion?: string
+	subRegion?: string
 }
 
 export class Posting {
