@@ -68,7 +68,7 @@ export default function HomeFilter() {
 		if (selectedDistrict !== 'defaultProvince') regionQuery.subRegion = selectedDistrict;
 
 		Object.assign(query, regionQuery);
-		router.push({ pathname: router.pathname, query });
+		router.push({ pathname: router.pathname, query: { ...query, postingPage: 1 } });
 	};
 
 	/*

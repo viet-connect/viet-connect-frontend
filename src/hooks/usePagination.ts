@@ -37,14 +37,14 @@ export default function usePagination(totalPages) {
     }, [currentPage, totalPages]);
 
     useEffect(() => {
-        const { postingPage, lastId: _lastId } = router.query;
+        const { postingPage, lastId: _lastId } = query;
         const isSamePage = postingPage && parseInt(postingPage as string, 10) === currentPage;
         if (isSamePage) return;
 
         const page = postingPage ? parseInt(postingPage as string, 10) : 1;
         setCurrentPage(page);
         router.replace({ pathname, query: { ...query, postingPage: page } });
-    }, []);
+    }, [query]);
 
     return { currentPage, showPages, onMovePage };
 }
