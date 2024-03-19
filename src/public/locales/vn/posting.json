@@ -39,5 +39,6 @@
 	"passwordPlaceholder": "Vui lòng đặt mật khẩu có độ dài từ 8 đến 12 ký tự",
 	"editBtnLabel": "Chỉnh sửa",
 	"registrationBtnLabel": "Đăng ký",
-	"closeBtnLabel": "Đóng"
+	"closeBtnLabel": "Đóng",
+	"applyBtnLabel": "Ứng tuyển"
 }

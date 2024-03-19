@@ -39,5 +39,6 @@
 	"passwordPlaceholder": "비밀번호 길이는 8~12자로 설정해주세요",
 	"editBtnLabel": "수정하기",
 	"registrationBtnLabel": "등록하기",
-	"closeBtnLabel": "닫기"
+	"closeBtnLabel": "닫기",
+	"applyBtnLabel": "지원하기"
 }

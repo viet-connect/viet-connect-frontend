@@ -15,7 +15,7 @@ export default function JobDetailContactInfo({ data }) {
 					{t('detail:companyName')}: {contactName}
 				</Content>
 				<Content>
-					{t('detail:managerContact')}:{' '}
+					{t('detail:managerContact')}:
 					{CommonUtils.addHyphenToPhoneNumber(contactNumber)}
 				</Content>
 			</ContactInfoContentWrapper>
@@ -27,7 +27,7 @@ const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-	margin-bottom: 40px;
+	margin-bottom: 20px;
 `;
 
 const Title = styled.div`
