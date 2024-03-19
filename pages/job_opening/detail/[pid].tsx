@@ -13,7 +13,14 @@ import CommonButton from '../../../src/components/common/Button';
 export default function JobOpeningDetail({ data }) {
 	const { t } = useTranslation();
 	const session = useSession();
-	const onApplyJobOpening = () => {};
+	const onApplyJobOpening = () => {
+		if (session.status === 'authenticated') {
+			console.log('지원가능합니다');
+			return;
+		}
+
+		signIn();
+	};
 
 	return (
 		<Layout pageIndex={0}>
@@ -21,24 +28,21 @@ export default function JobOpeningDetail({ data }) {
 				<ContentHeader data={data} />
 				<MainContent data={data} />
 				<LocationInfo data={data} />
-				<JobDetailContactInfo data={data} />
-				{session.status === 'authenticated' && (
-					<ButtonOutterWrapper>
-						<CommonButton
-							wrapperStyle={{
-								height: 45,
-								color: '#1890ff',
-							}}
-							onClick={onApplyJobOpening}
-						>
-							<ButtonChildrenWrapper>
-								<ButtonTextWrapper>
-									{t('posting:applyBtnLabel')}
-								</ButtonTextWrapper>
-							</ButtonChildrenWrapper>
-						</CommonButton>
-					</ButtonOutterWrapper>
-				)}
+				<ButtonOutterWrapper>
+					<CommonButton
+						wrapperStyle={{
+							height: 45,
+							color: '#1890ff',
+						}}
+						onClick={onApplyJobOpening}
+					>
+						<ButtonChildrenWrapper>
+							<ButtonTextWrapper>
+								{t('posting:applyBtnLabel')}
+							</ButtonTextWrapper>
+						</ButtonChildrenWrapper>
+					</CommonButton>
+				</ButtonOutterWrapper>
 			</Container>
 		</Layout>
 	);

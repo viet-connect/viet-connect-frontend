@@ -61,10 +61,10 @@ export interface ISavedPosting {
 }
 
 interface PostingListParams {
-	postingPage?: string
-	keyword?: string
-	mainRegion?: string
-	subRegion?: string
+	postingPage?: string;
+	keyword?: string;
+	mainRegion?: string;
+	subRegion?: string;
 }
 
 export class Posting {
@@ -74,7 +74,9 @@ export class Posting {
 		try {
 			if (process.env.NODE_ENV === 'development') {
 				return await fetch(
-					`${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_VERCEL_URL}/api/postings${queryString ? `?${queryString}` : ''}`,
+					`${process.env.NEXT_PUBLIC_HOST}${
+						process.env.NEXT_PUBLIC_VERCEL_URL
+					}/api/postings${queryString ? `?${queryString}` : ''}`,
 				)
 					.then((res) => res.json())
 					.then((res) => {
@@ -86,7 +88,9 @@ export class Posting {
 
 			if (process.env.NODE_ENV === 'production') {
 				const server = process.env.DEPLOY_URL;
-				return await fetch(`${server}/api/postings${queryString ? `?${queryString}` : ''}`)
+				return await fetch(
+					`${server}/api/postings${queryString ? `?${queryString}` : ''}`,
+				)
 					.then((res) => res.json())
 					.then((res) => {
 						const { postingList, totalPages } = res;
