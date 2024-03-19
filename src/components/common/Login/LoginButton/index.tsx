@@ -58,22 +58,6 @@ const Container = styled.div`
 	align-items: center;
 `;
 
-const LoginWrapper = styled.div`
-	cursor: pointer;
-	background-color: yellow;
-	padding: 1px;
-`;
-
-const LoginSign = styled.div`
-	padding-right: 5px;
-`;
-
-const LogOutWrapper = styled.div`
-	cursor: pointer;
-	padding: 1px;
-	background-color: yellow;
-`;
-
 const ButtonOutterWrapper = styled.div``;
 
 const ButtonChildrenWrapper = styled.div`
@@ -83,7 +67,6 @@ const ButtonChildrenWrapper = styled.div`
 	gap: 5px;
 `;
 
-const IconWrapper = styled.div``;
 const ButtonTextWrapper = styled.div`
 	font-size: 15px;
 	color: white;
