@@ -93,6 +93,7 @@ export default function HomeFilter() {
 
 				if (isQuerySetting) {
 					setIsQuerySetting(true);
+					setSelectedDistrictArray(['defaultProvince', ...target]);
 					return;
 				}
 
