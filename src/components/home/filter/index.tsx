@@ -92,7 +92,7 @@ export default function HomeFilter() {
 				}
 
 				if (isQuerySetting) {
-					setIsQuerySetting(true);
+					setIsQuerySetting(false);
 					setSelectedDistrictArray(['defaultProvince', ...target]);
 					return;
 				}
@@ -109,7 +109,7 @@ export default function HomeFilter() {
 			}
 
 			if (isQuerySetting) {
-				setIsQuerySetting(true);
+				setIsQuerySetting(false);
 				return;
 			}
 
