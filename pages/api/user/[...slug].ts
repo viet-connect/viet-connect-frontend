@@ -4,33 +4,17 @@ import prisma from '../../../src/lib/prisma';
 export default async function user(_req: NextApiRequest, res: NextApiResponse) {
 	const { method } = _req;
 	const {
-		query: { pid },
+		query: { slug },
 	} = _req;
+	const userId = slug[0];
+	const postId = slug[1];
 
 	try {
 		switch (method) {
 			case 'PUT': {
-				const {
-					title,
-					contact_name,
-					contact_number,
-					wage_type,
-					wage_amount,
-					gender,
-					proficiency,
-					working_day,
-					is_day_negotiable,
-					starting_time,
-					ending_time,
-					is_time_negotiable,
-					contents,
-					address,
-					password,
-				} = _req.body;
+				// await prisma.posting.update();
 
-				await prisma.posting.update();
-
-				res.status(200).end('Posting has been updated');
+				res.status(200).json({ message: 'apply update' });
 				break;
 			}
 
