@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { signIn, useSession } from 'next-auth/react';
-import { DefaultSession } from 'next-auth';
+import { useRouter } from 'next/router';
 import Layout from '../../../src/components/common/Layout';
 import ContentHeader from '../../../src/components/job_opening/detail/content_header';
 import MainContent from '../../../src/components/job_opening/detail/main_content';
@@ -14,10 +14,13 @@ import { User } from '../../../src/models/user';
 export default function JobOpeningDetail({ data }) {
 	const { t } = useTranslation();
 	const session = useSession();
+	const router = useRouter();
 	const sessionData = session.data;
 	const onApplyJobOpening = () => {
 		if (session.status === 'authenticated') {
 			User.handleApplyPosting(data.id, sessionData.user.id);
+			router.push('/');
+
 			return;
 		}
 

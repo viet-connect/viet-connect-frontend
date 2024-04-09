@@ -22,28 +22,28 @@ model Article {
 }
 
 model Posting {
-  id                       String   @id @default(uuid())
-  address                  String
-  mainAddress              String   @default("") @map("main_address")
-  subAddress               String   @default("") @map("sub_address")
-  contactName              String   @map("contact_name")
-  contactNumber            String   @map("contact_number")
-  contents                 String?  @db.Text
-  createdAt                DateTime @default(now()) @map("created_at")
-  updatedAt                DateTime @updatedAt @map("updated_at")
-  endingTime               String   @map("ending_time")
-  gender                   Int
-  isDayNegotiable          Boolean  @default(false) @map("is_day_negotiable")
-  isTimeNegotiable         Boolean  @default(false) @map("is_time_negotiable")
-  password                 String
-  proficiency              Int
-  startingTime             String   @map("starting_time")
-  title                    String
-  wageAmount               String   @map("wage_amount")
-  wageType                 String   @map("wage_type")
-  workingDay               Json     @map("working_day")
-  viewCount                Int      @default(0) @map("view_count")
-  User_UserAppliedPostings User[]   @relation("UserAppliedPostings")
+  id               String   @id @default(uuid())
+  address          String
+  mainAddress      String   @default("") @map("main_address")
+  subAddress       String   @default("") @map("sub_address")
+  contactName      String   @map("contact_name")
+  contactNumber    String   @map("contact_number")
+  contents         String?  @db.Text
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+  endingTime       String   @map("ending_time")
+  gender           Int
+  isDayNegotiable  Boolean  @default(false) @map("is_day_negotiable")
+  isTimeNegotiable Boolean  @default(false) @map("is_time_negotiable")
+  password         String
+  proficiency      Int
+  startingTime     String   @map("starting_time")
+  title            String
+  wageAmount       String   @map("wage_amount")
+  wageType         String   @map("wage_type")
+  workingDay       Json     @map("working_day")
+  viewCount        Int      @default(0) @map("view_count")
+  users            User[]
 }
 
 model Account {
@@ -76,15 +76,15 @@ model Session {
 }
 
 model User {
-  id                          String    @id @default(uuid())
-  createdAt                   DateTime  @default(now()) @map("created_at")
-  name                        String
-  email                       String?   @unique
-  emailVerified               DateTime? @map("email_verified")
-  image                       String?
-  accounts                    Account[]
-  sessions                    Session[]
-  Posting_UserAppliedPostings Posting[] @relation("UserAppliedPostings")
+  id            String    @id @default(uuid())
+  createdAt     DateTime  @default(now()) @map("created_at")
+  name          String
+  email         String?   @unique
+  emailVerified DateTime? @map("email_verified")
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  postings      Posting[]
 }
 
 model VerificationRequest {

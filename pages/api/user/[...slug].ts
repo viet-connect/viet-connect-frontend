@@ -6,13 +6,29 @@ export default async function user(_req: NextApiRequest, res: NextApiResponse) {
 	const {
 		query: { slug },
 	} = _req;
-	const userId = slug[0];
-	const postId = slug[1];
+	const postId = slug[0];
+	const userId = slug[1];
 
 	try {
 		switch (method) {
-			case 'PUT': {
-				// await prisma.posting.update();
+			case 'POST': {
+				const currentUser = await prisma.user.findUnique({
+					where: {
+						id: userId,
+					},
+				});
+
+				await prisma.user.update({
+					where: {
+						id: userId,
+					},
+					data: {
+						...currentUser,
+						postings: {
+							connect: { id: postId },
+						},
+					},
+				});
 
 				res.status(200).json({ message: 'apply update' });
 				break;

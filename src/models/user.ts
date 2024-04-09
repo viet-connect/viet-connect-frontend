@@ -10,7 +10,7 @@ export class User {
 				data = await fetch(
 					`${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_VERCEL_URL}/api/user/${userId}/${postId}`,
 					{
-						method: 'PUT',
+						method: 'POST',
 						headers: {
 							'content-type': 'application/json',
 						},
@@ -21,7 +21,7 @@ export class User {
 			if (process.env.NODE_ENV === 'production') {
 				const server = process.env.DEPLOY_URL;
 				data = await fetch(`${server}/api/user/${userId}/${postId}`, {
-					method: 'PUT',
+					method: 'POST',
 					headers: {
 						'content-type': 'application/json',
 					},
