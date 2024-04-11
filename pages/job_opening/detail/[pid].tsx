@@ -3,6 +3,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import Layout from '../../../src/components/common/Layout';
 import ContentHeader from '../../../src/components/job_opening/detail/content_header';
 import MainContent from '../../../src/components/job_opening/detail/main_content';
@@ -14,12 +15,11 @@ import { User } from '../../../src/models/user';
 export default function JobOpeningDetail({ data }) {
 	const { t } = useTranslation();
 	const session = useSession();
-	const router = useRouter();
 	const sessionData = session.data;
-	const onApplyJobOpening = () => {
+
+	const onApplyJobOpening = async () => {
 		if (session.status === 'authenticated') {
-			User.handleApplyPosting(data.id, sessionData.user.id);
-			router.push('/');
+			await User.handleApplyPosting(data.id, sessionData.user.id);
 
 			return;
 		}
@@ -48,6 +48,7 @@ export default function JobOpeningDetail({ data }) {
 						</ButtonChildrenWrapper>
 					</CommonButton>
 				</ButtonOutterWrapper>
+				<div>{data.users.map((user) => user.name)}님이 지원하였습니다</div>
 			</Container>
 		</Layout>
 	);

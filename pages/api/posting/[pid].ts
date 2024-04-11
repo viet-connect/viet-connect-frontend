@@ -20,6 +20,7 @@ export default async function posting(
 						where: {
 							id: pid,
 						},
+						include: { users: true },
 					})
 					.then(async (data) => {
 						const { updatedAt } = data;
