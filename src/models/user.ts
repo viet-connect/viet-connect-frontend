@@ -1,36 +1,54 @@
+export interface IUser {
+  name: string;
+  nation: string | null;
+  gender: string | null;
+  birth: string;
+  phone: string;
+  proficiency: string;
+  career: string;
+  careerDetail: string;
+  residenceType: string;
+  selfIntroduction: string;
+}
+
 export class User {
-	static async handleApplyPosting(
-		userId: string,
-		postId: string,
-	): Promise<any> {
-		try {
-			let data = null;
+  static async handleApplyPosting(userId: string, postId: string): Promise<void> {
+    if (!['development', 'production'].includes(process.env.NODE_ENV)) return;
 
-			if (process.env.NODE_ENV === 'development') {
-				data = await fetch(
-					`${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_VERCEL_URL}/api/user/${userId}/${postId}`,
-					{
-						method: 'POST',
-						headers: {
-							'content-type': 'application/json',
-						},
-					},
-				);
-			}
+    const baseUrl =
+      process.env.NODE_ENV === 'development'
+        ? `${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_VERCEL_URL}`
+        : process.env.DEPLOY_URL;
+    const url = `${baseUrl}/api/user/${userId}/${postId}`;
+    try {
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+      });
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  }
 
-			if (process.env.NODE_ENV === 'production') {
-				const server = process.env.DEPLOY_URL;
-				data = await fetch(`${server}/api/user/${userId}/${postId}`, {
-					method: 'POST',
-					headers: {
-						'content-type': 'application/json',
-					},
-				});
-			}
+  static async handleUpdateUser(userId: string, info: IUser): Promise<any> {
+    if (!['development', 'production'].includes(process.env.NODE_ENV)) return;
 
-			return data.json();
-		} catch (err) {
-			return console.log(err);
-		}
-	}
+    try {
+      const baseUrl =
+        process.env.NODE_ENV === 'development'
+          ? `${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_VERCEL_URL}`
+          : process.env.DEPLOY_URL;
+      await fetch(`${baseUrl}/api/user/${userId}`, {
+        method: 'PUT',
+        body: JSON.stringify({ id: userId, ...info }),
+        headers: {
+          'content-type': 'application/json',
+        },
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
 }
