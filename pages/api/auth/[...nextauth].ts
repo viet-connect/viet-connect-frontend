@@ -6,50 +6,50 @@ import KakaoProvider from 'next-auth/providers/kakao';
 import prisma from '../../../src/lib/prisma';
 
 interface DefaultSession {
-	user?: {
-		name?: string | null;
-		email?: string | null;
-		image?: string | null;
-	};
-	expires: ISODateString;
+  user?: {
+    name?: string | null;
+    email?: string | null;
+    image?: string | null;
+  };
+  expires: ISODateString;
 }
 
 export const authOptions: NextAuthOptions = {
-	providers: [
-		KakaoProvider({
-			clientId: process.env.KAKAO_CLIENT_ID!,
-			clientSecret: process.env.KAKAO_CLIENT_SECRET!,
-		}),
-	],
-	callbacks: {
-		async jwt({ token, account, user }) {
-			if (account && user) {
-				return {
-					accessToken: account.access_token,
-					accessTokenExpires: account.expires_at,
-					refreshToken: account.refresh_token,
-					user,
-				};
-			}
-			return token;
-		},
+  providers: [
+    KakaoProvider({
+      clientId: process.env.KAKAO_CLIENT_ID!,
+      clientSecret: process.env.KAKAO_CLIENT_SECRET!,
+    }),
+  ],
+  callbacks: {
+    async jwt({ token, account, user }) {
+      if (account && user) {
+        return {
+          accessToken: account.access_token,
+          accessTokenExpires: account.expires_at,
+          refreshToken: account.refresh_token,
+          user,
+        };
+      }
+      return token;
+    },
 
-		async session({ session, user, token }) {
-			session.user = user;
-			return session;
-		},
-	},
-	pages: {
-		signIn: '/auth/signin',
-		signOut: '/auth/signout',
-		error: '/auth/error',
-		verifyRequest: 'auth/verify-request',
-	},
-	adapter: PrismaAdapter(prisma),
+    async session({ session, user, token }) {
+      session.user = user;
+      return session;
+    },
+  },
+  pages: {
+    signIn: '/auth/signin',
+    signOut: '/auth/signout',
+    error: '/auth/error',
+    verifyRequest: 'auth/verify-request',
+  },
+  adapter: PrismaAdapter(prisma),
 };
 
 const Auth = (req: NextApiRequest, res: NextApiResponse) => {
-	NextAuth(req, res, authOptions);
+  NextAuth(req, res, authOptions);
 };
 
 export default Auth;

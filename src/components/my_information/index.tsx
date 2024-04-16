@@ -10,8 +10,8 @@ import { IUser, User } from '../../models/user';
 export default function MyInformation({ data }) {
   const { data: sesstionData } = useSession();
   const [info, setInfo] = useState({
-    image: sesstionData?.user?.image ?? '',
-    name: sesstionData?.user?.name ?? '',
+    image: '',
+    name: '',
     nation: null,
     gender: null,
     birth: '',
@@ -21,6 +21,7 @@ export default function MyInformation({ data }) {
     careerDetail: '',
     residenceType: '',
     selfIntroduction: '',
+    ...data,
   });
 
   const onChange = (value) => {

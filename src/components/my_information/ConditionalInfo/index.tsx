@@ -21,7 +21,7 @@ export default function ConditionalInfo(props) {
   return (
     <InfoWrapper title={t('myPage:careerInfo')}>
       <ListItem title={t('posting:koLangSkill')}>
-        <RadioBox value={proficiency} options={proficiencyOptions} onChange={(v) => onChange({ career: v })} />
+        <RadioBox value={proficiency} options={proficiencyOptions} onChange={(v) => onChange({ proficiency: v })} />
       </ListItem>
       <ListItem title={t('myPage:experience')}>
         <RadioBox value={career} options={careerOptions} onChange={(v) => onChange({ career: v })} />

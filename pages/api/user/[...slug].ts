@@ -1,5 +1,25 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import prisma from '../../../src/lib/prisma';
+import { IUser } from '../../../src/models/user';
+
+export const newUserInfo = (_fields: Partial<IUser> = {}) => {
+  const { phone: _phone = '', ...fields } = _fields;
+  const phone = _phone.replace(/[^0-9]/g, '');
+  const value = {
+    name: '',
+    nation: null,
+    gender: null,
+    birth: '',
+    phone,
+    proficiency: '',
+    career: '',
+    careerDetail: '',
+    residenceType: '',
+    selfIntroduction: '',
+    ...fields,
+  };
+  return value;
+};
 
 export default async function user(_req: NextApiRequest, res: NextApiResponse) {
   const { method } = _req;
@@ -9,6 +29,39 @@ export default async function user(_req: NextApiRequest, res: NextApiResponse) {
 
   try {
     switch (method) {
+      case 'GET': {
+        const uid = slug[0];
+        const currentUser = await prisma.user.findUnique({
+          where: { id: uid },
+        });
+        const {
+          name,
+          image,
+          nation,
+          gender,
+          birth,
+          phone,
+          proficiency,
+          career,
+          careerDetail,
+          residenceType,
+          selfIntroduction,
+        } = currentUser;
+        res.status(200).json({
+          name,
+          image,
+          nation,
+          gender,
+          birth,
+          phone,
+          proficiency,
+          career,
+          careerDetail,
+          residenceType,
+          selfIntroduction,
+        });
+        break;
+      }
       case 'POST': {
         const postId = slug[0];
         const userId = slug[1];
@@ -27,15 +80,13 @@ export default async function user(_req: NextApiRequest, res: NextApiResponse) {
       }
 
       case 'PUT': {
-        const { id, phone: _phone, ...info } = _req.body;
+        const { id, ...info } = _req.body;
         const currentUser = await prisma.user.findUnique({
           where: { id },
         });
-
-        const phone = _phone.replace(/[^0-9]/g, '');
         await prisma.user.update({
           where: { id },
-          data: { ...currentUser, ...info, phone },
+          data: { ...currentUser, ...newUserInfo(info) },
         });
 
         res.status(200).json({ message: 'user info update' });

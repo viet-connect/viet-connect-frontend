@@ -10,6 +10,11 @@ export default function BasicInfo(props) {
   const { name, nation, gender, birth, phone, onChange } = props;
   const { t } = useTranslation();
   const inputStyles = { fontSize: 16 };
+  const nationOptions = [
+    { label: t('common:select'), value: 'default' },
+    { label: t('myPage:korea'), value: 'korea' },
+    { label: t('myPage:vietnam'), value: 'vietnam' },
+  ];
   return (
     <InfoWrapper title={t('myPage:basicInfo')} required>
       <ListItem title={t('myPage:name')}>
@@ -23,15 +28,11 @@ export default function BasicInfo(props) {
       </ListItem>
       <ListItem title={t('myPage:nationality')}>
         <Select
-          value={nation}
+          value={nationOptions.find(({ value }) => value === nation) ?? null}
           placeholder={t('common:select')}
-          options={[
-            { label: t('common:select'), value: 'default' },
-            { label: t('myPage:korea'), value: 'korea' },
-            { label: t('myPage:vietnam'), value: 'vietnam' },
-          ]}
+          options={nationOptions}
           instanceId={useId()}
-          onChange={(v) => onChange({ nation: v })}
+          onChange={({ value }) => onChange({ nation: value })}
         />
       </ListItem>
       <ListItem title={t('myPage:gender')}>
