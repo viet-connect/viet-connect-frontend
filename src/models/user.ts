@@ -14,15 +14,22 @@ export interface IUser {
 
 export class User {
   static async getUserInfo(userId: string): Promise<IUser> {
-    if (!['development', 'production'].includes(process.env.NODE_ENV)) return;
-
-    const baseUrl =
-      process.env.NODE_ENV === 'development'
-        ? `${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_VERCEL_URL}`
-        : process.env.DEPLOY_URL;
     try {
-      const info = await fetch(`${baseUrl}/api/user/${userId}`);
-      return info.json();
+      if (!['development', 'production'].includes(process.env.NODE_ENV)) return;
+
+      const baseUrl =
+        process.env.NODE_ENV === 'development'
+          ? `${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_VERCEL_URL}`
+          : process.env.DEPLOY_URL;
+      const res = await fetch(`${baseUrl}/api/user/${userId}`).then((ret) => ret.json());
+      Object.keys(res).forEach((key) => {
+        if (!res[key]) {
+          res[key] = '';
+        }
+      });
+
+      // eslint-disable-next-line consistent-return
+      return res;
     } catch (e) {
       throw new Error(e.message);
     }

@@ -33,7 +33,9 @@ export default async function user(_req: NextApiRequest, res: NextApiResponse) {
         const uid = slug[0];
         const currentUser = await prisma.user.findUnique({
           where: { id: uid },
+          include: { appliedPostings: true },
         });
+
         const {
           name,
           image,
@@ -46,7 +48,9 @@ export default async function user(_req: NextApiRequest, res: NextApiResponse) {
           careerDetail,
           residenceType,
           selfIntroduction,
+          appliedPostings,
         } = currentUser;
+
         res.status(200).json({
           name,
           image,
@@ -59,6 +63,7 @@ export default async function user(_req: NextApiRequest, res: NextApiResponse) {
           careerDetail,
           residenceType,
           selfIntroduction,
+          appliedPostings,
         });
         break;
       }

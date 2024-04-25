@@ -43,7 +43,7 @@ model Posting {
   wageType         String   @map("wage_type")
   workingDay       Json     @map("working_day")
   viewCount        Int      @default(0) @map("view_count")
-  users            User[]
+  appliedUsers     User[]
 }
 
 model Account {
@@ -76,24 +76,24 @@ model Session {
 }
 
 model User {
-  id                  String    @id @default(uuid())
-  createdAt           DateTime  @default(now()) @map("created_at")
-  name                String
-  email               String?   @unique
-  emailVerified       DateTime? @map("email_verified")
-  image               String?
-  nation              String?
-  gender              String?
-  birth               String?
-  phone               String?
-  proficiency         String?
-  career              String?
-  careerDetail        String? @map("career_detail")
-  residenceType       String? @map("residence_type")
-  selfIntroduction    String? @db.Text @map("self_introduction")
-  accounts            Account[]
-  sessions            Session[]
-  postings            Posting[]
+  id               String    @id @default(uuid())
+  createdAt        DateTime  @default(now()) @map("created_at")
+  name             String
+  email            String?   @unique
+  emailVerified    DateTime? @map("email_verified")
+  image            String?
+  nation           String?
+  gender           String?
+  birth            String?
+  phone            String?
+  proficiency      String?
+  career           String?
+  careerDetail     String?   @map("career_detail")
+  residenceType    String?   @map("residence_type")
+  selfIntroduction String?   @map("self_introduction") @db.Text
+  accounts         Account[]
+  sessions         Session[]
+  appliedPostings  Posting[]
 }
 
 model VerificationRequest {

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import BasicInfo from './BasicInfo';
 import ConditionalInfo from './ConditionalInfo';
+import PostingInfo from './PostingInfo';
 import CommonButton from '../common/Button';
 import { IUser, User } from '../../models/user';
 
@@ -21,6 +22,7 @@ export default function MyInformation({ data }) {
     careerDetail: '',
     residenceType: '',
     selfIntroduction: '',
+    appliedPostings: [],
     ...data,
   });
 
@@ -36,6 +38,7 @@ export default function MyInformation({ data }) {
     }, {});
     User.handleUpdateUser(sesstionData?.user?.id, validInfo as IUser);
   };
+
   return (
     <Container>
       <ImageWrapper>
@@ -47,6 +50,7 @@ export default function MyInformation({ data }) {
       </ImageWrapper>
       <BasicInfo {...info} onChange={onChange} />
       <ConditionalInfo {...info} onChange={onChange} />
+      <PostingInfo {...info} />
       <CommonButton
         className="save-button"
         label="저장하기"
