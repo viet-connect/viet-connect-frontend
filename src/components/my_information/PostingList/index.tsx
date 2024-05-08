@@ -31,6 +31,7 @@ const ListItem = styled.div<ListItemProps>`
   gap: 8px;
   padding: 12px 4px;
   min-height: 40px;
+  border-radius: 5px;
   border-bottom: ${({ $last }) => ($last ? 'none' : '1px solid rgba(128, 128, 128, 0.5)')};
   cursor: pointer;
 
