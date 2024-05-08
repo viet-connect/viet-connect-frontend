@@ -24,5 +24,9 @@
   "worker": "근로자",
   "jobSeeker": "구직준비",
   "immigrant": "이주민",
-  "selfIntro": "자기소개"
+  "selfIntro": "자기소개",
+  "privacy": "개인정보",
+  "postingInformation": "공고정보",
+  "appliedPostings": "지원한 공고",
+  "supportedPostings": "지원받은 공고"
 }
