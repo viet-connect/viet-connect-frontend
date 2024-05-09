@@ -17,7 +17,7 @@ export default async function posting(_req: NextApiRequest, res: NextApiResponse
             where: {
               id: pid,
             },
-            include: { appliedUsers: true },
+            include: { appliedUsers: true, postedUsers: true },
           })
           .then(async (data) => {
             const { updatedAt } = data;
@@ -57,6 +57,7 @@ export default async function posting(_req: NextApiRequest, res: NextApiResponse
           contents,
           address,
           password,
+          authorId,
         } = _req.body;
         const passwordHelper = new Password(password, '');
         let savingPassword = '';

@@ -25,6 +25,8 @@ export default function JobOpeningDetail({ data }) {
     signIn();
   };
 
+  console.log(data);
+
   return (
     <Layout pageIndex={0}>
       <Container>
@@ -44,7 +46,11 @@ export default function JobOpeningDetail({ data }) {
             </ButtonChildrenWrapper>
           </CommonButton>
         </ButtonOutterWrapper>
-        <div>{data.users.map((user) => user.name)}님이 지원하였습니다</div>
+        {/* <div>****비엣커넥트 경영진 인증용 코드******</div>
+        <div>공고만든자사람 이름이랑 아이디 연동완료</div>
+        <div>이름:{data.postedUsers[0].name} = 공고의 창시자</div>
+        <div>아이디:{data.postedUsers[0].id} = 공고의 창시자</div>
+        <div>{data.appliedUsers.map((user) => user.name)}님이 지원하였습니다</div> */}
       </Container>
     </Layout>
   );

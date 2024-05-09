@@ -77,7 +77,7 @@ export default async function user(_req: NextApiRequest, res: NextApiResponse) {
 
         await prisma.user.update({
           where: { id: userId },
-          data: { ...currentUser, postings: { connect: { id: postId } } },
+          data: { ...currentUser, appliedPostings: { connect: { id: postId } } },
         });
 
         res.status(200).json({ message: 'apply update' });
