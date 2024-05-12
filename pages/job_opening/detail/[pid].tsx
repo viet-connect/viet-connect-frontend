@@ -25,8 +25,6 @@ export default function JobOpeningDetail({ data }) {
     signIn();
   };
 
-  console.log(data);
-
   return (
     <Layout pageIndex={0}>
       <Container>

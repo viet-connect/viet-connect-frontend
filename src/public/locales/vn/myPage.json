@@ -24,5 +24,9 @@
   "worker": "Người lao động",
   "jobSeeker": "Đang tìm việc",
   "immigrant": "Người nhập cư",
-  "selfIntro": "Giới thiệu bản thân"
+  "selfIntro": "Giới thiệu bản thân",
+  "privacy": "Sự riêng tư",
+  "postingInformation": "Thông tin thông báo",
+  "appliedPostings": "Thông báo bạn đã đăng ký",
+  "supportedPostings": "Thông báo được hỗ trợ"
 }

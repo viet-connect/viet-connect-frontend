@@ -6,7 +6,7 @@ interface Option {
 }
 
 export default function RadioBox(props) {
-  const { value, options, column, onChange } = props;
+  const { value, options, column, color, onChange } = props;
   const multiple = Array.isArray(value);
   const onBoxClick = (selectedValue) => {
     let newValue = multiple ? [] : '';
@@ -18,7 +18,7 @@ export default function RadioBox(props) {
     onChange(newValue);
   };
   return (
-    <Container $length={options.length} $column={column}>
+    <Container className="radio-box" $length={options.length} $column={column}>
       {options.map(({ value: optionValue, label }, i) => {
         const selected = multiple ? value.includes(optionValue) : value === optionValue;
         const isFirst = i === 0;
@@ -30,6 +30,7 @@ export default function RadioBox(props) {
             $firstBox={isFirst}
             $lastBox={isLast}
             $column={column}
+            $color={color}
             onClick={() => onBoxClick(optionValue)}
           >
             {label}
@@ -58,6 +59,7 @@ interface OptionBoxProps {
   $firstBox: boolean;
   $lastBox: boolean;
   $column: boolean;
+  $color?: string;
 }
 
 const OptionBox = styled.div<OptionBoxProps>`
@@ -65,10 +67,10 @@ const OptionBox = styled.div<OptionBoxProps>`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 50px;
+  height: 40px;
   font-size: 14px;
   cursor: pointer;
-  ${({ $selected, $firstBox, $lastBox, $column }) => {
+  ${({ $selected, $firstBox, $lastBox, $column, $color }) => {
     const cssProps = {} as CSSObject;
     if ($column) cssProps.borderTop = '1px solid #d9d9d9';
     else cssProps.borderLeft = '1px solid #d9d9d9';
@@ -87,12 +89,12 @@ const OptionBox = styled.div<OptionBoxProps>`
     }
 
     if ($selected) {
-      cssProps.backgroundColor = 'rgba(68, 142, 247, 0.2)';
+      cssProps.backgroundColor = $color ?? 'rgba(68, 142, 247, 0.2)';
     }
     return css(cssProps);
   }}
 
   &:hover {
-    background-color: rgba(68, 142, 247, 0.2);
+    background-color: ${({ $selected, $color }) => ($selected ? $color : 'white')};
   }
 `;
