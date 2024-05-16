@@ -2,9 +2,10 @@ import styled from 'styled-components';
 
 export default function PostingList(props) {
   const { list = [] } = props;
+  console.log(props);
   return (
     <Container>
-      {list.map(({ contactName, name, phone }, i) => (
+      {list.map(({ contactName, name, phone, appliedUsers }, i) => (
         <ListItem key={i} $last={i === list.length - 1}>
           <div className="list__contact-name">{contactName}</div>
           {/* TODO: 조건에 따른 블러 on/off 적용 */}

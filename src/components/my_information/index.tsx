@@ -26,6 +26,7 @@ export default function MyInformation({ data }) {
     residenceType: '',
     selfIntroduction: '',
     appliedPostings: [],
+    postedPostings: [],
     ...data,
   });
   const [active, setActive] = useState(false);
@@ -82,58 +83,36 @@ export default function MyInformation({ data }) {
       ) : (
         <>
           <Toggle
-            label={active ? t('myPage:supportedPostings') : t('myPage:appliedPostings')}
+            label={active ? t('myPage:postedPostings') : t('myPage:appliedPostings')}
             value={active}
             onChange={onToggle}
           />
           {/* TODO: DB 데이터 적용 */}
-          <PostingList
-            list={
-              active
-                ? [
-                    {
-                      id: '지원받은 공고 id1',
-                      contactName: '지원받은 별미곱창',
-                      name: '태태태',
-                      phone: '010-1234-1234',
-                    },
-                    {
-                      id: '지원받은 공고 id2',
-                      contactName: '지원받은 별미곱창2',
-                      name: '태태태',
-                      phone: '010-1234-1234',
-                    },
-                    {
-                      id: '지원받은 공고 id3',
-                      contactName: '지원받은 별미곱창3',
-                      name: '태태태',
-                      phone: '010-1234-1234',
-                    },
-                    {
-                      id: '지원받은 공고 id4',
-                      contactName: '지원받은 별미곱창4',
-                      name: '태태태',
-                      phone: '010-1234-1234',
-                    },
-                  ]
-                : [
+          {/* [
                     {
                       id: '지원한 공고 id1',
                       contactName: '지원한 별미곱창',
                     },
-                    {
-                      id: '지원한 공고 id2',
-                      contactName: '지원한 별미곱창2',
-                    },
-                    {
-                      id: '지원한 공고 id3',
-                      contactName: '지원한 별미곱창3',
-                    },
-                    {
-                      id: '지원한 공고 id4',
-                      contactName: '지원한 별미곱창4',
-                    },
-                  ]
+                  ] */}
+          <PostingList
+            list={
+              active
+                ? info.postedPostings.map((posting) => {
+                    const { id, contactName, contactNumber, appliedUsers } = posting;
+                    return {
+                      id,
+                      contactName,
+                      contactNumber,
+                      appliedUsers,
+                    };
+                  })
+                : info.appliedPostings.map((posting) => {
+                    const { id, contactName } = posting;
+                    return {
+                      id,
+                      contactName,
+                    };
+                  })
             }
           />
         </>

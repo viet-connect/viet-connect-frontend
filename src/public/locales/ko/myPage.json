@@ -27,6 +27,6 @@
   "selfIntro": "자기소개",
   "privacy": "개인정보",
   "postingInformation": "공고정보",
-  "appliedPostings": "지원한 공고",
-  "supportedPostings": "지원받은 공고"
+  "appliedPostings": "내가 지원한 일자리 ",
+  "postedPostings": "내가 채용 중인 일자리"
 }

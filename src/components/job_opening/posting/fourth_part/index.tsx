@@ -29,7 +29,10 @@ export default function JobOpeningPostingFourthPart({ data, isAdmin }) {
   const { t } = useTranslation();
   const [maxContentLength, setMaxContentLength] = useState(402);
   const session = useSession();
-  const uid = session.data.user.id;
+  let uid = null;
+  if (session.data) {
+    uid = session.data.user.id;
+  }
 
   const toggleModal = async (e) => {
     if (isRequesting) return;

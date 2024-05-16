@@ -17,7 +17,7 @@
   "construction": "Xây dựng",
   "translation": "Phiên dịch",
   "other": "Việc khác",
-  "jobTasks": "Kinh nghiệm làm việc của minn",
+  "jobTasks": "Kinh nghiệm làm việc của minh",
   "jobTasksPlaceHolder": "Ví dụ: Soạn thảo văn bản, việc văn phòng",
   "residenceType": "Loại cư trú",
   "studentAbroad": "Du học sinh",
@@ -26,7 +26,7 @@
   "immigrant": "Người nhập cư",
   "selfIntro": "Giới thiệu bản thân",
   "privacy": "Sự riêng tư",
-  "postingInformation": "Thông tin thông báo",
-  "appliedPostings": "Thông báo bạn đã đăng ký",
-  "supportedPostings": "Thông báo được hỗ trợ"
+  "postingInformation": "Thông tin tuyển dụng",
+  "appliedPostings": "Tin tuyển dụng bạn đã đăng ký",
+  "postedPostings": "Tin tuyển dụng bạn đã đăng"
 }
