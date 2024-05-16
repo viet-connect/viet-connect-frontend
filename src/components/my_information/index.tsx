@@ -29,8 +29,9 @@ export default function MyInformation({ data }) {
     postedPostings: [],
     ...data,
   });
-  const [postingType, setPostingType] = useState('supportedPostings');
+  const [postingType, setPostingType] = useState('postedPostings');
   const [subPage, setSubPage] = useState('privacy');
+  const [isUpdateLoading, setIsUpdateLoading] = useState(false);
 
   const { t } = useTranslation();
 
@@ -38,15 +39,21 @@ export default function MyInformation({ data }) {
     setInfo({ ...info, ...value });
   };
 
-  const saveInfo = () => {
+  const saveInfo = async () => {
+    setIsUpdateLoading(true);
     const validInfo = Object.entries(info).reduce((r, [key, value]) => {
       if (['appliedPostings', 'postedPostings'].includes(key) || !value) return r;
       r[key] = value;
       return r;
     }, {});
-    User.handleUpdateUser(sesstionData?.user?.id, validInfo as IUser).then((res) => {
+    try {
+      await User.handleUpdateUser(sesstionData?.user?.id, validInfo as IUser);
       router.push('/');
-    });
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setIsUpdateLoading(false);
+    }
   };
 
   return (
@@ -79,6 +86,7 @@ export default function MyInformation({ data }) {
             className="save-button"
             label="저장하기"
             extraWrapperStyle={{ height: 43, color: 'white', backgroundColor: '#1890ff' }}
+            loading={isUpdateLoading}
             onClick={saveInfo}
           />
         </PrivacyConatiner>
@@ -87,7 +95,7 @@ export default function MyInformation({ data }) {
           <RadioBox
             value={postingType}
             options={[
-              { label: t('myPage:supportedPostings'), value: 'supportedPostings' },
+              { label: t('myPage:postedPostings'), value: 'postedPostings' },
               { label: t('myPage:appliedPostings'), value: 'appliedPostings' },
             ]}
             onChange={(v) => {

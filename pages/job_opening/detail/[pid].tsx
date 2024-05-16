@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { signIn, useSession } from 'next-auth/react';
+import { useEffect, useMemo, useState } from 'react';
+import toast from 'react-hot-toast';
 import Layout from '../../../src/components/common/Layout';
 import ContentHeader from '../../../src/components/job_opening/detail/content_header';
 import MainContent from '../../../src/components/job_opening/detail/main_content';
@@ -11,19 +13,34 @@ import CommonButton from '../../../src/components/common/Button';
 import { User } from '../../../src/models/user';
 
 export default function JobOpeningDetail({ data }) {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isApplied, setIsApplied] = useState(false);
   const { t } = useTranslation();
   const session = useSession();
-  const sessionData = session.data;
+  const sessionData = session?.data;
 
   const onApplyJobOpening = async () => {
-    if (session.status === 'authenticated') {
-      await User.handleApplyPosting(data.id, sessionData.user.id);
+    setIsLoading(true);
+    try {
+      if (session.status === 'authenticated') {
+        await User.handleApplyPosting(data.id, sessionData?.user?.id);
+        setIsApplied(true);
 
-      return;
+        toast.success('지원이 완료되었습니다.');
+        return;
+      }
+
+      signIn();
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setIsLoading(false);
     }
-
-    signIn();
   };
+  const isAppliedPosting = useMemo(
+    () => data.appliedUsers.find(({ id }) => id === sessionData?.user?.id),
+    [data.appliedUsers, sessionData],
+  );
 
   return (
     <Layout pageIndex={0}>
@@ -37,6 +54,8 @@ export default function JobOpeningDetail({ data }) {
               height: 45,
               color: '#1890ff',
             }}
+            disabled={isApplied || Boolean(isAppliedPosting)}
+            loading={isLoading}
             onClick={onApplyJobOpening}
           >
             <ButtonChildrenWrapper>
