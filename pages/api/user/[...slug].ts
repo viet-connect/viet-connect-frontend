@@ -100,7 +100,7 @@ export default async function user(_req: NextApiRequest, res: NextApiResponse) {
         const currentUser = await prisma.user.findUnique({
           where: { id },
         });
-        console.log(currentUser);
+
         await prisma.user.update({
           where: { id },
           data: { ...currentUser, ...newUserInfo(info) },

@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
+import { useRouter } from 'next/router';
 import BasicInfo from './BasicInfo';
 import ConditionalInfo from './ConditionalInfo';
 import PostingInfo from './PostingInfo';
@@ -14,6 +15,7 @@ import PostingList from './PostingList';
 
 export default function MyInformation({ data }) {
   const { data: sesstionData } = useSession();
+  const router = useRouter();
   const [info, setInfo] = useState({
     name: '',
     nation: null,
@@ -40,11 +42,13 @@ export default function MyInformation({ data }) {
 
   const saveInfo = () => {
     const validInfo = Object.entries(info).reduce((r, [key, value]) => {
-      if (!value) return r;
+      if (['appliedPostings', 'postedPostings'].includes(key) || !value) return r;
       r[key] = value;
       return r;
     }, {});
-    User.handleUpdateUser(sesstionData?.user?.id, validInfo as IUser);
+    User.handleUpdateUser(sesstionData?.user?.id, validInfo as IUser).then((res) => {
+      router.push('/');
+    });
   };
 
   const onToggle = (checked) => setActive(checked);
