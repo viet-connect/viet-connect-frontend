@@ -6,10 +6,8 @@ import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
 import BasicInfo from './BasicInfo';
 import ConditionalInfo from './ConditionalInfo';
-import PostingInfo from './PostingInfo';
 import CommonButton from '../common/Button';
 import { IUser, User } from '../../models/user';
-import Toggle from '../common/Toggle';
 import RadioBox from '../common/RadioBox';
 import PostingList from './PostingList';
 
@@ -31,7 +29,7 @@ export default function MyInformation({ data }) {
     postedPostings: [],
     ...data,
   });
-  const [active, setActive] = useState(false);
+  const [postingType, setPostingType] = useState('supportedPostings');
   const [subPage, setSubPage] = useState('privacy');
 
   const { t } = useTranslation();
@@ -51,8 +49,6 @@ export default function MyInformation({ data }) {
     });
   };
 
-  const onToggle = (checked) => setActive(checked);
-
   return (
     <Container>
       <ImageWrapper>
@@ -70,7 +66,9 @@ export default function MyInformation({ data }) {
             { label: t('myPage:privacy'), value: 'privacy' },
             { label: t('myPage:postingInformation'), value: 'postingInformation' },
           ]}
-          onChange={(v) => setSubPage(v)}
+          onChange={(v) => {
+            if (v) setSubPage(v);
+          }}
         />
       </PageControlWrapper>
       {subPage === 'privacy' ? (
@@ -86,10 +84,15 @@ export default function MyInformation({ data }) {
         </PrivacyConatiner>
       ) : (
         <>
-          <Toggle
-            label={active ? t('myPage:postedPostings') : t('myPage:appliedPostings')}
-            value={active}
-            onChange={onToggle}
+          <RadioBox
+            value={postingType}
+            options={[
+              { label: t('myPage:supportedPostings'), value: 'supportedPostings' },
+              { label: t('myPage:appliedPostings'), value: 'appliedPostings' },
+            ]}
+            onChange={(v) => {
+              if (v) setPostingType(v);
+            }}
           />
           {/* TODO: DB 데이터 적용 */}
           {/* [
@@ -100,7 +103,7 @@ export default function MyInformation({ data }) {
                   ] */}
           <PostingList
             list={
-              active
+              postingType === 'supportedPostings'
                 ? info.postedPostings.map((posting) => {
                     const { id, contactName, contactNumber, appliedUsers } = posting;
                     return {
