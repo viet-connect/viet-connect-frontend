@@ -111,14 +111,14 @@ export default function MyInformation({ data }) {
                   ] */}
           <PostingList
             list={
-              postingType === 'supportedPostings'
+              postingType === 'postedPostings'
                 ? info.postedPostings.map((posting) => {
-                    const { id, contactName, contactNumber, appliedUsers } = posting;
+                    const { id, contactNumber, appliedUsers, title } = posting;
                     return {
                       id,
-                      contactName,
                       contactNumber,
                       appliedUsers,
+                      title,
                     };
                   })
                 : info.appliedPostings.map((posting) => {

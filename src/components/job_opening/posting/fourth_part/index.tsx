@@ -288,7 +288,7 @@ export const ClosingModalButton = styled.div`
   color: white;
   font-weight: bold;
   border-radius: 10px;
-  background-color: #ea7b14;
+  background-color: #faa453;
   height: 40px;
   cursor: pointer;
 `;
