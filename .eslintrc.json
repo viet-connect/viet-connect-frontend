@@ -1,21 +1,23 @@
 {
-	"extends": ["next/core-web-vitals", "airbnb-base"],
-	"rules": {
-		"no-use-before-define": "off",
-		"import/extensions": "off",
-		"no-tabs": "off",
-		// "indent": ["error", "space"],
-		"implicit-arrow-linebreak": "off",
-		"object-curly-newline": "off",
-		"no-unused-vars": "off",
-		"no-confusing-arrow": "off",
-		"operator-linebreak": "off",
-		"function-paren-newline": "off",
-		"camelcase": "off",
-		"import/prefer-default-export": "off",
-		"no-undef": "off",
-		"indent": "off",
-		"no-mixed-spaces-and-tabs": "off",
-		"import/no-extraneous-dependencies": "off"
-	}
+  "extends": ["next/core-web-vitals", "airbnb-base"],
+  "rules": {
+    "no-use-before-define": "off",
+    "import/extensions": "off",
+    "no-tabs": "off",
+    // "indent": ["error", "space"],
+    "implicit-arrow-linebreak": "off",
+    "object-curly-newline": "off",
+    "no-unused-vars": "off",
+    "no-confusing-arrow": "off",
+    "operator-linebreak": "off",
+    "function-paren-newline": "off",
+    "camelcase": "off",
+    "import/prefer-default-export": "off",
+    "no-undef": "off",
+    "indent": "off",
+    "no-mixed-spaces-and-tabs": "off",
+    "import/no-extraneous-dependencies": "off",
+    "max-len": "off",
+    "no-param-reassign": "off"
+  }
 }

@@ -14,10 +14,10 @@ import {
 } from '../../../recoil/atom/region';
 // import { category } from '../../../constant/constant';
 
-interface Query extends ParsedUrlQuery{
-	keyword: string
-	mainRegion: string
-	subRegion: string
+interface Query extends ParsedUrlQuery {
+	keyword: string;
+	mainRegion: string;
+	subRegion: string;
 }
 
 export default function HomeFilter() {
@@ -62,13 +62,18 @@ export default function HomeFilter() {
 			selectedDistrict,
 		]);
 
-		const regionQuery = {} as {mainRegion?: string, subRegion?: string};
+		const regionQuery = {} as { mainRegion?: string; subRegion?: string };
 		const [_, mRegion] = region[selectedProvince[1]].province;
 		if (mRegion !== 'ALL') regionQuery.mainRegion = mRegion;
-		if (selectedDistrict !== 'defaultProvince') regionQuery.subRegion = selectedDistrict;
+		if (selectedDistrict !== 'defaultProvince') {
+			regionQuery.subRegion = selectedDistrict;
+		}
 
 		Object.assign(query, regionQuery);
-		router.push({ pathname: router.pathname, query: { ...query, postingPage: 1 } });
+		router.push({
+			pathname: router.pathname,
+			query: { ...query, postingPage: 1 },
+		});
 	};
 
 	/*
@@ -120,8 +125,14 @@ export default function HomeFilter() {
 	}, [selectedProvince]);
 
 	useEffect(() => {
-		const { keyword: k = '', mainRegion = 'ALL', subRegion = 'defaultProvince' } = q as Query;
-		const { province } = regionArray.find(({ province: p }) => p[1] === mainRegion);
+		const {
+			keyword: k = '',
+			mainRegion = 'ALL',
+			subRegion = 'defaultProvince',
+		} = q as Query;
+		const { province } = regionArray.find(
+			({ province: p }) => p[1] === mainRegion,
+		);
 		setSelectedProvince(province);
 
 		const target: string[] = region[mainRegion][mainRegion];

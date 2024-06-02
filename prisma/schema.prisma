@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["filteredRelationCount"]
 }
 
@@ -43,6 +43,30 @@ model Posting {
   wageType         String   @map("wage_type")
   workingDay       Json     @map("working_day")
   viewCount        Int      @default(0) @map("view_count")
+  appliedUsers     User[]   @relation("applyTable")
+  postedUsers      User[]   @relation("postTable")
+}
+
+model User {
+  id               String    @id @default(uuid())
+  createdAt        DateTime  @default(now()) @map("created_at")
+  name             String
+  email            String?   @unique
+  emailVerified    DateTime? @map("email_verified")
+  image            String?
+  nation           String?
+  gender           String?
+  birth            String?
+  phone            String?
+  proficiency      String?
+  career           String?
+  careerDetail     String?   @map("career_detail")
+  residenceType    String?   @map("residence_type")
+  selfIntroduction String?   @map("self_introduction") @db.Text
+  accounts         Account[]
+  sessions         Session[]
+  appliedPostings  Posting[] @relation("applyTable")
+  postedPostings   Posting[] @relation("postTable")
 }
 
 model Account {
@@ -72,16 +96,6 @@ model Session {
   user         User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
-}
-
-model User {
-  id            String    @id @default(uuid())
-  name          String
-  email         String?   @unique
-  emailVerified DateTime? @map("email_verified")
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
 }
 
 model VerificationRequest {
