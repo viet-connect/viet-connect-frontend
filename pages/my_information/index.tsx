@@ -14,7 +14,7 @@ export async function getServerSideProps(context) {
   const i18n = ['common', 'detail', 'jobTable', 'navigation', 'opening', 'posting', 'login', 'myPage'];
   const translation = await serverSideTranslations(locale, i18n);
   let data = null;
-  if (session.user.id) {
+  if (session.user) {
     data = await User.getUserInfo(session.user.id);
   }
   return { props: { ...translation, data } };
