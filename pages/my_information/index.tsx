@@ -10,7 +10,7 @@ export default function MyInformation({ data }) {
 
 export async function getServerSideProps(context) {
   const { locale } = context;
-  const session = await getSession(context);
+  const session = (await getSession(context)) ?? { user: null };
   const i18n = ['common', 'detail', 'jobTable', 'navigation', 'opening', 'posting', 'login', 'myPage'];
   const translation = await serverSideTranslations(locale, i18n);
   let data = null;
