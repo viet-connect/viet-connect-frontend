@@ -64,6 +64,7 @@ export default function Forum(props) {
     }
     setPosts(postList);
   }, [props.posts, selectedCategories]);
+
   return (
     <Layout pageIndex={3}>
       <Wrapper>
@@ -130,6 +131,7 @@ export async function getServerSideProps({ locale }) {
   const translation = await serverSideTranslations(locale, i18n);
 
   const posts = await Article.getArticleList();
+
   return { props: { posts, ...translation } };
 }
 
