@@ -19,7 +19,7 @@ const KakaoChatButton = () => {
 
   const kakaoChat = () => {
     if (window.Kakao) {
-      console.log('Kakao SDK is loaded.');
+      console.log('Kakao SDK has been loaded.');
       try {
         window.Kakao.Channel.chat({
           channelPublicId: '_XtVUG',
