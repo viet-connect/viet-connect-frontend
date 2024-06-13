@@ -10,6 +10,7 @@ const KakaoChatButton = () => {
       script.crossOrigin = 'anonymous';
       script.onload = () => {
         const key = process.env.NEXT_PUBLIC_KAKAO_KEY;
+        console.log(key);
         window.Kakao.init(key);
       };
 
