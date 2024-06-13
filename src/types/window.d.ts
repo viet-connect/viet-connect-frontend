@@ -1,7 +1,8 @@
 export {};
 
 declare global {
-	interface Window {
-		adsbygoogle: { [key: string]: unknown }[];
-	}
+  interface Window {
+    adsbygoogle: { [key: string]: unknown }[];
+    Kakao: any;
+  }
 }

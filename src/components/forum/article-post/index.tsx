@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
 import CommonInput from '../../common/Input';
 import Editor from '../../common/Editor';
+import KakaoChatButton from '../../common/KakaoButton';
 
 export default function ArticlePost(props) {
   const { t } = useTranslation();
@@ -25,6 +26,7 @@ export default function ArticlePost(props) {
     placeholder: t('article:editor'),
     readOnly,
   };
+  const onClick = () => {};
 
   /* 임시방편 ID가 anchor일 때는 버튼생성 */
   return (
@@ -34,7 +36,7 @@ export default function ArticlePost(props) {
         {children}
       </HeadWrapper>
       <Editor {...editorAttrs} onChange={(v) => onChange({ contents: v })} />
-      {editorAttrs.readOnly && props.article.id === 'anchor' && <button>wsss</button>}
+      {editorAttrs.readOnly && props.article.id === 'anchor' && <KakaoChatButton />}
     </Wrapper>
   );
 }
