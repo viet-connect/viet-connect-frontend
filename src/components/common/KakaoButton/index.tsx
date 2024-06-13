@@ -10,6 +10,7 @@ const KakaoChatButton = () => {
       script.crossOrigin = 'anonymous';
       script.onload = () => {
         const key = process.env.NEXT_PUBLIC_KAKAO_KEY;
+        console.log(key);
         window.Kakao.init(key);
       };
 
@@ -19,7 +20,7 @@ const KakaoChatButton = () => {
 
   const kakaoChat = () => {
     if (window.Kakao) {
-      console.log('Kakao SDK is loaded.');
+      console.log('Kakao SDK has been loaded.');
       try {
         window.Kakao.Channel.chat({
           channelPublicId: '_XtVUG',
