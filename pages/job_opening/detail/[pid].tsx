@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { signIn, useSession } from 'next-auth/react';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/router';
 import Layout from '../../../src/components/common/Layout';
@@ -48,6 +48,12 @@ export default function JobOpeningDetail({ data }) {
       setIsLoading(false);
     }
   };
+
+  const isPostedUser = useMemo(
+    () => data.postedUsers[0].id === session.data?.user?.id,
+    [data.postedUsers, session.data?.user?.id],
+  );
+
   const isAppliedPosting = useMemo(
     () => data.appliedUsers.find(({ id }) => id === sessionData?.user?.id),
     [data.appliedUsers, sessionData],
@@ -67,10 +73,14 @@ export default function JobOpeningDetail({ data }) {
             }}
             disabled={isApplied || Boolean(isAppliedPosting)}
             loading={isLoading}
-            onClick={onApplyJobOpening}
+            onClick={isPostedUser ? () => router.push('/forum/detail/anchor') : onApplyJobOpening}
           >
             <ButtonChildrenWrapper>
-              <ButtonTextWrapper>{t('posting:applyBtnLabel')}</ButtonTextWrapper>
+              {isPostedUser ? (
+                <ButtonTextWrapper>{t('posting:subscribeBtnLabel')}</ButtonTextWrapper>
+              ) : (
+                <ButtonTextWrapper>{t('posting:applyBtnLabel')}</ButtonTextWrapper>
+              )}
             </ButtonChildrenWrapper>
           </CommonButton>
         </ButtonOutterWrapper>
