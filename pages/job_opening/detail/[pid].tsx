@@ -4,6 +4,7 @@ import { useTranslation } from 'next-i18next';
 import { signIn, useSession } from 'next-auth/react';
 import { useEffect, useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
+import { useRouter } from 'next/router';
 import Layout from '../../../src/components/common/Layout';
 import ContentHeader from '../../../src/components/job_opening/detail/content_header';
 import MainContent from '../../../src/components/job_opening/detail/main_content';
@@ -11,6 +12,7 @@ import { Posting } from '../../../src/models/posting';
 import LocationInfo from '../../../src/components/job_opening/detail/location_iinfo';
 import CommonButton from '../../../src/components/common/Button';
 import { User } from '../../../src/models/user';
+import validate from '../../../src/utils/validate';
 
 export default function JobOpeningDetail({ data }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -18,15 +20,24 @@ export default function JobOpeningDetail({ data }) {
   const { t } = useTranslation();
   const session = useSession();
   const sessionData = session?.data;
+  const router = useRouter();
 
   const onApplyJobOpening = async () => {
     setIsLoading(true);
     try {
       if (session.status === 'authenticated') {
+        const userData = await User.getUserInfo(sessionData?.user?.id);
+        if (!validate.hasMyPageInfo(userData)) {
+          toast.error('Xin nhập vào các thông tin cá nhân để xin việc');
+
+          router.push('/my_information');
+          return;
+        }
+
         await User.handleApplyPosting(data.id, sessionData?.user?.id);
         setIsApplied(true);
 
-        toast.success('지원이 완료되었습니다.');
+        toast.success('Xin việc hoàn thành.');
         return;
       }
 
