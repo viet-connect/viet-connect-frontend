@@ -41,5 +41,6 @@
   "registrationBtnLabel": "등록하기",
   "closeBtnLabel": "닫기",
   "applyBtnLabel": "지원하기",
-  "getApplierBtnLabel": "지원자 보기"
+  "getApplierBtnLabel": "지원자 보기",
+  "subscribeBtnLabel": "통역 서비스 신청하기"
 }

@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import CommonButton from '../Button';
+import SvgIcon from '../Icon';
 
-const KakaoChatButton = () => {
+const KakaoChatButton = (size) => {
   useEffect(() => {
     if (!window.Kakao) {
       const script = document.createElement('script');
@@ -32,12 +33,20 @@ const KakaoChatButton = () => {
     }
   };
 
-  return (
+  return size === 'large' ? (
     <CommonButton
       className="redirect-channel"
       label="카카오톡 1:1 문의"
       extraWrapperStyle={{ height: 43, color: 'black', backgroundColor: '#F7E600' }}
       onClick={kakaoChat}
+    />
+  ) : (
+    <SvgIcon
+      style={{ cursor: 'pointer' }}
+      onClick={kakaoChat}
+      name="kakaoChannelInquiryButton"
+      height={43}
+      width={100}
     />
   );
 };

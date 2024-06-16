@@ -36,7 +36,7 @@ export default function ArticlePost(props) {
         {children}
       </HeadWrapper>
       <Editor {...editorAttrs} onChange={(v) => onChange({ contents: v })} />
-      {editorAttrs.readOnly && props.article.id === 'anchor' && <KakaoChatButton />}
+      {editorAttrs.readOnly && props.article.id === 'anchor' && <KakaoChatButton size="large" />}
     </Wrapper>
   );
 }

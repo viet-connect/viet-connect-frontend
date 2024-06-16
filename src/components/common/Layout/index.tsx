@@ -9,6 +9,7 @@ import Flag from '../../main/header_top/flag';
 import Content from './Content';
 import { Analytics } from '../Analytics/Analytics';
 import LoginButton from '../Login/LoginButton';
+import KakaoChatButton from '../KakaoButton';
 
 interface IMainProps {
   children: ReactNode;
@@ -23,7 +24,8 @@ export default function Layout({ children, pageIndex }: IMainProps) {
           <Row>
             <Logo />
             <div style={{ display: 'flex', alignItems: 'center' }}>
-              <div style={{ marginRight: 8 }}>
+              <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', marginRight: 8 }}>
+                <KakaoChatButton size="small" />
                 <LoginButton />
               </div>
               <Flag />
