@@ -27,43 +27,40 @@ export default function PostingList(props) {
     },
   };
 
-  console.log(list);
-
   return (
     <Container>
       {list.map(({ contactName, title, appliedUsers, id }, i) => (
-        <ListItem key={i} $last={i === list.length - 1}>
-          {title && (
-            <Link
-              href={`/job_opening/detail/${id}`}
-              style={{
-                textDecoration: 'none',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-around',
-                color: 'inherit',
-              }}
-            >
-              <div className="list__contact-name">{title}</div>
-              <div className="list__appliers-status">현재 {appliedUsers.length}명의 지원자가 있습니다</div>
-            </Link>
-          )}
-          {contactName && (
-            <Link style={{ color: 'inherit', textDecoration: 'none' }} href={`/job_opening/detail/${id}`}>
-              <div className="list__contact-name">{contactName}</div>
-            </Link>
-          )}
-          {/* TODO: 조건에 따른 블러 on/off 적용 */}
-          {appliedUsers && (
-            <CommonButton
-              onClick={() => {
-                setShowModal(true);
-                setAppliers(appliedUsers);
-              }}
-              {...btnAttrs}
-            />
-          )}
-        </ListItem>
+        <Link style={{ textDecoration: 'none', color: 'inherit' }} key={id} href={`/job_opening/detail/${id}`}>
+          <ListItem key={i} $last={i === list.length - 1}>
+            {title && (
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-around',
+                }}
+              >
+                <div className="list__contact-name">{title}</div>
+                <div className="list__appliers-status">현재 {appliedUsers.length}명의 지원자가 있습니다</div>
+              </div>
+            )}
+            {contactName && (
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <div className="list__contact-name">{contactName}</div>
+              </div>
+            )}
+            {/* TODO: 조건에 따른 블러 on/off 적용 */}
+            {appliedUsers && (
+              <CommonButton
+                onClick={() => {
+                  setShowModal(true);
+                  setAppliers(appliedUsers);
+                }}
+                {...btnAttrs}
+              />
+            )}
+          </ListItem>
+        </Link>
       ))}
       <Modal
         width={500}
