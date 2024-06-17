@@ -33,7 +33,7 @@ export default function BasicInfo(props) {
           placeholder={t('common:select')}
           options={nationOptions}
           instanceId={useId()}
-          menuIsOpen={!readOnly}
+          menuIsOpen={readOnly === undefined ? readOnly : !readOnly}
           onChange={({ value }) => onChange?.({ nation: value })}
         />
       </ListItem>
