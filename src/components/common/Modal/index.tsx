@@ -3,7 +3,16 @@ import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import CommonButton from '../Button';
 
-const Modal = ({ show, title, children, width, height, onClose }) => {
+interface Props {
+  show: boolean;
+  title?: string;
+  children: React.ReactNode;
+  width?: string | number;
+  height?: string | number;
+  onClose?: () => void;
+}
+
+const Modal = ({ show, title, children, width, height, onClose }: Props) => {
   const [isBrowser, setIsBrowser] = useState(false);
 
   useEffect(() => {
@@ -57,14 +66,14 @@ const StyledModalBody = styled.div`
 `;
 
 interface ModalStyleProps {
-  $width?: number;
-  $height?: number;
+  $width?: string | number;
+  $height?: string | number;
 }
 
 const StyledModal = styled.div<ModalStyleProps>`
   position: relative;
-  width: ${({ $width }) => `${$width}px` ?? 'auto'};
-  height: ${({ $height }) => $height ?? 'auto'};
+  width: ${({ $width }) => `${typeof $width === 'number' ? `${$width}px` : $width}` ?? 'auto'};
+  height: ${({ $height }) => `${typeof $height === 'number' ? `${$height}px` : $height}` ?? 'auto'};
   max-height: 95%;
   overflow: auto;
   background: white;
