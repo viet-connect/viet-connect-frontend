@@ -79,6 +79,12 @@ export default function JobOpeningDetail({ data }) {
     const { applicant_id } = router.query;
     if (!isModalValid || !applicant_id) return;
 
+    document.body.style.cssText = `
+    position: fixed; 
+    top: -${window.scrollY}px;
+    overflow: auto;
+    width: 100%;`;
+
     const user = data.appliedUsers.find(({ id }) => id === applicant_id);
     setAppliedUser(user);
     setShowModal(true);
@@ -121,7 +127,13 @@ export default function JobOpeningDetail({ data }) {
           title="지원자 이력서"
           width={500}
           height="max-content"
-          onClose={() => setShowModal(false)}
+          onClose={() => {
+            setShowModal(false);
+
+            const scrollY = document.body.style.top;
+            document.body.style.cssText = '';
+            window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
+          }}
         >
           <ModalWrapper>
             <BasicInfo {...appliedUser} readOnly />

@@ -17,12 +17,6 @@ const Modal = ({ show, title, children, width, height, onClose }: Props) => {
 
   useEffect(() => {
     setIsBrowser(true);
-
-    document.body.style.cssText = `
-    position: fixed; 
-    top: -${window.scrollY}px;
-    overflow: auto;
-    width: 100%;`;
   }, []);
 
   const modalContent = show ? (
@@ -40,12 +34,7 @@ const Modal = ({ show, title, children, width, height, onClose }: Props) => {
                   backgroundColor: 'white',
                 }}
                 textStyle={{ fontSize: '20px' }}
-                onClick={() => {
-                  onClose();
-                  const scrollY = document.body.style.top;
-                  document.body.style.cssText = '';
-                  window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
-                }}
+                onClick={onClose}
               />
             )}
           </Header>
