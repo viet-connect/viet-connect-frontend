@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { signIn, useSession } from 'next-auth/react';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/router';
 import Layout from '../../../src/components/common/Layout';
@@ -13,6 +13,10 @@ import LocationInfo from '../../../src/components/job_opening/detail/location_ii
 import CommonButton from '../../../src/components/common/Button';
 import { User } from '../../../src/models/user';
 import validate from '../../../src/utils/validate';
+import { KakaoAlarm } from '../../../src/models/alarm';
+import Modal from '../../../src/components/common/Modal';
+import BasicInfo from '../../../src/components/my_information/BasicInfo';
+import ConditionalInfo from '../../../src/components/my_information/ConditionalInfo';
 
 export default function JobOpeningDetail({ data }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -37,6 +41,13 @@ export default function JobOpeningDetail({ data }) {
         await User.handleApplyPosting(data.id, sessionData?.user?.id);
         setIsApplied(true);
 
+        const { id, title, contactNumber, postedUsers = [] } = data;
+        if (contactNumber) {
+          const { id: myId } = sessionData.user ?? {};
+          const { name = '사장님' } = postedUsers[0] ?? {};
+          await KakaoAlarm.sendChannelTalk({ title, name, templateId: id, contactNumber, userId: myId });
+        }
+
         toast.success('Xin việc hoàn thành.');
         return;
       }
@@ -58,6 +69,20 @@ export default function JobOpeningDetail({ data }) {
     () => data.appliedUsers.find(({ id }) => id === sessionData?.user?.id),
     [data.appliedUsers, sessionData],
   );
+
+  const [showModal, setShowModal] = useState(false);
+  const [appliedUser, setAppliedUser] = useState(null);
+  useEffect(() => {
+    const isModalValid = data.postedUsers.some(
+      ({ id: posterId }) => posterId && sessionData?.user?.id && posterId === sessionData?.user?.id,
+    );
+    const { applicant_id } = router.query;
+    if (!isModalValid || !applicant_id) return;
+
+    const user = data.appliedUsers.find(({ id }) => id === applicant_id);
+    setAppliedUser(user);
+    setShowModal(true);
+  }, [sessionData]);
 
   return (
     <Layout pageIndex={0}>
@@ -90,6 +115,20 @@ export default function JobOpeningDetail({ data }) {
         <div>아이디:{data.postedUsers[0].id} = 공고의 창시자</div>
         <div>{data.appliedUsers.map((user) => user.name)}님이 지원하였습니다</div> */}
       </Container>
+      {appliedUser && (
+        <Modal
+          show={showModal}
+          title="지원자 이력서"
+          width={500}
+          height="max-content"
+          onClose={() => setShowModal(false)}
+        >
+          <ModalWrapper>
+            <BasicInfo {...appliedUser} readOnly />
+            <ConditionalInfo {...appliedUser} readOnly />
+          </ModalWrapper>
+        </Modal>
+      )}
     </Layout>
   );
 }
@@ -113,6 +152,12 @@ const ButtonTextWrapper = styled.div`
   font-weight: 400;
 `;
 
+const ModalWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+`;
+
 export async function getServerSideProps(context) {
   const data = await Posting.getUniquePosting(context.query.pid);
   return {
@@ -126,6 +171,7 @@ export async function getServerSideProps(context) {
         'opening',
         'posting',
         'login',
+        'myPage',
       ])),
     },
   };

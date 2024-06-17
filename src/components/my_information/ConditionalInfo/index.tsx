@@ -9,7 +9,7 @@ import Editor from '../../common/Editor';
 const { proficiency: proficiencyConst } = postingConstant.PostingThirdPartInfo;
 
 export default function ConditionalInfo(props) {
-  const { proficiency, career, careerDetail, residenceType, selfIntroduction, onChange } = props;
+  const { proficiency, career, careerDetail, residenceType, selfIntroduction, readOnly, onChange } = props;
   const { t } = useTranslation();
   const inputStyles = { fontSize: 16 };
 
@@ -19,12 +19,22 @@ export default function ConditionalInfo(props) {
   const careerOptions = Object.values(categoryType).map((value) => ({ value, label: t(`myPage:${value}`) }));
   const residenceOptions = Object.values(residenceTypes).map((value) => ({ value, label: t(`myPage:${value}`) }));
   return (
-    <InfoWrapper title={t('myPage:careerInfo')}>
+    <InfoWrapper title={t('myPage:careerInfo')} readOnly>
       <ListItem title={t('posting:koLangSkill')}>
-        <RadioBox value={proficiency} options={proficiencyOptions} onChange={(v) => onChange({ proficiency: v })} />
+        <RadioBox
+          value={proficiency}
+          options={proficiencyOptions}
+          readOnly={readOnly}
+          onChange={(v) => onChange?.({ proficiency: v })}
+        />
       </ListItem>
       <ListItem title={t('myPage:experience')}>
-        <RadioBox value={career} options={careerOptions} onChange={(v) => onChange({ career: v })} />
+        <RadioBox
+          value={career}
+          options={careerOptions}
+          readOnly={readOnly}
+          onChange={(v) => onChange?.({ career: v })}
+        />
       </ListItem>
       <ListItem title={t('myPage:jobTasks')}>
         <CommonInput
@@ -33,7 +43,8 @@ export default function ConditionalInfo(props) {
           placeholder={t('myPage:jobTasksPlaceHolder')}
           value={careerDetail}
           maxLength={20}
-          onChange={(v) => onChange({ careerDetail: v })}
+          readOnly={readOnly}
+          onChange={(v) => onChange?.({ careerDetail: v })}
         />
       </ListItem>
       <ListItem title={t('myPage:residenceType')}>
@@ -41,11 +52,17 @@ export default function ConditionalInfo(props) {
           value={residenceType}
           options={residenceOptions}
           column
-          onChange={(v) => onChange({ residenceType: v })}
+          readOnly={readOnly}
+          onChange={(v) => onChange?.({ residenceType: v })}
         />
       </ListItem>
-      <ListItem title={t('myPage:selfIntro')} required>
-        <Editor value={selfIntroduction} maxLength={500} onChange={(v) => onChange({ selfIntroduction: v })} />
+      <ListItem title={t('myPage:selfIntro')} readOnly required>
+        <Editor
+          value={selfIntroduction}
+          maxLength={500}
+          readOnly={readOnly}
+          onChange={(v) => onChange?.({ selfIntroduction: v })}
+        />
       </ListItem>
     </InfoWrapper>
   );
