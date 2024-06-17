@@ -60,7 +60,8 @@ export default async function alarm(req: NextApiRequest, res: NextApiResponse) {
             ],
           },
         });
-        res.status(200).json({ message: 'send channel talk' });
+        console.log('kakaoAlarm response:::', data?.code, data?.message);
+        res.status(200).json(data);
         break;
       }
 
