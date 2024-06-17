@@ -10,7 +10,7 @@ export class KakaoAlarm {
     try {
       fetch(url, {
         method: 'POST',
-        body: JSON.stringify({ title, name, templateId, contactNumber }),
+        body: JSON.stringify({ title, name, templateId, contactNumber, userId }),
         headers: {
           'content-type': 'application/json',
         },
