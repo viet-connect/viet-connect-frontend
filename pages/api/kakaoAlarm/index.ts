@@ -5,7 +5,7 @@ export default async function alarm(req: NextApiRequest, res: NextApiResponse) {
   const { method } = req;
 
   const url = 'https://alimtalk.bizservice.iwinv.kr/api/';
-  const apiKey = process.env.IWNINV_API_KEY;
+  const apiKey = process.env.NEXT_PUBLIC_IWNINV_API_KEY;
   const fixieUrl = new URL(process.env.FIXIE_URL);
   const templateCode = 'R000000044_21912';
   const headers = {
