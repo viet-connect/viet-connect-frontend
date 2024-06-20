@@ -50,7 +50,7 @@ export default function JobOpeningDetail({ data }) {
   };
 
   const isPostedUser = useMemo(
-    () => data.postedUsers[0].id === session.data?.user?.id,
+    () => data.postedUsers.length > 0 && data.postedUsers[0].id === session.data?.user?.id,
     [data.postedUsers, session.data?.user?.id],
   );
 
