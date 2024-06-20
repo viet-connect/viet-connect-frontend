@@ -33,7 +33,7 @@ const KakaoChatButton = (size) => {
     }
   };
 
-  return size === 'large' ? (
+  return Object.values(size)[0] === 'large' ? (
     <CommonButton
       className="redirect-channel"
       label="카카오톡 1:1 문의"
