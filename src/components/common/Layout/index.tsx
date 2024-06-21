@@ -23,11 +23,8 @@ export default function Layout({ children, pageIndex }: IMainProps) {
         <Header>
           <Row>
             <Logo />
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', marginRight: 8 }}>
-                <KakaoChatButton size="small" />
-                <LoginButton />
-              </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <LoginButton />
               <Flag />
             </div>
           </Row>
@@ -39,6 +36,9 @@ export default function Layout({ children, pageIndex }: IMainProps) {
           <FooterTop />
           <FooterBottom />
         </Footer>
+        <div className="chat" style={{ maxWidth: '500px' }}>
+          <KakaoChatButton size="small" />
+        </div>
       </Container>
     </Wrapper>
   );
@@ -53,6 +53,7 @@ const Wrapper = styled.div`
 const Container = styled.div`
   /* min-width: 350px;
 	max-width: 1024px; */
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -61,6 +62,15 @@ const Container = styled.div`
   box-sizing: border-box;
   padding: 20px;
   margin: auto;
+
+  .chat {
+    z-index: 999;
+    position: sticky;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: flex-end;
+  }
 `;
 
 const Header = styled.div`
