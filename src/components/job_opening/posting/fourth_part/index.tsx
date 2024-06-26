@@ -36,6 +36,10 @@ export default function JobOpeningPostingFourthPart({ data, isAdmin }) {
 
   const toggleModal = async (e) => {
     if (isRequesting) return;
+    if (session.status === 'unauthenticated') {
+      router.push('/auth/signin');
+      return;
+    }
 
     // 여기서 full state를 setState해줘도, 반영이 안됩니다.
     const fullAddressHandledObj = {
