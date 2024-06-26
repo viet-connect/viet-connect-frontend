@@ -95,7 +95,6 @@ export default function JobOpeningDetail({ data }) {
     <Layout pageIndex={0}>
       <Container>
         <ContentHeader data={data} />
-        <GoogleAd />
         <MainContent data={data} />
         <LocationInfo data={data} />
         <ButtonOutterWrapper>
@@ -116,8 +115,8 @@ export default function JobOpeningDetail({ data }) {
               )}
             </ButtonChildrenWrapper>
           </CommonButton>
-          <GoogleAd />
         </ButtonOutterWrapper>
+        <GoogleAd />
         {/* <div>****비엣커넥트 경영진 인증용 코드******</div>
         <div>공고만든자사람 이름이랑 아이디 연동완료</div>
         <div>이름:{data.postedUsers[0].name} = 공고의 창시자</div>
