@@ -63,6 +63,8 @@ const Container = styled.ul`
 `;
 
 const MenuItem = styled.li`
+  display: flex;
+  align-items: center;
   padding-inline: 11px;
   cursor: pointer;
 `;
@@ -71,4 +73,10 @@ const MenuItemContent = styled.div<MenuItemContentProps>`
   color: ${({ $clickedItem, $index }) => ($clickedItem === $index ? '#DB1A1A;' : '#BEBEBE')};
   font-weight: bold;
   border-bottom: ${({ $clickedItem, $index }) => ($clickedItem === $index ? ' 2px solid #DB1A1A;' : 0)};
+  line-height: normal;
+  padding: 16px 0px;
+
+  @media (max-width: 500px) {
+    white-space: pre-line;
+  }
 `;

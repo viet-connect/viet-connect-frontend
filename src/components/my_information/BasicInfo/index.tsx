@@ -7,7 +7,7 @@ import InfoWrapper from '../InfoWrapper';
 import RadioBox from '../../common/RadioBox';
 
 export default function BasicInfo(props) {
-  const { name, nation, gender, birth, phone, onChange } = props;
+  const { name, nation, gender, birth, phone, readOnly, onChange } = props;
   const { t } = useTranslation();
   const inputStyles = { fontSize: 16 };
   const nationOptions = [
@@ -16,14 +16,15 @@ export default function BasicInfo(props) {
     { label: t('myPage:vietnam'), value: 'vietnam' },
   ];
   return (
-    <InfoWrapper title={t('myPage:basicInfo')} required>
+    <InfoWrapper title={t('myPage:basicInfo')} readOnly required>
       <ListItem title={t('myPage:name')}>
         <CommonInput
           className="info__input"
           wrapperStyle={inputStyles}
           value={name}
           maxLength={15}
-          onChange={(v) => onChange({ name: v })}
+          readOnly={readOnly}
+          onChange={(v) => onChange?.({ name: v })}
         />
       </ListItem>
       <ListItem title={t('myPage:nationality')}>
@@ -32,7 +33,8 @@ export default function BasicInfo(props) {
           placeholder={t('common:select')}
           options={nationOptions}
           instanceId={useId()}
-          onChange={({ value }) => onChange({ nation: value })}
+          menuIsOpen={readOnly === undefined ? readOnly : !readOnly}
+          onChange={({ value }) => onChange?.({ nation: value })}
         />
       </ListItem>
       <ListItem title={t('myPage:gender')}>
@@ -42,7 +44,8 @@ export default function BasicInfo(props) {
             { label: t('posting:male'), value: 'male' },
             { label: t('posting:female'), value: 'female' },
           ]}
-          onChange={(v) => onChange({ gender: v })}
+          readOnly={readOnly}
+          onChange={(v) => onChange?.({ gender: v })}
         />
       </ListItem>
       <ListItem title={t('myPage:dateOfBirth')}>
@@ -53,7 +56,8 @@ export default function BasicInfo(props) {
           placeholder="1990. 00. 00"
           value={birth}
           maxLength={10}
-          onChange={(v) => onChange({ birth: v })}
+          readOnly={readOnly}
+          onChange={(v) => onChange?.({ birth: v })}
         />
       </ListItem>
       <ListItem title={t('posting:contact')}>
@@ -63,7 +67,8 @@ export default function BasicInfo(props) {
           type="phone"
           placeholder="000 0000 0000"
           value={phone}
-          onChange={(v) => onChange({ phone: v })}
+          readOnly={readOnly}
+          onChange={(v) => onChange?.({ phone: v })}
         />
       </ListItem>
     </InfoWrapper>

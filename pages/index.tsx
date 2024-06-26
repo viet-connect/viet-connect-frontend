@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { Toaster } from 'react-hot-toast';
 import Layout from '../src/components/common/Layout';
 import HomeFilter from '../src/components/home/filter';
 import JobList from '../src/components/home/job_list';
 import { Posting } from '../src/models/posting';
 import PageController from '../src/components/common/PageController';
+import GoogleAd from '../src/components/common/GoogleAd';
 
 export default function Home({ data = { list: [], totalPages: 0 } }) {
   const { list, totalPages } = data;
@@ -16,6 +16,7 @@ export default function Home({ data = { list: [], totalPages: 0 } }) {
         <HomeFilter />
         <JobList tableContent={list} />
         <PageController totalPages={totalPages} />
+        <GoogleAd />
       </Container>
     </Layout>
   );

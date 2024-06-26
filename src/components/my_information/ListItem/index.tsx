@@ -2,14 +2,14 @@ import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 export default function ListItem(props) {
-  const { title, headerRight, required, children } = props;
+  const { title, headerRight, readOnly, required, children } = props;
   const { t } = useTranslation();
   return (
     <Container>
       <Header>
         <div className="header__right">
           <div>{title}</div>
-          {required && <div className="header__required">{t('myPage:requiredInfo')}</div>}
+          {!readOnly && required && <div className="header__required">{t('myPage:requiredInfo')}</div>}
         </div>
         {headerRight?.()}
       </Header>

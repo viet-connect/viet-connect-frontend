@@ -1297,6 +1297,13 @@
     "@babel/helper-validator-identifier" "^7.22.20"
     to-fast-properties "^2.0.0"
 
+"@ctrl/react-adsense@^1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@ctrl/react-adsense/-/react-adsense-1.7.0.tgz#9c1aee202fcae2c2cb6c63ec10b21f45f20213cc"
+  integrity sha512-TrDGbAo8KRPHnX/Jtv9CkMV90vK7M/sz8KNECTQgcsHO4e5GyNZL3jqCY4WA0MCwfT48NH34qzyV9e2SWsceLw==
+  dependencies:
+    tslib "^2.5.0"
+
 "@emotion/babel-plugin@^11.11.0":
   version "11.11.0"
   resolved "https://registry.npmjs.org/@emotion/babel-plugin/-/babel-plugin-11.11.0.tgz"
@@ -5356,6 +5363,11 @@ tslib@^2.4.0:
   version "2.4.1"
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.4.1.tgz"
   integrity sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==
+
+tslib@^2.5.0:
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.6.3.tgz#0438f810ad7a9edcde7a241c3d80db693c8cbfe0"
+  integrity sha512-xNvxJEOUiWPGhUuUdQgAJPKOOJfGnIyKySOc09XkKsgdUV/3E2zvwZYdejjmRgPCgcym1juLH3226yA7sEFJKQ==
 
 tsutils@^3.21.0:
   version "3.21.0"

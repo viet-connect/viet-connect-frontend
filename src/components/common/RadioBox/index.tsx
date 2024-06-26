@@ -6,9 +6,10 @@ interface Option {
 }
 
 export default function RadioBox(props) {
-  const { value, options, column, color, onChange } = props;
+  const { value, options, column, color, readOnly, onChange } = props;
   const multiple = Array.isArray(value);
   const onBoxClick = (selectedValue) => {
+    if (readOnly) return;
     let newValue = multiple ? [] : '';
     if (multiple) {
       if (value.includes(selectedValue)) newValue = value.filter((v) => v !== selectedValue);

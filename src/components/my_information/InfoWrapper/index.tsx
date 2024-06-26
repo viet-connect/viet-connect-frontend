@@ -2,14 +2,14 @@ import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 export default function InfoWrapper(props) {
-  const { title, required, children } = props;
+  const { title, readOnly, required, children } = props;
   const { t } = useTranslation();
   const guideMsg = required ? t('myPage:requiredInfo') : t('myPage:conditionalInfo');
   return (
     <Wrapper>
       <Header>
         <div className="header__title">{title}</div>
-        <div className="header__guide">{guideMsg}</div>
+        {!readOnly && <div className="header__guide">{guideMsg}</div>}
       </Header>
       {children}
     </Wrapper>
