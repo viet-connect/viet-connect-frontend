@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { signIn, useSession } from 'next-auth/react';
@@ -17,6 +17,8 @@ import { KakaoAlarm } from '../../../src/models/alarm';
 import Modal from '../../../src/components/common/Modal';
 import BasicInfo from '../../../src/components/my_information/BasicInfo';
 import ConditionalInfo from '../../../src/components/my_information/ConditionalInfo';
+import CommonUtils from '../../../src/utils/commonUtils';
+import { Tooltip } from 'react-tooltip';
 
 export default function JobOpeningDetail({ data }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -60,6 +62,8 @@ export default function JobOpeningDetail({ data }) {
     }
   };
 
+  console.log(data);
+
   const isPostedUser = useMemo(
     () => data.postedUsers.length > 0 && data.postedUsers[0].id === session.data?.user?.id,
     [data.postedUsers, session.data?.user?.id],
@@ -96,6 +100,18 @@ export default function JobOpeningDetail({ data }) {
         <ContentHeader data={data} />
         <MainContent data={data} />
         <LocationInfo data={data} />
+        <ContactInfo>
+          <div style={{ margin: '10px 0 10px 0' }}>
+            {t('detail:companyName')}: {data.contactName}
+          </div>
+          <span>{t('detail:managerContact')} : </span>
+          <PhoneNumber auth={session.status} id="phone-number">
+            {CommonUtils.addHyphenToPhoneNumber(data.contactNumber)}
+          </PhoneNumber>
+          <Tooltip anchorSelect="#phone-number" place="right">
+            <div>Xin vui lòng đăng nhập để xem số liên hệ</div>
+          </Tooltip>
+        </ContactInfo>
         <ButtonOutterWrapper>
           <CommonButton
             wrapperStyle={{
@@ -162,6 +178,25 @@ const ButtonTextWrapper = styled.div`
   font-size: 15px;
   color: white;
   font-weight: 400;
+`;
+
+const ContactInfo = styled.div`
+  margin: 10px 0 10px 0;
+  font-size: 18px;
+`;
+
+interface ISession {
+  auth: string;
+}
+
+const PhoneNumber = styled.span<ISession>`
+  ${(props) =>
+    props.auth === 'unauthenticated' &&
+    css`
+      text-shadow: 0px 0px 10px black;
+      color: transparent;
+      cursor: pointer;
+    `}
 `;
 
 const ModalWrapper = styled.div`
