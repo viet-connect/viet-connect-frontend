@@ -16,6 +16,7 @@ import {
 } from '../../src/components/job_opening/posting/fourth_part';
 import { PlaceHolder } from '../../src/components/job_opening/posting/first_part';
 import Modal from '../../src/components/common/Modal';
+import GoogleAd from '../../src/components/common/GoogleAd';
 
 const { None } = articleCategory;
 export default function Forum(props) {
@@ -101,6 +102,7 @@ export default function Forum(props) {
             <ArticleCard key={post.id} article={post} announcement />
           ))}
         </AnnounceSection>
+        <GoogleAd />
         <Modal width={500} height={400} show={showModal}>
           <ModalContentContainer>
             <RegisterInputContainer>

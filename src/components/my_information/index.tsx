@@ -10,6 +10,7 @@ import CommonButton from '../common/Button';
 import { IUser, User } from '../../models/user';
 import RadioBox from '../common/RadioBox';
 import PostingList from './PostingList';
+import GoogleAd from '../common/GoogleAd';
 
 export default function MyInformation({ data }) {
   const { data: sesstionData } = useSession();
@@ -81,6 +82,7 @@ export default function MyInformation({ data }) {
       {subPage === 'privacy' ? (
         <PrivacyConatiner>
           <BasicInfo {...info} onChange={onChange} />
+          <GoogleAd />
           <ConditionalInfo {...info} onChange={onChange} />
           <CommonButton
             className="save-button"
@@ -130,6 +132,7 @@ export default function MyInformation({ data }) {
                   })
             }
           />
+          <GoogleAd />
         </>
       )}
     </Container>

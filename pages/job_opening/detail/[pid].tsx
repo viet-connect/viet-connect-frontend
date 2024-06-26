@@ -17,6 +17,7 @@ import { KakaoAlarm } from '../../../src/models/alarm';
 import Modal from '../../../src/components/common/Modal';
 import BasicInfo from '../../../src/components/my_information/BasicInfo';
 import ConditionalInfo from '../../../src/components/my_information/ConditionalInfo';
+import GoogleAd from '../../../src/components/common/GoogleAd';
 
 export default function JobOpeningDetail({ data }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -94,6 +95,7 @@ export default function JobOpeningDetail({ data }) {
     <Layout pageIndex={0}>
       <Container>
         <ContentHeader data={data} />
+        <GoogleAd />
         <MainContent data={data} />
         <LocationInfo data={data} />
         <ButtonOutterWrapper>
@@ -114,6 +116,7 @@ export default function JobOpeningDetail({ data }) {
               )}
             </ButtonChildrenWrapper>
           </CommonButton>
+          <GoogleAd />
         </ButtonOutterWrapper>
         {/* <div>****비엣커넥트 경영진 인증용 코드******</div>
         <div>공고만든자사람 이름이랑 아이디 연동완료</div>

@@ -4,9 +4,15 @@ import Layout from '../../src/components/common/Layout';
 import MyInformationPage from '../../src/components/my_information';
 import { User } from '../../src/models/user';
 import { authOptions } from '../api/auth/[...nextauth]';
+import GoogleAd from '../../src/components/common/GoogleAd';
 
 export default function MyInformation({ data }) {
-  return <Layout pageIndex={4}>{data ? <MyInformationPage data={data} /> : <div></div>}</Layout>;
+  return (
+    <Layout pageIndex={4}>
+      {data ? <MyInformationPage data={data} /> : <div></div>}
+      <GoogleAd />
+    </Layout>
+  );
 }
 
 export async function getServerSideProps(context) {

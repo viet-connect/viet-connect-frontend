@@ -6,6 +6,7 @@ import Layout from '../../../src/components/common/Layout';
 import DateUtils from '../../../src/utils/DateUtils';
 import { Article } from '../../../src/models/article';
 import ArticlePost from '../../../src/components/forum/article-post';
+import GoogleAd from '../../../src/components/common/GoogleAd';
 
 export default function ForumDetail({ post }) {
   const { author, createdAt } = post;
@@ -30,6 +31,7 @@ export default function ForumDetail({ post }) {
           </SpecificInfo>
         </Header>
       </ArticlePost>
+      <GoogleAd />
     </Layout>
   );
 }
