@@ -84,9 +84,9 @@ export default function JobOpeningPosting({ data }) {
         <Title>{t('posting:jobOpening')}</Title>
         <JobOpeningPostingFirstPart data={data} />
         {/* <JobOpeningPostingSecondPart /> */}
-        <GoogleAd />
         <JobOpeningPostingThirdPart data={data} />
         <JobOpeningPostingFourthPart data={data} isAdmin={adminState} />
+        <GoogleAd />
       </Container>
     </Layout>
   );

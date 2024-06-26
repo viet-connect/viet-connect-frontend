@@ -37,9 +37,8 @@ class MyDocument extends Document {
           <meta charSet="UTF-8" key="charset" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge; chrome=1" />
           <meta name="naver-site-verification" content="a3154e684a886e0928f1e7fbe02fb760c5640589" />
-          <Script
+          <script
             async
-            strategy="afterInteractive"
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3731091119912055"
             crossOrigin="anonymous"
           />
