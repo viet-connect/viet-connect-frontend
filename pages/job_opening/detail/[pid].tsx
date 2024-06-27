@@ -108,7 +108,7 @@ export default function JobOpeningDetail({ data }) {
           <PhoneNumber auth={session.status} id="phone-number">
             {CommonUtils.addHyphenToPhoneNumber(data.contactNumber)}
           </PhoneNumber>
-          {session.data && (
+          {!session.data && (
             <Tooltip anchorSelect="#phone-number" place="right">
               <div>Xin vui lòng đăng nhập để xem số liên hệ</div>
             </Tooltip>
