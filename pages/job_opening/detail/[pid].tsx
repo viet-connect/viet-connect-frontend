@@ -180,6 +180,12 @@ const ButtonTextWrapper = styled.div`
   font-weight: 400;
 `;
 
+const ModalWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+`;
+
 const ContactInfo = styled.div`
   margin: 10px 0 10px 0;
   font-size: 18px;
