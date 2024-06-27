@@ -5,6 +5,7 @@ import { signIn, useSession } from 'next-auth/react';
 import { useEffect, useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/router';
+import { Tooltip } from 'react-tooltip';
 import Layout from '../../../src/components/common/Layout';
 import ContentHeader from '../../../src/components/job_opening/detail/content_header';
 import MainContent from '../../../src/components/job_opening/detail/main_content';
@@ -18,7 +19,6 @@ import Modal from '../../../src/components/common/Modal';
 import BasicInfo from '../../../src/components/my_information/BasicInfo';
 import ConditionalInfo from '../../../src/components/my_information/ConditionalInfo';
 import CommonUtils from '../../../src/utils/commonUtils';
-import { Tooltip } from 'react-tooltip';
 
 export default function JobOpeningDetail({ data }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -197,12 +197,6 @@ const PhoneNumber = styled.span<ISession>`
       color: transparent;
       cursor: pointer;
     `}
-`;
-
-const ModalWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
 `;
 
 export async function getServerSideProps(context) {
