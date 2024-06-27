@@ -54,7 +54,7 @@ interface MenuProps {
 
 const Container = styled.ul`
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-around;
   border-bottom: 1px solid rgba(5, 5, 5, 0.06);
   line-height: 46px;
   font-size: 14px;
