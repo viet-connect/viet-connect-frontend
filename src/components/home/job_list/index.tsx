@@ -5,16 +5,20 @@ import GoogleAd from '../../common/GoogleAd';
 
 export default function JobList({ tableContent }) {
   const onClick = () => {
-    window.open('https://vt.beemall.shop', '_blank');
+    window.Kakao.Channel.chat({
+      channelPublicId: '_XtVUG',
+    });
   };
   return (
     <JobListWrapper>
-      <GoogleAd />
-      {/* <Banner onClick={onClick}>
-				<Image alt="banner" src="/beemall_banner.png" fill />
-			</Banner> */}
-      {tableContent.map((content) => (
-        <JobCard key={content.id} content={content} />
+      <Banner onClick={onClick}>
+        <Image alt="banner" src="/banner.jpeg" fill />
+      </Banner>
+      {tableContent.map((content, i) => (
+        <div key={content.id}>
+          {i === 4 && <GoogleAd />}
+          <JobCard content={content} />
+        </div>
       ))}
     </JobListWrapper>
   );
@@ -29,7 +33,8 @@ const Banner = styled.div`
 
   img {
     object-fit: fit;
-    border-radius: 6px;
+    border-radius: 10px;
+    overflow: hidden;
   }
 `;
 
