@@ -19,7 +19,7 @@ export default function ConditionalInfo(props) {
   const careerOptions = Object.values(categoryType).map((value) => ({ value, label: t(`myPage:${value}`) }));
   const residenceOptions = Object.values(residenceTypes).map((value) => ({ value, label: t(`myPage:${value}`) }));
   return (
-    <InfoWrapper title={t('myPage:careerInfo')} readOnly>
+    <InfoWrapper title={t('myPage:careerInfo')} readOnly={readOnly}>
       <ListItem title={t('posting:koLangSkill')}>
         <RadioBox
           value={proficiency}

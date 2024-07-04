@@ -16,7 +16,7 @@ export default function BasicInfo(props) {
     { label: t('myPage:vietnam'), value: 'vietnam' },
   ];
   return (
-    <InfoWrapper title={t('myPage:basicInfo')} readOnly required>
+    <InfoWrapper title={t('myPage:basicInfo')} readOnly={readOnly} required>
       <ListItem title={t('myPage:name')}>
         <CommonInput
           className="info__input"
