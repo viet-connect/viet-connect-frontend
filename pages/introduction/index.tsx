@@ -5,6 +5,7 @@ import { useTranslation } from 'next-i18next';
 import Image from 'next/image';
 import Layout from '../../src/components/common/Layout';
 import GoogleAd from '../../src/components/common/GoogleAd';
+import MetaHead from '../../src/components/common/MetaHead';
 
 export default function Introduction() {
   const { t } = useTranslation();
@@ -15,6 +16,7 @@ export default function Introduction() {
   });
   return (
     <Layout pageIndex={2}>
+      <MetaHead title={`: ${t('navigation:introduction')}`} />
       <Header>
         <div className="introduction__title">{t('introduction:title')}</div>
         <SpecificInfo>

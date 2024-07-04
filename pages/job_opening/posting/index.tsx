@@ -10,6 +10,7 @@ import JobOpeningPostingFourthPart from '../../../src/components/job_opening/pos
 import { Posting } from '../../../src/models/posting';
 import { inputPostingState } from '../../../src/recoil/atom/posting';
 import GoogleAd from '../../../src/components/common/GoogleAd';
+import MetaHead from '../../../src/components/common/MetaHead';
 
 /*
 	First: 공고제목, 업체명, 연락처
@@ -80,6 +81,7 @@ export default function JobOpeningPosting({ data }) {
 
   return (
     <Layout pageIndex={1}>
+      <MetaHead title={`: ${t('navigation:jobOpening')}`} />
       <Container>
         <Title>{t('posting:jobOpening')}</Title>
         <JobOpeningPostingFirstPart data={data} />

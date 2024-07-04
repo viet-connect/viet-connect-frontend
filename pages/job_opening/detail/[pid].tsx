@@ -19,6 +19,7 @@ import Modal from '../../../src/components/common/Modal';
 import BasicInfo from '../../../src/components/my_information/BasicInfo';
 import ConditionalInfo from '../../../src/components/my_information/ConditionalInfo';
 import CommonUtils from '../../../src/utils/commonUtils';
+import MetaHead from '../../../src/components/common/MetaHead';
 
 export default function JobOpeningDetail({ data }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -91,9 +92,9 @@ export default function JobOpeningDetail({ data }) {
     setAppliedUser(user);
     setShowModal(true);
   }, [sessionData]);
-
   return (
     <Layout pageIndex={0}>
+      <MetaHead title={` 공고: ${data.title}`} description={data.contents} />
       <Container>
         <ContentHeader data={data} />
         <MainContent data={data} />

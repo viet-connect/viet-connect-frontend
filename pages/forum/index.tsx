@@ -17,6 +17,7 @@ import {
 import { PlaceHolder } from '../../src/components/job_opening/posting/first_part';
 import Modal from '../../src/components/common/Modal';
 import GoogleAd from '../../src/components/common/GoogleAd';
+import MetaHead from '../../src/components/common/MetaHead';
 
 const { None } = articleCategory;
 export default function Forum(props) {
@@ -68,6 +69,7 @@ export default function Forum(props) {
 
   return (
     <Layout pageIndex={3}>
+      <MetaHead title={`: ${t('navigation:forum')}`} />
       <Wrapper>
         <HeadWrapper>
           <Category>

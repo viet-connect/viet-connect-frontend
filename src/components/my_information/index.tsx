@@ -10,6 +10,7 @@ import CommonButton from '../common/Button';
 import { IUser, User } from '../../models/user';
 import RadioBox from '../common/RadioBox';
 import PostingList from './PostingList';
+import MetaHead from '../common/MetaHead';
 
 export default function MyInformation({ data }) {
   const { data: sesstionData } = useSession();
@@ -58,6 +59,7 @@ export default function MyInformation({ data }) {
 
   return (
     <Container>
+      <MetaHead title={`: ${t('navigation:myInformation')}-${t(`myPage:${subPage}`)}`} />
       <ImageWrapper>
         {sesstionData?.user?.image ? (
           <Image src={sesstionData?.user?.image} alt="profile-image" width={150} height={150} />

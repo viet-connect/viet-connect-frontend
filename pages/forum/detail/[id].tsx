@@ -7,6 +7,7 @@ import DateUtils from '../../../src/utils/DateUtils';
 import { Article } from '../../../src/models/article';
 import ArticlePost from '../../../src/components/forum/article-post';
 import GoogleAd from '../../../src/components/common/GoogleAd';
+import MetaHead from '../../../src/components/common/MetaHead';
 
 export default function ForumDetail({ post }) {
   const { author, createdAt } = post;
@@ -15,6 +16,7 @@ export default function ForumDetail({ post }) {
   /* 임시방편 ID가 anchor일 때는 버튼생성 */
   return (
     <Layout pageIndex={3}>
+      <MetaHead title={` 공지: ${post.title}`} description={post.contents} />
       <ArticlePost article={post} readOnly>
         <Header>
           <SpecificInfo>
