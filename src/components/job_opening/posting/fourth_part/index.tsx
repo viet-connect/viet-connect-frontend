@@ -79,10 +79,10 @@ export default function JobOpeningPostingFourthPart({ data, isAdmin }) {
 
   const postRequest = async (posting: IPosting) => {
     try {
+      const content = { ...posting, authorId: uid };
       if (data) {
-        await Posting.handleUpdatePost(data.id, posting);
+        await Posting.handleUpdatePost(data.id, content);
       } else if (uid) {
-        const content = { ...posting, authorId: uid };
         await Posting.handleNewPost(content);
       }
     } catch (err) {

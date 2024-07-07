@@ -35,6 +35,7 @@ export interface IPosting {
   };
   password: string;
   view_count: number;
+  authorId: string;
 }
 
 export interface ISavedPosting {
