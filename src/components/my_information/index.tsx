@@ -185,6 +185,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 36px;
+  margin-bottom: 16px;
 `;
 const ImageWrapper = styled.div`
   display: flex;

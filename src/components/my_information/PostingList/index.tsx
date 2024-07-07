@@ -113,6 +113,7 @@ export default function PostingList(props) {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  min-height: 300px;
 `;
 
 interface ListItemProps {
