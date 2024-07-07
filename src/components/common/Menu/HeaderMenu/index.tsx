@@ -16,6 +16,11 @@ export default function Menu({ pageIndex }: HeaderMenuProps) {
 
   const [isClicked, setIsClicked] = useState(pageIndex);
   const onClick = (index: number, key: string) => {
+    if (key === '/job_opening/posting' && status === 'unauthenticated') {
+      router.push('/auth/signin');
+      return;
+    }
+
     setIsClicked(index);
 
     router.push(key);
