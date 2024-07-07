@@ -75,6 +75,7 @@ export default function JobOpeningPosting({ data }) {
         },
         password: '',
         view_count: 0,
+        authorId: '',
       });
     };
   }, []);
