@@ -6,11 +6,11 @@ declare global {
   }
 }
 
-const GoogleAd = () => (
+const GoogleAd = ({ adId = '3107955930' }: { adId?: string }) => (
   <div className="adsbygoogle">
     <Adsense
       client="ca-pub-3731091119912055"
-      slot="3107955930"
+      slot={adId}
       style={{ display: 'block' }}
       layout="in-article"
       format="auto"

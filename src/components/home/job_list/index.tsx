@@ -17,7 +17,7 @@ export default function JobList({ tableContent }) {
       {tableContent.map((content, i) => (
         <div key={content.id}>
           <JobCard content={content} />
-          {i === 4 && <GoogleAd />}
+          {i === 4 && <GoogleAd adId="6000990775" />}
         </div>
       ))}
     </JobListWrapper>
