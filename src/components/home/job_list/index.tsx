@@ -1,23 +1,23 @@
 import styled from 'styled-components';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import JobCard from './job_card';
 import GoogleAd from '../../common/GoogleAd';
 
 export default function JobList({ tableContent }) {
+  const router = useRouter();
   const onClick = () => {
-    window.Kakao.Channel.chat({
-      channelPublicId: '_XtVUG',
-    });
+    router.push('/forum/detail/anchor');
   };
   return (
     <JobListWrapper>
       <Banner onClick={onClick}>
-        <Image alt="banner" src="/banner.jpeg" fill />
+        <Image alt="banner" src="/banner.png" fill />
       </Banner>
       {tableContent.map((content, i) => (
         <div key={content.id}>
-          {i === 4 && <GoogleAd />}
           <JobCard content={content} />
+          {i === 4 && <GoogleAd />}
         </div>
       ))}
     </JobListWrapper>
@@ -33,7 +33,6 @@ const Banner = styled.div`
 
   img {
     object-fit: fit;
-    border-radius: 10px;
     overflow: hidden;
   }
 `;
@@ -42,4 +41,8 @@ const JobListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+
+  .adsbygoogle {
+    margin-top: 8px;
+  }
 `;

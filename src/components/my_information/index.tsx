@@ -11,6 +11,7 @@ import { IUser, User } from '../../models/user';
 import RadioBox from '../common/RadioBox';
 import PostingList from './PostingList';
 import MetaHead from '../common/MetaHead';
+import Modal from '../common/Modal';
 
 export default function MyInformation({ data }) {
   const { data: sesstionData } = useSession();
@@ -33,6 +34,7 @@ export default function MyInformation({ data }) {
   const [postingType, setPostingType] = useState('postedPostings');
   const [subPage, setSubPage] = useState('privacy');
   const [isUpdateLoading, setIsUpdateLoading] = useState(false);
+  const [showInvalidModal, setShowInvalidModal] = useState(false);
 
   const { t } = useTranslation();
 
@@ -41,6 +43,13 @@ export default function MyInformation({ data }) {
   };
 
   const saveInfo = async () => {
+    const { name, nation, gender, birth, phone } = info;
+    const isBasicFull = name && nation && gender && birth && phone;
+    if (!isBasicFull) {
+      setShowInvalidModal(true);
+      return;
+    }
+
     setIsUpdateLoading(true);
     const validInfo = Object.entries(info).reduce((r, [key, value]) => {
       if (['appliedPostings', 'postedPostings'].includes(key) || !value) return r;
@@ -134,6 +143,24 @@ export default function MyInformation({ data }) {
           />
         </>
       )}
+      <Modal
+        show={showInvalidModal}
+        title="필수 정보를 모두 입력해주세요!"
+        width={400}
+        onClose={() => setShowInvalidModal(false)}
+      >
+        <div>누락된 정보는 아래와 같습니다.</div>
+        {Object.entries(info).map(([k, v]) => {
+          if (!v) {
+            if (k === 'name') return <li>{t('myPage:name')}</li>;
+            if (k === 'nation') return <li>{t('myPage:nationality')}</li>;
+            if (k === 'gender') return <li>{t('myPage:gender')}</li>;
+            if (k === 'birth') return <li>{t('myPage:dateOfBirth')}</li>;
+            if (k === 'phone') return <li>{t('posting:contact')}</li>;
+          }
+          return null;
+        })}
+      </Modal>
     </Container>
   );
 }
