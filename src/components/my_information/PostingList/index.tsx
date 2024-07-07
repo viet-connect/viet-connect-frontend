@@ -6,6 +6,7 @@ import CommonButton from '../../common/Button';
 import Modal from '../../common/Modal';
 import BasicInfo from '../BasicInfo';
 import ConditionalInfo from '../ConditionalInfo';
+import CommonUtils from '../../../utils/commonUtils';
 
 export default function PostingList(props) {
   const { list = [] } = props;
@@ -74,11 +75,12 @@ export default function PostingList(props) {
             {appliers.map((applicant, index) => (
               <ItemContainer key={index}>
                 <div style={{ marginTop: 10 }} key={applicant.id}>
-                  {index + 1}. {applicant.name} / {applicant.email}
+                  {index + 1}. {applicant.name} /{' '}
+                  {applicant.phone.length > 0 ? CommonUtils.addHyphenToPhoneNumber(applicant.phone) : 'N/A'}
                 </div>
                 <CommonButton
                   label="이력서 보기"
-                  wrapperStyle={{ height: '100% ' }}
+                  wrapperStyle={{ height: '100%' }}
                   extraWrapperStyle={{ width: 100, backgroundColor: '#1990ff', color: 'white' }}
                   onClick={() => setAppiedPost(applicant)}
                 />
