@@ -90,6 +90,9 @@ export default async function posting(_req: NextApiRequest, res: NextApiResponse
             mainAddress: address.main,
             subAddress: address.sub,
             password: savingPassword,
+            postedUsers: {
+              connect: { id: authorId },
+            },
           },
         });
 
