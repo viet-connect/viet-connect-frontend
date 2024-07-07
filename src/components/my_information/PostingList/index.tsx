@@ -154,7 +154,7 @@ const ListItem = styled.div<ListItemProps>`
   }
 `;
 
-const ModalContentContainer = styled.div``;
+export const ModalContentContainer = styled.div``;
 const Header = styled.div`
   display: flex;
   flex-direction: column;
@@ -168,7 +168,7 @@ const Header = styled.div`
   }
 `;
 
-const ItemContainer = styled.div`
+export const ItemContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;

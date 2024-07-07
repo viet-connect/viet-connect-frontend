@@ -20,14 +20,18 @@ import BasicInfo from '../../../src/components/my_information/BasicInfo';
 import ConditionalInfo from '../../../src/components/my_information/ConditionalInfo';
 import CommonUtils from '../../../src/utils/commonUtils';
 import MetaHead from '../../../src/components/common/MetaHead';
+import { ItemContainer, ModalContentContainer } from '../../../src/components/my_information/PostingList';
 
 export default function JobOpeningDetail({ data }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isApplied, setIsApplied] = useState(false);
+  const [appliers, setAppliers] = useState([]);
+  const [appliedPost, setAppiedPost] = useState(null);
   const { t } = useTranslation();
   const session = useSession();
   const sessionData = session?.data;
   const router = useRouter();
+  const { appliedUsers } = data;
 
   const onApplyJobOpening = async () => {
     setIsLoading(true);
@@ -68,6 +72,18 @@ export default function JobOpeningDetail({ data }) {
     [data.postedUsers, session.data?.user?.id],
   );
 
+  /*
+  서현욱 : 08bf0b72-f258-4c63-817e-7d65cc3fed5a
+  정의성(김민수) : 07859c9f-a468-4afd-b31a-97f307a6e27f
+  하태용 : be815fb5-ec30-405e-8a3c-fa4cd0c69560
+  */
+
+  const MASTER_ID_ARRAY = [
+    '08bf0b72-f258-4c63-817e-7d65cc3fed5a',
+    '07859c9f-a468-4afd-b31a-97f307a6e27f',
+    'be815fb5-ec30-405e-8a3c-fa4cd0c69560',
+  ];
+  const isMasterUser = useMemo(() => MASTER_ID_ARRAY.includes(session.data?.user?.id), [session.data?.user?.id]);
   const isAppliedPosting = useMemo(
     () => data.appliedUsers.find(({ id }) => id === sessionData?.user?.id),
     [data.appliedUsers, sessionData],
@@ -132,6 +148,63 @@ export default function JobOpeningDetail({ data }) {
             </ButtonChildrenWrapper>
           </CommonButton>
         </ButtonOutterWrapper>
+        {(isPostedUser || isMasterUser) && (
+          <ButtonOutterWrapper>
+            <CommonButton
+              wrapperStyle={{
+                height: 45,
+                color: '#1890ff',
+              }}
+              onClick={() => {
+                setShowModal(true);
+                setAppliers(appliedUsers);
+              }}
+            >
+              <ButtonChildrenWrapper>
+                <ButtonTextWrapper>지원자 조회</ButtonTextWrapper>
+              </ButtonChildrenWrapper>
+            </CommonButton>
+          </ButtonOutterWrapper>
+        )}
+        <Modal show={showModal} width={500} height={400} title="지원자 목록" onClose={() => setShowModal(false)}>
+          <ModalContentContainer>
+            <div>
+              {appliers.map((applicant, index) => (
+                <ItemContainer key={index}>
+                  <div style={{ marginTop: 10 }} key={applicant.id}>
+                    {index + 1}. {applicant.name} /{' '}
+                    {applicant.phone.length > 0 ? CommonUtils.addHyphenToPhoneNumber(applicant.phone) : 'N/A'}
+                  </div>
+                  <CommonButton
+                    label="이력서 보기"
+                    wrapperStyle={{ height: '100%' }}
+                    extraWrapperStyle={{ width: 100, backgroundColor: '#1990ff', color: 'white' }}
+                    onClick={() => setAppiedPost(applicant)}
+                  />
+                  <Modal
+                    show={appliedPost?.id === applicant.id}
+                    title="지원자 이력서"
+                    width={500}
+                    height="max-content"
+                    onClose={() => {
+                      setAppiedPost(null);
+
+                      const scrollY = document.body.style.top;
+                      document.body.style.cssText = '';
+                      window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
+                    }}
+                  >
+                    <ModalWrapper>
+                      <BasicInfo {...applicant} readOnly />
+                      <ConditionalInfo {...applicant} readOnly />
+                    </ModalWrapper>
+                  </Modal>
+                </ItemContainer>
+              ))}
+              {appliers.length === 0 && <div style={{ marginTop: 10 }}>{'현재 해당 공고에 지원자가 없습니다.'}</div>}
+            </div>
+          </ModalContentContainer>
+        </Modal>
         {/* <div>****비엣커넥트 경영진 인증용 코드******</div>
         <div>공고만든자사람 이름이랑 아이디 연동완료</div>
         <div>이름:{data.postedUsers[0].name} = 공고의 창시자</div>
