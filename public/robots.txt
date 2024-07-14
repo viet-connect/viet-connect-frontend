@@ -10,3 +10,4 @@ Host: https://www.vietconnect.co.kr
 # Sitemaps
 Sitemap: https://www.vietconnect.co.kr/sitemap.xml
 Sitemap: https://www.vietconnect.co.kr/sitemap/job_opening-sitemap.xml
+Sitemap: https://www.vietconnect.co.kr/sitemap/forum-sitemap.xml
