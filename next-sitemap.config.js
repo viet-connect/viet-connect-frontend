@@ -1,5 +1,10 @@
 /** @type {import('next-sitemap').IConfig} */
 
+const url =
+  process.env.NODE_ENV === 'development'
+    ? `${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_VERCEL_URL}`
+    : process.env.DEPLOY_URL;
+
 module.exports = {
   siteUrl:
     process.env.NODE_ENV === 'development'
@@ -26,9 +31,6 @@ module.exports = {
       },
       // 추가 정책이 필요할 경우 배열 요소로 추가 작성
     ],
-    additionalSitemaps: [
-      'http://localhost:3000/sitemap/job_opening-sitemap.xml',
-      'http://localhost:3000/sitemap/forum-sitemap.xml',
-    ],
+    additionalSitemaps: [`${url}/sitemap/job_opening-sitemap.xml`, `${url}/sitemap/forum-sitemap.xml`],
   }, // robots.txt 옵션 설정
 };
