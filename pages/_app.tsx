@@ -32,6 +32,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" key="viewport" />
           <meta name="google-adsense-account" content="ca-pub-3731091119912055" />
+          <meta name="google-site-verification" content="AZZcGA28wo57AUEGR_hMLIl-qSlJaSIB9D_kXRWqoFI" />
           <script
             dangerouslySetInnerHTML={{
               __html: `
