@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<sitemap><loc>http://localhost:3000/sitemap-0.xml</loc></sitemap>
-<sitemap><loc>http://localhost:3000/sitemap/job_opening-sitemap.xml</loc></sitemap>
-<sitemap><loc>http://localhost:3000/sitemap/forum-sitemap.xml</loc></sitemap>
+<sitemap><loc>https://www.vietconnect.co.kr/sitemap-0.xml</loc></sitemap>
+<sitemap><loc>https://www.vietconnect.co.kr/sitemap/job_opening-sitemap.xml</loc></sitemap>
+<sitemap><loc>https://www.vietconnect.co.kr/sitemap/forum-sitemap.xml</loc></sitemap>
 </sitemapindex>
