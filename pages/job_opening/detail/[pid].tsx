@@ -132,23 +132,25 @@ export default function JobOpeningDetail({ data }) {
           )}
         </ContactInfo>
         <ButtonOutterWrapper>
-          <CommonButton
-            wrapperStyle={{
-              height: 45,
-              color: '#1890ff',
-            }}
-            disabled={isApplied || Boolean(isAppliedPosting)}
-            loading={isLoading}
-            onClick={isPostedUser ? () => router.push('/forum/detail/anchor') : onApplyJobOpening}
-          >
-            <ButtonChildrenWrapper>
-              {isPostedUser ? (
-                <ButtonTextWrapper>{t('posting:subscribeBtnLabel')}</ButtonTextWrapper>
-              ) : (
-                <ButtonTextWrapper>{t('posting:applyBtnLabel')}</ButtonTextWrapper>
-              )}
-            </ButtonChildrenWrapper>
-          </CommonButton>
+          {data.postedUsers.length > 0 && (
+            <CommonButton
+              wrapperStyle={{
+                height: 45,
+                color: '#1890ff',
+              }}
+              disabled={isApplied || Boolean(isAppliedPosting)}
+              loading={isLoading}
+              onClick={isPostedUser ? () => router.push('/forum/detail/anchor') : onApplyJobOpening}
+            >
+              <ButtonChildrenWrapper>
+                {isPostedUser ? (
+                  <ButtonTextWrapper>{t('posting:subscribeBtnLabel')}</ButtonTextWrapper>
+                ) : (
+                  <ButtonTextWrapper>{t('posting:applyBtnLabel')}</ButtonTextWrapper>
+                )}
+              </ButtonChildrenWrapper>
+            </CommonButton>
+          )}
         </ButtonOutterWrapper>
         {(isPostedUser || isMasterUser) && (
           <ButtonOutterWrapper>
