@@ -11,27 +11,20 @@ import { SessionProvider } from 'next-auth/react';
 import AppConfig from '../src/utils/appConfig';
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
-	// 네트워크가 꺼지거나, 브라우저가 종료될 때, 로컬스토리지 어드민 있는지 확인하고, 종료되도록
+  // 네트워크가 꺼지거나, 브라우저가 종료될 때, 로컬스토리지 어드민 있는지 확인하고, 종료되도록
 
-	return (
-		<SessionProvider session={session}>
-			<RecoilRoot>
-				<Head>
-					<meta
-						name="viewport"
-						content="width=device-width, initial-scale=1.0, user-scalable=no"
-						key="viewport"
-					/>
-					<meta
-						name="google-adsense-account"
-						content="ca-pub-3731091119912055"
-					/>
-				</Head>
-				<DefaultSeo {...AppConfig} />
-				<Component {...pageProps} />
-			</RecoilRoot>
-		</SessionProvider>
-	);
+  return (
+    <SessionProvider session={session}>
+      <RecoilRoot>
+        <Head>
+          <meta name="google-adsense-account" content="ca-pub-3731091119912055" />
+          <meta name="google-site-verification" content="AZZcGA28wo57AUEGR_hMLIl-qSlJaSIB9D_kXRWqoFI" />
+        </Head>
+        <DefaultSeo {...AppConfig} />
+        <Component {...pageProps} />
+      </RecoilRoot>
+    </SessionProvider>
+  );
 }
 
 export default appWithTranslation(MyApp);

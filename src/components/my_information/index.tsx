@@ -35,7 +35,6 @@ export default function MyInformation({ data }) {
   const [subPage, setSubPage] = useState('privacy');
   const [isUpdateLoading, setIsUpdateLoading] = useState(false);
   const [showInvalidModal, setShowInvalidModal] = useState(false);
-
   const { t } = useTranslation();
 
   const onChange = (value) => {

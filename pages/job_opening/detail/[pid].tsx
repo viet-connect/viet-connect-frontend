@@ -121,7 +121,9 @@ export default function JobOpeningDetail({ data }) {
           </div>
           <span>{t('detail:managerContact')} : </span>
           <PhoneNumber auth={session.status} id="phone-number">
-            {CommonUtils.addHyphenToPhoneNumber(data.contactNumber)}
+            {session.status === 'unauthenticated'
+              ? CommonUtils.maskCellPhone(data.contactNumber)
+              : CommonUtils.addHyphenToPhoneNumber(data.contactNumber)}
           </PhoneNumber>
           {!session.data && (
             <Tooltip anchorSelect="#phone-number" place="right">
