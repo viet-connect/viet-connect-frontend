@@ -8,6 +8,7 @@ const layoutConstant = Object.freeze({
   COMPANY_PHONE_NUMBER: '010-8453-8883',
   MAIL_ORDER_SALES_APPROVAL_NUMBER: '2023-인천연수구-3153',
   OCCUPATION_REGISTER_NUMBER: 'J1500020240002',
+  MAIN_PHONE: '010-9830-5087',
 });
 
 const categoryType = Object.freeze({

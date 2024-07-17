@@ -301,6 +301,7 @@ const DetailedAddressWrapper = styled.div`
 export const RegisterInputContainer = styled.div`
   display: flex;
   margin-top: 20px;
+  font-weight: bold;
 `;
 
 export const RegisterInputItemWrapper = styled.label`

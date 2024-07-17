@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
+import { useMemo } from 'react';
 import CommonInput from '../../common/Input';
 import Editor from '../../common/Editor';
 import KakaoChatButton from '../../common/KakaoButton';
@@ -21,11 +22,14 @@ export default function ArticlePost(props) {
     wrap: 'on',
     readOnly,
   };
-  const editorAttrs = {
-    value: contents,
-    placeholder: t('article:editor'),
-    readOnly,
-  };
+  const editorAttrs = useMemo(
+    () => ({
+      value: contents,
+      placeholder: t('article:editor'),
+      readOnly,
+    }),
+    [contents, readOnly, t],
+  );
   const onClick = () => {};
 
   /* 임시방편 ID가 anchor일 때는 버튼생성 */

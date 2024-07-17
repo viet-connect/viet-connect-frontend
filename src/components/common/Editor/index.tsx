@@ -85,7 +85,7 @@ export default function Editor(props: QuillEditorProps) {
 
   useEffect(() => {
     forceUpdate();
-  }, [placeholder]);
+  }, [placeholder, readOnly]);
 
   return (
     <Wrapper>
