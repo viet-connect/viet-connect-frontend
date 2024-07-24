@@ -21,6 +21,7 @@ import ConditionalInfo from '../../../src/components/my_information/ConditionalI
 import CommonUtils from '../../../src/utils/commonUtils';
 import MetaHead from '../../../src/components/common/MetaHead';
 import { ItemContainer, ModalContentContainer } from '../../../src/components/my_information/PostingList';
+import LoginButton from '../../../src/components/common/Login/LoginButton';
 
 export default function JobOpeningDetail({ data }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -119,17 +120,17 @@ export default function JobOpeningDetail({ data }) {
           <div style={{ margin: '10px 0 10px 0' }}>
             {t('detail:companyName')}: {data.contactName}
           </div>
-          <span>{t('detail:managerContact')} : </span>
-          <PhoneNumber auth={session.status} id="phone-number">
-            {session.status === 'unauthenticated'
-              ? CommonUtils.maskCellPhone(data.contactNumber)
-              : CommonUtils.addHyphenToPhoneNumber(data.contactNumber)}
-          </PhoneNumber>
-          {!session.data && (
-            <Tooltip anchorSelect="#phone-number" place="right">
-              <div>Xin vui lòng đăng nhập để xem số liên hệ</div>
-            </Tooltip>
-          )}
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <div>{t('detail:managerContact')} : </div>
+            {session.status === 'unauthenticated' ? (
+              <div style={{ marginLeft: 1 }}>
+                <LoginButton text="Đăng nhập xem SĐT" />
+              </div>
+            ) : (
+              <PhoneNumber id="phone-number">{CommonUtils.addHyphenToPhoneNumber(data.contactNumber)}</PhoneNumber>
+            )}
+          </div>
+          {/* {!session.data && <Tooltip anchorSelect="#phone-number" place="right"></Tooltip>} */}
         </ContactInfo>
         <ButtonOutterWrapper>
           {data.postedUsers.length > 0 && (
@@ -273,15 +274,17 @@ interface ISession {
   auth: string;
 }
 
-const PhoneNumber = styled.span<ISession>`
-  ${(props) =>
-    props.auth === 'unauthenticated' &&
-    css`
-      text-shadow: 0px 0px 10px black;
-      color: transparent;
-      cursor: pointer;
-    `}
-`;
+// const PhoneNumber = styled.span<ISession>`
+//   ${(props) =>
+//     props.auth === 'unauthenticated' &&
+//     css`
+//       text-shadow: 0px 0px 10px black;
+//       color: transparent;
+//       cursor: pointer;
+//     `}
+// `;
+
+const PhoneNumber = styled.span``;
 
 export async function getServerSideProps(context) {
   const data = await Posting.getUniquePosting(context.query.pid);

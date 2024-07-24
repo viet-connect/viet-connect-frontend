@@ -3,7 +3,11 @@ import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
 import CommonButton from '../../Button';
 
-export default function LoginButton() {
+interface ILoginButton {
+  text?: string;
+}
+
+export default function LoginButton({ text }: ILoginButton) {
   const { data: session } = useSession();
   const { t } = useTranslation();
 
@@ -43,7 +47,7 @@ export default function LoginButton() {
         >
           <ButtonChildrenWrapper>
             <ButtonTextWrapper>
-              {t('login:signIn')}
+              {text || t('login:signIn')}
               {/* {t('jobTable:searchBtnLabel')} */}
             </ButtonTextWrapper>
           </ButtonChildrenWrapper>
