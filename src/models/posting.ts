@@ -94,9 +94,10 @@ export class Posting {
         return await fetch(`${server}/api/postings${queryString ? `?${queryString}` : ''}`)
           .then((res) => res.json())
           .then((res) => {
-            const { postingList, totalPages } = res;
+            const { postingList, servicePostings, totalPages } = res;
             const list = Posting.makePostingList(postingList);
-            return { list, totalPages };
+            const serviceList = Posting.makePostingList(servicePostings);
+            return { list, serviceList, totalPages };
           });
       }
     } catch (err) {
