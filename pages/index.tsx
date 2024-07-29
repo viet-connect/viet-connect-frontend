@@ -9,15 +9,15 @@ import PageController from '../src/components/common/PageController';
 import GoogleAd from '../src/components/common/GoogleAd';
 import MetaHead from '../src/components/common/MetaHead';
 
-export default function Home({ data = { list: [], totalPages: 0 } }) {
-  const { list, totalPages } = data;
+export default function Home({ data = { list: [], serviceList: [], totalPages: 0 } }) {
+  const { list, totalPages, serviceList } = data;
   const { t } = useTranslation();
   return (
     <Layout pageIndex={0}>
       <MetaHead title={`: ${t('navigation:jobTable')}`} />
       <Container>
         <HomeFilter />
-        <JobList tableContent={list} />
+        <JobList tableContent={list} serviceList={serviceList} />
         <PageController totalPages={totalPages} />
         <GoogleAd />
       </Container>
@@ -33,11 +33,11 @@ const Container = styled.div`
 
 export async function getServerSideProps(context) {
   const { locale, query } = context;
-  const { list = [], totalPages = 1 } = (await Posting.getPostingList(query)) ?? {};
+  const { list = [], serviceList = [], totalPages = 1 } = (await Posting.getPostingList(query)) ?? {};
 
   return {
     props: {
-      data: { list, totalPages },
+      data: { list, serviceList, totalPages },
       ...(await serverSideTranslations(locale, [
         'common',
         'detail',

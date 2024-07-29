@@ -4,17 +4,20 @@ import { useRouter } from 'next/router';
 import JobCard from './job_card';
 import GoogleAd from '../../common/GoogleAd';
 
-export default function JobList({ tableContent }) {
+export default function JobList({ tableContent, serviceList }) {
   const router = useRouter();
   const onClick = () => {
     router.push('/forum/detail/anchor');
   };
+
+  const totalList = serviceList.concat(tableContent);
+
   return (
     <JobListWrapper>
       <Banner onClick={onClick}>
         <Image alt="banner" src="/banner.png" fill />
       </Banner>
-      {tableContent.map((content, i) => (
+      {totalList.map((content, i) => (
         <div key={content.id}>
           <JobCard content={content} />
           {i === 4 && <GoogleAd adId="6000990775" />}

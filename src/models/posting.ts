@@ -36,6 +36,7 @@ export interface IPosting {
   password: string;
   view_count: number;
   authorId: string;
+  premium: boolean;
 }
 
 export interface ISavedPosting {
@@ -81,9 +82,10 @@ export class Posting {
         )
           .then((res) => res.json())
           .then((res) => {
-            const { postingList, totalPages } = res;
+            const { postingList, servicePostings, totalPages } = res;
             const list = Posting.makePostingList(postingList);
-            return { list, totalPages };
+            const serviceList = Posting.makePostingList(servicePostings);
+            return { list, serviceList, totalPages };
           });
       }
 
@@ -134,7 +136,19 @@ export class Posting {
 
   static makePostingList(rawData): IPostingSummary[] {
     return rawData.map((el) => {
-      const { id, address, title, wageAmount, wageType, updatedAt, contents, contactName, password, viewCount } = el;
+      const {
+        id,
+        address,
+        title,
+        wageAmount,
+        wageType,
+        updatedAt,
+        contents,
+        contactName,
+        password,
+        viewCount,
+        premium,
+      } = el;
       const addressArray = address.split(' ');
       const shortAddress =
         // eslint-disable-next-line no-nested-ternary
@@ -158,6 +172,7 @@ export class Posting {
         date: DateUtils.getMonthDayDateTimeString(updatedAt),
         view_count: viewCount,
         updated_at: updatedAt,
+        premium,
       };
     });
   }
