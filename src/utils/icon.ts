@@ -9,3 +9,4 @@ export { default as workingHourIcon } from '../public/svg/working_hour_icon.svg'
 export { default as koreanSpeakingIcon } from '../public/svg/korean_speaking_icon.svg';
 export { default as kakaoLoginButton } from '../public/svg/kakao_login_medium.svg';
 export { default as kakaoChannelInquiryButton } from '../public/svg/kakao_channel_inquiry_button.svg';
+export { default as premium } from '../public/svg/premium.svg';

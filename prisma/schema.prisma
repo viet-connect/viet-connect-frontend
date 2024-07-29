@@ -45,6 +45,7 @@ model Posting {
   viewCount        Int      @default(0) @map("view_count")
   appliedUsers     User[]   @relation("applyTable")
   postedUsers      User[]   @relation("postTable")
+  premium          Boolean  @default(false)
 }
 
 model User {

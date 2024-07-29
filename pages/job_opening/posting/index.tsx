@@ -50,6 +50,7 @@ export default function JobOpeningPosting({ data }) {
           sub: subAddress,
         },
         password: isAdmin === process.env.NEXT_PUBLIC_ADMIN_KEY_VALUE ? data.password : '',
+        premium: data.premium,
       });
     }
 
@@ -76,6 +77,7 @@ export default function JobOpeningPosting({ data }) {
         password: '',
         view_count: 0,
         authorId: '',
+        premium: false,
       });
     };
   }, []);

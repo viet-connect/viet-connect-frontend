@@ -26,6 +26,7 @@ export const inputPostingState = atom<IPosting>({
     password: '',
     view_count: 0,
     authorId: '',
+    premium: false,
   },
 });
 

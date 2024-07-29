@@ -43,11 +43,12 @@ export default async function posting_list(_req: NextApiRequest, res: NextApiRes
           take: SHOW_CONTENTS,
         };
         if (!isFilterInvalid) options.where = where;
-        const postingList = await prisma.posting.findMany(options);
+        const postingList = await prisma.posting.findMany({ ...options, where: { premium: false } });
+        const servicePostings = await prisma.posting.findMany({ ...options, where: { premium: true } });
         const totalPostings = await prisma.posting.count({ where });
         const totalPages = Math.ceil(totalPostings / SHOW_CONTENTS);
 
-        res.status(200).json({ postingList, totalPages });
+        res.status(200).json({ postingList, servicePostings, totalPages });
         break;
       }
 
