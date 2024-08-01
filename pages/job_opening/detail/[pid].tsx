@@ -133,27 +133,29 @@ export default function JobOpeningDetail({ data }) {
           </div>
           {/* {!session.data && <Tooltip anchorSelect="#phone-number" place="right"></Tooltip>} */}
         </ContactInfo>
-        <ButtonOutterWrapper>
-          {data.postedUsers.length > 0 && (
-            <CommonButton
-              wrapperStyle={{
-                height: 45,
-                color: '#1890ff',
-              }}
-              disabled={isApplied || Boolean(isAppliedPosting)}
-              loading={isLoading}
-              onClick={isPostedUser ? () => router.push('/forum/detail/anchor') : onApplyJobOpening}
-            >
-              <ButtonChildrenWrapper>
-                {isPostedUser ? (
-                  <ButtonTextWrapper>{t('posting:subscribeBtnLabel')}</ButtonTextWrapper>
-                ) : (
-                  <ButtonTextWrapper>{t('posting:applyBtnLabel')}</ButtonTextWrapper>
-                )}
-              </ButtonChildrenWrapper>
-            </CommonButton>
-          )}
-        </ButtonOutterWrapper>
+        <ButtonFloater>
+          <ButtonOutterWrapper>
+            {data.postedUsers.length > 0 && (
+              <CommonButton
+                wrapperStyle={{
+                  height: 45,
+                  color: '#1890ff',
+                }}
+                disabled={isApplied || Boolean(isAppliedPosting)}
+                loading={isLoading}
+                onClick={isPostedUser ? () => router.push('/forum/detail/anchor') : onApplyJobOpening}
+              >
+                <ButtonChildrenWrapper>
+                  {isPostedUser ? (
+                    <ButtonTextWrapper>{t('posting:subscribeBtnLabel')}</ButtonTextWrapper>
+                  ) : (
+                    <ButtonTextWrapper>{t('posting:applyBtnLabel')}</ButtonTextWrapper>
+                  )}
+                </ButtonChildrenWrapper>
+              </CommonButton>
+            )}
+          </ButtonOutterWrapper>
+        </ButtonFloater>
         {(isPostedUser || isMasterUser) && (
           <ButtonOutterWrapper>
             <CommonButton
@@ -242,6 +244,14 @@ export default function JobOpeningDetail({ data }) {
 }
 
 const Container = styled.div``;
+
+const ButtonFloater = styled.div`
+  position: sticky !important;
+  width: 200px;
+  left: 0px;
+  bottom: 8px;
+  z-index: 1000;
+`;
 
 const ButtonOutterWrapper = styled.div`
   margin-bottom: 20px;
