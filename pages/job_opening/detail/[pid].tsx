@@ -122,13 +122,14 @@ export default function JobOpeningDetail({ data }) {
           </div>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <div>{t('detail:managerContact')} : </div>
-            {session.status === 'unauthenticated' ? (
+            <PhoneNumber id="phone-number">{CommonUtils.addHyphenToPhoneNumber(data.contactNumber)}</PhoneNumber>
+            {/* {session.status === 'unauthenticated' ? (
               <div style={{ marginLeft: 1 }}>
                 <LoginButton text="Đăng nhập xem SĐT" />
               </div>
             ) : (
               <PhoneNumber id="phone-number">{CommonUtils.addHyphenToPhoneNumber(data.contactNumber)}</PhoneNumber>
-            )}
+            )} */}
           </div>
           {/* {!session.data && <Tooltip anchorSelect="#phone-number" place="right"></Tooltip>} */}
         </ContactInfo>
