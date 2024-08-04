@@ -80,6 +80,7 @@ const MenuItemContent = styled.div<MenuItemContentProps>`
   border-bottom: ${({ $clickedItem, $index }) => ($clickedItem === $index ? ' 2px solid #DB1A1A;' : 0)};
   line-height: normal;
   padding: 16px 0px;
+  text-align: center;
 
   @media (max-width: 500px) {
     white-space: pre-line;
