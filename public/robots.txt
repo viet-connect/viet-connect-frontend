@@ -5,9 +5,9 @@ Disallow: /my_information
 Disallow: /auth
 
 # Host
-Host: https://www.vietconnect.co.kr
+Host: http://localhost:3000
 
 # Sitemaps
-Sitemap: https://www.vietconnect.co.kr/sitemap.xml
-Sitemap: https://www.vietconnect.co.kr/sitemap/job_opening-sitemap.xml
-Sitemap: https://www.vietconnect.co.kr/sitemap/forum-sitemap.xml
+Sitemap: http://localhost:3000/sitemap.xml
+Sitemap: http://localhost:3000sitemap/job_opening-sitemap.xml
+Sitemap: http://localhost:3000sitemap/forum-sitemap.xml
