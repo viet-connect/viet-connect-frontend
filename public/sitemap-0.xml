@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://www.vietconnect.co.kr</loc><lastmod>2024-07-14T11:11:31.708Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
-<url><loc>https://www.vietconnect.co.kr/auth/signin</loc><lastmod>2024-07-14T11:11:31.708Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
-<url><loc>https://www.vietconnect.co.kr/forum</loc><lastmod>2024-07-14T11:11:31.708Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
-<url><loc>https://www.vietconnect.co.kr/forum/posting</loc><lastmod>2024-07-14T11:11:31.708Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
-<url><loc>https://www.vietconnect.co.kr/introduction</loc><lastmod>2024-07-14T11:11:31.708Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
-<url><loc>https://www.vietconnect.co.kr/job_opening/posting</loc><lastmod>2024-07-14T11:11:31.708Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
-<url><loc>https://www.vietconnect.co.kr/my_information</loc><lastmod>2024-07-14T11:11:31.708Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
-<url><loc>https://www.vietconnect.co.kr/sitemap/forum-sitemap.xml</loc><lastmod>2024-07-14T11:11:31.708Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
-<url><loc>https://www.vietconnect.co.kr/sitemap/job_opening-sitemap.xml</loc><lastmod>2024-07-14T11:11:31.708Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.vietconnect.co.kr</loc><lastmod>2024-08-034T11:11:31.708Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.vietconnect.co.kr/forum</loc><lastmod>2024-08-03T11:11:31.708Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.vietconnect.co.kr/introduction</loc><lastmod>2024-08-03T11:11:31.708Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.vietconnect.co.kr/job_opening/posting</loc><lastmod>2024-08-03T11:11:31.708Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.vietconnect.co.kr/vn</loc><lastmod>2024-08-034T11:11:31.708Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.vietconnect.co.kr/vn/forum</loc><lastmod>2024-08-03T11:11:31.708Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.vietconnect.co.kr/vn/introduction</loc><lastmod>2024-08-03T11:11:31.708Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.vietconnect.co.kr/vn/job_opening/posting</loc><lastmod>2024-08-03T11:11:31.708Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.vietconnect.co.kr/vn/my_information</loc><lastmod>2024-08-03T11:11:31.708Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.vietconnect.co.kr/sitemap/forum-sitemap.xml</loc><lastmod>2024-08-03T11:11:31.708Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://www.vietconnect.co.kr/sitemap/job_opening-sitemap.xml</loc><lastmod>2024-08-03T11:11:31.708Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
 </urlset>

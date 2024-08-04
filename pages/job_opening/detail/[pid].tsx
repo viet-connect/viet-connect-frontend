@@ -5,7 +5,6 @@ import { signIn, useSession } from 'next-auth/react';
 import { useEffect, useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/router';
-import { Tooltip } from 'react-tooltip';
 import Layout from '../../../src/components/common/Layout';
 import ContentHeader from '../../../src/components/job_opening/detail/content_header';
 import MainContent from '../../../src/components/job_opening/detail/main_content';
@@ -21,7 +20,6 @@ import ConditionalInfo from '../../../src/components/my_information/ConditionalI
 import CommonUtils from '../../../src/utils/commonUtils';
 import MetaHead from '../../../src/components/common/MetaHead';
 import { ItemContainer, ModalContentContainer } from '../../../src/components/my_information/PostingList';
-import LoginButton from '../../../src/components/common/Login/LoginButton';
 
 export default function JobOpeningDetail({ data }) {
   const [isLoading, setIsLoading] = useState(false);
