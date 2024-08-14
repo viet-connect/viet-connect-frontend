@@ -20,6 +20,7 @@ import ConditionalInfo from '../../../src/components/my_information/ConditionalI
 import CommonUtils from '../../../src/utils/commonUtils';
 import MetaHead from '../../../src/components/common/MetaHead';
 import { ItemContainer, ModalContentContainer } from '../../../src/components/my_information/PostingList';
+import GoogleAd from '../../../src/components/common/GoogleAd';
 
 export default function JobOpeningDetail({ data }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -172,6 +173,7 @@ export default function JobOpeningDetail({ data }) {
             </CommonButton>
           </ButtonOutterWrapper>
         )}
+        <GoogleAd />
         <Modal show={showModal} width={500} height={400} title="지원자 목록" onClose={() => setShowModal(false)}>
           <ModalContentContainer>
             <div>
