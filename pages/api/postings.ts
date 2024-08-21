@@ -33,6 +33,7 @@ export default async function posting_list(_req: NextApiRequest, res: NextApiRes
           AND: [{ title: { contains: keyword } }, { address: { contains: mainRegion } }],
           OR: [{ address: { contains: subRegion } }],
         };
+
         const options: PostingListOptions = {
           orderBy: [
             {
@@ -41,10 +42,18 @@ export default async function posting_list(_req: NextApiRequest, res: NextApiRes
           ],
           skip,
           take: SHOW_CONTENTS,
+          where: { premium: false },
         };
-        if (!isFilterInvalid) options.where = where;
-        const postingList = await prisma.posting.findMany({ ...options, where: { premium: false } });
-        const servicePostings = await prisma.posting.findMany({ ...options, where: { premium: true } });
+
+        const serviceOption = { ...options, where: { premium: true } };
+
+        if (!isFilterInvalid) {
+          options.where = { ...options.where, ...where };
+          serviceOption.where = { ...serviceOption.where, ...where };
+        }
+
+        const postingList = await prisma.posting.findMany(options);
+        const servicePostings = await prisma.posting.findMany(serviceOption);
         const totalPostings = await prisma.posting.count({ where });
         const totalPages = Math.ceil(totalPostings / SHOW_CONTENTS);
 
