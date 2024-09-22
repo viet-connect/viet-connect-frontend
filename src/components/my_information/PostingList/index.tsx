@@ -7,6 +7,7 @@ import Modal from '../../common/Modal';
 import BasicInfo from '../BasicInfo';
 import ConditionalInfo from '../ConditionalInfo';
 import CommonUtils from '../../../utils/commonUtils';
+import DateUtils from '../../../utils/DateUtils';
 
 export default function PostingList(props) {
   const { list = [] } = props;
@@ -74,13 +75,20 @@ export default function PostingList(props) {
           <div>
             {appliers.map((applicant, index) => (
               <ItemContainer key={index}>
-                <div style={{ marginTop: 10 }} key={applicant.id}>
-                  {index + 1}. {applicant.name} /{' '}
-                  {applicant.phone.length > 0 ? CommonUtils.addHyphenToPhoneNumber(applicant.phone) : 'N/A'}
+                <div style={{ marginTop: 10, display: 'flex', alignItems: 'center' }} key={applicant.id}>
+                  <div style={{ marginRight: 20, fontSize: 28, fontWeight: 'bolder' }}>{index + 1}</div>
+                  <div>
+                    <div>이름 : {applicant.name}</div>
+                    <div>
+                      연락처 :{' '}
+                      {applicant.phone.length > 0 ? CommonUtils.addHyphenToPhoneNumber(applicant.phone) : 'N/A'}
+                    </div>
+                    <div>지원날짜 : {DateUtils.getDateString(applicant.createdAt)}</div>
+                  </div>
                 </div>
                 <CommonButton
                   label="이력서 보기"
-                  wrapperStyle={{ height: '100%' }}
+                  wrapperStyle={{ height: 25 }}
                   extraWrapperStyle={{ width: 100, backgroundColor: '#1990ff', color: 'white' }}
                   onClick={() => setAppiedPost(applicant)}
                 />
