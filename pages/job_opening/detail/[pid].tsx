@@ -21,6 +21,7 @@ import CommonUtils from '../../../src/utils/commonUtils';
 import MetaHead from '../../../src/components/common/MetaHead';
 import { ItemContainer, ModalContentContainer } from '../../../src/components/my_information/PostingList';
 import GoogleAd from '../../../src/components/common/GoogleAd';
+import DateUtils from '../../../src/utils/DateUtils';
 
 export default function JobOpeningDetail({ data }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -32,6 +33,8 @@ export default function JobOpeningDetail({ data }) {
   const sessionData = session?.data;
   const router = useRouter();
   const { appliedUsers } = data;
+
+  console.log(appliedUsers);
 
   const onApplyJobOpening = async () => {
     setIsLoading(true);
@@ -179,13 +182,20 @@ export default function JobOpeningDetail({ data }) {
             <div>
               {appliers.map((applicant, index) => (
                 <ItemContainer key={index}>
-                  <div style={{ marginTop: 10 }} key={applicant.id}>
-                    {index + 1}. {applicant.name} /{' '}
-                    {applicant.phone.length > 0 ? CommonUtils.addHyphenToPhoneNumber(applicant.phone) : 'N/A'}
+                  <div style={{ marginTop: 10, display: 'flex', alignItems: 'center' }} key={applicant.id}>
+                    <div style={{ marginRight: 20, fontSize: 28, fontWeight: 'bolder' }}>{index + 1}</div>
+                    <div>
+                      <div>이름 : {applicant.name}</div>
+                      <div>
+                        연락처 :{' '}
+                        {applicant.phone.length > 0 ? CommonUtils.addHyphenToPhoneNumber(applicant.phone) : 'N/A'}
+                      </div>
+                      <div>지원날짜 : {DateUtils.getDateString(applicant.createdAt)}</div>
+                    </div>
                   </div>
                   <CommonButton
                     label="이력서 보기"
-                    wrapperStyle={{ height: '100%' }}
+                    wrapperStyle={{ height: 25 }}
                     extraWrapperStyle={{ width: 100, backgroundColor: '#1990ff', color: 'white' }}
                     onClick={() => setAppiedPost(applicant)}
                   />
