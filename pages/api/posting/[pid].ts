@@ -19,11 +19,7 @@ export default async function posting(_req: NextApiRequest, res: NextApiResponse
               id: pid,
             },
             include: {
-              appliedUsers: {
-                orderBy: {
-                  createdAt: 'desc',
-                },
-              },
+              appliedUsers: true,
               postedUsers: true,
             },
           })
