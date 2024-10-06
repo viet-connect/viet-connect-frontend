@@ -22,6 +22,9 @@ export default function JobList({ tableContent, serviceList }) {
           </Banner>
         </a>
       </Link>
+      <Banner onClick={onClick}>
+        <Image alt="banner" src="/banner.png" fill />
+      </Banner>
       {totalList.map((content, i) => (
         <div key={content.id}>
           <JobCard content={content} />
