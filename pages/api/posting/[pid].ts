@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { orderBy } from 'lodash';
 import prisma from '../../../src/lib/prisma';
 import { Password } from '../../../src/utils/bcrypt';
 
@@ -19,7 +18,11 @@ export default async function posting(_req: NextApiRequest, res: NextApiResponse
               id: pid,
             },
             include: {
-              appliedUsers: true,
+              appliedUsers: {
+                orderBy: {
+                  createdAt: 'desc',
+                },
+              },
               postedUsers: true,
             },
           })
@@ -40,6 +43,7 @@ export default async function posting(_req: NextApiRequest, res: NextApiResponse
             return data;
           });
 
+        res.status(200).json(uniquePosting);
         break;
       }
 

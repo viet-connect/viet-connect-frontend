@@ -71,7 +71,7 @@ export default function JobOpeningDetail({ data }) {
   };
 
   const isPostedUser = useMemo(
-    () => data.postedUsers.length > 0 && data.postedUsers[0].id === session.data?.user?.id,
+    () => data.PostedUsers && data.postedUsers.length > 0 && data.postedUsers[0].id === session.data?.user?.id,
     [data.postedUsers, session.data?.user?.id],
   );
 
@@ -88,7 +88,7 @@ export default function JobOpeningDetail({ data }) {
   ];
   const isMasterUser = useMemo(() => MASTER_ID_ARRAY.includes(session.data?.user?.id), [session.data?.user?.id]);
   const isAppliedPosting = useMemo(
-    () => data.appliedUsers.find(({ id }) => id === sessionData?.user?.id),
+    () => data.appliedUsers && data.appliedUsers.find(({ id }) => id === sessionData?.user?.id),
     [data.appliedUsers, sessionData],
   );
 
@@ -137,7 +137,7 @@ export default function JobOpeningDetail({ data }) {
         </ContactInfo>
         <ButtonFloater>
           <ButtonOutterWrapper>
-            {data.postedUsers.length > 0 && (
+            {data.postedUsers && data.postedUsers.length > 0 && (
               <CommonButton
                 wrapperStyle={{
                   height: 45,
