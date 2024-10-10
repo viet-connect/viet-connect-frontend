@@ -30,8 +30,8 @@ export default async function posting_list(_req: NextApiRequest, res: NextApiRes
         const [mainRegion = ''] = mRegion ? region[mRegion].province : [];
         const isFilterInvalid = [keyword, mainRegion, subRegion].every((filter) => filter.length === 0);
         const where = {
-          AND: [{ title: { contains: keyword } }, { address: { contains: mainRegion } }],
-          OR: [{ address: { contains: subRegion } }],
+          AND: [{ address: { contains: mainRegion } }, { address: { contains: subRegion } }],
+          OR: [{ title: { contains: keyword } }, { contactName: { contains: keyword } }],
         };
 
         const options: PostingListOptions = {
