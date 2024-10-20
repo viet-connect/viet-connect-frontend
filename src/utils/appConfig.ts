@@ -1,7 +1,6 @@
 const AppConfig = {
-  defaultTitle: '외국인 알바 찾을땐? 비엣커넥트. Vietconnect giới thiệu việc làm tại Hàn Quốc',
-  description:
-    '국내 체류 외국인 대상 채용플랫폼 비엣커넥트입니다 | Giới thiệu việc làm cho người Việt sống ở Hàn Quốc miễn phí.',
+  defaultTitle: '베트남인 알바 찾을땐? 비엣커넥트. Vietconnect giới thiệu việc làm cho người Việt',
+  description: '베트남인 대상 채용플랫폼 비엣커넥트입니다 | Giới thiệu việc làm cho người Việt.',
   canonical: 'https://vietconnect.co.kr',
   languageAlternates: [
     {
